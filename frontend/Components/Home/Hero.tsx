@@ -7,8 +7,6 @@ import {
   onebyone,
 } from "../../utils/motion";
 import Image from "next/image";
-import cover from "../../public/cover.png";
-import stamp from "../../public/stamp.png";
 import Link from "next/link";
 import { FiSearch } from "react-icons/fi";
 import logo from "../../public/side.png";
@@ -22,14 +20,14 @@ const Hero = () => (
             <span className="font-light italic ps-2">freelance</span> services
             for your business
           </h1>
-          <div className=" z-10 flex  flex-col  lg:flex-row gap-4 lg:gap-0 ">
+          <div className="  flex  flex-col  lg:flex-row gap-4 lg:gap-0 ">
             <input
               type="text"
               placeholder="Block Chain Web 3.0"
               className=" text-gray-600 border-none outline-none w-[90%] py-5 px-5 rounded-sm"
             />
 
-            <button className=" bg-[#A835C4] w-[90%] lg:w-20 py-5  px-5  font-bold lg:flex   items-center justify-center  rounded-r-md bg-onlineGreen border-none cursor-pointer lg:text-xl text-3xl z-10">
+            <button className=" bg-[#A835C4] w-[90%] lg:w-20 py-5  px-5  font-bold lg:flex   items-center justify-center  rounded-r-md bg-onlineGreen border-none cursor-pointer lg:text-xl text-3xl ">
               <FiSearch />
             </button>
           </div>
@@ -61,7 +59,7 @@ const Hero = () => (
             </Link>
           </div>
         </div>
-        <div className="w-[500px]  relative hidden lg:inline-block  ">
+        <div className="w-[500px]  hidden lg:inline-block  ">
           <Image
             src={logo}
             alt="error"

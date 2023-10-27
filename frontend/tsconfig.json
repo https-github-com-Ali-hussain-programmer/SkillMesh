@@ -30,7 +30,8 @@
     "utils/Provider.js",
     "app/layout.tsx",
     "Components/Home/Features.jsx",
-    "Components/Home/PlatformFeatureList.jsx"
-  ],
+    "Components/Home/PlatformFeatureList.jsx",
+    "app/(routes)/Category/[type].js"
+, "Components/Navbar/Navbar.tsx", "Components/Message/Message.jsx"  ],
   "exclude": ["node_modules"]
 }
