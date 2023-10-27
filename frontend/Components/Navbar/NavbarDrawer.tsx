@@ -1,42 +1,91 @@
 import React, { useState } from "react";
 import {
-  Button,
   Drawer,
   DrawerBody,
-  DrawerFooter,
   DrawerHeader,
   DrawerContent,
   DrawerCloseButton,
+  DrawerFooter,
+  Button,
   DrawerOverlay,
 } from "@chakra-ui/react";
-
-interface NavbarDrawerProps{
-  isOpen:boolean, onClose:()=>void
+import ActiveLinks from "../Shared/ActiveLinks";
+import {
+  Accordion,
+  AccordionItem,
+  AccordionButton,
+  AccordionPanel,
+  AccordionIcon,
+} from "@chakra-ui/react";
+import { usePathname } from "next/navigation";
+import { categoriesData } from "@/utils/data";
+interface NavbarDrawerProps {
+  isOpen: boolean;
+  onClose: () => void;
 }
-function NavbarDrawer({ isOpen, onClose }:NavbarDrawerProps) {
+function NavbarDrawer({ isOpen, onClose }: NavbarDrawerProps) {
+  const pathname = usePathname();
   return (
     <>
-      <Drawer isOpen={isOpen} placement="left" onClose={onClose} >
+      <Drawer isOpen={isOpen} placement="left" onClose={onClose}>
         <DrawerOverlay />
         <DrawerContent>
           <DrawerCloseButton />
-          <DrawerHeader>Create your account</DrawerHeader>
+          <DrawerHeader>
+            <span className="text-3xl font-bold">
+              <ActiveLinks url={"/"} pathname={""}>
+                SkillMesh.
+              </ActiveLinks>
+            </span>
+          </DrawerHeader>
 
           <DrawerBody>
-            <h1>HEELO</h1>
+            <div className="">
+              <h1 className=" px-3 font-medium text-xl text-[#A835C4] py-2">
+                {" "}
+                <ActiveLinks url={"/category"} pathname={pathname}>
+                  Categories
+                </ActiveLinks>{" "}
+              </h1>
+            </div>
+            <Accordion allowToggle={true}>
+              {categoriesData.map((categoryItem, index) => (
+                <AccordionItem key={index} className="border-none">
+                  {({ isDisabled }) => (
+                    <>
+                      <h2 className="text-md font-bold">
+                        <AccordionButton>
+                          <span>{categoryItem.category}</span>
+                          <AccordionIcon />
+                        </AccordionButton>
+                      </h2>
+                      <AccordionPanel>
+                        <div className="item flex gap-5 flex-col">
+                          {categoryItem.subfields.map((subfield, subIndex) => (
+                            <span className="text-lightGrey" key={subIndex}>
+                              <ActiveLinks
+                                pathname={pathname}
+                                url={`/category/${subfield}`}
+                              >
+                                {subfield}
+                              </ActiveLinks>
+                            </span>
+                          ))}
+                        </div>
+                      </AccordionPanel>
+                    </>
+                  )}
+                </AccordionItem>
+              ))}
+            </Accordion>
           </DrawerBody>
-
           <DrawerFooter>
-            <Button variant="outline" mr={3} onClick={onClose}>
-              Cancel
-            </Button>
-            <Button colorScheme="blue">Save</Button>
+            <Button colorScheme="blue">Sign Out</Button>
           </DrawerFooter>
         </DrawerContent>
       </Drawer>
     </>
   );
-
 }
 
 export default NavbarDrawer;

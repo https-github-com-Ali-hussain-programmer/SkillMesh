@@ -1,7 +1,7 @@
 const About = () => {
   return (
     
-      <div className="container bg-white mx-auto  md:w-[70%] shadow-lg  w-full p-7 border-2 rounded-md border-solid border-gray-200">
+      <div className="container bg-white mx-auto  md:w-[80%] shadow-lg  w-full p-7 border-2 rounded-md border-solid border-gray-200">
         <h1 className="text-4xl font-bold mb-5 py-7 text-center ">
           About Our Decentralized Skill Mesh Platform
         </h1>

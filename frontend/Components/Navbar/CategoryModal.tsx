@@ -6,7 +6,7 @@ function CategoryModal() {
   const pathname = usePathname();
   return (
     <>
-      <div className="container mx-auto  bg-white  text-black p-6 py-4 rounded-md shadow-lg">
+      <div className="container mx-auto  bg-[#fcfcfc]  text-black p-6 py-4 rounded-md shadow-xl">
         <div className=" sm:flex   lg:gap:0  flex-wrap lg:gap-14 md:gap-5 hidden">
           <div className="item flex gap-5 flex-col">
             <h2 className="text-md font-bold">Web Development</h2>

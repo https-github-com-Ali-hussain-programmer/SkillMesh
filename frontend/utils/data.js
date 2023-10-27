@@ -103,3 +103,75 @@ export const topRated = [
     coverImg: gig3.src
   }
 ];
+export const categoriesData = [
+  {
+    category: "Web Development",
+    subfields: [
+      "Front-End Development",
+      "Back-End Development",
+      "UI/UX Design",
+      "E-Commerce Development",
+      "WordPress Development",
+    ],
+  },
+  {
+    category: "Graphics Design",
+    subfields: [
+      "Typography & Illustration",
+      "Web Design",
+      "Logo Designs",
+      "Social Media Graphics",
+      "3D Modeling and Rendering",
+    ],
+  },
+  {
+    category: "Digital Marketing",
+    subfields: [
+      "Search Engine Optimization (SEO)",
+      "Content Marketing",
+      "Pay-Per-Click (PPC) Advertising",
+      "Marketing Automation",
+      "Social Media Marketing",
+    ],
+  },
+  {
+    category: "Writing & Translation",
+    subfields: [
+      "Technical Writing",
+      "Ghost Writing",
+      "Content Writing",
+      "Creative Writing",
+      "Copy Writing",
+    ],
+  },
+  {
+    category: "Video Animation",
+    subfields: [
+      "2D Animations",
+      "3D Animations",
+      "Infographic Videos",
+      "Virtual Reality (VR) Animation",
+      "Character Animation",
+    ],
+  },
+  {
+    category: "AI Services",
+    subfields: [
+      "Natural Language Processing (NLP) Services",
+      "Computer Vision Solutions",
+      "Infographic Videos",
+      "AI in Customer Service",
+      "Machine Learning Model Development",
+    ],
+  },
+  {
+    category: "Software Quality Assurance",
+    subfields: [
+      "Functional Testing",
+      "Non-functional Testing",
+      "User Acceptance Testing (UAT)",
+      "Quality Metrics and Measurement",
+      "Alpha and Beta Testing",
+    ],
+  },
+];
