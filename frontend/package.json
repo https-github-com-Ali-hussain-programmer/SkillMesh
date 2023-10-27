@@ -11,12 +11,12 @@
   "dependencies": {
     "@chakra-ui/react": "^2.8.1",
     "@react-spring/parallax": "^9.7.3",
+    "emoji-picker-react": "^4.5.6",
     "framer-motion": "^10.16.4",
     "next": "latest",
     "react": "latest",
     "react-dom": "latest",
-    "react-icons": "^4.11.0",
-    "react-spring-carousel": "^2.0.19"
+    "react-icons": "^4.11.0"
   },
   "devDependencies": {
     "@types/node": "latest",

@@ -12,7 +12,7 @@ function Features() {
   return (
    
   
-    <section className={` relative z-10 my-40  text-secondary-white`}>
+    <section className={`  my-40  text-secondary-white`}>
       <div className="gradient-02 z-0" />
       <div className={`container mx-auto flex flex-col  gap-4 px-2 `}>
         <h1 className="text-5xl font-bold md:text-left  text-center mb-8 italic">

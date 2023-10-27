@@ -18,71 +18,203 @@ import {
 import Image from "next/image";
 import { motion as m } from "framer-motion";
 import { footerVariants } from "@/utils/motion";
+import { usePathname } from "next/navigation";
+import ActiveLinks from "../Shared/ActiveLinks";
 
 function Footer() {
+  const pathname = usePathname();
   return (
     <footer
-      className="text-secondary-white sm:mt-[50px] pt-[40px] pb-[20px] border-t border-solid border-gray-200"
+      className={`${
+        pathname == "/" ? "bg-dark-black text-secondary-white" : "text-black"
+      }  pt-[40px] pb-[20px] border-t border-solid border-gray-200`}
     >
       <div className="container mx-auto">
         <div className=" sm:flex  lg:justify-between lg:gap:0  flex-wrap gap-10 hidden">
           <div className="item flex gap-5 flex-col">
             <h2 className="text-md font-bold">Categories</h2>
-            <span className="text-lightGrey">Graphics & Design</span>
-            <span className="text-lightGrey">Digital Marketing</span>
-            <span className="text-lightGrey">Writing & Translation</span>
-            <span className="text-lightGrey">Video & Animation</span>
-            <span className="text-lightGrey">Music & Audio</span>
-            <span className="text-lightGrey">Programming & Tech</span>
-            <span className="text-lightGrey">Data</span>
-            <span className="text-lightGrey">Business</span>
-            <span className="text-lightGrey">Lifestyle</span>
-            <span className="text-lightGrey">Photography</span>
-            <span className="text-lightGrey">Sitemap</span>
+            <span className="text-lightGrey">
+              {" "}
+              <ActiveLinks pathname={pathname} url={"/category/Graphics&Design"}>
+                Graphics & Design
+              </ActiveLinks>
+            </span>
+         
+              {" "}
+              <span className="text-lightGrey">   <ActiveLinks pathname={pathname} url={"/category/digitalmarketing"}>Digital Marketing </ActiveLinks></span>{" "}   
+        
+           
+              <span className="text-lightGrey"> <ActiveLinks pathname={pathname} url={"/category/writing&translation"}>Writing & Translation  </ActiveLinks></span>
+          
+           
+              <span className="text-lightGrey"> <ActiveLinks pathname={pathname} url={"/category/video&animation"}>Video & Animation     </ActiveLinks></span>
+       
+            
+              <span className="text-lightGrey"><ActiveLinks pathname={pathname} url={"/category/music&audio"}>Music & Audio</ActiveLinks></span>
+            
+         
+              {" "}
+              <span className="text-lightGrey">   <ActiveLinks pathname={pathname} url={"/category/programming&tech"}>Programming & Tech </ActiveLinks>{" "}</span>
+           
+           
+            <span className="text-lightGrey">
+              {" "}
+              <ActiveLinks pathname={pathname} url={"/category/photography"}>
+                Photography{" "}
+              </ActiveLinks>
+            </span>
           </div>
           <div className="item flex gap-5 flex-col">
-            <h2 className="text-md font-bold">About</h2>
-            <span className="text-lightGrey">Press & News</span>
-            <span className="text-lightGrey">Partnerships</span>
-            <span className="text-lightGrey">Privacy Policy</span>
-            <span className="text-lightGrey">Terms of Service</span>
-            <span className="text-lightGrey">Intellectual Property Claims</span>
-            <span className="text-lightGrey">Investor Relations</span>
-            <span className="text-lightGrey">Contact Sales</span>
+            <h2 className="text-md font-bold">About</h2>{" "}
+            <span className="text-lightGrey ">
+              {" "}
+              <ActiveLinks pathname={pathname} url={"/Press&News"}>
+                Press & News
+              </ActiveLinks>
+            </span>{" "}
+            <span className="text-lightGrey">
+              <ActiveLinks pathname={pathname} url={"/Partnerships"}>
+                Partnerships{" "}
+              </ActiveLinks>
+            </span>
+            <span className="text-lightGrey">
+              <ActiveLinks pathname={pathname} url={"/Privacy&Policy"}>
+                Privacy Policy{" "}
+              </ActiveLinks>
+            </span>
+            <span className="text-lightGrey">
+              <ActiveLinks pathname={pathname} url={"/TermOfServices"}>
+                Terms of Service{" "}
+              </ActiveLinks>
+            </span>
+            <span className="text-lightGrey">
+              <ActiveLinks pathname={pathname} url={"/ProperyClaim"}>
+                Intellectual Property Claims{" "}
+              </ActiveLinks>
+            </span>
+            <span className="text-lightGrey">
+              <ActiveLinks pathname={pathname} url={"/ContactSales"}>
+                Contact Sales{" "}
+              </ActiveLinks>
+            </span>
           </div>
           <div className="item flex gap-5 flex-col">
             <h2 className="text-md font-bold">Support</h2>
-            <span className="text-lightGrey">Help & Support</span>
-            <span className="text-lightGrey">Trust & Safety</span>
-            <span className="text-lightGrey">Selling on Liverr</span>
-            <span className="text-lightGrey">Buying on Liverr</span>
+            <span className="text-lightGrey">
+              <ActiveLinks pathname={pathname} url={"/HelpSupport"}>
+                Help & Support{" "}
+              </ActiveLinks>
+            </span>
+            <span className="text-lightGrey">
+              <ActiveLinks pathname={pathname} url={"/Trust&Safety"}>
+                Trust & Safety{" "}
+              </ActiveLinks>
+            </span>
+            <span className="text-lightGrey">
+              <ActiveLinks pathname={pathname} url={"/Selling"}>
+                Selling on Liverr{" "}
+              </ActiveLinks>
+            </span>
+            <span className="text-lightGrey">
+              <ActiveLinks pathname={pathname} url={"/Buying"}>
+                Buying on Liverr{" "}
+              </ActiveLinks>
+            </span>
           </div>
           <div className="item flex gap-5 flex-col">
             <h2 className="text-md font-bold">Community</h2>
-            <span className="text-lightGrey">Customer Success Stories</span>
-            <span className="text-lightGrey">Community hub</span>
-            <span className="text-lightGrey">Forum</span>
-            <span className="text-lightGrey">Events</span>
-            <span className="text-lightGrey">Blog</span>
-            <span className="text-lightGrey">Influencers</span>
-            <span className="text-lightGrey">Affiliates</span>
-            <span className="text-lightGrey">Podcast</span>
-            <span className="text-lightGrey">Invite a Friend</span>
-            <span className="text-lightGrey">Become a Seller</span>
-            <span className="text-lightGrey">Community Standards</span>
+      
+            <span className="text-lightGrey">
+              <ActiveLinks pathname={pathname} url={"/s"}>
+                Community hub{" "}
+              </ActiveLinks>
+            </span>
+          
+            <span className="text-lightGrey">
+              <ActiveLinks pathname={pathname} url={"/s"}>
+                Events{" "}
+              </ActiveLinks>
+            </span>
+            <span className="text-lightGrey">
+              <ActiveLinks pathname={pathname} url={"/s"}>
+                Blog{" "}
+              </ActiveLinks>
+            </span>
+            <span className="text-lightGrey">
+              <ActiveLinks pathname={pathname} url={"/s"}>
+                Influencers{" "}
+              </ActiveLinks>
+            </span>
+            <span className="text-lightGrey">
+              <ActiveLinks pathname={pathname} url={"/s"}>
+                Affiliates{" "}
+              </ActiveLinks>
+            </span>
+            <span className="text-lightGrey">
+              <ActiveLinks pathname={pathname} url={"/s"}>
+                Podcast{" "}
+              </ActiveLinks>
+            </span>
+            <span className="text-lightGrey">
+              <ActiveLinks pathname={pathname} url={"/s"}>
+                Invite a Friend{" "}
+              </ActiveLinks>
+            </span>
+            <span className="text-lightGrey">
+              <ActiveLinks pathname={pathname} url={"/s"}>
+                Become a Seller{" "}
+              </ActiveLinks>
+            </span>
+            <span className="text-lightGrey">
+              <ActiveLinks pathname={pathname} url={"/s"}>
+                Community Standards{" "}
+              </ActiveLinks>
+            </span>
           </div>
           <div className="item flex gap-5 flex-col">
-            <h2 className="text-md font-bold">More From Fiverr</h2>
-            <span className="text-lightGrey">Liverr Business</span>
-            <span className="text-lightGrey">Liverr Pro</span>
-            <span className="text-lightGrey">Liverr Logo Maker</span>
-            <span className="text-lightGrey">Liverr Guides</span>
-            <span className="text-lightGrey">Get Inspired</span>
-            <span className="text-lightGrey">Liverr Select</span>
-            <span className="text-lightGrey">ClearVoice</span>
-            <span className="text-lightGrey">Liverr Workspace</span>
-            <span className="text-lightGrey">Learn</span>
-            <span className="text-lightGrey">Working Not Working</span>
+            <h2 className="text-md font-bold">More From SkillMesh</h2>
+            <span className="text-lightGrey">
+              <ActiveLinks pathname={pathname} url={"/s"}>
+                SkillMesh Business{" "}
+              </ActiveLinks>
+            </span>
+            <span className="text-lightGrey">
+              <ActiveLinks pathname={pathname} url={"/s"}>
+              SkillMesh Pro{" "}
+              </ActiveLinks>
+            </span>
+            <span className="text-lightGrey">
+              <ActiveLinks pathname={pathname} url={"/s"}>
+              SkillMesh Logo Maker{" "}
+              </ActiveLinks>
+            </span>
+            <span className="text-lightGrey">
+              <ActiveLinks pathname={pathname} url={"/s"}>
+              SkillMesh Guides{" "}
+              </ActiveLinks>
+            </span>
+            <span className="text-lightGrey">
+              <ActiveLinks pathname={pathname} url={"/s"}>
+                Get Inspired{" "}
+              </ActiveLinks>
+            </span>
+            <span className="text-lightGrey">
+              <ActiveLinks pathname={pathname} url={"/s"}>
+              SkillMesh Select{" "}
+              </ActiveLinks>
+            </span>
+            <span className="text-lightGrey">
+              <ActiveLinks pathname={pathname} url={"/s"}>
+                ClearVoice{" "}
+              </ActiveLinks>
+            </span>
+            <span className="text-lightGrey">
+              <ActiveLinks pathname={pathname} url={"/s"}>
+              SkillMesh Workspace{" "}
+              </ActiveLinks>
+            </span>
+          
+           
           </div>
         </div>
         <div className="sm:hidden container mx-auto  ">
@@ -115,11 +247,8 @@ function Footer() {
                         <span className="text-lightGrey">
                           Programming & Tech
                         </span>
-                        <span className="text-lightGrey">Data</span>
-                        <span className="text-lightGrey">Business</span>
-                        <span className="text-lightGrey">Lifestyle</span>
                         <span className="text-lightGrey">Photography</span>
-                        <span className="text-lightGrey">Sitemap</span>
+                       
                       </div>
                     </AccordionPanel>
                   </>
@@ -143,9 +272,7 @@ function Footer() {
                         <span className="text-lightGrey">
                           Intellectual Property Claims
                         </span>
-                        <span className="text-lightGrey">
-                          Investor Relations
-                        </span>
+
                         <span className="text-lightGrey">Contact Sales</span>
                       </div>
                     </AccordionPanel>
@@ -166,9 +293,9 @@ function Footer() {
                         <span className="text-lightGrey">Help & Support</span>
                         <span className="text-lightGrey">Trust & Safety</span>
                         <span className="text-lightGrey">
-                          Selling on Liverr
+                          Selling on SkillMesh
                         </span>
-                        <span className="text-lightGrey">Buying on Liverr</span>
+                        <span className="text-lightGrey">Buying on SkillMesh</span>
                       </div>
                     </AccordionPanel>
                   </>
@@ -185,9 +312,7 @@ function Footer() {
                     </h2>
                     <AccordionPanel>
                       <div className="item flex gap-5 flex-col">
-                        <span className="text-lightGrey">
-                          Customer Success Stories
-                        </span>
+                       
                         <span className="text-lightGrey">Community hub</span>
                         <span className="text-lightGrey">Forum</span>
                         <span className="text-lightGrey">Events</span>
@@ -210,26 +335,23 @@ function Footer() {
                   <>
                     <h2 className="text-md font-bold">
                       <AccordionButton>
-                        More from fiverr
+                        More from SkillMesh
                         <AccordionIcon />
                       </AccordionButton>
                     </h2>
                     <AccordionPanel>
                       <div className="item flex gap-5 flex-col">
-                        <span className="text-lightGrey">fiverr Business</span>
-                        <span className="text-lightGrey">fiverr Pro</span>
+                        <span className="text-lightGrey">SkillMesh Business</span>
+                        <span className="text-lightGrey">SkillMesh Pro</span>
                         <span className="text-lightGrey">
-                          fiverr Logo Maker
+                        SkillMesh Logo Maker
                         </span>
-                        <span className="text-lightGrey">fiverr Guides</span>
+                        <span className="text-lightGrey">SkillMesh Guides</span>
                         <span className="text-lightGrey">Get Inspired</span>
-                        <span className="text-lightGrey">fiverr Select</span>
-                        <span className="text-lightGrey">flearVoice</span>
-                        <span className="text-lightGrey">fiverr Workspace</span>
+                        <span className="text-lightGrey">SkillMesh Select</span>
+                        <span className="text-lightGrey">ClearVoice</span>
+                        <span className="text-lightGrey">SkillMesh Workspace</span>
                         <span className="text-lightGrey">Learn</span>
-                        <span className="text-lightGrey">
-                          Working Not Working
-                        </span>
                       </div>
                     </AccordionPanel>
                   </>
@@ -242,9 +364,9 @@ function Footer() {
         <hr className="my-[50px] border-1 border-solid border-gray-300  " />
         <div className=" flex items-center sm:flex-row justify-between flex-col sm:gap-1 gap-4 text-[#b5b6ba]">
           <div className="left sm:gap-4 flex items-center sm:flex-row flex-col">
-            <h2 className="text-3xl fo font-bold">fiverr</h2>
+            <h2 className="text-3xl fo font-bold">SkillMesh</h2>
             <span className="text-sm tracking-wider">
-              © fiverr International Ltd. 2023
+              © SkillMesh International Ltd. 2023
             </span>
           </div>
           <div className="right sm:gap-10 gap-4 flex items-center sm:flex-row flex-col">
