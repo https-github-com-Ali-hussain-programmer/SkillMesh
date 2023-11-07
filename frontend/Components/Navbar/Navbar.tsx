@@ -21,12 +21,12 @@ const Navbar = () => {
   return (
     <nav
       className={`p-4 relative  ${
-        pathname === "/" ? "bg-dark-black text-white" : "text-black shadow-md"
+        pathname === "/" ? "bg-dark-black text-white" : "text-black shadow-md z-50"
       }`}
     >
       <div className="absolute w-[50%] inset-0  gradient-01" />
       <div
-        className={`container mx-auto flex justify-between items-center gap-8`}
+        className={`container mx-auto flex justify-between items-center sm:gap-8 gap-2`}
       >
         <div
           className={`z-50 text-4xl  sm:hidden ${
@@ -39,7 +39,7 @@ const Navbar = () => {
           <HiOutlineBars3CenterLeft />
         </div>
 
-        <div className="font-bold text-[34px] z-10 ">
+        <div className="font-bold text-[34px] z-50 hidden sm:inline-block  ">
           <ActiveLinks url={"/"} pathname={""}>
             SkillMesh.
           </ActiveLinks>
@@ -50,7 +50,7 @@ const Navbar = () => {
             <input
               type="text"
               placeholder="Search for services..."
-              className="text-black w-full px-4 py-1 outline-none border-none focus:ring ring-sky-400 border-2 rounded-md"
+              className="text-black w-full px-4 py-3 outline-none border-none focus:ring ring-sky-400 border-2 rounded-md"
             />
           </div>
         ) : null}
