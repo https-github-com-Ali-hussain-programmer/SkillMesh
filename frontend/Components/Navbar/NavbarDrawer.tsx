@@ -18,7 +18,7 @@ import {
   AccordionIcon,
 } from "@chakra-ui/react";
 import { usePathname } from "next/navigation";
-import { categoriesData } from "@/utils/data";
+import { Category } from "@/utils/data";
 interface NavbarDrawerProps {
   isOpen: boolean;
   onClose: () => void;
@@ -49,7 +49,7 @@ function NavbarDrawer({ isOpen, onClose }: NavbarDrawerProps) {
               </h1>
             </div>
             <Accordion allowToggle={true}>
-              {categoriesData.map((categoryItem, index) => (
+              {Category.map((categoryItem, index) => (
                 <AccordionItem key={index} className="border-none">
                   {({ isDisabled }) => (
                     <>

@@ -19,7 +19,6 @@ export const SliderData = [
     title: "AI Artists",
     desc: "Add talent to AI",
     img: img1.src,
-  
   },
   {
     id: 2,
@@ -76,7 +75,7 @@ export const topRated = [
     status: "Top Rated",
     img: p1.src,
     pricing: "PKR 80,000 - PKR 160,000",
-    coverImg: gig1.src
+    coverImg: gig1.src,
   },
   {
     id: 2,
@@ -88,7 +87,7 @@ export const topRated = [
     status: "Level 2",
     img: p2.src,
     pricing: "PKR 50,000 - PKR 120,000",
-    coverImg: gig2.src
+    coverImg: gig2.src,
   },
   {
     id: 3,
@@ -100,79 +99,7 @@ export const topRated = [
     status: "Pro",
     img: p3.src,
     pricing: "PKR 5,000 - PKR 20,000 ",
-    coverImg: gig3.src
-  }
-];
-export const categoriesData = [
-  {
-    category: "Web Development",
-    subfields: [
-      "Front-End Development",
-      "Back-End Development",
-      "UI/UX Design",
-      "E-Commerce Development",
-      "WordPress Development",
-    ],
-  },
-  {
-    category: "Graphics Design",
-    subfields: [
-      "Typography & Illustration",
-      "Web Design",
-      "Logo Designs",
-      "Social Media Graphics",
-      "3D Modeling and Rendering",
-    ],
-  },
-  {
-    category: "Digital Marketing",
-    subfields: [
-      "Search Engine Optimization (SEO)",
-      "Content Marketing",
-      "Pay-Per-Click (PPC) Advertising",
-      "Marketing Automation",
-      "Social Media Marketing",
-    ],
-  },
-  {
-    category: "Writing & Translation",
-    subfields: [
-      "Technical Writing",
-      "Ghost Writing",
-      "Content Writing",
-      "Creative Writing",
-      "Copy Writing",
-    ],
-  },
-  {
-    category: "Video Animation",
-    subfields: [
-      "2D Animations",
-      "3D Animations",
-      "Infographic Videos",
-      "Virtual Reality (VR) Animation",
-      "Character Animation",
-    ],
-  },
-  {
-    category: "AI Services",
-    subfields: [
-      "Natural Language Processing (NLP) Services",
-      "Computer Vision Solutions",
-      "Infographic Videos",
-      "AI in Customer Service",
-      "Machine Learning Model Development",
-    ],
-  },
-  {
-    category: "Software Quality Assurance",
-    subfields: [
-      "Functional Testing",
-      "Non-functional Testing",
-      "User Acceptance Testing (UAT)",
-      "Quality Metrics and Measurement",
-      "Alpha and Beta Testing",
-    ],
+    coverImg: gig3.src,
   },
 ];
 export const gigs = [
@@ -184,6 +111,9 @@ export const gigs = [
     price: 59,
     star: 5,
     username: "Anna Bell",
+    category: "GraphicsDesign",
+    subcategory: "TypographyIllustration",
+    OrdersCompleted: 10,
   },
   {
     id: 2,
@@ -193,6 +123,9 @@ export const gigs = [
     price: 79,
     star: 5,
     username: "Lannie Coleman",
+    category: "GraphicsDesign",
+    subcategory: "WebDesign",
+    OrdersCompleted: 30,
   },
   {
     id: 3,
@@ -202,6 +135,9 @@ export const gigs = [
     price: 112,
     star: 5,
     username: "Carol Steve",
+    category: "AIServices",
+    subcategory: "NaturalLanguageProcessing(NLP)Services",
+    OrdersCompleted: 1,
   },
   {
     id: 4,
@@ -211,6 +147,9 @@ export const gigs = [
     price: 99,
     star: 4,
     username: "Don Weber",
+    category: "AIServices",
+    subcategory: "ComputerVisionSolutions",
+    OrdersCompleted: 100,
   },
   {
     id: 5,
@@ -220,6 +159,9 @@ export const gigs = [
     price: 59,
     star: 5,
     username: "Audrey Richards",
+    category: "GraphicsDesign",
+    subcategory: "3DModelingandRendering",
+    OrdersCompleted: 24,
   },
   {
     id: 6,
@@ -228,7 +170,10 @@ export const gigs = [
     desc: "I will create ai digital art illustration hyper realistic painting",
     price: 79,
     star: 4,
-    username: "Walton Shepard ",
+    username: "Walton Shepard",
+    category: "GraphicsDesign",
+    subcategory: "SocialMediaGraphics",
+    OrdersCompleted: 40,
   },
   {
     id: 7,
@@ -238,6 +183,9 @@ export const gigs = [
     price: 89,
     star: 5,
     username: "Waverly Schaefer",
+    category: "AIServices",
+    subcategory: "AIinCustomerService",
+    OrdersCompleted: 60,
   },
   {
     id: 8,
@@ -247,5 +195,159 @@ export const gigs = [
     price: 110,
     star: 4,
     username: "Wilton Hunt",
+    category: "WebDevelopment",
+    subcategory: "Front-EndDevelopment",
+    OrdersCompleted: 3,
+  },
+  {
+    id: 9,
+    img: "https://images.pexels.com/photos/5708069/pexels-photo-5708069.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    pp: "https://images.pexels.com/photos/1681010/pexels-photo-1681010.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    desc: "I will create custom ai generated artwork using your photos",
+    price: 199,
+    star: 4,
+    username: "Johnny",
+    category: "AIServices",
+    subcategory: "ComputerVisionSolutions",
+    OrdersCompleted: 10,
+  },
+];
+
+
+
+export const Category = [
+  {
+    category: "WebDevelopment",
+    imageUrl: "https://images.pexels.com/photos/1779487/pexels-photo-1779487.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    subfields: [
+      "Front-EndDevelopment",
+      "Back-EndDevelopment",
+      "UI/UXDesign",
+      "E-CommerceDevelopment",
+      "WordPressDevelopment",
+    ],
+    TotalNoofGigsAvailable: 10,
+    SubCategoryNo: {
+      "Front-EndDevelopment": 2,
+      "Back-EndDevelopment": 3,
+      "UI/UXDesign": 2,
+      "E-CommerceDevelopment": 1,
+      "WordPressDevelopment": 2,
+    },
+  },
+  {
+    category: "GraphicsDesign",
+    imageUrl: "https://images.pexels.com/photos/2860810/pexels-photo-2860810.jpeg?auto=compress&cs=tinysrgb&w=600",
+    subfields: [
+      "TypographyIllustration",
+      "WebDesign",
+      "LogoDesigns",
+      "SocialMediaGraphics",
+      "3DModelingandRendering",
+    ],
+    TotalNoofGigsAvailable: 20,
+    imageUrl: "https://images.pexels.com/photos/279321/pexels-photo-279321.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    SubCategoryNo: {
+      "TypographyIllustration": 5,
+      "WebDesign": 4,
+      "LogoDesigns": 3,
+      "SocialMediaGraphics": 4,
+      "3DModelingandRendering": 4,
+    },
+  },
+  {
+    category: "DigitalMarketing",
+    subfields: [
+      "SearchEngineOptimization(SEO)",
+      "ContentMarketing",
+      "Pay-Per-Click(PPC)Advertising",
+      "MarketingAutomation",
+      "SocialMediaMarketing",
+    ],
+    imageUrl: "https://images.pexels.com/photos/4515793/pexels-photo-4515793.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    TotalNoofGigsAvailable: 5,
+    SubCategoryNo: {
+      "SearchEngineOptimization(SEO)": 1,
+      "ContentMarketing": 2,
+      "Pay-Per-Click(PPC)Advertising": 1,
+      "MarketingAutomation": 1,
+      "SocialMediaMarketing": 0,
+    },
+  },
+  {
+    category: "WritingTranslation",
+    subfields: [
+      "TechnicalWriting",
+      "GhostWriting",
+      "ContentWriting",
+      "CreativeWriting",
+      "CopyWriting",
+    ],
+    imageUrl: "https://images.pexels.com/photos/3539899/pexels-photo-3539899.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    TotalNoofGigsAvailable: 15,
+    SubCategoryNo: {
+      "TechnicalWriting": 3,
+      "GhostWriting": 4,
+      "ContentWriting": 4,
+      "CreativeWriting": 2,
+      "CopyWriting": 2,
+    },
+  },
+  {
+    category: "VideoAnimation",
+    subfields: [
+      "2DAnimations",
+      "3DAnimations",
+      "InfographicVideos",
+      "VirtualReality(VR)Animation",
+      "CharacterAnimation",
+    ],
+    TotalNoofGigsAvailable: 7,
+    imageUrl: "https://images.pexels.com/photos/827209/pexels-photo-827209.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    SubCategoryNo: {
+      "2DAnimations": 2,
+      "3DAnimations": 1,
+      "InfographicVideos": 1,
+      "VirtualReality(VR)Animation": 2,
+      "CharacterAnimation": 1,
+    },
+  },
+  {
+    category: "AIServices",
+    subfields: [
+      "NaturalLanguageProcessing(NLP)Services",
+      "ComputerVisionSolutions",
+      "InfographicVideos",
+      "AIinCustomerService",
+      "MachineLearningModelDevelopment",
+    ],
+    imageUrl: "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    TotalNoofGigsAvailable: 12,
+    SubCategoryNo: {
+      "NaturalLanguageProcessing(NLP)Services": 3,
+      "ComputerVisionSolutions": 3,
+      "InfographicVideos": 2,
+      "AIinCustomerService": 2,
+      "MachineLearningModelDevelopment": 2,
+    },
+  },
+  {
+    category: "SoftwareQualityAssurance",
+    subfields: [
+      "FunctionalTesting",
+      "Non-functionalTesting",
+      "UserAcceptanceTesting(UAT)",
+      "QualityMetricsandMeasurement",
+      "AlphaandBetaTesting",
+    ],
+    imageUrl: "https://images.pexels.com/photos/374559/pexels-photo-374559.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    TotalNoofGigsAvailable: 3,
+    SubCategoryNo: {
+      "FunctionalTesting": 1,
+      "Non-functionalTesting": 0,
+      "UserAcceptanceTesting(UAT)": 1,
+      "QualityMetricsandMeasurement": 0,
+      "AlphaandBetaTesting": 1,
+    },
   },
 ];
