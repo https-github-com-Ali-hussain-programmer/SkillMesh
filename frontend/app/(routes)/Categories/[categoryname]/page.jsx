@@ -37,7 +37,7 @@ const Gigs = ({ params }) => {
     });
   };
   const applyBudget = () => {
-    let sortedArray = [...filteredGigs];
+    let sortedArray = gigs?.filter((c) => c.category === params.categoryname);
     sortedArray = sortedArray?.filter((s) => {
       if (s.price >= budget.min && s.price <= budget.max) {
         return true;
@@ -49,7 +49,7 @@ const Gigs = ({ params }) => {
 
   const subfieldSort = (e) => {
     const { value } = e.target;
-    let sortedArray =  gigs?.filter((c) => c.category === params.categoryname)
+    let sortedArray = gigs?.filter((c) => c.category === params.categoryname);
     if (value === "All") {
       setfilteredGigs(sortedArray);
       setSubfieldSelect(value);
