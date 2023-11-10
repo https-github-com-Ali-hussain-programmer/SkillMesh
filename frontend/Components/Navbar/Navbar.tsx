@@ -24,7 +24,7 @@ const Navbar = () => {
         pathname === "/" ? "bg-dark-black text-white" : "text-black shadow-md z-50"
       }`}
     >
-      <div className="absolute w-[50%] inset-0  gradient-01" />
+      <div className="absolute w-[40%] inset-0  gradient-01  z-10" />
       <div
         className={`container mx-auto flex justify-between items-center sm:gap-8 gap-2`}
       >
@@ -57,7 +57,7 @@ const Navbar = () => {
 
         <div className="flex sm:gap-10 items-center font-medium  ">
           <span className="hidden md:inline-block category-link">
-            <ActiveLinks url={"/category"} pathname={pathname}>
+            <ActiveLinks url={"/Categories"} pathname={pathname}>
               Category
             </ActiveLinks>{" "}
           </span>

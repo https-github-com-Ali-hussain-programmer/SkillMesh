@@ -18,7 +18,7 @@ export default function RootLayout({
         <Provider>
           <Navbar />
           {children}
-          <div className="fixed md:bottom-0 bottom-[4px] right-6 mx-auto z-50">
+          <div className="fixed md:bottom-0 bottom-[2px] right-6 mx-auto z-50">
             <Message />
           </div>
           <Footer />

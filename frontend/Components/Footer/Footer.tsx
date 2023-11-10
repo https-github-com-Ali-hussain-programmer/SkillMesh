@@ -8,6 +8,7 @@ import language from "../../public/language.png";
 import instagram from "../../public/instagram.png";
 import linkedin from "../../public/linkedin.png";
 import accessibility from "../../public/accessibility.png";
+import { Category } from "@/utils/data";
 import {
   Accordion,
   AccordionItem,
@@ -33,36 +34,18 @@ function Footer() {
         <div className=" sm:flex  lg:justify-between lg:gap:0  flex-wrap gap-10 hidden">
           <div className="item flex gap-5 flex-col">
             <h2 className="text-md font-bold">Categories</h2>
-            <span className="text-lightGrey">
-              {" "}
-              <ActiveLinks pathname={pathname} url={"/category/Graphics&Design"}>
-                Graphics & Design
-              </ActiveLinks>
-            </span>
-         
-              {" "}
-              <span className="text-lightGrey">   <ActiveLinks pathname={pathname} url={"/category/digitalmarketing"}>Digital Marketing </ActiveLinks></span>{" "}   
-        
-           
-              <span className="text-lightGrey"> <ActiveLinks pathname={pathname} url={"/category/writing&translation"}>Writing & Translation  </ActiveLinks></span>
-          
-           
-              <span className="text-lightGrey"> <ActiveLinks pathname={pathname} url={"/category/video&animation"}>Video & Animation     </ActiveLinks></span>
-       
-            
-              <span className="text-lightGrey"><ActiveLinks pathname={pathname} url={"/category/music&audio"}>Music & Audio</ActiveLinks></span>
-            
-         
-              {" "}
-              <span className="text-lightGrey">   <ActiveLinks pathname={pathname} url={"/category/programming&tech"}>Programming & Tech </ActiveLinks>{" "}</span>
-           
-           
-            <span className="text-lightGrey">
-              {" "}
-              <ActiveLinks pathname={pathname} url={"/category/photography"}>
-                Photography{" "}
-              </ActiveLinks>
-            </span>
+            {Category.map((c, index) => {
+              return (
+                <span className="text-lightGrey">
+                  <ActiveLinks
+                    pathname={pathname}
+                    url={`/Categories/${c.category}`}
+                  >
+                    {c.category}
+                  </ActiveLinks>
+                </span>
+              );
+            })}
           </div>
           <div className="item flex gap-5 flex-col">
             <h2 className="text-md font-bold">About</h2>{" "}
@@ -123,13 +106,13 @@ function Footer() {
           </div>
           <div className="item flex gap-5 flex-col">
             <h2 className="text-md font-bold">Community</h2>
-      
+
             <span className="text-lightGrey">
               <ActiveLinks pathname={pathname} url={"/s"}>
                 Community hub{" "}
               </ActiveLinks>
             </span>
-          
+
             <span className="text-lightGrey">
               <ActiveLinks pathname={pathname} url={"/s"}>
                 Events{" "}
@@ -180,17 +163,17 @@ function Footer() {
             </span>
             <span className="text-lightGrey">
               <ActiveLinks pathname={pathname} url={"/s"}>
-              SkillMesh Pro{" "}
+                SkillMesh Pro{" "}
               </ActiveLinks>
             </span>
             <span className="text-lightGrey">
               <ActiveLinks pathname={pathname} url={"/s"}>
-              SkillMesh Logo Maker{" "}
+                SkillMesh Logo Maker{" "}
               </ActiveLinks>
             </span>
             <span className="text-lightGrey">
               <ActiveLinks pathname={pathname} url={"/s"}>
-              SkillMesh Guides{" "}
+                SkillMesh Guides{" "}
               </ActiveLinks>
             </span>
             <span className="text-lightGrey">
@@ -200,7 +183,7 @@ function Footer() {
             </span>
             <span className="text-lightGrey">
               <ActiveLinks pathname={pathname} url={"/s"}>
-              SkillMesh Select{" "}
+                SkillMesh Select{" "}
               </ActiveLinks>
             </span>
             <span className="text-lightGrey">
@@ -210,11 +193,9 @@ function Footer() {
             </span>
             <span className="text-lightGrey">
               <ActiveLinks pathname={pathname} url={"/s"}>
-              SkillMesh Workspace{" "}
+                SkillMesh Workspace{" "}
               </ActiveLinks>
             </span>
-          
-           
           </div>
         </div>
         <div className="sm:hidden container mx-auto  ">
@@ -231,24 +212,13 @@ function Footer() {
                     </h2>
                     <AccordionPanel>
                       <div className="item flex gap-5 flex-col">
-                        <span className="text-lightGrey">
-                          Graphics & Design
-                        </span>
-                        <span className="text-lightGrey">
-                          Digital Marketing
-                        </span>
-                        <span className="text-lightGrey">
-                          Writing & Translation
-                        </span>
-                        <span className="text-lightGrey">
-                          Video & Animation
-                        </span>
-                        <span className="text-lightGrey">Music & Audio</span>
-                        <span className="text-lightGrey">
-                          Programming & Tech
-                        </span>
-                        <span className="text-lightGrey">Photography</span>
-                       
+                        {Category.map((c, index) => {
+                          return (
+                            <span key={index} className="text-lightGrey">
+                              {c.category}
+                            </span>
+                          );
+                        })}
                       </div>
                     </AccordionPanel>
                   </>
@@ -295,7 +265,9 @@ function Footer() {
                         <span className="text-lightGrey">
                           Selling on SkillMesh
                         </span>
-                        <span className="text-lightGrey">Buying on SkillMesh</span>
+                        <span className="text-lightGrey">
+                          Buying on SkillMesh
+                        </span>
                       </div>
                     </AccordionPanel>
                   </>
@@ -312,7 +284,6 @@ function Footer() {
                     </h2>
                     <AccordionPanel>
                       <div className="item flex gap-5 flex-col">
-                       
                         <span className="text-lightGrey">Community hub</span>
                         <span className="text-lightGrey">Forum</span>
                         <span className="text-lightGrey">Events</span>
@@ -341,16 +312,20 @@ function Footer() {
                     </h2>
                     <AccordionPanel>
                       <div className="item flex gap-5 flex-col">
-                        <span className="text-lightGrey">SkillMesh Business</span>
+                        <span className="text-lightGrey">
+                          SkillMesh Business
+                        </span>
                         <span className="text-lightGrey">SkillMesh Pro</span>
                         <span className="text-lightGrey">
-                        SkillMesh Logo Maker
+                          SkillMesh Logo Maker
                         </span>
                         <span className="text-lightGrey">SkillMesh Guides</span>
                         <span className="text-lightGrey">Get Inspired</span>
                         <span className="text-lightGrey">SkillMesh Select</span>
                         <span className="text-lightGrey">ClearVoice</span>
-                        <span className="text-lightGrey">SkillMesh Workspace</span>
+                        <span className="text-lightGrey">
+                          SkillMesh Workspace
+                        </span>
                         <span className="text-lightGrey">Learn</span>
                       </div>
                     </AccordionPanel>
