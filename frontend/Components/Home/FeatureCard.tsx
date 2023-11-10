@@ -17,7 +17,7 @@ function FeatureCard({ sliderObject }: FeatureCardProps) {
   const { title, desc, img } = sliderObject;
   return (
     <>
-      <Link href={"/gig?cat=design"}>
+      <Link href={""}>
         <div className="overlay lg:w-[190px]  xl:w-[220px] rounded-md  md:w-[200px]  w-[300px] mx-auto  h-[380px]    cursor-pointer text-white relative ">
           <img
             src={img}

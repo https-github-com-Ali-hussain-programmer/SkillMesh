@@ -14,6 +14,29 @@ function Message() {
   const inputRef = useRef(null);
   const profileRef = useRef(null);
   const messageLayoutRef = useRef(null);
+  const messageRef = useRef(null);
+  useEffect(() => {
+    const handleOutsideClick = (e) => {
+      if (
+        messageRef?.current.contains(e.target) ||
+        inputRef?.current?.contains(e.target) ||
+        profileRef?.current?.contains(e.target) ||
+        messageLayoutRef?.current?.contains(e.target) ||
+        // Add a condition to check if the click is inside the MessageProfile component
+        (profileRef?.current?.contains(e.target) && individualProfile)
+      ) {
+        return;
+      }
+      setShow(false);
+      setindividualProfile(false);
+    };
+  
+    document.addEventListener("click", handleOutsideClick);
+    return () => {
+      document.removeEventListener("click", handleOutsideClick);
+    };
+  }, [individualProfile]);
+  
   const toggleMessage = (e) => {
     if (
       inputRef?.current?.contains(e.target) ||
@@ -31,6 +54,7 @@ function Message() {
   return (
     <>
       <div
+        ref={messageRef}
         onClick={toggleMessage}
         className={`${
           show ? "message" : null

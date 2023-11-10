@@ -5,7 +5,7 @@ function Orderlist() {
   return (
     <>
       <Link  href="/" className="border-b-[1px]  pb-3 border-solid font-normal border-[#56687a] flex text-[12px]  items-center flex-col lg:flex-row ">
-        <div className="w-[17%]  ">
+        <div className="w-[20%]  ">
           <img
             src={p1.src}
             alt="error"

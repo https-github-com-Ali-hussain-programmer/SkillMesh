@@ -2,7 +2,7 @@
 import { motion } from "framer-motion";
 import * as React from "react";
 import { navVariants } from "../../utils/motion";
-import { useCallback, useState } from "react";
+import { useCallback, useState, useRef, useEffect } from "react";
 import NavbarDrawer from "./NavbarDrawer";
 import { HiOutlineBars3CenterLeft } from "react-icons/hi2";
 import { LiaAngleDownSolid } from "react-icons/lia";
@@ -15,13 +15,35 @@ const Navbar = () => {
   const pathname = usePathname();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [OrderShow, setOrderShow] = useState(false);
+  const orderRef = useRef(null);
+  const buttonRef = useRef(null);
   const toggleDrawer = useCallback(() => {
     setIsDrawerOpen(!isDrawerOpen);
   }, [isDrawerOpen]);
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (orderRef?.current) {
+        if (
+          orderRef?.current.contains(e.target) ||
+          buttonRef?.current.contains(e.target)
+        ) {
+          return;
+        }
+        setOrderShow(false);
+      }
+    };
+
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
   return (
     <nav
       className={`p-4 relative  ${
-        pathname === "/" ? "bg-dark-black text-white" : "text-black shadow-md z-50"
+        pathname === "/"
+          ? "bg-dark-black text-white"
+          : "text-black shadow-md z-50"
       }`}
     >
       <div className="absolute w-[40%] inset-0  gradient-01  z-10" />
@@ -69,17 +91,20 @@ const Navbar = () => {
               About
             </ActiveLinks>
           </span>
-          <button className="z-50"
+          <button
+            className="z-50"
+            ref={buttonRef}
             onClick={() => {
-        
               setOrderShow(!OrderShow);
             }}
           >
             Orders
           </button>
           {OrderShow && (
-            <div className="absolute top-16  right-10 md:right-20 z-10 h-[50%]">
-          
+            <div
+              ref={orderRef}
+              className="absolute top-16  right-10 md:right-20 z-10 h-[50%]"
+            >
               <Ordersmodal />
             </div>
           )}
