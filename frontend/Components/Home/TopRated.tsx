@@ -6,7 +6,7 @@ import { staggerContainer } from "@/utils/motion";
 function TopRated() {
   return (
     <div className=" TopRated-bg  py-20     ">
-      <div className="   container 2xl:w-[1400px]  flex flex-col gap-6    rounded-lg shadow-lg">
+      <div className="   container 2xl:w-[1400px]  flex flex-col gap-10    rounded-lg shadow-lg">
         <h1 className="font-bold  text-5xl text-center  text-white">Top Sellers</h1>
         <div className=" gap-10 flex items-center sm:justify-between  justify-center   flex-col md:flex-row">
           {topRated.map((obj) => {
