@@ -142,12 +142,9 @@
 }
 .TopRated-bg {
   background: -webkit-linear-gradient(#23022e, #9002c0);
-  transform-style: preserve-3d;
+ 
 }
 
-.perspective-container {
-  perspective: 1000px; /* Adjust the value as needed for the desired perspective depth */
-}
 
 .CategoryModal {
   display: none;
