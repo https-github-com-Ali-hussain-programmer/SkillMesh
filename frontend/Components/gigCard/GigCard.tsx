@@ -7,25 +7,25 @@ interface GigCardProps {
   id: number;
   img: string;
   pp: string;
-  desc: string;
+  title: string;
   price: number;
   star: number;
   username: string;
-  OrdersCompleted: number;
+  ordersCompleted: number;
 }
 
 function GigCard({
   id,
   img,
   pp,
-  desc,
+  title,
   price,
   star,
   username,
-  OrdersCompleted,
+  ordersCompleted,
 }: GigCardProps) {
   return (
-    <Link href="/gig123">
+    <Link href={`/gig?id=${id}`}>
       <div className="w-[300px]  h-[400px] border border-gray-300 mb-[40px]">
         <img className="w-full h-1/2 object-cover" src={img} alt="" />
         <div className="p-[10px] px-[20px] flex flex-col gap-[20px]">
@@ -41,7 +41,7 @@ function GigCard({
             <span>{username}</span>
           </div>
           {/* <p className= "text-black dark:text-white">{item.desc}</p> */}
-          <p className="text-black dark:text-white">{desc}</p>
+          <p className="text-black dark:text-white">{title}</p>
 
           <div className="flex  justify-between ">
             <div className="flex items-center gap-[5px]">
@@ -51,7 +51,7 @@ function GigCard({
             </div>
 
             <h1 className="text-gray-600 text-right">
-              Order's ({OrdersCompleted})
+              Order's ({ordersCompleted})
             </h1>
           </div>
         </div>
