@@ -18,7 +18,7 @@ const Gig = () => {
   const data = gigs.find((gig) => gig.id === id) || {};
   return (
     <div className="mb-40 mt-10 ">
-      <div className="container mx-auto px-[30px] py-[0px] flex gap-[50px]">
+      <div className="container max-w-[1400px] mx-auto px-[30px] py-[0px] flex gap-[50px]">
         <div className="flex-[2] flex flex-col gap-[20px]">
           <div className=" text-[#404145] text-sm flex items-center gap-2">
             <AiOutlineHome /> <span>/</span> <span>Gigs</span> <span>/</span>

@@ -21,7 +21,7 @@ function Categories() {
   return (
     <>
       <div className="z-50 ">
-        <div className="container mx-auto    flex flex-col ">
+        <div className="container max-w-[1400px] mx-auto     flex flex-col ">
           <h1 className="text-5xl font-bold text-black text-center p-3">
             {" "}
             Categories

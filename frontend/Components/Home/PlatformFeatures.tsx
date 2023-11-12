@@ -18,7 +18,7 @@ function PlatformFeatures() {
   return (
     <>
       <div className="  my-60 ">
-        <div className="  bg-white  px-8 py-7 rounded-lg container mx-auto shadow-lg items-center gap-10  flex-col flex lg:flex-row ">
+        <div className="  bg-white  px-8 py-7 rounded-lg container max-w-[1400px] mx-auto shadow-lg items-center gap-10  flex-col flex lg:flex-row ">
           <div className="flex flex-col gap-[20px] flex-1  ">
             <h1 className="font-bold text-3xl">
               A Whole World of freelance at your fingertips

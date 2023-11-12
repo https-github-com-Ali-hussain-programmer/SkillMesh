@@ -42,13 +42,14 @@ const Navbar = () => {
     <nav
       className={`p-4 relative  ${
         pathname === "/"
-          ? "bg-dark-black text-white"
+          ? "bg-dark-black text-white  "
           : "text-black shadow-md z-50"
+          
       }`}
     >
       <div className="absolute w-[40%] inset-0  gradient-01  z-10" />
       <div
-        className={`container mx-auto 2xl:mx-20  flex justify-between items-center sm:gap-8 gap-2`}
+        className={`container max-w-[1400px] mx-auto  flex justify-between items-center sm:gap-8 gap-2`}
       >
         <div
           className={`z-50 text-4xl  sm:hidden ${
