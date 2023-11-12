@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import GigCard from "../../../../Components/gigCard/GigCard";
 import { gigs, Category } from "../../../../utils/data";
 import { useSearchParams } from "next/navigation";
+import { AiOutlineHome } from "react-icons/ai";
 
 const Gigs = ({ params }) => {
   const [budget, setBudget] = useState({ min: 0, max: 5000 });
@@ -22,7 +23,7 @@ const Gigs = ({ params }) => {
     if (value === "Top Rated") {
       sortedArray.sort((a, b) => b.star - a.star);
     } else if (value === "No of Orders") {
-      sortedArray?.sort((a, b) => b.OrdersCompleted - a.OrdersCompleted);
+      sortedArray?.sort((a, b) => b.ordersCompleted - a.ordersCompleted);
     } else {
       sortedArray = gigs?.filter((c) => c.category === params.categoryname);
     }
@@ -67,43 +68,47 @@ const Gigs = ({ params }) => {
   };
 
   return (
-    <div className="  bg-[#fcfcfc] my-10">
-      <div className="container mx-auto flex flex-col gap-2">
-        <span className="font-light uppercase text-xs text-gray-500">
-          FIVERR {params.categoryname}
-        </span>
-        <div className="flex items-center justify-between">
-          <h1 className="text-[32px] font-bold">{params.categoryname}</h1>
-          <select
-            className="border-[1px] border-solid border-[#ccc] px-6 py-3  outline-none"
-            value={subfieldselect}
-            onChange={subfieldSort}
-          >
-            <option value="All">All</option>
-            {subcategory?.map((f, index) =>
-              f.subfields.map((subfield, subIndex) => (
-                <option key={`${index}-${subIndex}`} value={subfield}>
-                  {subfield}
-                </option>
-              ))
-            )}
-          </select>
+    <div className="  bg-[#fcfcfc] mb-10 mt-8">
+      <div className="container mx-auto flex flex-col gap-2 p-2">
+        <div className=" text-[#404145] text-sm flex items-center gap-3">
+          <AiOutlineHome /> <span>/</span> <span>Categories</span>{" "}
+          <span>/</span>
+          <span> {params.categoryname}</span>
+        </div>
+        <div className="flex flex-col-reverse gap-2 md:flex-col ">
+          <div className="flex flex-col items-center  gap-2  justify-between md:flex-row">
+            <h1 className="text-[32px]  font-bold">{params.categoryname}</h1>
+            <select
+              className="border-[1px] border-solid border-[#ccc] py-3 overflow-hidden outline-none"
+              value={subfieldselect}
+              onChange={subfieldSort}
+            >
+              <option value="All">All</option>
+              {subcategory?.map((f, index) =>
+                f.subfields.map((subfield, subIndex) => (
+                  <option key={`${index}-${subIndex}`} value={subfield}>
+                    {subfield}
+                  </option>
+                ))
+              )}
+            </select>
+          </div>
+          <div className="font-light uppercase text-xs text-gray-500 pb-3">
+            Explore the boundaries of art and technology with Fiverr's{" "}
+            {params.categoryname} artists
+          </div>
         </div>
 
-        <p className="font-light uppercase text-xs text-gray-500 pb-3">
-          Explore the boundaries of art and technology with Fiverr's{" "}
-          {params.categoryname} artists
-        </p>
-        <div className="flex items-center justify-between mb-[20px]">
-          <div className="flex items-center gap-5 text-gray-500 font-light">
-            <span>Budget</span>
+        <div className="flex flex-col md:flex-row items-center gap-2 md:gap-0 justify-between mb-[20px]">
+          <div className="flex flex-col md:flex-row items-center gap-3 text-gray-500 font-light">
+            <span className="hidden md:flex">Budget</span>
             <input
               type="number"
               placeholder="min"
               value={budget.min}
               onChange={handlePrice}
               name="min"
-              className="p-[3px] border border-gray-300 rounded-md focus:outline-none placeholder:text-gray-600 focus:ring-2 ring-sky-400"
+              className="py-3 md:px-2 px-3.5 md:py-2 border border-gray-300 rounded-md focus:outline-none placeholder:text-gray-600 focus:ring-2 ring-sky-400"
             />
             <input
               type="number "
@@ -111,17 +116,17 @@ const Gigs = ({ params }) => {
               name="max"
               onChange={handlePrice}
               value={budget.max}
-              className="p-[3px] border border-gray-300 rounded-md focus:outline-none  focus:ring-2 ring-sky-400"
+              className="py-3 px-3.5 md:py-2 border border-gray-300 rounded-md focus:outline-none  focus:ring-2 ring-sky-400"
             />
             <button
-              className="px-2 py-1 bg-green-600 text-white font-semibold rounded-md cursor-pointer"
+              className="px-1 py-3 w-full  bg-green-600 text-white font-semibold rounded-md cursor-pointer"
               onClick={applyBudget}
             >
               Apply
             </button>
           </div>
           <div className=" flex items-center gap-[10px]">
-            <span className="text-gray-500 font-light">SortBy</span>
+            <span className=" text-gray-500 font-light">SortBy</span>
             <select
               className="border-[1px] border-solid border-[#ccc] p-3 outline-none"
               value={sort}
@@ -134,9 +139,7 @@ const Gigs = ({ params }) => {
           </div>
         </div>
         <div
-          className={`flex ${
-            filteredGigs.length > 3 ? "justify-between" : "gap-12"
-          } flex-wrap `}
+          className={`flex items-center  flex-wrap justify-center sm:gap-12 lg:gap-4 md:justify-normal`}
         >
           {filteredGigs?.map((obj) => {
             return <GigCard key={obj.id} {...obj} />;

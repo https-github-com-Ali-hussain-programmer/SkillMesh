@@ -36,6 +36,6 @@
     "Components/Message/Message.jsx",
     "app/(routes)/Categories/page.jsx",
     "app/(routes)/Categories/[categoryname]/page.jsx"
-  ],
+, "app/(routes)/gig/page.jsx"  ],
   "exclude": ["node_modules"]
 }

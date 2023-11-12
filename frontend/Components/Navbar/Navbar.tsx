@@ -108,7 +108,7 @@ const Navbar = () => {
               <Ordersmodal />
             </div>
           )}
-          <button className="hidden sm:inline-block  py-3">Messages</button>
+          <button className="hidden sm:inline-block  py-3 ">Messages</button>
           <button className="hidden sm:inline-block  py-3">Connect</button>
         </div>
         <NavbarDrawer onClose={toggleDrawer} isOpen={isDrawerOpen} />
