@@ -49,7 +49,7 @@ const Navbar = () => {
     >
       <div className="absolute w-[40%] inset-0  gradient-01  z-10" />
       <div
-        className={`container max-w-[1400px] mx-auto  flex justify-between items-center sm:gap-8 gap-2`}
+        className={`container  flex  2xl:max-w-[1400px] justify-between items-center sm:gap-8 gap-2`}
       >
         <div
           className={`z-50 text-4xl  sm:hidden ${

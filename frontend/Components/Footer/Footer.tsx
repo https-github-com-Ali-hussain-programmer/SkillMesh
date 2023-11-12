@@ -30,7 +30,7 @@ function Footer() {
         pathname == "/" ? "bg-dark-black text-secondary-white" : "text-black"
       }  pt-[40px] pb-[20px] border-t border-solid border-gray-200`}
     >
-      <div className="container max-w-[1400px] mx-auto ">
+      <div className=" container 2xl:max-w-[1400px] ">
         <div className=" sm:flex  lg:justify-between lg:gap:0  flex-wrap gap-10 hidden">
           <div className="item flex gap-5 flex-col">
             <h2 className="text-md font-bold">Categories</h2>

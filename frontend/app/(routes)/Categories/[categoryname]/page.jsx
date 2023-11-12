@@ -76,7 +76,7 @@ const Gigs = ({ params }) => {
 
   return (
     <div className="  bg-[#fcfcfc] mb-10 mt-8">
-      <div className="container max-w-[1400px] mx-auto flex flex-col gap-2 p-2">
+      <div className=" container 2xl:w-[1400px]  flex flex-col gap-2 p-2">
         <div className=" text-[#404145] text-sm flex items-center gap-3">
           <AiOutlineHome /> <span>/</span> <span>Categories</span>{" "}
           <span>/</span>
