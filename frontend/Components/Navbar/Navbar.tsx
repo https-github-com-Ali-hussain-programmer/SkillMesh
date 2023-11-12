@@ -48,7 +48,7 @@ const Navbar = () => {
     >
       <div className="absolute w-[40%] inset-0  gradient-01  z-10" />
       <div
-        className={`container mx-auto mx-20  flex justify-between items-center sm:gap-8 gap-2`}
+        className={`container mx-auto 2xl:mx-20  flex justify-between items-center sm:gap-8 gap-2`}
       >
         <div
           className={`z-50 text-4xl  sm:hidden ${
