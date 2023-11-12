@@ -11,12 +11,13 @@ const Gigs = ({ params }) => {
   const [subfieldselect, setSubfieldSelect] = useState(search || "All");
   const [sort, setSort] = useState("No Sort");
   const [subcategory, setSubcategory] = useState(
-    Category?.filter((c) => c.category === params.categoryname)
+    Category?.filter(
+      (c) => c.category === decodeURIComponent(params.categoryname)
+    )
   );
   const [filteredGigs, setfilteredGigs] = useState(
-    gigs?.filter((c) => c.category === params.categoryname)
+    gigs?.filter((c) => c.category === decodeURIComponent(params.categoryname))
   );
-
   const handleSort = (e) => {
     const { value } = e.target;
     let sortedArray = [...filteredGigs];
@@ -25,7 +26,9 @@ const Gigs = ({ params }) => {
     } else if (value === "No of Orders") {
       sortedArray?.sort((a, b) => b.ordersCompleted - a.ordersCompleted);
     } else {
-      sortedArray = gigs?.filter((c) => c.category === params.categoryname);
+      sortedArray = gigs?.filter(
+        (c) => c.category === decodeURIComponent(params.categoryname)
+      );
     }
     setfilteredGigs(sortedArray);
     setSort(value);
@@ -38,7 +41,9 @@ const Gigs = ({ params }) => {
     });
   };
   const applyBudget = () => {
-    let sortedArray = gigs?.filter((c) => c.category === params.categoryname);
+    let sortedArray = gigs?.filter(
+      (c) => c.category === decodeURIComponent(params.categoryname)
+    );
     sortedArray = sortedArray?.filter((s) => {
       if (s.price >= budget.min && s.price <= budget.max) {
         return true;
@@ -50,7 +55,9 @@ const Gigs = ({ params }) => {
 
   const subfieldSort = (e) => {
     const { value } = e.target;
-    let sortedArray = gigs?.filter((c) => c.category === params.categoryname);
+    let sortedArray = gigs?.filter(
+      (c) => c.category === decodeURIComponent(params.categoryname)
+    );
     if (value === "All") {
       setfilteredGigs(sortedArray);
       setSubfieldSelect(value);
@@ -73,11 +80,13 @@ const Gigs = ({ params }) => {
         <div className=" text-[#404145] text-sm flex items-center gap-3">
           <AiOutlineHome /> <span>/</span> <span>Categories</span>{" "}
           <span>/</span>
-          <span> {params.categoryname}</span>
+          <span> {decodeURIComponent(params.categoryname)}</span>
         </div>
         <div className="flex flex-col-reverse gap-2 md:flex-col ">
           <div className="flex flex-col items-center  gap-2  justify-between md:flex-row">
-            <h1 className="text-[32px]  font-bold">{params.categoryname}</h1>
+            <h1 className="text-[32px]  font-bold">
+              {decodeURIComponent(params.categoryname)}
+            </h1>
             <select
               className="border-[1px] border-solid border-[#ccc] py-3 overflow-hidden outline-none"
               value={subfieldselect}
@@ -93,9 +102,9 @@ const Gigs = ({ params }) => {
               )}
             </select>
           </div>
-          <div className="font-light uppercase text-xs text-gray-500 pb-3">
+          <div className="font-light uppercase text-xs text-gray-500 pb-3 tracking-wide">
             Explore the boundaries of art and technology with Fiverr's{" "}
-            {params.categoryname} artists
+          <span className="font-bold text-[#404145]">{decodeURIComponent(params.categoryname)}</span>   artists
           </div>
         </div>
 

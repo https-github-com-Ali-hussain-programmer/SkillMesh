@@ -1,5 +1,4 @@
 "use client";
-
 import React from "react";
 import Image from "next/image";
 import starimg from "../../../public/star.png";
@@ -11,20 +10,26 @@ import recyle from "../../../public/recycle.png";
 import greencheck from "../../../public/greencheck.png";
 import { useSearchParams } from "next/navigation";
 import { gigs } from "@/utils/data";
+import { AiOutlineHome } from "react-icons/ai";
 
 const Gig = () => {
   const search = useSearchParams();
   const id = search.get("id");
   const data = gigs.find((gig) => gig.id === id) || {};
   return (
-    <div className="mb-40 mt-20">
+    <div className="mb-40 mt-10 ">
       <div className="container mx-auto px-[30px] py-[0px] flex gap-[50px]">
         <div className="flex-[2] flex flex-col gap-[20px]">
-          <span className="font-light uppercase text-xs text-gray-500">
-            {" "}
-            SkillMesh {">"} {data?.category} {">"}{" "}
-          </span>
-          <h1 className="text-[33px]">{data?.title}</h1>
+          <div className=" text-[#404145] text-sm flex items-center gap-2">
+            <AiOutlineHome /> <span>/</span> <span>Gigs</span> <span>/</span>
+            <span>{data?.category}</span>
+            <span>/</span>
+            {data?.subcategory}
+          </div>
+
+          <h1 className="text-3xl font-bold   text-[#404145] break-words ">
+            {data?.title}
+          </h1>
 
           <div className="flex items-center gap-[10px]">
             <img
@@ -67,7 +72,7 @@ const Gig = () => {
               alt="Pic3"
             />
           </Slider>
-          <h2 className="font-normal">About This Gig</h2>
+          <h2 className="font-semibold text-2xl text-[#404145]">About This Gig</h2>
           <p className="font-light leading-[25px] text-gray-500">
             {data?.about}
           </p>
