@@ -20,7 +20,7 @@ function Categories() {
   };
   return (
     <>
-      <div className="z-50 ">
+      <div className="z-50 mt-[100px] mb-[300px] ">
         <div className="  container 2xl:w-[1400px]     flex flex-col ">
           <h1 className="text-5xl font-bold text-black text-center p-3">
             {" "}
@@ -44,32 +44,31 @@ function Categories() {
             </select>
           </div>
 
-          <div className="mt-5 flex flex-col md:flex-row items-center flex-wrap gap-4  justify-between ">
+          <div className="mt-10 flex flex-col md:flex-row items-center flex-wrap gap-10 ">
             {filteredCategory?.map((c, index) => {
               return (
                 <Link
                   href={`/Categories/${c.category}`}
+                  prefetch
                   key={index}
-                  className=" min-h-[30vh] shadow-md hover:ring-2 ring-sky-400 hover:rounded-md  border-[1px] flex flex-col-reverse gap-3  items-center md:flex-row  justify-between border-solid border-[#ccc] px-2 py-6 md:w-[30%] w-[50%]"
+                  className=" blackhover h-[320px] p-3   shadow-lg hover:border-black hover:rounded-md  border-[1px] flex flex-col   border-solid border-[#ccc] "
                 >
+                  <img
+                    src={c.imageUrl}
+                    alt="no error"
+                    className="  h-[200px] w-[240px]   object-cover"
+                  />
+
                   <div className="flex flex-col gap-2">
-                    {" "}
-                    <h1 className="font-bold text-lg text-center md:text-left">
-                      {c.category}{" "}
+                    <h1 className="font-bold text-lg text-[#222325] text-center md:text-left hover:text-[#1dbf73]">
+                      {c.category}
                     </h1>
-                    <h3 className="text-center md:text-left text-sm">
-                      Total No of Gig Available:{c.TotalNoofGigsAvailable}
+                    <h3 className=" text-left text-[15px]  text-[#74767E] font-medium hover:text-[#1dbf73]">
+                      Gigs :({c.TotalNoofGigsAvailable})
                     </h3>
-                    <h6 className="text-center md:text-left text-sm">
-                      No of Subcategories Available:{c.subfields.length}{" "}
+                    <h6 className="text-left text-[15px]  text-[#74767E] font-medium hover:text-[#1dbf73] ">
+                      Subfields:({c.subfields.length})
                     </h6>
-                  </div>
-                  <div className=" lg:w-auto w-full flex justify-center items-center">
-                    <img
-                      src={c.imageUrl}
-                      alt="no error"
-                      className=" md:w-[80px] md:h-[80px] h-[100px] w-[100px]  rounded-full object-cover"
-                    />{" "}
                   </div>
                 </Link>
               );

@@ -10,7 +10,7 @@ import { usePathname } from "next/navigation";
 import ActiveLinks from "../Shared/ActiveLinks";
 import CategoryModal from "./CategoryModal";
 import Ordersmodal from "./Ordersmodal";
-
+import Link from "next/link";
 const Navbar = () => {
   const pathname = usePathname();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -109,7 +109,7 @@ const Navbar = () => {
               <Ordersmodal />
             </div>
           )}
-          <button className="hidden sm:inline-block  py-3 ">Messages</button>
+          <Link  href="/messages" className="hidden sm:inline-block  py-3 ">Messages</Link>
           <button className="hidden sm:inline-block  py-3">Connect</button>
         </div>
         <NavbarDrawer onClose={toggleDrawer} isOpen={isDrawerOpen} />

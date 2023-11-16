@@ -6,6 +6,7 @@ export default function ActiveLinks({ pathname, url, children }) {
     <>
       <Link
         href={url}
+        prefetch
         className={`${
           pathname === url
             ? "border-b-2   border-solid border-[#A835C4]  "
