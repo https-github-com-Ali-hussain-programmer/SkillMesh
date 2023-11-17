@@ -1,6 +1,6 @@
 const About = () => {
   return (
-    <div className="pt-16 pb-[100px]   container bg-white mx-auto  flex flex-col gap-5  w-full p-7  border-solid border-red-900  ">
+    <div className="pt-16 pb-[100px]   container bg-[#fcfcfc] mx-auto  flex flex-col gap-5   px-5 py-5  border-solid border-red-900  ">
       <h1 className="text-5xl font-bold py-7 text-left ">Introduction</h1>
       <p className="text-md  text-justify ">
         Welcome to the forefront of a groundbreaking evolution in the world of
