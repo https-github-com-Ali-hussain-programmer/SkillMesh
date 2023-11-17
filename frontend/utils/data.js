@@ -275,7 +275,7 @@ export const Category = [
       "Typography & Illustration": 5,
       "Web Design": 4,
       "Logo Designs": 3,
-      "Thumbnails": 4,
+      Thumbnails: 4,
       "3D Modeling": 4,
     },
   },
@@ -292,7 +292,7 @@ export const Category = [
       "https://images.pexels.com/photos/4515793/pexels-photo-4515793.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     TotalNoofGigsAvailable: 5,
     SubCategoryNo: {
-      "SEO": 1,
+      SEO: 1,
       "Content Marketing": 2,
       "Pay-Per-Click PPC Ads": 1,
       "Marketing Automation": 1,
@@ -355,7 +355,7 @@ export const Category = [
       "NLP Services": 3,
       "Computer Vision": 3,
       "Neural Networks": 2,
-      "ChatBots": 2,
+      ChatBots: 2,
       "ML Model Development": 2,
     },
   },
@@ -372,11 +372,73 @@ export const Category = [
       "https://images.pexels.com/photos/374559/pexels-photo-374559.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     TotalNoofGigsAvailable: 3,
     SubCategoryNo: {
-      "FunctionalTesting": 1,
+      FunctionalTesting: 1,
       "Non-functional Testing": 0,
-      "UAT": 1,
+      UAT: 1,
       "Quality Metrics": 0,
       "Alpha & Beta Testing": 1,
     },
   },
+  {
+    category: "Digital Marketing",
+    subfields: [
+      "SEO",
+      "Content Marketing",
+      "Pay-Per-Click Ads",
+      "Marketing Automation",
+      "Google Ads",
+    ],
+    imageUrl:
+      "https://images.pexels.com/photos/4515793/pexels-photo-4515793.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    TotalNoofGigsAvailable: 5,
+    SubCategoryNo: {
+      SEO: 1,
+      "Content Marketing": 2,
+      "Pay-Per-Click PPC Ads": 1,
+      "Marketing Automation": 1,
+      "Google Ads": 0,
+    },
+  }
 ];
+
+export const packages = {
+
+  Basic: {
+    name: "Basic",
+    price: "53000",
+    desc: "I will create single page static website",
+    delivery: 2,
+    Revision: 1,
+    functionalities: [
+      "speedOptimized",
+      "contentUpload",
+      "LicensedImages",
+    ]
+  },
+  Standard: {
+    name: "Standard",
+    price: "70000",
+    desc: "I will create 3 pages with backend integrations",
+    delivery: 5,
+    Revision: 2,
+    functionalities: [
+      "speedOptimized",
+      "contentUpload",
+      "LicensedImages",
+    ]
+  },
+  Premium: {
+    name: "Premium",
+    price: "20000",
+    desc: "I will create a medium-sized web app",
+    delivery: 10,
+    Revision: 3,
+    functionalities: [
+      "speedOptimized",
+      "contentUpload",
+      "LicensedImages",
+      "backendIntegration",
+      "StripeIntegration"
+    ]
+  },
+};

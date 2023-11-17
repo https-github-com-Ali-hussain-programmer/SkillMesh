@@ -75,8 +75,8 @@ const Gigs = ({ params }) => {
   };
 
   return (
-    <div className="  bg-[#fcfcfc] mb-10 mt-8">
-      <div className=" container 2xl:w-[1400px]  flex flex-col gap-2 p-2">
+    <div className="  bg-[#fcfcfc] mt-14 mb-[300px]">
+      <div className=" container 2xl:w-[1400px]  flex flex-col gap-5">
         <div className=" text-[#404145] text-sm flex items-center gap-3">
           <AiOutlineHome /> <span>/</span> <span>Categories</span>{" "}
           <span>/</span>
@@ -109,7 +109,7 @@ const Gigs = ({ params }) => {
         </div>
 
         <div className="flex flex-col md:flex-row items-center gap-2 md:gap-0 justify-between mb-[20px]">
-          <div className="flex flex-col md:flex-row items-center gap-3 text-gray-500 font-light">
+          <div className="flex flex-col lg:flex-1 md:flex-row items-center gap-3 text-gray-500 font-light">
             <span className="hidden md:flex">Budget</span>
             <input
               type="number"
@@ -117,7 +117,7 @@ const Gigs = ({ params }) => {
               value={budget.min}
               onChange={handlePrice}
               name="min"
-              className="py-3 md:px-2 px-3.5 md:py-2 border border-gray-300 rounded-md focus:outline-none placeholder:text-gray-600 focus:ring-2 ring-sky-400"
+              className="py-2 px-1 md:py-2 border border-gray-300 rounded-sm focus:outline-none placeholder:text-gray-600 focus:ring-2 ring-sky-400"
             />
             <input
               type="number "
@@ -125,17 +125,17 @@ const Gigs = ({ params }) => {
               name="max"
               onChange={handlePrice}
               value={budget.max}
-              className="py-3 px-3.5 md:py-2 border border-gray-300 rounded-md focus:outline-none  focus:ring-2 ring-sky-400"
+              className="py-2 px-1 md:py-2 border border-gray-300 rounded-sm focus:outline-none  focus:ring-2 ring-sky-400"
             />
             <button
-              className="px-1 py-3 w-full  bg-green-600 text-white font-semibold rounded-md cursor-pointer"
+              className="px-1 py-2 w-full md:w-[200px]  bg-green-600 text-white font-semibold rounded-sm cursor-pointer"
               onClick={applyBudget}
             >
               Apply
             </button>
           </div>
           <div className=" flex items-center gap-[10px]">
-            <span className=" text-gray-500 font-light">SortBy</span>
+            <span className=" text-gray-500 font-light hidden lg:flex">SortBy</span>
             <select
               className="border-[1px] border-solid border-[#ccc] p-3 outline-none"
               value={sort}

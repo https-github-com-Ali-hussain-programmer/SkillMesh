@@ -17,8 +17,8 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #888888; 
- border-radius: 10px;
+  background: #888888;
+  border-radius: 10px;
 }
 
 .gradient-01 {
@@ -142,9 +142,7 @@
 }
 .TopRated-bg {
   background: -webkit-linear-gradient(#23022e, #9002c0);
- 
 }
-
 
 .CategoryModal {
   display: none;
@@ -158,4 +156,26 @@
 .message {
   transition: all 0.2s ease-in-out;
   height: 500px;
+}
+
+.black_border{
+  border-bottom: 3px solid #000000;
+}
+.blackhover {
+  position: relative;
+  /* box-shadow: 0 0.14px 2.29266px rgba(0, 0, 0, 0.032),
+    0 0.37px 4.42626px rgba(0, 0, 0, 0.048), 0 3px 7px rgba(0, 0, 0, 0.09); */
+}
+
+.blackhover::before {
+  content: "";
+  position: absolute;
+  background: rgba(0, 0, 0, 0.9);
+  width: 0px;
+  height:200px;
+  transition: all 0.1s linear;
+}
+
+.blackhover:hover::before {
+  width: 240px;
 }

@@ -25,8 +25,8 @@ function GigCard({
   ordersCompleted,
 }: GigCardProps) {
   return (
-    <Link href={`/gig?id=${id}`}>
-      <div className="w-[300px]  h-[400px] border border-gray-300 mb-[40px]">
+    <Link href={`/gig?id=${id} `}>
+      <div className="w-[300px]  h-[400px] border border-gray-300 mb-[40px]  hover:border-2">
         <img className="w-full h-1/2 object-cover" src={img} alt="" />
         <div className="p-[10px] px-[20px] flex flex-col gap-[20px]">
           <div className="flex items-center gap-[10px]">
