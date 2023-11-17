@@ -10,7 +10,7 @@ function Orderlist() {
     <>
       <Link
         href="/"
-        className="h-fit text-[#404145]  border-b-[1px] border-solid  border-gray-300 flex   items-center flex-row "
+        className="h-fit text-[#404145] p-2 border-b-[1px] border-solid  border-gray-300 flex   items-center flex-row "
       >
         <img
           src={p1.src}
