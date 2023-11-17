@@ -158,7 +158,7 @@
   height: 500px;
 }
 
-.black_border{
+.black_border {
   border-bottom: 3px solid #000000;
 }
 .blackhover {
@@ -172,10 +172,30 @@
   position: absolute;
   background: rgba(0, 0, 0, 0.9);
   width: 0px;
-  height:200px;
+  height: 200px;
   transition: all 0.1s linear;
 }
 
 .blackhover:hover::before {
   width: 240px;
+}
+.gigs:hover .pink-hover {
+  height: 200px;
+  transition :height 0.5s ease, opacity 0.1s ease;
+  opacity: 1;
+  z-index: 999;
+}
+.pink-hover {
+  position: absolute;
+  box-shadow: 0 0.14px 2.29266px rgba(0, 0, 0, 0.032),
+    0 0.37px 4.42626px rgba(0, 0, 0, 0.048), 0 3px 7px rgba(0, 0, 0, 0.09);
+  background: #11113a;
+  z-index: 999;
+  width: 298px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  height: 0px;
+  z-index: -1;
+  opacity: 0;
+  bottom: 0;
 }

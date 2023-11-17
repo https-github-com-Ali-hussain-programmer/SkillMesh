@@ -44,7 +44,6 @@ const Navbar = () => {
         pathname === "/"
           ? "bg-dark-black text-white  "
           : "text-black shadow-md z-50"
-          
       }`}
     >
       <div className="absolute w-[40%] inset-0  gradient-01  z-10" />
@@ -73,7 +72,7 @@ const Navbar = () => {
             <input
               type="text"
               placeholder="Search for services..."
-              className="text-black w-full px-4 py-3 outline-none border-none focus:ring ring-sky-400 border-2 rounded-md"
+              className="text-black w-full px-4 py-3  outline-none border border-solid border-black focus:ring ring-sky-400   focus:border-none rounded-md"
             />
           </div>
         ) : null}
@@ -109,7 +108,9 @@ const Navbar = () => {
               <Ordersmodal />
             </div>
           )}
-          <Link  href="/messages" className="hidden sm:inline-block  py-3 ">Messages</Link>
+          <Link href="/messages" className="hidden sm:inline-block  py-3 ">
+            Messages
+          </Link>
           <button className="hidden sm:inline-block  py-3">Connect</button>
         </div>
         <NavbarDrawer onClose={toggleDrawer} isOpen={isDrawerOpen} />
