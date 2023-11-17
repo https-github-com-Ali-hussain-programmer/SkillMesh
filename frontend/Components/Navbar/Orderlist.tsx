@@ -1,31 +1,33 @@
 import React from "react";
 import Link from "next/link";
 import p1 from "../../public/people-01.png";
+const user = {
+  name: "hamza111233445456",
+  category: "AI",
+};
 function Orderlist() {
   return (
     <>
-      <Link  href="/" className="border-b-[1px]  pb-3 border-solid font-normal border-[#56687a] flex text-[12px]  items-center flex-col lg:flex-row ">
-        <div className="w-[20%]  ">
-          <img
-            src={p1.src}
-            alt="error"
-            className="h-full w-full object-contain"
-          />
+      <Link
+        href="/"
+        className="h-fit text-[#404145]  border-b-[1px] border-solid  border-gray-300 flex   items-center flex-row "
+      >
+        <img
+          src={p1.src}
+          alt="error"
+          className="h-[40px] w-[40px] object-cover"
+        />
+
+        <div className="flex flex-col gap-2 h-full w-full p-2 text-[#62646A] text-sm">
+          <p>
+            <strong className="tracking-wider">
+              Congrats, You Have been Placed to{" "}
+            </strong>
+            <span className="tracking-wider"> {user.name}  in {user.category} Category
+            </span>
+          </p>
+          <p className="font-semibold text-sm text-[#B5b6ba]">1d</p>
         </div>
-        <div className=" flex flex-col  w-full p-1 gap-1 ">
-          <div className="flex lg:items-center  justify-between flex-col lg:flex-row">
-            <h3 className="font-bold text-lg">name</h3>
-            <h3>sub-category</h3>
-            <h3>category</h3>
-          </div>
-          <div className="flex lg:items-center justify-between flex-col lg:flex-row">
-            <h3>Rating</h3>
-            <h3>No of Orders</h3>
-            <h3>Order Completed</h3>
-          </div>
-          <button className="bg-blue-900 p-2 rounded-lg text-white">Message</button>
-        </div>
-        
       </Link>
     </>
   );

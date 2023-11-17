@@ -6,7 +6,7 @@ const orders = [{}];
 function Ordersmodal() {
   return (
     <>
-      <div className=" shadow-lg border-solid bg-white md:w-[400px] h-[470px] w-[300px] overflow-auto rounded-md border  border-gray-300">
+      <div className=" shadow-lg border-solid bg-white md:w-[350px] h-[470px] w-[300px] overflow-auto rounded-md border  border-gray-300">
         <h1 className=" flex justify-between items-center  text-gray-500  text-sm px-[12px] h-[10%] font-bold  border-b  border-gray-300">
           Orders (0)
           <span>
