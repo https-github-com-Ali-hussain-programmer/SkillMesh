@@ -117,6 +117,116 @@ export const gigs = [
     ordersCompleted: 10,
     about:
       "With a profound expertise in graphic design, I bring a wealth of experience to the table. My skills encompass a wide spectrum, from conceptualizing visually appealing concepts to executing them with precision. Over the years, I've honed my ability to seamlessly blend creativity with functionality, producing graphics that not only captivate but also convey a clear message. My proficiency extends to various design tools and techniques, ensuring a versatile approach to projects. Whether it's crafting eye-catching marketing materials or developing engaging digital content, my commitment to delivering visually stunning results remains unwavering. My experience is a testament to my adaptability and commitment to staying at the forefront of design trends, making me a reliable and innovative graphic design professional",
+    reviews: [
+      {
+        name: "John Doe",
+        image:
+          "https://images.pexels.com/photos/839586/pexels-photo-839586.jpeg?auto=compress&cs=tinysrgb&w=1600",
+        country: {
+          flag: "https://fiverr-dev-res.cloudinary.com/general_assets/flags/1f1fa-1f1f8.png",
+          name: "United States",
+        },
+        rating: 5,
+        review:
+          "I just want to say that art_with_ai was the first, and after this, the only artist I'll be using on Fiverr. Communication was amazing, each and every day he sent me images that I was free to request changes to. They listened, understood, and delivered above and beyond my expectations. I absolutely recommend this gig, and know already that I'll be using it again very very soon",
+        helpful: {
+          yes: 10,
+          no: 2,
+        },
+      },
+      {
+        name: "Jane Smith",
+        image: "https://example.com/jane.jpg",
+        country: {
+          flag: "https://fiverr-dev-res.cloudinary.com/general_assets/flags/1f1e6-1f1f9.png",
+          name: "Canada",
+        },
+        rating: 4,
+        review:
+          "Great service! The artist was prompt and professional. I received high-quality work and would definitely recommend this gig to others.",
+        helpful: {
+          yes: 8,
+          no: 1,
+        },
+      },
+      {
+        name: "Alice Johnson",
+        image: "https://example.com/alice.jpg",
+        country: {
+          flag: "https://fiverr-dev-res.cloudinary.com/general_assets/flags/1f1ec-1f1e7.png",
+          name: "Australia",
+        },
+        rating: 5,
+        review:
+          "Absolutely delighted with the results! The artist exceeded my expectations. The communication was smooth, and the delivery was on time. I highly recommend this gig.",
+        helpful: {
+          yes: 12,
+          no: 0,
+        },
+      },
+      {
+        name: "Chris Williams",
+        image: "https://example.com/chris.jpg",
+        country: {
+          flag: "https://fiverr-dev-res.cloudinary.com/general_assets/flags/1f1e8-1f1e6.png",
+          name: "Germany",
+        },
+        rating: 3,
+        review:
+          "Decent service. The artist was cooperative, but there were a few hiccups along the way. Overall, satisfied with the final result.",
+        helpful: {
+          yes: 5,
+          no: 3,
+        },
+      },
+      {
+        name: "Eva Martinez",
+        image: "https://example.com/eva.jpg",
+        country: {
+          flag: "https://fiverr-dev-res.cloudinary.com/general_assets/flags/1f1f7-1f1fa.png",
+          name: "Spain",
+        },
+        rating: 4,
+        review:
+          "Good experience overall. The artist was responsive to my requests, and the end product met my expectations. I would consider using this service again.",
+        helpful: {
+          yes: 6,
+          no: 1,
+        },
+      },
+    ],
+    packages :{
+      Basic: {
+        name: "Basic",
+        price: "53000",
+        desc: "I will create single page static website",
+        delivery: 2,
+        Revision: 1,
+        functionalities: ["speedOptimized", "contentUpload", "LicensedImages"],
+      },
+      Standard: {
+        name: "Standard",
+        price: "70000",
+        desc: "I will create 3 pages with backend integrations",
+        delivery: 5,
+        Revision: 2,
+        functionalities: ["speedOptimized", "contentUpload", "LicensedImages"],
+      },
+      Premium: {
+        name: "Premium",
+        price: "20000",
+        desc: "I will create a medium-sized web app",
+        delivery: 10,
+        Revision: 3,
+        functionalities: [
+          "speedOptimized",
+          "contentUpload",
+          "LicensedImages",
+          "backendIntegration",
+          "StripeIntegration",
+        ],
+      },
+    }
   },
   {
     id: "def456",
@@ -130,6 +240,122 @@ export const gigs = [
     category: "Graphics & Design",
     subcategory: "Web Design",
     ordersCompleted: 30,
+    about:
+      "In the realm of Web Development, my experience encompasses a robust understanding of linguistic patterns and machine learning algorithms. I have successfully developed and implemented NLP models for tasks such as sentiment analysis, named entity recognition, and language translation. Proficient in NLP libraries and frameworks, I've crafted solutions that enable machines to comprehend, interpret, and generate human-like text. My expertise extends to working with diverse language datasets, ensuring the adaptability of NLP applications across various linguistic contexts. With a commitment to staying current with advancements in NLP research, I bring a forward-thinking approach to projects, leveraging the power of language understanding to create intelligent and effective solutions. My experience in NLP underscores a dedication to pushing the boundaries of what can be achieved in Web Design",
+    reviews: [
+      {
+        name: "John Doe",
+        image:
+          "https://images.pexels.com/photos/839586/pexels-photo-839586.jpeg?auto=compress&cs=tinysrgb&w=1600",
+        country: {
+          flag: "https://fiverr-dev-res.cloudinary.com/general_assets/flags/1f1fa-1f1f8.png",
+          name: "United States",
+        },
+        rating: 5,
+        review:
+          "I just want to say that art_with_ai was the first, and after this, the only artist I'll be using on Fiverr. Communication was amazing, each and every day he sent me images that I was free to request changes to. They listened, understood, and delivered above and beyond my expectations. I absolutely recommend this gig, and know already that I'll be using it again very very soon",
+        helpful: {
+          yes: 10,
+          no: 2,
+        },
+      },
+      {
+        name: "Jane Smith",
+        image:
+          "https://images.pexels.com/photos/839586/pexels-photo-839586.jpeg?auto=compress&cs=tinysrgb&w=1600",
+        country: {
+          flag: "https://fiverr-dev-res.cloudinary.com/general_assets/flags/1f1e6-1f1f9.png",
+          name: "Canada",
+        },
+        rating: 4,
+        review:
+          "Great service! The artist was prompt and professional. I received high-quality work and would definitely recommend this gig to others.",
+        helpful: {
+          yes: 8,
+          no: 1,
+        },
+      },
+      {
+        name: "Alice Johnson",
+        image:
+          "https://images.pexels.com/photos/839586/pexels-photo-839586.jpeg?auto=compress&cs=tinysrgb&w=1600",
+        country: {
+          flag: "https://fiverr-dev-res.cloudinary.com/general_assets/flags/1f1ec-1f1e7.png",
+          name: "Australia",
+        },
+        rating: 5,
+        review:
+          "Absolutely delighted with the results! The artist exceeded my expectations. The communication was smooth, and the delivery was on time. I highly recommend this gig.",
+        helpful: {
+          yes: 12,
+          no: 0,
+        },
+      },
+      {
+        name: "Chris Williams",
+        image:
+          "https://images.pexels.com/photos/839586/pexels-photo-839586.jpeg?auto=compress&cs=tinysrgb&w=1600",
+        country: {
+          flag: "https://fiverr-dev-res.cloudinary.com/general_assets/flags/1f1e8-1f1e6.png",
+          name: "Germany",
+        },
+        rating: 3,
+        review:
+          "Decent service. The artist was cooperative, but there were a few hiccups along the way. Overall, satisfied with the final result.",
+        helpful: {
+          yes: 5,
+          no: 3,
+        },
+      },
+      {
+        name: "Eva Martinez",
+        image:
+          "https://images.pexels.com/photos/839586/pexels-photo-839586.jpeg?auto=compress&cs=tinysrgb&w=1600",
+        country: {
+          flag: "https://fiverr-dev-res.cloudinary.com/general_assets/flags/1f1f7-1f1fa.png",
+          name: "Spain",
+        },
+        rating: 4,
+        review:
+          "Good experience overall. The artist was responsive to my requests, and the end product met my expectations. I would consider using this service again.",
+        helpful: {
+          yes: 6,
+          no: 1,
+        },
+      },
+    ],
+    packages :{
+      Basic: {
+        name: "Basic",
+        price: "53000",
+        desc: "I will create single page static website",
+        delivery: 2,
+        Revision: 1,
+        functionalities: ["speedOptimized", "contentUpload", "LicensedImages"],
+      },
+      Standard: {
+        name: "Standard",
+        price: "70000",
+        desc: "I will create 3 pages with backend integrations",
+        delivery: 5,
+        Revision: 2,
+        functionalities: ["speedOptimized", "contentUpload", "LicensedImages"],
+      },
+      Premium: {
+        name: "Premium",
+        price: "20000",
+        desc: "I will create a medium-sized web app",
+        delivery: 10,
+        Revision: 3,
+        functionalities: [
+          "speedOptimized",
+          "contentUpload",
+          "LicensedImages",
+          "backendIntegration",
+          "StripeIntegration",
+        ],
+      },
+    }
   },
   {
     id: "ghi789",
@@ -145,6 +371,119 @@ export const gigs = [
     ordersCompleted: 1,
     about:
       "In the realm of Natural Language Processing (NLP), my experience encompasses a robust understanding of linguistic patterns and machine learning algorithms. I have successfully developed and implemented NLP models for tasks such as sentiment analysis, named entity recognition, and language translation. Proficient in NLP libraries and frameworks, I've crafted solutions that enable machines to comprehend, interpret, and generate human-like text. My expertise extends to working with diverse language datasets, ensuring the adaptability of NLP applications across various linguistic contexts. With a commitment to staying current with advancements in NLP research, I bring a forward-thinking approach to projects, leveraging the power of language understanding to create intelligent and effective solutions. My experience in NLP underscores a dedication to pushing the boundaries of what can be achieved in natural language processing",
+    reviews: [
+      {
+        name: "John Doe",
+        image:
+          "https://images.pexels.com/photos/839586/pexels-photo-839586.jpeg?auto=compress&cs=tinysrgb&w=1600",
+        country: {
+          flag: "https://fiverr-dev-res.cloudinary.com/general_assets/flags/1f1fa-1f1f8.png",
+          name: "United States",
+        },
+        rating: 5,
+        review:
+          "I just want to say that art_with_ai was the first, and after this, the only artist I'll be using on Fiverr. Communication was amazing, each and every day he sent me images that I was free to request changes to. They listened, understood, and delivered above and beyond my expectations. I absolutely recommend this gig, and know already that I'll be using it again very very soon",
+        helpful: {
+          yes: 10,
+          no: 2,
+        },
+      },
+      {
+        image:
+          "https://images.pexels.com/photos/839586/pexels-photo-839586.jpeg?auto=compress&cs=tinysrgb&w=1600",
+        country: {
+          flag: "https://fiverr-dev-res.cloudinary.com/general_assets/flags/1f1e6-1f1f9.png",
+          name: "Canada",
+        },
+        rating: 4,
+        review:
+          "Great service! The artist was prompt and professional. I received high-quality work and would definitely recommend this gig to others.",
+        helpful: {
+          yes: 8,
+          no: 1,
+        },
+      },
+      {
+        name: "Alice Johnson",
+        image:
+          "https://images.pexels.com/photos/839586/pexels-photo-839586.jpeg?auto=compress&cs=tinysrgb&w=1600",
+        country: {
+          flag: "https://fiverr-dev-res.cloudinary.com/general_assets/flags/1f1ec-1f1e7.png",
+          name: "Australia",
+        },
+        rating: 5,
+        review:
+          "Absolutely delighted with the results! The artist exceeded my expectations. The communication was smooth, and the delivery was on time. I highly recommend this gig.",
+        helpful: {
+          yes: 12,
+          no: 0,
+        },
+      },
+      {
+        name: "Chris Williams",
+        image:
+          "https://images.pexels.com/photos/839586/pexels-photo-839586.jpeg?auto=compress&cs=tinysrgb&w=1600",
+        country: {
+          flag: "https://fiverr-dev-res.cloudinary.com/general_assets/flags/1f1e8-1f1e6.png",
+          name: "Germany",
+        },
+        rating: 3,
+        review:
+          "Decent service. The artist was cooperative, but there were a few hiccups along the way. Overall, satisfied with the final result.",
+        helpful: {
+          yes: 5,
+          no: 3,
+        },
+      },
+      {
+        name: "Eva Martinez",
+        image:
+          "https://images.pexels.com/photos/839586/pexels-photo-839586.jpeg?auto=compress&cs=tinysrgb&w=1600",
+        country: {
+          flag: "https://fiverr-dev-res.cloudinary.com/general_assets/flags/1f1f7-1f1fa.png",
+          name: "Spain",
+        },
+        rating: 4,
+        review:
+          "Good experience overall. The artist was responsive to my requests, and the end product met my expectations. I would consider using this service again.",
+        helpful: {
+          yes: 6,
+          no: 1,
+        },
+      },
+    ],
+    packages :{
+      Basic: {
+        name: "Basic",
+        price: "53000",
+        desc: "I will create single page static website",
+        delivery: 2,
+        Revision: 1,
+        functionalities: ["speedOptimized", "contentUpload", "LicensedImages"],
+      },
+      Standard: {
+        name: "Standard",
+        price: "70000",
+        desc: "I will create 3 pages with backend integrations",
+        delivery: 5,
+        Revision: 2,
+        functionalities: ["speedOptimized", "contentUpload", "LicensedImages"],
+      },
+      Premium: {
+        name: "Premium",
+        price: "20000",
+        desc: "I will create a medium-sized web app",
+        delivery: 10,
+        Revision: 3,
+        functionalities: [
+          "speedOptimized",
+          "contentUpload",
+          "LicensedImages",
+          "backendIntegration",
+          "StripeIntegration",
+        ],
+      },
+    }
   },
   {
     id: "jkl012",
@@ -160,6 +499,120 @@ export const gigs = [
     ordersCompleted: 100,
     about:
       "In the domain of computer vision, my experience is marked by a strong foundation in image processing and machine vision techniques. I have applied advanced algorithms to analyze and interpret visual data, enabling systems to comprehend and respond to their surroundings. Proficient in computer vision libraries and frameworks, I've developed solutions for object detection, image segmentation, and facial recognition. My expertise extends to creating applications that leverage computer vision for automation, surveillance, and augmented reality. With a focus on staying abreast of cutting-edge advancements, I bring a forward-thinking approach to harnessing the potential of computer vision technologies. My experience reflects a commitment to developing innovative solutions that enhance the capabilities of systems through the power of visual data analysis.",
+    reviews: [
+      {
+        name: "John Doe",
+        image:
+          "https://images.pexels.com/photos/839586/pexels-photo-839586.jpeg?auto=compress&cs=tinysrgb&w=1600",
+        country: {
+          flag: "https://fiverr-dev-res.cloudinary.com/general_assets/flags/1f1fa-1f1f8.png",
+          name: "United States",
+        },
+        rating: 5,
+        review:
+          "I just want to say that art_with_ai was the first, and after this, the only artist I'll be using on Fiverr. Communication was amazing, each and every day he sent me images that I was free to request changes to. They listened, understood, and delivered above and beyond my expectations. I absolutely recommend this gig, and know already that I'll be using it again very very soon",
+        helpful: {
+          yes: 10,
+          no: 2,
+        },
+      },
+      {
+        name: "Jane Smith",
+        image:
+          "https://images.pexels.com/photos/839586/pexels-photo-839586.jpeg?auto=compress&cs=tinysrgb&w=1600",
+        country: {
+          flag: "https://fiverr-dev-res.cloudinary.com/general_assets/flags/1f1e6-1f1f9.png",
+          name: "Canada",
+        },
+        rating: 4,
+        review:
+          "Great service! The artist was prompt and professional. I received high-quality work and would definitely recommend this gig to others.",
+        helpful: {
+          yes: 8,
+          no: 1,
+        },
+      },
+      {
+        name: "Alice Johnson",
+        image:
+          "https://images.pexels.com/photos/839586/pexels-photo-839586.jpeg?auto=compress&cs=tinysrgb&w=1600",
+        country: {
+          flag: "https://fiverr-dev-res.cloudinary.com/general_assets/flags/1f1ec-1f1e7.png",
+          name: "Australia",
+        },
+        rating: 5,
+        review:
+          "Absolutely delighted with the results! The artist exceeded my expectations. The communication was smooth, and the delivery was on time. I highly recommend this gig.",
+        helpful: {
+          yes: 12,
+          no: 0,
+        },
+      },
+      {
+        name: "Chris Williams",
+        image:
+          "https://images.pexels.com/photos/839586/pexels-photo-839586.jpeg?auto=compress&cs=tinysrgb&w=1600",
+        country: {
+          flag: "https://fiverr-dev-res.cloudinary.com/general_assets/flags/1f1e8-1f1e6.png",
+          name: "Germany",
+        },
+        rating: 3,
+        review:
+          "Decent service. The artist was cooperative, but there were a few hiccups along the way. Overall, satisfied with the final result.",
+        helpful: {
+          yes: 5,
+          no: 3,
+        },
+      },
+      {
+        name: "Eva Martinez",
+        image:
+          "https://images.pexels.com/photos/839586/pexels-photo-839586.jpeg?auto=compress&cs=tinysrgb&w=1600",
+        country: {
+          flag: "https://fiverr-dev-res.cloudinary.com/general_assets/flags/1f1f7-1f1fa.png",
+          name: "Spain",
+        },
+        rating: 4,
+        review:
+          "Good experience overall. The artist was responsive to my requests, and the end product met my expectations. I would consider using this service again.",
+        helpful: {
+          yes: 6,
+          no: 1,
+        },
+      },
+    ],
+    packages :{
+      Basic: {
+        name: "Basic",
+        price: "53000",
+        desc: "I will create single page static website",
+        delivery: 2,
+        Revision: 1,
+        functionalities: ["speedOptimized", "contentUpload", "LicensedImages"],
+      },
+      Standard: {
+        name: "Standard",
+        price: "70000",
+        desc: "I will create 3 pages with backend integrations",
+        delivery: 5,
+        Revision: 2,
+        functionalities: ["speedOptimized", "contentUpload", "LicensedImages"],
+      },
+      Premium: {
+        name: "Premium",
+        price: "20000",
+        desc: "I will create a medium-sized web app",
+        delivery: 10,
+        Revision: 3,
+        functionalities: [
+          "speedOptimized",
+          "contentUpload",
+          "LicensedImages",
+          "backendIntegration",
+          "StripeIntegration",
+        ],
+      },
+    }
   },
   {
     id: "mno345",
@@ -175,6 +628,120 @@ export const gigs = [
     ordersCompleted: 24,
     about:
       "In the realm of graphics, my experience is a testament to a comprehensive skill set that combines creativity with technical proficiency. From conceptualizing visually compelling designs to executing them with precision, I bring a nuanced understanding of design principles and aesthetics. Proficient in industry-standard software, my work spans a spectrum of graphic design applications, including branding, print materials, and digital assets. I've demonstrated the ability to create visually engaging content that aligns with brand identities and effectively communicates messages. With an eye for detail and a commitment to staying current with design trends, my experience in graphics reflects a dedication to producing visually impactful and meaningful work across various mediums.",
+    reviews: [
+      {
+        name: "John Doe",
+        image:
+          "https://images.pexels.com/photos/839586/pexels-photo-839586.jpeg?auto=compress&cs=tinysrgb&w=1600",
+        country: {
+          flag: "https://fiverr-dev-res.cloudinary.com/general_assets/flags/1f1fa-1f1f8.png",
+          name: "United States",
+        },
+        rating: 5,
+        review:
+          "I just want to say that art_with_ai was the first, and after this, the only artist I'll be using on Fiverr. Communication was amazing, each and every day he sent me images that I was free to request changes to. They listened, understood, and delivered above and beyond my expectations. I absolutely recommend this gig, and know already that I'll be using it again very very soon",
+        helpful: {
+          yes: 10,
+          no: 2,
+        },
+      },
+      {
+        name: "Jane Smith",
+        image:
+          "https://images.pexels.com/photos/839586/pexels-photo-839586.jpeg?auto=compress&cs=tinysrgb&w=1600",
+        country: {
+          flag: "https://fiverr-dev-res.cloudinary.com/general_assets/flags/1f1e6-1f1f9.png",
+          name: "Canada",
+        },
+        rating: 4,
+        review:
+          "Great service! The artist was prompt and professional. I received high-quality work and would definitely recommend this gig to others.",
+        helpful: {
+          yes: 8,
+          no: 1,
+        },
+      },
+      {
+        name: "Alice Johnson",
+        image:
+          "https://images.pexels.com/photos/839586/pexels-photo-839586.jpeg?auto=compress&cs=tinysrgb&w=1600",
+        country: {
+          flag: "https://fiverr-dev-res.cloudinary.com/general_assets/flags/1f1ec-1f1e7.png",
+          name: "Australia",
+        },
+        rating: 5,
+        review:
+          "Absolutely delighted with the results! The artist exceeded my expectations. The communication was smooth, and the delivery was on time. I highly recommend this gig.",
+        helpful: {
+          yes: 12,
+          no: 0,
+        },
+      },
+      {
+        name: "Chris Williams",
+        image:
+          "https://images.pexels.com/photos/839586/pexels-photo-839586.jpeg?auto=compress&cs=tinysrgb&w=1600",
+        country: {
+          flag: "https://fiverr-dev-res.cloudinary.com/general_assets/flags/1f1e8-1f1e6.png",
+          name: "Germany",
+        },
+        rating: 3,
+        review:
+          "Decent service. The artist was cooperative, but there were a few hiccups along the way. Overall, satisfied with the final result.",
+        helpful: {
+          yes: 5,
+          no: 3,
+        },
+      },
+      {
+        name: "Eva Martinez",
+        image:
+          "https://images.pexels.com/photos/839586/pexels-photo-839586.jpeg?auto=compress&cs=tinysrgb&w=1600",
+        country: {
+          flag: "https://fiverr-dev-res.cloudinary.com/general_assets/flags/1f1f7-1f1fa.png",
+          name: "Spain",
+        },
+        rating: 4,
+        review:
+          "Good experience overall. The artist was responsive to my requests, and the end product met my expectations. I would consider using this service again.",
+        helpful: {
+          yes: 6,
+          no: 1,
+        },
+      },
+    ],
+    packages :{
+      Basic: {
+        name: "Basic",
+        price: "53000",
+        desc: "I will create single page static website",
+        delivery: 2,
+        Revision: 1,
+        functionalities: ["speedOptimized", "contentUpload", "LicensedImages"],
+      },
+      Standard: {
+        name: "Standard",
+        price: "70000",
+        desc: "I will create 3 pages with backend integrations",
+        delivery: 5,
+        Revision: 2,
+        functionalities: ["speedOptimized", "contentUpload", "LicensedImages"],
+      },
+      Premium: {
+        name: "Premium",
+        price: "20000",
+        desc: "I will create a medium-sized web app",
+        delivery: 10,
+        Revision: 3,
+        functionalities: [
+          "speedOptimized",
+          "contentUpload",
+          "LicensedImages",
+          "backendIntegration",
+          "StripeIntegration",
+        ],
+      },
+    }
   },
   {
     id: "pqr678",
@@ -188,6 +755,123 @@ export const gigs = [
     category: "Graphics & Design",
     subcategory: "Thumbnails",
     ordersCompleted: 40,
+    about:
+      " In the realm of AI, my experience is marked by a deep understanding of machine learning algorithms and artificial intelligence principles. From designing and implementing intricate models to solving complex problems through data-driven approaches, I have consistently demonstrated proficiency in the AI landscape. My expertise spans natural language processing, computer vision, and other AI domains, allowing me to develop innovative solutions for a variety of applications. I have a track record of successfully deploying AI models that enhance efficiency and decision-making processes. With a commitment to staying abreast of the latest advancements in AI, I bring a forward-thinking approach to projects, ensuring they harness the full potential of artificial intelligence. My experience in AI reflects a dedication to pushing the boundaries of what's possible in this rapidly evolving field.",
+    reviews: [
+      {
+        name: "John Doe",
+        image:
+          "https://images.pexels.com/photos/839586/pexels-photo-839586.jpeg?auto=compress&cs=tinysrgb&w=1600",
+        country: {
+          flag: "https://fiverr-dev-res.cloudinary.com/general_assets/flags/1f1fa-1f1f8.png",
+          name: "United States",
+        },
+        rating: 5,
+        review:
+          "I just want to say that art_with_ai was the first, and after this, the only artist I'll be using on Fiverr. Communication was amazing, each and every day he sent me images that I was free to request changes to. They listened, understood, and delivered above and beyond my expectations. I absolutely recommend this gig, and know already that I'll be using it again very very soon",
+        helpful: {
+          yes: 10,
+          no: 2,
+        },
+      },
+      {
+        name: "Jane Smith",
+        image:
+          "https://images.pexels.com/photos/839586/pexels-photo-839586.jpeg?auto=compress&cs=tinysrgb&w=1600",
+        country: {
+          flag: "https://fiverr-dev-res.cloudinary.com/general_assets/flags/1f1e6-1f1f9.png",
+          name: "Canada",
+        },
+        rating: 4,
+        review:
+          "Great service! The artist was prompt and professional. I received high-quality work and would definitely recommend this gig to others.",
+        helpful: {
+          yes: 8,
+          no: 1,
+        },
+      },
+      {
+        name: "Alice Johnson",
+        image:
+          "https://images.pexels.com/photos/839586/pexels-photo-839586.jpeg?auto=compress&cs=tinysrgb&w=1600",
+        country: {
+          flag: "https://fiverr-dev-res.cloudinary.com/general_assets/flags/1f1ec-1f1e7.png",
+          name: "Australia",
+        },
+        rating: 5,
+        review:
+          "Absolutely delighted with the results! The artist exceeded my expectations. The communication was smooth, and the delivery was on time. I highly recommend this gig.",
+        helpful: {
+          yes: 12,
+          no: 0,
+        },
+      },
+      {
+        name: "Chris Williams",
+        image:
+          "https://images.pexels.com/photos/839586/pexels-photo-839586.jpeg?auto=compress&cs=tinysrgb&w=1600",
+        country: {
+          flag: "https://fiverr-dev-res.cloudinary.com/general_assets/flags/1f1e8-1f1e6.png",
+          name: "Germany",
+        },
+        rating: 3,
+        review:
+          "Decent service. The artist was cooperative, but there were a few hiccups along the way. Overall, satisfied with the final result.",
+        helpful: {
+          yes: 5,
+          no: 3,
+        },
+      },
+      {
+        name: "Eva Martinez",
+        image:
+          "https://images.pexels.com/photos/839586/pexels-photo-839586.jpeg?auto=compress&cs=tinysrgb&w=1600",
+        country: {
+          flag: "https://fiverr-dev-res.cloudinary.com/general_assets/flags/1f1f7-1f1fa.png",
+          name: "Spain",
+        },
+        rating: 4,
+        review:
+          "Good experience overall. The artist was responsive to my requests, and the end product met my expectations. I would consider using this service again.",
+        helpful: {
+          yes: 6,
+          no: 1,
+        },
+      },
+    ],
+    packages :{
+      Basic: {
+        name: "Basic",
+        price: "53000",
+        desc: "I will create single page static website",
+        delivery: 2,
+        Revision: 1,
+        functionalities: ["speedOptimized", "contentUpload", "LicensedImages"],
+      },
+      Standard: {
+        name: "Standard",
+        price: "70000",
+        desc: "I will create 3 pages with backend integrations",
+        delivery: 5,
+        Revision: 2,
+        functionalities: ["speedOptimized", "contentUpload", "LicensedImages"],
+      },
+      Premium: {
+        name: "Premium",
+        price: "20000",
+        desc: "I will create a medium-sized web app",
+        delivery: 10,
+        Revision: 3,
+        functionalities: [
+          "speedOptimized",
+          "contentUpload",
+          "LicensedImages",
+          "backendIntegration",
+          "StripeIntegration",
+        ],
+      },
+    }
+    
   },
   {
     id: "stu901",
@@ -203,7 +887,122 @@ export const gigs = [
     ordersCompleted: 60,
     about:
       "In the realm of AI, my experience is marked by a deep understanding of machine learning algorithms and artificial intelligence principles. From designing and implementing intricate models to solving complex problems through data-driven approaches, I have consistently demonstrated proficiency in the AI landscape. My expertise spans natural language processing, computer vision, and other AI domains, allowing me to develop innovative solutions for a variety of applications. I have a track record of successfully deploying AI models that enhance efficiency and decision-making processes. With a commitment to staying abreast of the latest advancements in AI, I bring a forward-thinking approach to projects, ensuring they harness the full potential of artificial intelligence. My experience in AI reflects a dedication to pushing the boundaries of what's possible in this rapidly evolving field.",
+    reviews: [
+      {
+        name: "John Doe",
+        image:
+          "https://images.pexels.com/photos/839586/pexels-photo-839586.jpeg?auto=compress&cs=tinysrgb&w=1600",
+        country: {
+          flag: "https://fiverr-dev-res.cloudinary.com/general_assets/flags/1f1fa-1f1f8.png",
+          name: "United States",
+        },
+        rating: 5,
+        review:
+          "I just want to say that art_with_ai was the first, and after this, the only artist I'll be using on Fiverr. Communication was amazing, each and every day he sent me images that I was free to request changes to. They listened, understood, and delivered above and beyond my expectations. I absolutely recommend this gig, and know already that I'll be using it again very very soon",
+        helpful: {
+          yes: 10,
+          no: 2,
+        },
+      },
+      {
+        name: "Jane Smith",
+        image:
+          "https://images.pexels.com/photos/839586/pexels-photo-839586.jpeg?auto=compress&cs=tinysrgb&w=1600",
+        country: {
+          flag: "https://fiverr-dev-res.cloudinary.com/general_assets/flags/1f1e6-1f1f9.png",
+          name: "Canada",
+        },
+        rating: 4,
+        review:
+          "Great service! The artist was prompt and professional. I received high-quality work and would definitely recommend this gig to others.",
+        helpful: {
+          yes: 8,
+          no: 1,
+        },
+      },
+      {
+        name: "Alice Johnson",
+        image:
+          "https://images.pexels.com/photos/839586/pexels-photo-839586.jpeg?auto=compress&cs=tinysrgb&w=1600",
+        country: {
+          flag: "https://fiverr-dev-res.cloudinary.com/general_assets/flags/1f1ec-1f1e7.png",
+          name: "Australia",
+        },
+        rating: 5,
+        review:
+          "Absolutely delighted with the results! The artist exceeded my expectations. The communication was smooth, and the delivery was on time. I highly recommend this gig.",
+        helpful: {
+          yes: 12,
+          no: 0,
+        },
+      },
+      {
+        name: "Chris Williams",
+        image:
+          "https://images.pexels.com/photos/839586/pexels-photo-839586.jpeg?auto=compress&cs=tinysrgb&w=1600",
+        country: {
+          flag: "https://fiverr-dev-res.cloudinary.com/general_assets/flags/1f1e8-1f1e6.png",
+          name: "Germany",
+        },
+        rating: 3,
+        review:
+          "Decent service. The artist was cooperative, but there were a few hiccups along the way. Overall, satisfied with the final result.",
+        helpful: {
+          yes: 5,
+          no: 3,
+        },
+      },
+      {
+        name: "Eva Martinez",
+        image:
+          "https://images.pexels.com/photos/839586/pexels-photo-839586.jpeg?auto=compress&cs=tinysrgb&w=1600",
+        country: {
+          flag: "https://fiverr-dev-res.cloudinary.com/general_assets/flags/1f1f7-1f1fa.png",
+          name: "Spain",
+        },
+        rating: 4,
+        review:
+          "Good experience overall. The artist was responsive to my requests, and the end product met my expectations. I would consider using this service again.",
+        helpful: {
+          yes: 6,
+          no: 1,
+        },
+      },
+    ],
+    packages :{
+      Basic: {
+        name: "Basic",
+        price: "53000",
+        desc: "I will create single page static website",
+        delivery: 2,
+        Revision: 1,
+        functionalities: ["speedOptimized", "contentUpload", "LicensedImages"],
+      },
+      Standard: {
+        name: "Standard",
+        price: "70000",
+        desc: "I will create 3 pages with backend integrations",
+        delivery: 5,
+        Revision: 2,
+        functionalities: ["speedOptimized", "contentUpload", "LicensedImages"],
+      },
+      Premium: {
+        name: "Premium",
+        price: "20000",
+        desc: "I will create a medium-sized web app",
+        delivery: 10,
+        Revision: 3,
+        functionalities: [
+          "speedOptimized",
+          "contentUpload",
+          "LicensedImages",
+          "backendIntegration",
+          "StripeIntegration",
+        ],
+      },
+    }
   },
+
   {
     id: "vwx234",
     img: "https://images.pexels.com/photos/5490778/pexels-photo-5490778.jpeg?auto=compress&cs=tinysrgb&w=1600",
@@ -218,6 +1017,120 @@ export const gigs = [
     ordersCompleted: 3,
     about:
       "In the realm of web development, my experience is a testament to a robust and dynamic skill set. From coding and programming to creating responsive and user-friendly interfaces, I've navigated the ever-evolving landscape of web technologies. Proficient in a range of languages such as HTML, CSS, JavaScript, and more, I've successfully translated design concepts into functional and aesthetically pleasing websites. My experience extends to working with various frameworks and content management systems, ensuring adaptability to diverse project requirements. Whether it's crafting efficient backend solutions or optimizing frontend performance, my dedication to delivering seamless web experiences reflects a comprehensive understanding of the intricacies of web development. My track record underscores a commitment to staying abreast of emerging technologies, making me a reliable and innovative web development professional",
+    reviews: [
+      {
+        name: "John Doe",
+        image:
+          "https://images.pexels.com/photos/839586/pexels-photo-839586.jpeg?auto=compress&cs=tinysrgb&w=1600",
+        country: {
+          flag: "https://fiverr-dev-res.cloudinary.com/general_assets/flags/1f1fa-1f1f8.png",
+          name: "United States",
+        },
+        rating: 5,
+        review:
+          "I just want to say that art_with_ai was the first, and after this, the only artist I'll be using on Fiverr. Communication was amazing, each and every day he sent me images that I was free to request changes to. They listened, understood, and delivered above and beyond my expectations. I absolutely recommend this gig, and know already that I'll be using it again very very soon",
+        helpful: {
+          yes: 10,
+          no: 2,
+        },
+      },
+      {
+        name: "Jane Smith",
+        image:
+          "https://images.pexels.com/photos/839586/pexels-photo-839586.jpeg?auto=compress&cs=tinysrgb&w=1600",
+        country: {
+          flag: "https://fiverr-dev-res.cloudinary.com/general_assets/flags/1f1e6-1f1f9.png",
+          name: "Canada",
+        },
+        rating: 4,
+        review:
+          "Great service! The artist was prompt and professional. I received high-quality work and would definitely recommend this gig to others.",
+        helpful: {
+          yes: 8,
+          no: 1,
+        },
+      },
+      {
+        name: "Alice Johnson",
+        image:
+          "https://images.pexels.com/photos/839586/pexels-photo-839586.jpeg?auto=compress&cs=tinysrgb&w=1600",
+        country: {
+          flag: "https://fiverr-dev-res.cloudinary.com/general_assets/flags/1f1ec-1f1e7.png",
+          name: "Australia",
+        },
+        rating: 5,
+        review:
+          "Absolutely delighted with the results! The artist exceeded my expectations. The communication was smooth, and the delivery was on time. I highly recommend this gig.",
+        helpful: {
+          yes: 12,
+          no: 0,
+        },
+      },
+      {
+        name: "Chris Williams",
+        image:
+          "https://images.pexels.com/photos/839586/pexels-photo-839586.jpeg?auto=compress&cs=tinysrgb&w=1600",
+        country: {
+          flag: "https://fiverr-dev-res.cloudinary.com/general_assets/flags/1f1e8-1f1e6.png",
+          name: "Germany",
+        },
+        rating: 3,
+        review:
+          "Decent service. The artist was cooperative, but there were a few hiccups along the way. Overall, satisfied with the final result.",
+        helpful: {
+          yes: 5,
+          no: 3,
+        },
+      },
+      {
+        name: "Eva Martinez",
+        image:
+          "https://images.pexels.com/photos/839586/pexels-photo-839586.jpeg?auto=compress&cs=tinysrgb&w=1600",
+        country: {
+          flag: "https://fiverr-dev-res.cloudinary.com/general_assets/flags/1f1f7-1f1fa.png",
+          name: "Spain",
+        },
+        rating: 4,
+        review:
+          "Good experience overall. The artist was responsive to my requests, and the end product met my expectations. I would consider using this service again.",
+        helpful: {
+          yes: 6,
+          no: 1,
+        },
+      },
+    ],
+    packages :{
+      Basic: {
+        name: "Basic",
+        price: "53000",
+        desc: "I will create single page static website",
+        delivery: 2,
+        Revision: 1,
+        functionalities: ["speedOptimized", "contentUpload", "LicensedImages"],
+      },
+      Standard: {
+        name: "Standard",
+        price: "70000",
+        desc: "I will create 3 pages with backend integrations",
+        delivery: 5,
+        Revision: 2,
+        functionalities: ["speedOptimized", "contentUpload", "LicensedImages"],
+      },
+      Premium: {
+        name: "Premium",
+        price: "20000",
+        desc: "I will create a medium-sized web app",
+        delivery: 10,
+        Revision: 3,
+        functionalities: [
+          "speedOptimized",
+          "contentUpload",
+          "LicensedImages",
+          "backendIntegration",
+          "StripeIntegration",
+        ],
+      },
+    }
   },
   {
     id: "yza567",
@@ -233,6 +1146,121 @@ export const gigs = [
     ordersCompleted: 10,
     about:
       " In the realm of AI, my experience is marked by a deep understanding of machine learning algorithms and artificial intelligence principles. From designing and implementing intricate models to solving complex problems through data-driven approaches, I have consistently demonstrated proficiency in the AI landscape. My expertise spans natural language processing, computer vision, and other AI domains, allowing me to develop innovative solutions for a variety of applications. I have a track record of successfully deploying AI models that enhance efficiency and decision-making processes. With a commitment to staying abreast of the latest advancements in AI, I bring a forward-thinking approach to projects, ensuring they harness the full potential of artificial intelligence. My experience in AI reflects a dedication to pushing the boundaries of what's possible in this rapidly evolving field.",
+
+    reviews: [
+      {
+        name: "John Doe",
+        image:
+          "https://images.pexels.com/photos/839586/pexels-photo-839586.jpeg?auto=compress&cs=tinysrgb&w=1600",
+        country: {
+          flag: "https://fiverr-dev-res.cloudinary.com/general_assets/flags/1f1fa-1f1f8.png",
+          name: "United States",
+        },
+        rating: 5,
+        review:
+          "I just want to say that art_with_ai was the first, and after this, the only artist I'll be using on Fiverr. Communication was amazing, each and every day he sent me images that I was free to request changes to. They listened, understood, and delivered above and beyond my expectations. I absolutely recommend this gig, and know already that I'll be using it again very very soon",
+        helpful: {
+          yes: 10,
+          no: 2,
+        },
+      },
+      {
+        name: "Jane Smith",
+        image:
+          "https://images.pexels.com/photos/839586/pexels-photo-839586.jpeg?auto=compress&cs=tinysrgb&w=1600",
+        country: {
+          flag: "https://fiverr-dev-res.cloudinary.com/general_assets/flags/1f1e6-1f1f9.png",
+          name: "Canada",
+        },
+        rating: 4,
+        review:
+          "Great service! The artist was prompt and professional. I received high-quality work and would definitely recommend this gig to others.",
+        helpful: {
+          yes: 8,
+          no: 1,
+        },
+      },
+      {
+        name: "Alice Johnson",
+        image:
+          "https://images.pexels.com/photos/839586/pexels-photo-839586.jpeg?auto=compress&cs=tinysrgb&w=1600",
+        country: {
+          flag: "https://fiverr-dev-res.cloudinary.com/general_assets/flags/1f1ec-1f1e7.png",
+          name: "Australia",
+        },
+        rating: 5,
+        review:
+          "Absolutely delighted with the results! The artist exceeded my expectations. The communication was smooth, and the delivery was on time. I highly recommend this gig.",
+        helpful: {
+          yes: 12,
+          no: 0,
+        },
+      },
+      {
+        name: "Chris Williams",
+        image:
+          "https://images.pexels.com/photos/839586/pexels-photo-839586.jpeg?auto=compress&cs=tinysrgb&w=1600",
+        country: {
+          flag: "https://fiverr-dev-res.cloudinary.com/general_assets/flags/1f1e8-1f1e6.png",
+          name: "Germany",
+        },
+        rating: 3,
+        review:
+          "Decent service. The artist was cooperative, but there were a few hiccups along the way. Overall, satisfied with the final result.",
+        helpful: {
+          yes: 5,
+          no: 3,
+        },
+      },
+      {
+        name: "Eva Martinez",
+        image:
+          "https://images.pexels.com/photos/839586/pexels-photo-839586.jpeg?auto=compress&cs=tinysrgb&w=1600",
+        country: {
+          flag: "https://fiverr-dev-res.cloudinary.com/general_assets/flags/1f1f7-1f1fa.png",
+          name: "Spain",
+        },
+        rating: 4,
+        review:
+          "Good experience overall. The artist was responsive to my requests, and the end product met my expectations. I would consider using this service again.",
+        helpful: {
+          yes: 6,
+          no: 1,
+        },
+      },
+    ],
+    packages :{
+      Basic: {
+        name: "Basic",
+        price: "53000",
+        desc: "I will create single page static website",
+        delivery: 2,
+        Revision: 1,
+        functionalities: ["speedOptimized", "contentUpload", "LicensedImages"],
+      },
+      Standard: {
+        name: "Standard",
+        price: "70000",
+        desc: "I will create 3 pages with backend integrations",
+        delivery: 5,
+        Revision: 2,
+        functionalities: ["speedOptimized", "contentUpload", "LicensedImages"],
+      },
+      Premium: {
+        name: "Premium",
+        price: "20000",
+        desc: "I will create a medium-sized web app",
+        delivery: 10,
+        Revision: 3,
+        functionalities: [
+          "speedOptimized",
+          "contentUpload",
+          "LicensedImages",
+          "backendIntegration",
+          "StripeIntegration",
+        ],
+      },
+    }
   },
 ];
 
@@ -398,47 +1426,6 @@ export const Category = [
       "Marketing Automation": 1,
       "Google Ads": 0,
     },
-  }
+  },
 ];
 
-export const packages = {
-
-  Basic: {
-    name: "Basic",
-    price: "53000",
-    desc: "I will create single page static website",
-    delivery: 2,
-    Revision: 1,
-    functionalities: [
-      "speedOptimized",
-      "contentUpload",
-      "LicensedImages",
-    ]
-  },
-  Standard: {
-    name: "Standard",
-    price: "70000",
-    desc: "I will create 3 pages with backend integrations",
-    delivery: 5,
-    Revision: 2,
-    functionalities: [
-      "speedOptimized",
-      "contentUpload",
-      "LicensedImages",
-    ]
-  },
-  Premium: {
-    name: "Premium",
-    price: "20000",
-    desc: "I will create a medium-sized web app",
-    delivery: 10,
-    Revision: 3,
-    functionalities: [
-      "speedOptimized",
-      "contentUpload",
-      "LicensedImages",
-      "backendIntegration",
-      "StripeIntegration"
-    ]
-  },
-};

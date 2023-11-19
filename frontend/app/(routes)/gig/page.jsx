@@ -1,27 +1,26 @@
 "use client";
 import React, { use, useState } from "react";
-import Image from "next/image";
-import starimg from "../../../public/star.png";
 import Slider from "infinite-react-carousel";
-import like from "../../../public/like.png";
-import disLike from "../../../public/dislike.png";
+import StarRating from "../../../Components/Shared/StarRating";
 import clock from "../../../public/clock.png";
 import recycle from "../../../public/recycle.png";
 import { IoMdInformationCircleOutline } from "react-icons/io";
-import greencheck from "../../../public/greencheck.png";
 import { useSearchParams } from "next/navigation";
 import { gigs } from "@/utils/data";
 import { AiOutlineHome } from "react-icons/ai";
 import { SlArrowDown } from "react-icons/sl";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { TiTick } from "react-icons/ti";
-import { packages } from "../../../utils/data";
+import { IoSearchOutline } from "react-icons/io5";
+import GigReviews from "@/Components/Gig/GigReviews";
 const Gig = () => {
   const search = useSearchParams();
   const [showFunctionalities, setShowFunctionalities] = useState(false);
-  const [packagesData, setpackagesData] = useState(packages.Basic);
   const id = search.get("id");
   const data = gigs.find((gig) => gig.id === id) || {};
+  const [packagesData, setpackagesData] = useState(data?.packages?.Basic);
+  const [ReviewSearch, setReviewSearch] = useState("");
+  const [filteredReviews, setfilteredReviews] = useState(data?.reviews);
   const handleShow = () => {
     setShowFunctionalities(!showFunctionalities);
   };
@@ -36,7 +35,7 @@ const Gig = () => {
   };
 
   return (
-    <div className="mb-[300px] mt-[70px] ">
+    <div className="mb-[300px] mt-[50px] ">
       <div className="container  2xl:max-w-[1400px]   px-[30px] py-[0px] flex gap-[50px]">
         <div className="flex-[2] flex flex-col gap-6">
           <div className=" text-[#404145] text-sm flex items-center gap-2">
@@ -58,12 +57,7 @@ const Gig = () => {
             />
             <span className="text-base font-medium">{data?.username}</span>
             <div className="flex items-center gap-[5px]">
-              <Image className="h-[14px] w-[14px]" src={starimg} alt="star" />
-              <Image className="h-[14px] w-[14px]" src={starimg} alt="star" />
-              <Image className="h-[14px] w-[14px]" src={starimg} alt="star" />
-              <Image className="h-[14px] w-[14px]" src={starimg} alt="star" />
-              <Image className="h-[14px] w-[14px]" src={starimg} alt="star" />
-              <span className="text-[14px] font-bold text-yellow-400">5</span>
+              <StarRating rating={data?.star} color={" text-yellow-400"} />
             </div>
           </div>
           <div>
@@ -75,27 +69,26 @@ const Gig = () => {
               autoplayScroll={1}
               arrows={false}
               arrowsScroll={1}
-              className="bg-gray-200"
             >
               <img
-                className="max-h-[450px] object-cover"
+                className="max-h-[420px] object-cover"
                 src="https://images.pexels.com/photos/1074535/pexels-photo-1074535.jpeg?auto=compress&cs=tinysrgb&w=1600"
                 alt="Pic1"
               />
               <img
-                className="max-h-[450px] object-cover"
+                className="max-h-[420px]  object-cover"
                 src="https://images.pexels.com/photos/1462935/pexels-photo-1462935.jpeg?auto=compress&cs=tinysrgb&w=1600"
                 alt="Pic2"
               />
               <img
-                className="max-h-[450px] object-cover"
+                className="max-h-[420px]  object-cover"
                 src="https://images.pexels.com/photos/1054777/pexels-photo-1054777.jpeg?auto=compress&cs=tinysrgb&w=1600"
                 alt="Pic3"
               />
             </Slider>
           </div>
 
-          <h2 className="font-semibold text-2xl text-[#404145]">
+          <h2 className="font-semibold text-2xl text-gray-700">
             About This Gig
           </h2>
           <p className="font-light leading-[25px] text-gray-500">
@@ -113,34 +106,7 @@ const Gig = () => {
               <div className="info flex flex-col gap-[10px]">
                 <span>{data?.username}</span>
                 <div className="stars flex items-center gap-[5px]">
-                  <Image
-                    className="h-[14px] w-[14px]"
-                    src={starimg}
-                    alt="star"
-                  />
-                  <Image
-                    className="h-[14px] w-[14px]"
-                    src={starimg}
-                    alt="star"
-                  />
-                  <Image
-                    className="h-[14px] w-[14px]"
-                    src={starimg}
-                    alt="star"
-                  />
-                  <Image
-                    className="h-[14px] w-[14px]"
-                    src={starimg}
-                    alt="star"
-                  />
-                  <Image
-                    className="h-[14px] w-[14px]"
-                    src={starimg}
-                    alt="star"
-                  />
-                  <span className="text-[14px] font-bold text-yellow-400">
-                    5
-                  </span>
+                  <StarRating rating={data?.star} color={" text-yellow-400"} />
                 </div>
                 <button className="bg-white rounded-[5px] border border-gray-300 p-[6px]">
                   Contact Me
@@ -180,138 +146,50 @@ const Gig = () => {
             </div>
           </div>
 
-          <div className="reviews mt-[50px]">
-            <h2>Reviews</h2>
-            <div className="item flex flex-col gap-[20px] my-[0] mx-[20px]">
-              <div className="user flex items-center">
-                <img
-                  className="h-[50px] w-[50px] rounded-full"
-                  src="https://images.pexels.com/photos/839586/pexels-photo-839586.jpeg?auto=compress&cs=tinysrgb&w=1600"
-                  alt=""
-                />
-                <div className="info">
-                  <span>John Doe</span>
-                  <div className="country flex items-center gap-[10px] text-gray-500">
-                    <img
-                      className="w-[20px]"
-                      src="https://fiverr-dev-res.cloudinary.com/general_assets/flags/1f1fa-1f1f8.png"
-                      alt=""
-                    />
-                    <span>United States</span>
-                  </div>
-                </div>
-              </div>
-              <div className="flex items-center gap-[5px]">
-                <Image className="h-[14px] w-[14px]" src={starimg} alt="star" />
-                <Image className="h-[14px] w-[14px]" src={starimg} alt="star" />
-                <Image className="h-[14px] w-[14px]" src={starimg} alt="star" />
-                <Image className="h-[14px] w-[14px]" src={starimg} alt="star" />
-                <Image className="h-[14px] w-[14px]" src={starimg} alt="star" />
-                <span className="text-[14px] font-bold text-yellow-400">5</span>
-              </div>
-              <p>
-                I just want to say that art_with_ai was the first, and after
-                this, the only artist Ill be using on Fiverr. Communication was
-                amazing, each and every day he sent me images that I was free to
-                request changes to. They listened, understood, and delivered
-                above and beyond my expectations. I absolutely recommend this
-                gig, and know already that Ill be using it again very very soon
-              </p>
-              <div className="helpful flex items-center gap-[10px]">
-                <span>Helpful?</span>
-                <Image className="w-[14px]" src={like} alt="" />
-                <span>Yes</span>
-                <Image className="w-[14px]" src={disLike} alt="" />
-                <span>No</span>
-              </div>
+          <div className="reviews mt-[50px] flex flex-col gap-8">
+            <h2 className="text-2xl text-[#404145] font-bold flex justify-between items-center">
+              <span>Reviews</span>
+              <span className="hover:border-b-[2px] border-black cursor-pointer flex items-center text-[18px] gap-[1px] font-normal">
+                <StarRating rating={data?.star} color={"text-black"} />
+                <span className="text-[#404145] font-bold">{data?.star}</span>
+              </span>
+            </h2>
+            <h2 className="text-[#404145] font-medium text-lg ">
+              <span className="hover:border-b-2 border-black cursor-pointer">
+                {" "}
+                {data?.reviews?.length} Reviews Available
+              </span>
+            </h2>
+            <div className="flex items-center  ">
+              <input
+                type="text"
+                value={ReviewSearch}
+                onChange={(e) => {
+                  const { value } = e.target;
+                  setReviewSearch(value);
+                  if (value === "") {
+                    setfilteredReviews(data?.reviews);
+                  } else {
+                    const filter = filteredReviews.filter((r) => {
+                      const rating = parseInt(r.rating, 10);
+                      const searchValue = parseInt(value, 10);
+                      return rating === searchValue;
+                    });
+                    setfilteredReviews(filter);
+                  }
+                }}
+                placeholder="Search reviews by rating"
+                className="md:w-[40%] w-full outline-none   border-solid  border border-[#c5c6c9] rounded-bl-[4px] rounded-tl-[4px] text-[#404145] px-[8px] py-[12px] transition-all"
+              />
+
+              <button className=" text-lg bg-black text-secondary-white outline-none border-none rounded-tr-md rounded-br-md px-[14px] py-[16px]">
+                <IoSearchOutline />
+              </button>
             </div>
-            <hr className="border-[0.5px] border-gray-300 mt-[20px] mb-[20px] h-0" />
-            <div className="item flex flex-col gap-[20px] my-[0] mx-[20px]">
-              <div className="user flex items-center">
-                <img
-                  className="h-[50px] w-[50px] rounded-full"
-                  src="https://images.pexels.com/photos/839586/pexels-photo-839586.jpeg?auto=compress&cs=tinysrgb&w=1600"
-                  alt=""
-                />
-                <div className="info">
-                  <span>John Doe</span>
-                  <div className="country flex items-center gap-[10px] text-gray-500">
-                    <img
-                      className="w-[20px]"
-                      src="https://fiverr-dev-res.cloudinary.com/general_assets/flags/1f1fa-1f1f8.png"
-                      alt=""
-                    />
-                    <span>United States</span>
-                  </div>
-                </div>
-              </div>
-              <div className="flex items-center gap-[5px]">
-                <Image className="h-[14px] w-[14px]" src={starimg} alt="star" />
-                <Image className="h-[14px] w-[14px]" src={starimg} alt="star" />
-                <Image className="h-[14px] w-[14px]" src={starimg} alt="star" />
-                <Image className="h-[14px] w-[14px]" src={starimg} alt="star" />
-                <Image className="h-[14px] w-[14px]" src={starimg} alt="star" />
-                <span className="text-[14px] font-bold text-yellow-400">5</span>
-              </div>
-              <p>
-                I just want to say that art_with_ai was the first, and after
-                this, the only artist Ill be using on Fiverr. Communication was
-                amazing, each and every day he sent me images that I was free to
-                request changes to. They listened, understood, and delivered
-                above and beyond my expectations. I absolutely recommend this
-                gig, and know already that Ill be using it again very very soon
-              </p>
-              <div className="helpful flex items-center gap-4">
-                <span>Helpful?</span>
-                <Image className="w-[14px]" src={like} alt="" />
-                <span>Yes</span>
-                <Image className="w-[14px]" src={disLike} alt="" />
-                <span>No</span>
-              </div>
-            </div>
-            <hr className="border-[0.5px] border-gray-300 mt-[20px] mb-[20px] h-0" />
-            <div className="item flex flex-col gap-[20px] my-[0] mx-[20px]">
-              <div className="user flex items-center">
-                <img
-                  className="h-[50px] w-[50px] rounded-full"
-                  src="https://images.pexels.com/photos/839586/pexels-photo-839586.jpeg?auto=compress&cs=tinysrgb&w=1600"
-                  alt=""
-                />
-                <div className="info">
-                  <span>John Doe</span>
-                  <div className="country flex items-center gap-[10px] text-gray-500">
-                    <img
-                      className="w-[20px]"
-                      src="https://fiverr-dev-res.cloudinary.com/general_assets/flags/1f1fa-1f1f8.png"
-                      alt=""
-                    />
-                    <span>United States</span>
-                  </div>
-                </div>
-              </div>
-              <div className="flex items-center gap-[5px]">
-                <Image className="h-[14px] w-[14px]" src={starimg} alt="star" />
-                <Image className="h-[14px] w-[14px]" src={starimg} alt="star" />
-                <Image className="h-[14px] w-[14px]" src={starimg} alt="star" />
-                <Image className="h-[14px] w-[14px]" src={starimg} alt="star" />
-                <Image className="h-[14px] w-[14px]" src={starimg} alt="star" />
-                <span className="text-[14px] font-bold text-yellow-400">5</span>
-              </div>
-              <p>
-                I just want to say that art_with_ai was the first, and after
-                this, the only artist Ill be using on Fiverr. Communication was
-                amazing, each and every day he sent me images that I was free to
-                request changes to. They listened, understood, and delivered
-                above and beyond my expectations. I absolutely recommend this
-                gig, and know already that Ill be using it again very very soon
-              </p>
-              <div className="helpful flex items-center gap-[10px]">
-                <span>Helpful?</span>
-                <Image className="w-[14px]" src={like} alt="" />
-                <span>Yes</span>
-                <Image className="w-[14px]" src={disLike} alt="" />
-                <span>No</span>
-              </div>
+            <div className="flex flex-col gap-12">
+              {filteredReviews?.map((review, index) => {
+                return <GigReviews key={index} {...review} />;
+              })}
             </div>
           </div>
         </div>

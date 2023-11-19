@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import GigCard from "../../../../Components/gigCard/GigCard";
+import GigCard from "../../../../Components/Gig/GigCard";
 import { gigs, Category } from "../../../../utils/data";
 import { useSearchParams } from "next/navigation";
 import { AiOutlineHome } from "react-icons/ai";
