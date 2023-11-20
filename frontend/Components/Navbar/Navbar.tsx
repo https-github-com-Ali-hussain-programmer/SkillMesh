@@ -10,6 +10,9 @@ import { usePathname } from "next/navigation";
 import ActiveLinks from "../Shared/ActiveLinks";
 import CategoryModal from "./CategoryModal";
 import Ordersmodal from "./Ordersmodal";
+import { FaShoppingCart } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
+import Badge from "../Shared/Badge";
 import Link from "next/link";
 const Navbar = () => {
   const pathname = usePathname();
@@ -86,11 +89,7 @@ const Navbar = () => {
           <div className="font-normal absolute md:left-[50px] mx-auto top-[64px] z-50 CategoryModal">
             <CategoryModal />
           </div>
-          <span className="hidden lg:inline-block ">
-            <ActiveLinks url={"/About"} pathname={pathname}>
-              About
-            </ActiveLinks>
-          </span>
+
           <button
             className="z-50"
             ref={buttonRef}
@@ -98,7 +97,12 @@ const Navbar = () => {
               setOrderShow(!OrderShow);
             }}
           >
-            Orders
+            <Badge
+              Icon={FaShoppingCart}
+              count={2}
+              color={`${pathname==="/" ? "text-white" :"text-blue-600"}`}
+              size={"text-xl"}
+            />
           </button>
           {OrderShow && (
             <div
@@ -108,10 +112,21 @@ const Navbar = () => {
               <Ordersmodal />
             </div>
           )}
-          <Link href="/messages" className="hidden sm:inline-block  py-3 ">
-            Messages
-          </Link>
-          <button className="hidden sm:inline-block  py-3">Connect</button>
+          <span className="cursor-pointer">
+            <Badge
+              Icon={FaHeart}
+              count={2}
+              color={`${pathname==="/" ? "text-white" :"text-blue-600"}`}
+              size={" text-xl"}
+            />
+          </span>
+
+          <span className="hidden lg:inline-block ">
+            <ActiveLinks url={"/About"} pathname={pathname}>
+              About
+            </ActiveLinks>
+          </span>
+          <button className={` hidden sm:inline-block  py-2 px-2 border border-white rounded-md  ${pathname!=="/" ?"bg-blue-600 text-white":null}  transition-all   duration-200 `}>Connect</button>
         </div>
         <NavbarDrawer onClose={toggleDrawer} isOpen={isDrawerOpen} />
       </div>

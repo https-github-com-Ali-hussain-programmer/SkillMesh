@@ -195,7 +195,7 @@ export const gigs = [
         },
       },
     ],
-    packages :{
+    packages: {
       Basic: {
         name: "Basic",
         price: "53000",
@@ -226,8 +226,25 @@ export const gigs = [
           "StripeIntegration",
         ],
       },
-    }
+    },
+    gigimages: [
+      "https://images.pexels.com/photos/1074535/pexels-photo-1074535.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "https://images.pexels.com/photos/1462935/pexels-photo-1462935.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "https://images.pexels.com/photos/1054777/pexels-photo-1054777.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    ],
+
+    userInformation: {
+      profileImg:
+        "https://images.pexels.com/photos/720327/pexels-photo-720327.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      country: "USA",
+      memberSince: "Aug 2022",
+      averageResponseTime: "4 hours",
+      lastDelivery: "1 day",
+      languages: ["English"],
+      desc:" My name is Anna, I enjoy creating AI generated art in my spare time. I have a lot of experience using the AI program and that means I know what to prompt the AI with to get a great and incredibly detailed result"
+    },
   },
+
   {
     id: "def456",
     img: "https://images.pexels.com/photos/4145190/pexels-photo-4145190.jpeg?auto=compress&cs=tinysrgb&w=1600",
@@ -324,7 +341,7 @@ export const gigs = [
         },
       },
     ],
-    packages :{
+    packages: {
       Basic: {
         name: "Basic",
         price: "53000",
@@ -355,6 +372,22 @@ export const gigs = [
           "StripeIntegration",
         ],
       },
+    },
+    gigimages: [
+      "https://images.pexels.com/photos/1074535/pexels-photo-1074535.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "https://images.pexels.com/photos/1462935/pexels-photo-1462935.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "https://images.pexels.com/photos/1054777/pexels-photo-1054777.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    ],
+
+    userInformation: {
+      profileImg:
+        "https://images.pexels.com/photos/720327/pexels-photo-720327.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      country: "USA",
+      memberSince: "Aug 2022",
+      averageResponseTime: "4 hours",
+      lastDelivery: "1 day",
+      languages: ["English"],
+      desc:" My name is Anna, I enjoy creating AI generated art in my spare time. I have a lot of experience using the AI program and that means I know what to prompt the AI with to get a great and incredibly detailed result"
     }
   },
   {
@@ -452,7 +485,7 @@ export const gigs = [
         },
       },
     ],
-    packages :{
+    packages: {
       Basic: {
         name: "Basic",
         price: "53000",
@@ -483,6 +516,22 @@ export const gigs = [
           "StripeIntegration",
         ],
       },
+    },
+    gigimages: [
+      "https://images.pexels.com/photos/1074535/pexels-photo-1074535.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "https://images.pexels.com/photos/1462935/pexels-photo-1462935.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "https://images.pexels.com/photos/1054777/pexels-photo-1054777.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    ],
+
+    userInformation: {
+      profileImg:
+        "https://images.pexels.com/photos/720327/pexels-photo-720327.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      country: "USA",
+      memberSince: "Aug 2022",
+      averageResponseTime: "4 hours",
+      lastDelivery: "1 day",
+      languages: ["English"],
+      desc:" My name is Anna, I enjoy creating AI generated art in my spare time. I have a lot of experience using the AI program and that means I know what to prompt the AI with to get a great and incredibly detailed result"
     }
   },
   {
@@ -581,7 +630,7 @@ export const gigs = [
         },
       },
     ],
-    packages :{
+    packages: {
       Basic: {
         name: "Basic",
         price: "53000",
@@ -612,6 +661,21 @@ export const gigs = [
           "StripeIntegration",
         ],
       },
+    },
+    gigimages: [
+      "https://images.pexels.com/photos/1074535/pexels-photo-1074535.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "https://images.pexels.com/photos/1462935/pexels-photo-1462935.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "https://images.pexels.com/photos/1054777/pexels-photo-1054777.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    ],
+
+    userInformation: {
+      profileImg:
+        "https://images.pexels.com/photos/720327/pexels-photo-720327.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      country: "USA",
+      memberSince: "Aug 2022",
+      averageResponseTime: "4 hours",
+      lastDelivery: "1 day",
+      languages: ["English"],
     }
   },
   {
@@ -710,7 +774,7 @@ export const gigs = [
         },
       },
     ],
-    packages :{
+    packages: {
       Basic: {
         name: "Basic",
         price: "53000",
@@ -741,8 +805,22 @@ export const gigs = [
           "StripeIntegration",
         ],
       },
-    }
-  },
+    },
+    gigimages: [
+      "https://images.pexels.com/photos/1074535/pexels-photo-1074535.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "https://images.pexels.com/photos/1462935/pexels-photo-1462935.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "https://images.pexels.com/photos/1054777/pexels-photo-1054777.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    ],
+
+    userInformation: {
+      profileImg:
+        "https://images.pexels.com/photos/720327/pexels-photo-720327.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      country: "USA",
+      memberSince: "Aug 2022",
+      averageResponseTime: "4 hours",
+      lastDelivery: "1 day",
+      languages: ["English"],
+    }},
   {
     id: "pqr678",
     img: "https://images.pexels.com/photos/8100784/pexels-photo-8100784.jpeg?auto=compress&cs=tinysrgb&w=1600",
@@ -839,7 +917,7 @@ export const gigs = [
         },
       },
     ],
-    packages :{
+    packages: {
       Basic: {
         name: "Basic",
         price: "53000",
@@ -870,8 +948,23 @@ export const gigs = [
           "StripeIntegration",
         ],
       },
+    },
+    gigimages: [
+      "https://images.pexels.com/photos/1074535/pexels-photo-1074535.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "https://images.pexels.com/photos/1462935/pexels-photo-1462935.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "https://images.pexels.com/photos/1054777/pexels-photo-1054777.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    ],
+
+    userInformation: {
+      profileImg:
+        "https://images.pexels.com/photos/720327/pexels-photo-720327.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      country: "USA",
+      memberSince: "Aug 2022",
+      averageResponseTime: "4 hours",
+      lastDelivery: "1 day",
+      languages: ["English"],
     }
-    
+   
   },
   {
     id: "stu901",
@@ -969,7 +1062,7 @@ export const gigs = [
         },
       },
     ],
-    packages :{
+    packages: {
       Basic: {
         name: "Basic",
         price: "53000",
@@ -1000,9 +1093,25 @@ export const gigs = [
           "StripeIntegration",
         ],
       },
+    },
+    gigimages: [
+      "https://images.pexels.com/photos/1074535/pexels-photo-1074535.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "https://images.pexels.com/photos/1462935/pexels-photo-1462935.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "https://images.pexels.com/photos/1054777/pexels-photo-1054777.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    ],
+    
+
+    userInformation: {
+      profileImg:
+        "https://images.pexels.com/photos/720327/pexels-photo-720327.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      country: "USA",
+      memberSince: "Aug 2022",
+      averageResponseTime: "4 hours",
+      lastDelivery: "1 day",
+      languages: ["English"],
+      desc:" My name is Anna, I enjoy creating AI generated art in my spare time. I have a lot of experience using the AI program and that means I know what to prompt the AI with to get a great and incredibly detailed result"
     }
   },
-
   {
     id: "vwx234",
     img: "https://images.pexels.com/photos/5490778/pexels-photo-5490778.jpeg?auto=compress&cs=tinysrgb&w=1600",
@@ -1099,7 +1208,7 @@ export const gigs = [
         },
       },
     ],
-    packages :{
+    packages: {
       Basic: {
         name: "Basic",
         price: "53000",
@@ -1130,6 +1239,22 @@ export const gigs = [
           "StripeIntegration",
         ],
       },
+    },
+    gigimages: [
+      "https://images.pexels.com/photos/1074535/pexels-photo-1074535.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "https://images.pexels.com/photos/1462935/pexels-photo-1462935.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "https://images.pexels.com/photos/1054777/pexels-photo-1054777.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    ],
+
+    userInformation: {
+      profileImg:
+        "https://images.pexels.com/photos/720327/pexels-photo-720327.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      country: "USA",
+      memberSince: "Aug 2022",
+      averageResponseTime: "4 hours",
+      lastDelivery: "1 day",
+      languages: ["English"],
+      desc:" My name is Anna, I enjoy creating AI generated art in my spare time. I have a lot of experience using the AI program and that means I know what to prompt the AI with to get a great and incredibly detailed result"
     }
   },
   {
@@ -1229,7 +1354,7 @@ export const gigs = [
         },
       },
     ],
-    packages :{
+    packages: {
       Basic: {
         name: "Basic",
         price: "53000",
@@ -1260,6 +1385,22 @@ export const gigs = [
           "StripeIntegration",
         ],
       },
+    },
+    gigimages: [
+      "https://images.pexels.com/photos/1074535/pexels-photo-1074535.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "https://images.pexels.com/photos/1462935/pexels-photo-1462935.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      "https://images.pexels.com/photos/1054777/pexels-photo-1054777.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    ],
+
+    userInformation: {
+      profileImg:
+        "https://images.pexels.com/photos/720327/pexels-photo-720327.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      country: "USA",
+      memberSince: "Aug 2022",
+      averageResponseTime: "4 hours",
+      lastDelivery: "1 day",
+      languages: ["English"],
+      desc:" My name is Anna, I enjoy creating AI generated art in my spare time. I have a lot of experience using the AI program and that means I know what to prompt the AI with to get a great and incredibly detailed result"
     }
   },
 ];
@@ -1428,4 +1569,3 @@ export const Category = [
     },
   },
 ];
-

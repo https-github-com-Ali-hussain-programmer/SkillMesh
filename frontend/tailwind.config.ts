@@ -12,6 +12,7 @@ const config: Config = {
       padding: "2rem",
     },
     extend: {
+    
       colors: {
         "primary-black": "#1A232E",
         "secondary-white": "#c7c7c7",

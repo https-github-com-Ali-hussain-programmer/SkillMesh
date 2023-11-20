@@ -13,6 +13,13 @@ import { FaArrowRightLong } from "react-icons/fa6";
 import { TiTick } from "react-icons/ti";
 import { IoSearchOutline } from "react-icons/io5";
 import GigReviews from "@/Components/Gig/GigReviews";
+import {
+  Tag,
+  TagLabel,
+  TagLeftIcon,
+  TagRightIcon,
+  TagCloseButton,
+} from "@chakra-ui/react";
 const Gig = () => {
   const search = useSearchParams();
   const [showFunctionalities, setShowFunctionalities] = useState(false);
@@ -26,17 +33,17 @@ const Gig = () => {
   };
   const handlePackages = (packageName) => {
     if (packageName.toLowerCase() === "basic") {
-      setpackagesData(packages.Basic);
+      setpackagesData(data?.packages?.Basic);
     } else if (packageName.toLowerCase() === "standard") {
-      setpackagesData(packages.Standard);
+      setpackagesData(data?.packages?.Standard);
     } else if (packageName.toLowerCase() === "premium") {
-      setpackagesData(packages.Premium);
+      setpackagesData(data?.packages?.Premium);
     }
   };
 
   return (
     <div className="mb-[300px] mt-[50px] ">
-      <div className="container  2xl:max-w-[1400px]   px-[30px] py-[0px] flex gap-[50px]">
+      <div className="container  2xl:max-w-[1400px]   px-[30px] py-[0px] flex  flex-col md:flex-row gap-[50px]">
         <div className="flex-[2] flex flex-col gap-6">
           <div className=" text-[#404145] text-sm flex items-center gap-2">
             <AiOutlineHome /> <span>/</span> <span>Gigs</span> <span>/</span>
@@ -52,10 +59,12 @@ const Gig = () => {
           <div className="flex items-center gap-[10px]">
             <img
               className="w-[32px] h-[32px] rounded-full object-cover"
-              src="https://images.pexels.com/photos/720327/pexels-photo-720327.jpeg?auto=compress&cs=tinysrgb&w=1600"
-              alt=""
+              src={data?.userInformation.profileImg}
+              alt="error"
             />
-            <span className="text-base font-medium">{data?.username}</span>
+            <span className="text-base font-medium hover:border-b-2 border-black cursor-pointer">
+              {data?.username}
+            </span>
             <div className="flex items-center gap-[5px]">
               <StarRating rating={data?.star} color={" text-yellow-400"} />
             </div>
@@ -70,21 +79,16 @@ const Gig = () => {
               arrows={false}
               arrowsScroll={1}
             >
-              <img
-                className="max-h-[420px] object-cover"
-                src="https://images.pexels.com/photos/1074535/pexels-photo-1074535.jpeg?auto=compress&cs=tinysrgb&w=1600"
-                alt="Pic1"
-              />
-              <img
-                className="max-h-[420px]  object-cover"
-                src="https://images.pexels.com/photos/1462935/pexels-photo-1462935.jpeg?auto=compress&cs=tinysrgb&w=1600"
-                alt="Pic2"
-              />
-              <img
-                className="max-h-[420px]  object-cover"
-                src="https://images.pexels.com/photos/1054777/pexels-photo-1054777.jpeg?auto=compress&cs=tinysrgb&w=1600"
-                alt="Pic3"
-              />
+              {data?.gigimages?.map((g, index) => {
+                return (
+                  <img
+                    key={index}
+                    className="max-h-[420px] object-cover"
+                    src={g}
+                    alt="Pic"
+                  />
+                );
+              })}
             </Slider>
           </div>
 
@@ -113,35 +117,47 @@ const Gig = () => {
                 </button>
               </div>
             </div>
-            <div className="box border border-gray-300 rounded-[5px] p-[20px] mt-[20px]">
-              <div className="items flex justify-between flex-wrap">
-                <div className="item w-[300px] flex flex-col gap-[10px] mb-[20px]">
+            <div className=" border border-gray-300 rounded-[5px] p-[20px] mt-[20px] text-gray-500 text-sm">
+              <div className=" flex justify-between flex-wrap">
+                <div className=" w-[260px] flex flex-col gap-[11px] mb-[20px]">
                   <span className="title font-light">From</span>
-                  <span className="desc">USA</span>
+                  <span className="desc">{data?.userInformation.country}</span>
                 </div>
-                <div className="item flex justify-between flex-wrap">
-                  <span className="title font-light">Member since</span>
-                  <span className="desc">Aug 2022</span>
+                <div className="item flex justify-between  gap-2 flex-wrap">
+                  <span className="title font-light">Member since:</span>
+                  <span className="font-bold">
+                    {data?.userInformation.memberSince}
+                  </span>
                 </div>
-                <div className="item flex justify-between flex-wrap">
-                  <span className="title font-light">Avg. response time</span>
-                  <span className="desc font-light">4 hours</span>
+                <div className="item flex justify-between flex-wrap gap-1">
+                  <span className="title font-light">Avg. response time:</span>
+                  <span className="desc font-bold">4 hours</span>
                 </div>
-                <div className="item flex justify-between flex-wrap">
-                  <span className="title font-light">Last delivery</span>
-                  <span className="desc">1 day</span>
+                <div className="item flex justify-between flex-wrap gap-2">
+                  <span className="title font-light">Last delivery:</span>
+                  <span className="font-bold">
+                    {data?.userInformation.averageResponseTime}
+                  </span>
                 </div>
-                <div className="item flex justify-between flex-wrap">
-                  <span className="title  font-light">Languages</span>
-                  <span className="desc">English</span>
+                <div className="item flex justify-between flex-wrap gap-2">
+                  <span className="title  font-light">Languages: </span>
+                  {data?.userInformation.languages.map((l, index) => {
+                    return (
+                      <Tag
+                        size={"md"}
+                        key={index}
+                        variant="solid"
+                        colorScheme="teal"
+                      >
+                        {l}
+                      </Tag>
+                    );
+                  })}
                 </div>
               </div>
-              <hr className="border-[0.5px] border-gray-300 mt-[20px] mb-[20px] h-0" />
-              <p>
-                My name is Anna, I enjoy creating AI generated art in my spare
-                time. I have a lot of experience using the AI program and that
-                means I know what to prompt the AI with to get a great and
-                incredibly detailed result.
+
+              <p className="py-5 border-t-[1px] border-gray-400 mt-4">
+              {data?.userInformation.desc}
               </p>
             </div>
           </div>

@@ -64,10 +64,10 @@ function Categories() {
                       {c.category}
                     </h1>
                     <h3 className=" text-left text-[15px]  text-[#74767E] font-medium hover:text-[#1dbf73]">
-                      Gigs :({c.TotalNoofGigsAvailable})
+                      Gigs ({c.TotalNoofGigsAvailable})
                     </h3>
                     <h6 className="text-left text-[15px]  text-[#74767E] font-medium hover:text-[#1dbf73] ">
-                      Subfields:({c.subfields.length})
+                      Subfields ({c.subfields.length})
                     </h6>
                   </div>
                 </Link>
