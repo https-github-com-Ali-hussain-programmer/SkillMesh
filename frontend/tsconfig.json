@@ -32,7 +32,7 @@
     "Components/Home/Features.jsx",
     "Components/Home/PlatformFeatureList.jsx",
     "app/(routes)/Categories/[type].js",
-    "Components/Navbar/Navbar.tsx",
+    "Components/Navbar/Navbar.jsx",
     "Components/Message/Message.jsx",
     "app/(routes)/Categories/page.jsx",
     "app/(routes)/Categories/[categoryname]/page.jsx"

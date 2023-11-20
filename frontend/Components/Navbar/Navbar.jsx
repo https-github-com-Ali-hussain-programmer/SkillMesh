@@ -14,26 +14,32 @@ import { FaShoppingCart } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 import Badge from "../Shared/Badge";
 import Link from "next/link";
+import Whishlistmodal from "./Whishlistmodal";
 const Navbar = () => {
   const pathname = usePathname();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [OrderShow, setOrderShow] = useState(false);
+  const [Whishlist, setWhishlist] = useState(false);
   const orderRef = useRef(null);
+  const WhishlistRef = useRef(null);
+  const WhishlistButtonRef = useRef(null);
   const buttonRef = useRef(null);
   const toggleDrawer = useCallback(() => {
     setIsDrawerOpen(!isDrawerOpen);
   }, [isDrawerOpen]);
   useEffect(() => {
     const handleClickOutside = (e) => {
-      if (orderRef?.current) {
-        if (
-          orderRef?.current.contains(e.target) ||
-          buttonRef?.current.contains(e.target)
-        ) {
-          return;
-        }
-        setOrderShow(false);
+      if (
+        orderRef?.current?.contains(e.target) ||
+        WhishlistRef?.current?.contains(e.target) ||
+        buttonRef?.current?.contains(e.target) ||
+        WhishlistButtonRef?.current?.contains(e.target)
+      ) {
+        return;
       }
+
+      setOrderShow(false);
+      setWhishlist(false);
     };
 
     document.addEventListener("click", handleClickOutside);
@@ -41,6 +47,7 @@ const Navbar = () => {
       document.removeEventListener("click", handleClickOutside);
     };
   }, []);
+
   return (
     <nav
       className={`p-4 relative  ${
@@ -100,7 +107,7 @@ const Navbar = () => {
             <Badge
               Icon={FaShoppingCart}
               count={2}
-              color={`${pathname==="/" ? "text-white" :"text-blue-600"}`}
+              color={`${pathname === "/" ? "text-white" : "text-blue-600"}`}
               size={"text-xl"}
             />
           </button>
@@ -112,21 +119,39 @@ const Navbar = () => {
               <Ordersmodal />
             </div>
           )}
-          <span className="cursor-pointer">
+          <span
+            className="cursor-pointer"
+            onClick={() => setWhishlist(!Whishlist)}
+            ref={WhishlistButtonRef}
+          >
             <Badge
               Icon={FaHeart}
               count={2}
-              color={`${pathname==="/" ? "text-white" :"text-blue-600"}`}
+              color={`${pathname === "/" ? "text-white" : "text-blue-600"}`}
               size={" text-xl"}
             />
           </span>
+          {Whishlist && (
+            <div
+              ref={WhishlistRef}
+              className="absolute top-16  right-10 md:right-20 z-10 h-[50%]"
+            >
+              <Whishlistmodal />
+            </div>
+          )}
 
           <span className="hidden lg:inline-block ">
             <ActiveLinks url={"/About"} pathname={pathname}>
               About
             </ActiveLinks>
           </span>
-          <button className={` hidden sm:inline-block  py-2 px-2 border border-white rounded-md  ${pathname!=="/" ?"bg-blue-600 text-white":null}  transition-all   duration-200 `}>Connect</button>
+          <button
+            className={` hidden sm:inline-block  py-2 px-2 border border-white rounded-md  ${
+              pathname !== "/" ? "bg-blue-600 text-white" : null
+            }  transition-all   duration-200 `}
+          >
+            Connect
+          </button>
         </div>
         <NavbarDrawer onClose={toggleDrawer} isOpen={isDrawerOpen} />
       </div>
