@@ -1,8 +1,9 @@
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import starimg from "../../public/star.png";
 import Image from "next/image";
 import heart from "../../public/heart.png";
+import { useRouter } from "next/navigation";
 interface GigCardProps {
   id: number;
   img: string;
@@ -24,8 +25,21 @@ function GigCard({
   username,
   ordersCompleted,
 }: GigCardProps) {
+  const handleHeartClick = (e: React.MouseEvent) => {
+    if (e.target?.classList?.contains("heart")) {
+      e.stopPropagation();
+      setFavourite(!favourite);
+    }
+  };
+  const [favourite, setFavourite] = useState(false);
+  const router = useRouter();
+
   return (
-    <Link href={`/gig?id=${id} `}>
+    <div
+      onClick={() => {
+        router.push(`/gig?id=${id} `);
+      }}
+    >
       <div className="w-[290px]  h-[400px] border border-gray-300 mb-[40px] shadow-lg relative gigs">
         <img className="w-full h-1/2 object-cover" src={img} alt="error" />
         <div className="p-[10px] px-[20px] flex flex-col gap-[20px]">
@@ -54,11 +68,16 @@ function GigCard({
         </div>
         <hr className="border-t border-gray-300" />
         <div className="p-[10px] px-[20px] flex items-center justify-between">
-          <Image
-            className="w-[16px] h-[16px] cursor-pointer object-cover"
-            src={heart}
-            alt="Heart"
-          />
+          {favourite ? (
+            <div className="center-div heart" onClick={handleHeartClick}></div>
+          ) : (
+            <Image
+              className="w-[16px] h-[16px] cursor-pointer object-cover heart"
+              src={heart}
+              alt="Heart"
+              onClick={handleHeartClick}
+            />
+          )}
           <span className="text-gray-500 text-xs">STARTING AT</span>
 
           <h2 className="text-gray-500 text-18 font-bold text-right">
@@ -93,11 +112,17 @@ function GigCard({
           </div>
           <hr className="border-t border-gray-300" />
           <div className="p-[10px] px-[20px] flex items-center justify-between">
-            <Image
-              className="w-[16px] h-[16px] cursor-pointer object-cover"
-              src={heart}
-              alt="Heart"
-            />
+            {favourite ? (
+              <div className="center-div heart" onClick={handleHeartClick}></div>
+            ) : (
+              <Image
+                className="w-[16px] h-[16px] cursor-pointer object-cover heart"
+                src={heart}
+                alt="Heart"
+                onClick={handleHeartClick}
+              />
+            )}
+
             <span className=" text-secondary-white text-xs">STARTING AT</span>
             <h2 className="  text-secondary-white text-18 font-bold text-right">
               {price}$
@@ -105,7 +130,7 @@ function GigCard({
           </div>
         </div>
       </div>
-    </Link>
+    </div>
   );
 }
 

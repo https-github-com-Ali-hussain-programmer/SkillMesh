@@ -11,7 +11,7 @@ import ActiveLinks from "../Shared/ActiveLinks";
 import CategoryModal from "./CategoryModal";
 import Ordersmodal from "./Ordersmodal";
 import { FaShoppingCart } from "react-icons/fa";
-import { FaHeart } from "react-icons/fa";
+import { BsFillSuitHeartFill } from "react-icons/bs";
 import Badge from "../Shared/Badge";
 import Link from "next/link";
 import Whishlistmodal from "./Whishlistmodal";
@@ -125,7 +125,7 @@ const Navbar = () => {
             ref={WhishlistButtonRef}
           >
             <Badge
-              Icon={FaHeart}
+              Icon={BsFillSuitHeartFill}
               count={2}
               color={`${pathname === "/" ? "text-white" : "text-blue-600"}`}
               size={" text-xl"}
