@@ -49,7 +49,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`sm:p-4  relative  ${
+      className={`py-4 relative  ${
         pathname === "/"
           ? "bg-dark-black text-white  "
           : "text-black shadow-md z-50"
@@ -113,7 +113,7 @@ const Navbar = () => {
           {OrderShow && (
             <div
               ref={orderRef}
-              className="absolute top-16  right-10 md:right-20 z-10 h-[50%]"
+              className="absolute top-16  right-10 md:right-20 z-10 h-[50%]  2xl:right-[100px]"
             >
               <Ordersmodal />
             </div>
@@ -133,7 +133,7 @@ const Navbar = () => {
           {Whishlist && (
             <div
               ref={WhishlistRef}
-              className="absolute top-16  right-10 md:right-20 z-10 h-[50%]"
+              className="absolute top-16  right-10 md:right-20 z-10 h-[50%] 2xl:right-[100px]"
             >
               <Whishlistmodal />
             </div>
