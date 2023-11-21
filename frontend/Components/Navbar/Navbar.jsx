@@ -113,7 +113,7 @@ const Navbar = () => {
           {OrderShow && (
             <div
               ref={orderRef}
-              className="absolute top-16  right-10 md:right-20 z-10 h-[50%]  2xl:right-[100px]"
+              className="absolute top-16  right-10 md:right-20 z-10 h-[50%]  2xl:right-[120px] 3xl:right-[350px]"
             >
               <Ordersmodal />
             </div>
@@ -133,7 +133,7 @@ const Navbar = () => {
           {Whishlist && (
             <div
               ref={WhishlistRef}
-              className="absolute top-16  right-10 md:right-20 z-10 h-[50%] 2xl:right-[100px]"
+              className="absolute top-16  right-10 md:right-20 z-10 h-[50%] 2xl:right-[120px] 3xl:right-[350px]"
             >
               <Whishlistmodal />
             </div>
