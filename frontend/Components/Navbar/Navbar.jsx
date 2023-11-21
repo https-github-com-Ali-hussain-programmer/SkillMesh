@@ -13,7 +13,6 @@ import Ordersmodal from "./Ordersmodal";
 import { FaShoppingCart } from "react-icons/fa";
 import { BsFillSuitHeartFill } from "react-icons/bs";
 import Badge from "../Shared/Badge";
-import Link from "next/link";
 import Whishlistmodal from "./Whishlistmodal";
 const Navbar = () => {
   const pathname = usePathname();
@@ -50,7 +49,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`p-4 relative  ${
+      className={`sm:p-4  relative  ${
         pathname === "/"
           ? "bg-dark-black text-white  "
           : "text-black shadow-md z-50"
@@ -58,7 +57,7 @@ const Navbar = () => {
     >
       <div className="absolute w-[40%] inset-0  gradient-01  z-10" />
       <div
-        className={`container  flex  2xl:max-w-[1400px] justify-between items-center sm:gap-8 gap-2`}
+        className={`flex  container 2xl:w-[1400px] justify-between items-center  gap-3  `}
       >
         <div
           className={`z-50 text-4xl  sm:hidden ${
@@ -87,7 +86,7 @@ const Navbar = () => {
           </div>
         ) : null}
 
-        <div className="flex sm:gap-10 items-center font-medium  ">
+        <div className="flex items-center font-medium  justify-between  sm:w-[35%] w-[20%]  ">
           <span className="hidden md:inline-block category-link">
             <ActiveLinks url={"/Categories"} pathname={pathname}>
               Category

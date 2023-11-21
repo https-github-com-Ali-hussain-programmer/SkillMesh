@@ -4,6 +4,9 @@ import starimg from "../../public/star.png";
 import Image from "next/image";
 import heart from "../../public/heart.png";
 import { useRouter } from "next/navigation";
+import { useDispatch } from "react-redux";
+import { addWishlist,removeWishlist } from "@/redux/slice/wishlistSlice";
+
 interface GigCardProps {
   id: number;
   img: string;
@@ -25,7 +28,7 @@ function GigCard({
   username,
   ordersCompleted,
 }: GigCardProps) {
-  const handleHeartClick = (e: React.MouseEvent) => {
+  const handleHeartClick = (e: React.MouseEvent) => {;
     if (e.target?.classList?.contains("heart")) {
       e.stopPropagation();
       setFavourite(!favourite);
@@ -33,6 +36,7 @@ function GigCard({
   };
   const [favourite, setFavourite] = useState(false);
   const router = useRouter();
+  const dispatch=useDispatch()
 
   return (
     <div
@@ -69,7 +73,7 @@ function GigCard({
         <hr className="border-t border-gray-300" />
         <div className="p-[10px] px-[20px] flex items-center justify-between">
           {favourite ? (
-            <div className="center-div heart" onClick={handleHeartClick}></div>
+            <div className="center-div" onClick={handleHeartClick}></div>
           ) : (
             <Image
               className="w-[16px] h-[16px] cursor-pointer object-cover heart"
@@ -113,7 +117,7 @@ function GigCard({
           <hr className="border-t border-gray-300" />
           <div className="p-[10px] px-[20px] flex items-center justify-between">
             {favourite ? (
-              <div className="center-div heart" onClick={handleHeartClick}></div>
+              <div className="center-div" onClick={handleHeartClick}></div>
             ) : (
               <Image
                 className="w-[16px] h-[16px] cursor-pointer object-cover heart"

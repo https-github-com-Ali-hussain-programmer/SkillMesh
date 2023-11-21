@@ -27,7 +27,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "utils/Provider.js",
+    "utils/ChakraProviderUI.js",
     "app/layout.tsx",
     "Components/Home/Features.jsx",
     "Components/Home/PlatformFeatureList.jsx",

@@ -15,10 +15,7 @@ import { IoSearchOutline } from "react-icons/io5";
 import GigReviews from "@/Components/Gig/GigReviews";
 import {
   Tag,
-  TagLabel,
-  TagLeftIcon,
-  TagRightIcon,
-  TagCloseButton,
+
 } from "@chakra-ui/react";
 const Gig = () => {
   const search = useSearchParams();
