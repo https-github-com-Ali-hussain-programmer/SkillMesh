@@ -1,5 +1,6 @@
 "use client";
-import React, { use, useState } from "react";
+import React, { useState } from "react";
+import Link from "next/link";
 import Slider from "infinite-react-carousel";
 import StarRating from "../../../Components/Shared/StarRating";
 import clock from "../../../public/clock.png";
@@ -13,10 +14,7 @@ import { FaArrowRightLong } from "react-icons/fa6";
 import { TiTick } from "react-icons/ti";
 import { IoSearchOutline } from "react-icons/io5";
 import GigReviews from "@/Components/Gig/GigReviews";
-import {
-  Tag,
-
-} from "@chakra-ui/react";
+import { Tag } from "@chakra-ui/react";
 const Gig = () => {
   const search = useSearchParams();
   const [showFunctionalities, setShowFunctionalities] = useState(false);
@@ -42,11 +40,19 @@ const Gig = () => {
     <div className="mb-[300px] mt-[50px] ">
       <div className="container  2xl:max-w-[1400px]   px-[30px] py-[0px] flex  flex-col md:flex-row gap-[50px]">
         <div className="flex-[2] flex flex-col gap-6">
-          <div className=" text-[#404145] text-sm flex items-center gap-2">
-            <AiOutlineHome /> <span>/</span> <span>Gigs</span> <span>/</span>
-            <span>{data?.category}</span>
+          <div className=" text-[#404145] text-sm flex items-center gap-2 cursor-pointer">
+            <Link href={"/"}>
+              <AiOutlineHome />
+            </Link>{" "}
+            <span>/</span>{" "}
+            <span>
+              {" "}
+              <Link href={"/Categories"}>Categories</Link>
+            </span>{" "}
             <span>/</span>
-            {data?.subcategory}
+            <span> <Link href={`/Categories/${data?.category}`}>{data?.category}</Link></span>
+            <span>/</span>
+            Gig
           </div>
 
           <h1 className="text-3xl font-bold   text-[#404145] break-words  tracking-wide">
@@ -154,7 +160,7 @@ const Gig = () => {
               </div>
 
               <p className="py-5 border-t-[1px] border-gray-400 mt-4">
-              {data?.userInformation.desc}
+                {data?.userInformation.desc}
               </p>
             </div>
           </div>

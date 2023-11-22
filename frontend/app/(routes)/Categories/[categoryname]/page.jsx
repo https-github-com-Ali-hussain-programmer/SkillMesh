@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import GigCard from "../../../../Components/Gig/GigCard";
+import Link from "next/link";
 import { gigs, Category } from "../../../../utils/data";
 import { useSearchParams } from "next/navigation";
 import { AiOutlineHome } from "react-icons/ai";
@@ -77,8 +78,15 @@ const Gigs = ({ params }) => {
   return (
     <div className="  bg-[#fcfcfc] mt-14 mb-[300px]">
       <div className=" container 2xl:w-[1400px]  flex flex-col gap-5">
-        <div className=" text-[#404145] text-sm flex items-center gap-3">
-          <AiOutlineHome /> <span>/</span> <span>Categories</span>{" "}
+        <div className=" text-[#404145] text-sm flex items-center gap-3 cursor-pointer">
+          <Link href={"/"}>
+            {" "}
+            <AiOutlineHome />{" "}
+          </Link>
+          <span>/</span>{" "}
+          <span>
+            <Link href={"/Categories"}>Categories</Link>
+          </span>{" "}
           <span>/</span>
           <span> {decodeURIComponent(params.categoryname)}</span>
         </div>
@@ -104,7 +112,10 @@ const Gigs = ({ params }) => {
           </div>
           <div className="font-light uppercase text-xs text-gray-500 pb-3 tracking-wide">
             Explore the boundaries of art and technology with Fiverr's{" "}
-          <span className="font-bold text-[#404145]">{decodeURIComponent(params.categoryname)}</span>   artists
+            <span className="font-bold text-[#404145]">
+              {decodeURIComponent(params.categoryname)}
+            </span>{" "}
+            artists
           </div>
         </div>
 
@@ -135,7 +146,9 @@ const Gigs = ({ params }) => {
             </button>
           </div>
           <div className=" flex items-center gap-[10px]">
-            <span className=" text-gray-500 font-light hidden lg:flex">SortBy</span>
+            <span className=" text-gray-500 font-light hidden lg:flex">
+              SortBy
+            </span>
             <select
               className="border-[1px] border-solid border-[#ccc] p-3 outline-none"
               value={sort}
