@@ -14,11 +14,15 @@ import { FaShoppingCart } from "react-icons/fa";
 import { BsFillSuitHeartFill } from "react-icons/bs";
 import Badge from "../Shared/Badge";
 import Whishlistmodal from "./Whishlistmodal";
+import { useSelector } from "react-redux";
+import { favouritesList } from "@/redux/slice/wishlistSlice";
+
 const Navbar = () => {
   const pathname = usePathname();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [OrderShow, setOrderShow] = useState(false);
   const [Whishlist, setWhishlist] = useState(false);
+  const Favourites = useSelector(favouritesList);
   const orderRef = useRef(null);
   const WhishlistRef = useRef(null);
   const WhishlistButtonRef = useRef(null);
@@ -49,7 +53,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`sm:p-4  relative  ${
+      className={`py-4 relative  ${
         pathname === "/"
           ? "bg-dark-black text-white  "
           : "text-black shadow-md z-50"
@@ -101,6 +105,7 @@ const Navbar = () => {
             ref={buttonRef}
             onClick={() => {
               setOrderShow(!OrderShow);
+              setWhishlist(false);
             }}
           >
             <Badge
@@ -113,19 +118,22 @@ const Navbar = () => {
           {OrderShow && (
             <div
               ref={orderRef}
-              className="absolute top-16  right-10 md:right-20 z-10 h-[50%]"
+              className="absolute top-16  right-10 md:right-20 z-10 h-[50%]  2xl:right-[120px] 3xl:right-[350px]"
             >
               <Ordersmodal />
             </div>
           )}
           <span
             className="cursor-pointer"
-            onClick={() => setWhishlist(!Whishlist)}
+            onClick={() => {
+              setWhishlist(!Whishlist);
+              setOrderShow(false);
+            }}
             ref={WhishlistButtonRef}
           >
             <Badge
               Icon={BsFillSuitHeartFill}
-              count={2}
+              count={Favourites?.length}
               color={`${pathname === "/" ? "text-white" : "text-blue-600"}`}
               size={" text-xl"}
             />
@@ -133,7 +141,7 @@ const Navbar = () => {
           {Whishlist && (
             <div
               ref={WhishlistRef}
-              className="absolute top-16  right-10 md:right-20 z-10 h-[50%]"
+              className="absolute top-16  right-10 md:right-20 z-10 h-[50%] 2xl:right-[120px] 3xl:right-[350px]"
             >
               <Whishlistmodal />
             </div>
