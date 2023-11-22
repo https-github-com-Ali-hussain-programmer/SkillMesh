@@ -14,11 +14,15 @@ import { FaShoppingCart } from "react-icons/fa";
 import { BsFillSuitHeartFill } from "react-icons/bs";
 import Badge from "../Shared/Badge";
 import Whishlistmodal from "./Whishlistmodal";
+import { useSelector } from "react-redux";
+import { favouritesList } from "@/redux/slice/wishlistSlice";
+
 const Navbar = () => {
   const pathname = usePathname();
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [OrderShow, setOrderShow] = useState(false);
   const [Whishlist, setWhishlist] = useState(false);
+  const Favourites = useSelector(favouritesList);
   const orderRef = useRef(null);
   const WhishlistRef = useRef(null);
   const WhishlistButtonRef = useRef(null);
@@ -101,6 +105,7 @@ const Navbar = () => {
             ref={buttonRef}
             onClick={() => {
               setOrderShow(!OrderShow);
+              setWhishlist(false);
             }}
           >
             <Badge
@@ -120,12 +125,15 @@ const Navbar = () => {
           )}
           <span
             className="cursor-pointer"
-            onClick={() => setWhishlist(!Whishlist)}
+            onClick={() => {
+              setWhishlist(!Whishlist);
+              setOrderShow(false);
+            }}
             ref={WhishlistButtonRef}
           >
             <Badge
               Icon={BsFillSuitHeartFill}
-              count={2}
+              count={Favourites?.length}
               color={`${pathname === "/" ? "text-white" : "text-blue-600"}`}
               size={" text-xl"}
             />
