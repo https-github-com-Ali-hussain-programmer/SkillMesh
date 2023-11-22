@@ -6,7 +6,7 @@ import StarRating from "../../../Components/Shared/StarRating";
 import clock from "../../../public/clock.png";
 import recycle from "../../../public/recycle.png";
 import { IoMdInformationCircleOutline } from "react-icons/io";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { gigs } from "@/utils/data";
 import { AiOutlineHome } from "react-icons/ai";
 import { SlArrowDown } from "react-icons/sl";
@@ -15,6 +15,7 @@ import { TiTick } from "react-icons/ti";
 import { IoSearchOutline } from "react-icons/io5";
 import GigReviews from "@/Components/Gig/GigReviews";
 import { Tag } from "@chakra-ui/react";
+
 const Gig = () => {
   const search = useSearchParams();
   const [showFunctionalities, setShowFunctionalities] = useState(false);
@@ -23,6 +24,7 @@ const Gig = () => {
   const [packagesData, setpackagesData] = useState(data?.packages?.Basic);
   const [ReviewSearch, setReviewSearch] = useState("");
   const [filteredReviews, setfilteredReviews] = useState(data?.reviews);
+  const router = useRouter();
   const handleShow = () => {
     setShowFunctionalities(!showFunctionalities);
   };
@@ -35,22 +37,24 @@ const Gig = () => {
       setpackagesData(data?.packages?.Premium);
     }
   };
-
+  const handleRoute = (route) => {
+    router.replace(route);
+  };
   return (
     <div className="mb-[300px] mt-[50px] ">
       <div className="container  2xl:max-w-[1400px]   px-[30px] py-[0px] flex  flex-col md:flex-row gap-[50px]">
         <div className="flex-[2] flex flex-col gap-6">
           <div className=" text-[#404145] text-sm flex items-center gap-2 cursor-pointer">
-            <Link href={"/"}>
+            <span onClick={() => handleRoute("/")}>
               <AiOutlineHome />
-            </Link>{" "}
+            </span>
             <span>/</span>{" "}
-            <span>
-              {" "}
-              <Link href={"/Categories"}>Categories</Link>
-            </span>{" "}
+            <span onClick={() => handleRoute("/Categories")}>Categories</span>{" "}
             <span>/</span>
-            <span> <Link href={`/Categories/${data?.category}`}>{data?.category}</Link></span>
+            <span onClick={() => handleRoute(`/Categories/${data?.category}`)}>
+             
+              {data?.category}
+            </span>
             <span>/</span>
             Gig
           </div>
