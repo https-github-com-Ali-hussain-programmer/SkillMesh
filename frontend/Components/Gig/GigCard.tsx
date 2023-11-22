@@ -6,6 +6,7 @@ import heart from "../../public/heart.png";
 import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
 import { addWishlist, removeWishlist } from "@/redux/slice/wishlistSlice";
+import toast from "react-hot-toast";
 
 interface GigCardProps {
   id: number;
@@ -40,8 +41,20 @@ function GigCard({
       e.stopPropagation();
       setFavourite(!favourite);
       if (!favourite) {
-        const data = { id, pp, star, username, ordersCompleted, price,category,subcategory };
+        const data = {
+          id,
+          pp,
+          star,
+          username,
+          ordersCompleted,
+          price,
+          category,
+          subcategory,
+        };
         dispatch(addWishlist({ data }));
+        toast.success("Successfully Added To Whishlist", {
+          duration: 3000,
+        });
       } else {
         dispatch(removeWishlist(id));
       }
