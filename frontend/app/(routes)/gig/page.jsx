@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import Link from "next/link";
 import Slider from "infinite-react-carousel";
 import StarRating from "../../../Components/Shared/StarRating";
 import clock from "../../../public/clock.png";
@@ -15,6 +14,8 @@ import { TiTick } from "react-icons/ti";
 import { IoSearchOutline } from "react-icons/io5";
 import GigReviews from "@/Components/Gig/GigReviews";
 import { Tag } from "@chakra-ui/react";
+import OrderDrawer from '../../../Components/Order/OrderDrawer'
+import { useDisclosure } from "@chakra-ui/react";
 
 const Gig = () => {
   const search = useSearchParams();
@@ -25,6 +26,7 @@ const Gig = () => {
   const [ReviewSearch, setReviewSearch] = useState("");
   const [filteredReviews, setfilteredReviews] = useState(data?.reviews);
   const router = useRouter();
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const handleShow = () => {
     setShowFunctionalities(!showFunctionalities);
   };
@@ -311,7 +313,7 @@ const Gig = () => {
               <div></div>
             </div>
 
-            <button className="flex items-center justify-between py-2 px-4 bg-black text-white outline-none rounded-md text-lg">
+            <button  onClick={onOpen}  className="flex items-center justify-between py-2 px-4 bg-black text-white outline-none rounded-md text-lg">
               <span className="flex-1 text-center">Continue</span>
               <FaArrowRightLong />
             </button>
@@ -321,6 +323,7 @@ const Gig = () => {
           </div>
         </div>
       </div>
+      <OrderDrawer isOpen={isOpen} onClose={onClose} />
     </div>
   );
 };

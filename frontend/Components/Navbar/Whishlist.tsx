@@ -4,7 +4,7 @@ import StarRating from "../Shared/StarRating";
 import { FaTrash } from "react-icons/fa";
 import { removeWishlist } from "@/redux/slice/wishlistSlice";
 import { useDispatch } from "react-redux";
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
 interface GigCardProps {
   id: number;
   img: string;
@@ -32,10 +32,7 @@ function Whishlist({
   const dispatch = useDispatch();
   return (
     <>
-      <Link
-        href="/"
-        className=" cursor-pointer h-fit text-[#404145]  p-2 border-b-[1px] border-solid  border-gray-300 flex   items-center flex-row "
-      >
+      <div className=" cursor-pointer h-fit text-[#404145]  p-2 border-b-[1px] border-solid  border-gray-300 flex   items-center flex-row ">
         <img
           src={pp}
           alt="error"
@@ -56,16 +53,19 @@ function Whishlist({
               <StarRating rating={star} color={"text-yellow-500"} />
             </div>
             <span
-              onClick={() => {
-                dispatch(removeWishlist(id));
-                toast.error("Removed from Whishlist",{autoClose:3000});
+              onClick={(e) => {
+                setTimeout(() => {
+                  e.stopPropagation();
+                  dispatch(removeWishlist(id));
+                  toast.error("Removed from Wishlist", { autoClose: 3000 });
+                }, 0);
               }}
             >
               <FaTrash className="text-blue-600" />
             </span>
           </div>
         </div>
-      </Link>
+      </div>
     </>
   );
 }

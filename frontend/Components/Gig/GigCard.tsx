@@ -4,10 +4,9 @@ import starimg from "../../public/star.png";
 import Image from "next/image";
 import heart from "../../public/heart.png";
 import { useRouter } from "next/navigation";
-import { useDispatch } from "react-redux";
-import { addWishlist, removeWishlist } from "@/redux/slice/wishlistSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { addWishlist, removeWishlist , favouritesList} from "@/redux/slice/wishlistSlice";
 import {toast } from "react-toastify";
-
 interface GigCardProps {
   id: number;
   img: string;
@@ -33,14 +32,16 @@ function GigCard({
   category,
   subcategory,
 }: GigCardProps) {
-  const [favourite, setFavourite] = useState(false);
+  const Favourites = useSelector(favouritesList);
   const router = useRouter();
+  const favouritesSet = new Set(Favourites?.map((item:any) => item.id));
+  const isFavourite = favouritesSet.has(id);
+
   const dispatch = useDispatch();
   const handleHeartClick = (e: any) => {
     if (e.target?.classList?.contains("heart")) {
       e.stopPropagation();
-      setFavourite(!favourite);
-      if (!favourite) {
+      if (! isFavourite) {
         const data = {
           id,
           pp,
@@ -49,7 +50,8 @@ function GigCard({
           ordersCompleted,
           price,
           category,
-          subcategory,
+          subcategory
+
         };
         dispatch(addWishlist({ data }));
         toast.success("Successfully Added To Whishlist",{autoClose:3000})
@@ -93,7 +95,7 @@ function GigCard({
         </div>
         <hr className="border-t border-gray-300" />
         <div className="p-[10px] px-[20px] flex items-center justify-between">
-          {favourite ? (
+          {isFavourite ? (
             <div className="center-div heart" onClick={handleHeartClick}></div>
           ) : (
             <Image
@@ -137,7 +139,7 @@ function GigCard({
           </div>
           <hr className="border-t border-gray-300" />
           <div className="p-[10px] px-[20px] flex items-center justify-between">
-            {favourite ? (
+            {isFavourite ? (
               <div
                 className="center-div heart"
                 onClick={handleHeartClick}

@@ -18,7 +18,7 @@ function Whishlistmodal() {
         </h1>
         { Favourites?.length > 0 ? (
            Favourites?.map((f) => {
-           return  <Whishlist key={f.id} {...f} />;
+           return  <Whishlist key={f.id} {...f}  />;
           })
         ) : (
           <div className=" pt-14 flex items-center flex-col h-[90%] overflow-scroll">

@@ -11,7 +11,6 @@ function Features() {
 
   return (
    
-  
     <section className={`  my-40  text-secondary-white`}>
       <div className="gradient-02 z-0" />
       <div className={` container 2xl:w-[1400px] flex flex-col  gap-4 px-2 `}>

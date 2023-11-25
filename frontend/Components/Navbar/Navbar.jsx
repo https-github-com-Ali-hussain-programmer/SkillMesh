@@ -5,7 +5,7 @@ import { navVariants } from "../../utils/motion";
 import { useCallback, useState, useRef, useEffect } from "react";
 import NavbarDrawer from "./NavbarDrawer";
 import { HiOutlineBars3CenterLeft } from "react-icons/hi2";
-import { LiaAngleDownSolid } from "react-icons/lia";
+
 import { usePathname } from "next/navigation";
 import ActiveLinks from "../Shared/ActiveLinks";
 import CategoryModal from "./CategoryModal";
