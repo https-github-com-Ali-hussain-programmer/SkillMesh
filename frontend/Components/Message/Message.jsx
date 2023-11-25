@@ -22,7 +22,6 @@ function Message() {
         inputRef?.current?.contains(e.target) ||
         profileRef?.current?.contains(e.target) ||
         messageLayoutRef?.current?.contains(e.target) ||
-        // Add a condition to check if the click is inside the MessageProfile component
         (profileRef?.current?.contains(e.target) && individualProfile)
       ) {
         return;

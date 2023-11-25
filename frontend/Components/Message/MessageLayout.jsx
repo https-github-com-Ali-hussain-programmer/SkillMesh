@@ -9,7 +9,7 @@ import { usePathname } from "next/navigation";
 
 function MessageLayout(props) {
   const [emoji, setEmojiShow] = useState(false);
-  const pathname=usePathname()
+  const pathname = usePathname();
   const [message, setMesage] = useState("");
   const emojiRefs = {
     emojiBody: useRef(null),
@@ -38,43 +38,42 @@ function MessageLayout(props) {
   return (
     <>
       <div className="relative flex flex-col overflow-y-scroll text-xl h-full w-full  ">
-        <div className="flex gap-2 items-center  border-solid border-[1px] border-gray-600 py-1 rounded-md">
+        <div className="flex gap-2 items-center   border border-gray-300 py-2 rounded-md">
           <div onClick={props.toggleProfile}>
             <BiArrowBack />
           </div>
           <img src={p1.src} alt="error" className="h-[48px] w-[48px]" />
-          <h2>John smith</h2>
+          <h2 >John smith</h2>
         </div>
         <div className="flex flex-col">
           <div
-          className="text-base my-3"
+            className="text-base my-3"
             style={{
-              backgroundColor: `${1 === 0   ? "#5b96f7" : "#4ada80"}`,
+              backgroundColor: `white`,
               alignSelf: `${1 === 1 ? "flex-end" : "flex-start"}`,
               borderRadius: "10px",
-              padding: "6px",
-              color: `${1 === 1 ? "white" : "#696969"}`,
+              padding: "6px 8px",
+              color: "#404145",
               maxWidth: "75%",
-            
+              boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px",
             }}
           >
             sssssssssssssss
           </div>
           <div
-          className="text-base my-2"
+            className="text-base my-2"
             style={{
               backgroundColor: `${1 === 1 ? "#5b96f7" : "white"}`,
-              alignSelf: `${1 === 1 ? "flex-end" : "flex-start"}`,
+              alignSelf: `${1 === 0 ? "flex-end" : "flex-start"}`,
               borderRadius: "10px",
-              padding: "6px",
+              padding: "6px 8px",
               color: `${1 === 1 ? "white" : "#696969"}`,
               maxWidth: "75%",
-            
+              boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px"
             }}
           >
             sssssssssssssss
           </div>
-        
         </div>
 
         <div

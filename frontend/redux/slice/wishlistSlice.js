@@ -8,7 +8,7 @@ const wishlistSlice = createSlice({
     addWishlist: (state, action) => {
       const data=action.payload.data
       return  {...state,favourites:[...state.favourites,data]}  
-      console.log(action.payload.data);
+     
     },
     removeWishlist: (state, action) => {
       const id=action.payload

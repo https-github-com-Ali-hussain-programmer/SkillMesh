@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import GigCard from "../../../../Components/Gig/GigCard";
 import Link from "next/link";
 import { gigs, Category } from "../../../../utils/data";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { AiOutlineHome } from "react-icons/ai";
 
 const Gigs = ({ params }) => {
@@ -11,6 +11,7 @@ const Gigs = ({ params }) => {
   const search = useSearchParams().get("subcategory");
   const [subfieldselect, setSubfieldSelect] = useState(search || "All");
   const [sort, setSort] = useState("No Sort");
+  const router = useRouter();
   const [subcategory, setSubcategory] = useState(
     Category?.filter(
       (c) => c.category === decodeURIComponent(params.categoryname)
@@ -74,19 +75,18 @@ const Gigs = ({ params }) => {
       setSubfieldSelect(value);
     }
   };
-
+  const handleRoute = (route) => {
+    router.replace(route);
+  };
   return (
     <div className="  bg-[#fcfcfc] mt-14 mb-[300px]">
       <div className=" container 2xl:w-[1400px]  flex flex-col gap-5">
         <div className=" text-[#404145] text-sm flex items-center gap-3 cursor-pointer">
-          <Link href={"/"}>
-            {" "}
-            <AiOutlineHome />{" "}
-          </Link>
+          <span onClick={() => handleRoute("/")}>
+            <AiOutlineHome />
+          </span>
           <span>/</span>{" "}
-          <span>
-            <Link href={"/Categories"}>Categories</Link>
-          </span>{" "}
+          <span onClick={() => handleRoute("/Categories")}>Categories</span>
           <span>/</span>
           <span> {decodeURIComponent(params.categoryname)}</span>
         </div>

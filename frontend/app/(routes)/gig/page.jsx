@@ -1,12 +1,11 @@
 "use client";
 import React, { useState } from "react";
-import Link from "next/link";
 import Slider from "infinite-react-carousel";
 import StarRating from "../../../Components/Shared/StarRating";
 import clock from "../../../public/clock.png";
 import recycle from "../../../public/recycle.png";
 import { IoMdInformationCircleOutline } from "react-icons/io";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { gigs } from "@/utils/data";
 import { AiOutlineHome } from "react-icons/ai";
 import { SlArrowDown } from "react-icons/sl";
@@ -15,6 +14,9 @@ import { TiTick } from "react-icons/ti";
 import { IoSearchOutline } from "react-icons/io5";
 import GigReviews from "@/Components/Gig/GigReviews";
 import { Tag } from "@chakra-ui/react";
+import OrderDrawer from '../../../Components/Order/OrderDrawer'
+import { useDisclosure } from "@chakra-ui/react";
+
 const Gig = () => {
   const search = useSearchParams();
   const [showFunctionalities, setShowFunctionalities] = useState(false);
@@ -23,6 +25,8 @@ const Gig = () => {
   const [packagesData, setpackagesData] = useState(data?.packages?.Basic);
   const [ReviewSearch, setReviewSearch] = useState("");
   const [filteredReviews, setfilteredReviews] = useState(data?.reviews);
+  const router = useRouter();
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const handleShow = () => {
     setShowFunctionalities(!showFunctionalities);
   };
@@ -35,22 +39,24 @@ const Gig = () => {
       setpackagesData(data?.packages?.Premium);
     }
   };
-
+  const handleRoute = (route) => {
+    router.replace(route);
+  };
   return (
     <div className="mb-[300px] mt-[50px] ">
       <div className="container  2xl:max-w-[1400px]   px-[30px] py-[0px] flex  flex-col md:flex-row gap-[50px]">
         <div className="flex-[2] flex flex-col gap-6">
           <div className=" text-[#404145] text-sm flex items-center gap-2 cursor-pointer">
-            <Link href={"/"}>
+            <span onClick={() => handleRoute("/")}>
               <AiOutlineHome />
-            </Link>{" "}
+            </span>
             <span>/</span>{" "}
-            <span>
-              {" "}
-              <Link href={"/Categories"}>Categories</Link>
-            </span>{" "}
+            <span onClick={() => handleRoute("/Categories")}>Categories</span>{" "}
             <span>/</span>
-            <span> <Link href={`/Categories/${data?.category}`}>{data?.category}</Link></span>
+            <span onClick={() => handleRoute(`/Categories/${data?.category}`)}>
+             
+              {data?.category}
+            </span>
             <span>/</span>
             Gig
           </div>
@@ -307,7 +313,7 @@ const Gig = () => {
               <div></div>
             </div>
 
-            <button className="flex items-center justify-between py-2 px-4 bg-black text-white outline-none rounded-md text-lg">
+            <button  onClick={onOpen}  className="flex items-center justify-between py-2 px-4 bg-black text-white outline-none rounded-md text-lg">
               <span className="flex-1 text-center">Continue</span>
               <FaArrowRightLong />
             </button>
@@ -317,6 +323,7 @@ const Gig = () => {
           </div>
         </div>
       </div>
+      <OrderDrawer isOpen={isOpen} onClose={onClose} />
     </div>
   );
 };
