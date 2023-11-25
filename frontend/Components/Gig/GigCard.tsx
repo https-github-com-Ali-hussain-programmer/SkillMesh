@@ -67,7 +67,7 @@ function GigCard({
         router.push(`/gig?id=${id} `);
       }}
     >
-      <div className="w-[290px]  h-[400px] border border-gray-300 mb-[40px] shadow-lg relative gigs">
+      <div className="w-[290px]  h-[400px] border border-gray-300 mb-[40px] shadow-lg relative gigs cursor-pointer ">
         <img className="w-full h-1/2 object-cover" src={img} alt="error" />
         <div className="p-[10px] px-[20px] flex flex-col gap-[20px]">
           <div className="flex items-center gap-[10px]">
@@ -99,7 +99,7 @@ function GigCard({
             <div className="center-div heart" onClick={handleHeartClick}></div>
           ) : (
             <Image
-              className="w-[16px] h-[16px] cursor-pointer object-cover heart"
+              className="w-[16px] h-[16px] =object-cover heart"
               src={heart}
               alt="Heart"
               onClick={handleHeartClick}
@@ -146,7 +146,7 @@ function GigCard({
               ></div>
             ) : (
               <Image
-                className="w-[16px] h-[16px] cursor-pointer object-cover heart"
+                className="w-[16px] h-[16px] object-cover heart"
                 src={heart}
                 alt="Heart"
                 onClick={handleHeartClick}
