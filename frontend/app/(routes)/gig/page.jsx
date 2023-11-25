@@ -10,12 +10,13 @@ import { gigs } from "@/utils/data";
 import { AiOutlineHome } from "react-icons/ai";
 import { SlArrowDown } from "react-icons/sl";
 import { FaArrowRightLong } from "react-icons/fa6";
-import { TiTick } from "react-icons/ti";
+import { MdOutlineDone } from "react-icons/md";
 import { IoSearchOutline } from "react-icons/io5";
 import GigReviews from "@/Components/Gig/GigReviews";
 import { Tag } from "@chakra-ui/react";
-import OrderDrawer from '../../../Components/Order/OrderDrawer'
+import OrderDrawer from "../../../Components/Order/OrderDrawer";
 import { useDisclosure } from "@chakra-ui/react";
+import Currency from "@/utils/Currency";
 
 const Gig = () => {
   const search = useSearchParams();
@@ -54,7 +55,6 @@ const Gig = () => {
             <span onClick={() => handleRoute("/Categories")}>Categories</span>{" "}
             <span>/</span>
             <span onClick={() => handleRoute(`/Categories/${data?.category}`)}>
-             
               {data?.category}
             </span>
             <span>/</span>
@@ -104,7 +104,7 @@ const Gig = () => {
           <h2 className="font-semibold text-2xl text-gray-700">
             About This Gig
           </h2>
-          <p className="font-light leading-[25px] text-gray-500">
+          <p className="font-light leading-[25px] text-gray-500 text-justify">
             {data?.about}
           </p>
 
@@ -219,7 +219,7 @@ const Gig = () => {
           </div>
         </div>
 
-        <div className="right flex-[1]  border-[1px] border-solid border-[#dadbdd] flex flex-col gap-[20px] h-max max-h-[500px] sticky top-[150px]">
+        <div className="right flex-[1]  border-[1px] border-solid border-[#dadbdd] flex flex-col gap-[20px] h-max  sticky top-[150px]">
           <div className="flex justify-between">
             <div
               onClick={() => handlePackages("Basic")}
@@ -241,7 +241,7 @@ const Gig = () => {
               onClick={() => handlePackages("Premium")}
               className={`${
                 packagesData.name === "Premium" ? "black_border" : null
-              }  cursor-pointer bg-[#fafafa] p-[16px] text-lg font-bold flex-1 border-b-[1px] text-center text-[#74767e]`}
+              }  cursor-pointer bg-[#fafafa] p-[16px] text-lg font-bold flex-1 border-b-[1px] text-center text-[#74767e] border-solid border-[#dadbdd]`}
             >
               Premium
             </div>
@@ -250,7 +250,7 @@ const Gig = () => {
             <div className="flex flex-col">
               {" "}
               <h1 className="text-2xl whitespace-nowrap font-bold  flex items-center gap-2">
-                <span>PKR {packagesData.price}</span>
+                <span>PKR {Currency(packagesData.price)}</span>
                 <span className="text-[#74767e] text-[16px] font-medium tooltip">
                   <IoMdInformationCircleOutline />
                 </span>
@@ -289,31 +289,38 @@ const Gig = () => {
                 </span>
                 <span
                   onClick={handleShow}
-                  className={`${
-                    showFunctionalities ? "transform rotate-180 " : null
-                  }text-[#404145] text-sm font-extrabold cursor-pointer`}
+                  className={`  transition-all duration-[0.4s] ease-out ${
+                    showFunctionalities && "rotate-180"
+                  } text-[#404145] text-sm font-extrabold cursor-pointer`}
                 >
                   <SlArrowDown />
                 </span>
               </div>
-              {showFunctionalities ? (
-                <div className="flex flex-col gap-3 ">
-                  {packagesData.functionalities.map((p, index) => {
-                    return (
-                      <div key={index} className="flex gap-2">
-                        <span className="text-xl">
-                          <TiTick />
-                        </span>
-                        <span className="text-[15px] text-[#95979D]">{p}</span>
-                      </div>
-                    );
-                  })}
-                </div>
-              ) : null}
-              <div></div>
+
+              <div
+                className={` orderactive flex flex-col gap-3 ${
+                  showFunctionalities && "activelist"
+                } `}
+              >
+                {packagesData.functionalities.map((p, index) => {
+                  return (
+                    <div key={index} className="flex gap-2 py-1">
+                      <span className="text-xl font-bold">
+                        <MdOutlineDone />
+                      </span>
+                      <span className=" capitalize text-[15px] text-[#95979D]">
+                        {p}
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
 
-            <button  onClick={onOpen}  className="flex items-center justify-between py-2 px-4 bg-black text-white outline-none rounded-md text-lg">
+            <button
+              onClick={onOpen}
+              className="flex items-center justify-between py-2 px-4 bg-black text-white outline-none rounded-md text-lg"
+            >
               <span className="flex-1 text-center">Continue</span>
               <FaArrowRightLong />
             </button>
@@ -323,7 +330,11 @@ const Gig = () => {
           </div>
         </div>
       </div>
-      <OrderDrawer isOpen={isOpen} onClose={onClose} />
+      <OrderDrawer
+        isOpen={isOpen}
+        onClose={onClose}
+        packagesData={packagesData}
+      />
     </div>
   );
 };
