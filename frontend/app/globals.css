@@ -181,7 +181,7 @@
 }
 .gigs:hover .pink-hover {
   height: 200px;
-  transition: height 0.5s ease,opacity 1s;
+  transition: height 0.5s ease, opacity 1s;
   opacity: 1;
   z-index: 999;
 }
@@ -267,4 +267,14 @@
   100% {
     transform: rotate(45deg) scale(1);
   }
+}
+.orderactive {
+  transition: all 0.7s ease;
+  height: 0;
+  overflow: hidden;
+}
+
+.activelist {
+  height: 155px;
+  overflow:auto;
 }
