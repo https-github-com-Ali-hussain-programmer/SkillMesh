@@ -32,15 +32,17 @@ const Navbar = () => {
   }, [isDrawerOpen]);
   useEffect(() => {
     const handleClickOutside = (e) => {
+     
       if (
         orderRef?.current?.contains(e.target) ||
         WhishlistRef?.current?.contains(e.target) ||
         buttonRef?.current?.contains(e.target) ||
         WhishlistButtonRef?.current?.contains(e.target)
       ) {
+     
         return;
       }
-
+  
       setOrderShow(false);
       setWhishlist(false);
     };
