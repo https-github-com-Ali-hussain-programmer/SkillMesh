@@ -6,19 +6,19 @@ import { useSelector } from "react-redux";
 import { favouritesList } from "@/redux/slice/wishlistSlice";
 
 function Whishlistmodal() {
-  const Favourites=useSelector(favouritesList)
+  const Favourites = useSelector(favouritesList);
   return (
     <>
       <div className=" shadow-lg border-solid bg-white md:w-[350px] h-[470px] w-[300px] overflow-auto rounded-md border  border-gray-300">
         <h1 className=" flex justify-between items-center  text-gray-500  text-sm px-[12px] h-[10%] font-bold  border-b  border-gray-300">
-          WishList ({ Favourites?.length})
+          WishList ({Favourites?.length})
           <span>
             <FaHeart className="tetxt-5xl text-red-600" />
           </span>
         </h1>
-        { Favourites?.length > 0 ? (
-           Favourites?.map((f) => {
-           return  <Whishlist key={f.id} {...f}  />;
+        {Favourites?.length > 0 ? (
+          Favourites?.map((f) => {
+            return <Whishlist key={f.id} {...f} />;
           })
         ) : (
           <div className=" pt-14 flex items-center flex-col h-[90%] overflow-scroll">

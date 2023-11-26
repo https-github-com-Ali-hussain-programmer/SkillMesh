@@ -1,7 +1,6 @@
 "use client";
 import React, { useState } from "react";
 import Slider from "infinite-react-carousel";
-import StarRating from "../../../Components/Shared/StarRating";
 import clock from "../../../public/clock.png";
 import recycle from "../../../public/recycle.png";
 import { IoMdInformationCircleOutline } from "react-icons/io";
@@ -12,9 +11,8 @@ import { SlArrowDown } from "react-icons/sl";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { MdOutlineDone } from "react-icons/md";
 import { IoSearchOutline } from "react-icons/io5";
-import GigReviews from "@/Components/Gig/GigReviews";
 import { Tag } from "@chakra-ui/react";
-import OrderDrawer from "../../../Components/Order/OrderDrawer";
+import {OrderDrawer,GigReviews,StarRating} from "../../../Components";
 import { useDisclosure } from "@chakra-ui/react";
 import Currency from "@/utils/Currency";
 

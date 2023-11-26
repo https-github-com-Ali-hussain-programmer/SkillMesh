@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   Drawer,
   DrawerBody,
@@ -9,7 +9,7 @@ import {
   Button,
   DrawerOverlay,
 } from "@chakra-ui/react";
-import ActiveLinks from "../Shared/ActiveLinks";
+import {ActiveLinks} from '../../Components';
 import {
   Accordion,
   AccordionItem,
@@ -27,9 +27,9 @@ function NavbarDrawer({ isOpen, onClose }: NavbarDrawerProps) {
   const pathname = usePathname();
   return (
     <>
-      <Drawer isOpen={isOpen} placement="left" onClose={onClose}>
+      <Drawer isOpen={isOpen} placement="left" onClose={onClose} >
         <DrawerOverlay />
-        <DrawerContent>
+        <DrawerContent >
           <DrawerCloseButton />
           <DrawerHeader>
             <span className="text-3xl font-bold">

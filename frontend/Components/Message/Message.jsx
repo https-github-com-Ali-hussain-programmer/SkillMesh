@@ -1,8 +1,7 @@
 "use client";
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { FiSearch } from "react-icons/fi";
-import MessageProfile from "./MessageProfile";
-import MessageLayout from "./MessageLayout";
+import {MessageProfile,MessageLayout} from "../../Components";
 import { usePathname } from "next/navigation";
 
 function Message() {
