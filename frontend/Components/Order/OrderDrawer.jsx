@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useEffect, useState } from "react";
 import {
   Drawer,
@@ -14,9 +14,12 @@ import clock from "../../public/clock.png";
 import recycle from "../../public/recycle.png";
 import { FaPlus, FaMinus } from "react-icons/fa6";
 import Currency from "../../utils/Currency";
+import { useRouter } from "next/navigation";
+
 function OrderDrawer({ isOpen, onClose, packagesData }) {
   const [isListOpen, setIsListOpen] = useState(false);
   const [GigQuantity, setGigQuanity] = useState(1);
+  const router = useRouter();
   const toggleList = () => {
     setIsListOpen(!isListOpen);
   };
@@ -136,7 +139,10 @@ function OrderDrawer({ isOpen, onClose, packagesData }) {
                 </div>
               </div>
               <div className="w-full border-gray-300 border-solid border-t-[1px] flex flex-col items-center py-8 gap-2">
-                <button className="w-full text-center font-bold py-[12px] px-[20px] bg-black text-white outline-none rounded-md text-lg">
+                <button
+                  onClick={() => router.push("/Payment")}
+                  className="w-full text-center font-bold py-[12px] px-[20px] bg-black text-white outline-none rounded-md text-lg"
+                >
                   Continue (PKR {Currency(packagesData.price, GigQuantity)})
                 </button>
                 <p>You won't be charged yet</p>

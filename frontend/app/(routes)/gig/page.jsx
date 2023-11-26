@@ -42,7 +42,7 @@ const Gig = () => {
     router.replace(route);
   };
   return (
-    <div className="mb-[300px] mt-[50px] ">
+    <div className="mb-[300px] mt-[50px] min-h-screen ">
       <div className="container  2xl:max-w-[1400px]   px-[30px] py-[0px] flex  flex-col md:flex-row gap-[50px]">
         <div className="flex-[2] flex flex-col gap-6">
           <div className=" text-[#404145] text-sm flex items-center gap-2 cursor-pointer">
@@ -77,7 +77,7 @@ const Gig = () => {
             </div>
           </div>
           <div>
-            {" "}
+            
             <Slider
               slidesToShow={1}
               autoplaySpeed={2500}

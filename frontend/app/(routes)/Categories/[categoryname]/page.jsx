@@ -78,7 +78,7 @@ const Gigs = ({ params }) => {
     router.replace(route);
   };
   return (
-    <div className="  bg-[#fcfcfc] mt-14 mb-[300px]">
+    <div className="  bg-[#fafafa]  pt-14 pb-[300px] min-h-screen">
       <div className=" container 2xl:w-[1400px]  flex flex-col gap-5">
         <div className=" text-[#404145] text-sm flex items-center gap-3 cursor-pointer">
           <span onClick={() => handleRoute("/")}>
