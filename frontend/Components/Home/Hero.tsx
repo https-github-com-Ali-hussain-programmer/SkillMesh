@@ -1,11 +1,4 @@
 "use client";
-import { motion } from "framer-motion";
-import {
-  slideIn,
-  staggerContainer,
-  textVariant,
-  onebyone,
-} from "../../utils/motion";
 import Image from "next/image";
 import Link from "next/link";
 import { FiSearch } from "react-icons/fi";
@@ -13,7 +6,7 @@ import logo from "../../public/side.png";
 const Hero = () => (
   <>
     <div className={`h-[600px]   justify-center flex  `}>
-      <div className="   2xl:w-[1400px] container   flex items-center  justify-between text-secondary-white  lg:px-0 px-5  ">
+      <div className="   2xl:w-[1400px] container    flex items-center  justify-between text-secondary-white px-7 ">
         <div className="flex flex-col  gap-[30px] max-w-[700px]  ">
           <h1 className="text-4xl tracking-wide font-bold title-animation">
             Find the perfect

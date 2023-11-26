@@ -1,8 +1,6 @@
 "use client";
-import Modal from "./Modal";
 import React, { useState } from "react";
-import { motion } from "framer-motion";
-import FeatureList from "./PlatformFeatureList";
+import { FeatureList, Modal } from "..";
 import img1 from "../../public/selling.webp";
 import Image from "next/image";
 function PlatformFeatures() {
@@ -60,6 +58,7 @@ function PlatformFeatures() {
                 src="./video.mov"
                 controls
                 autoPlay
+                loading={"lazy"}
                 className="w-[720px]  rounded-md "
               ></video>
             </Modal>

@@ -1,19 +1,18 @@
 "use client";
-import { motion } from "framer-motion";
 import * as React from "react";
-import { navVariants } from "../../utils/motion";
 import { useCallback, useState, useRef, useEffect } from "react";
-import NavbarDrawer from "./NavbarDrawer";
 import { HiOutlineBars3CenterLeft } from "react-icons/hi2";
-
 import { usePathname } from "next/navigation";
-import ActiveLinks from "../Shared/ActiveLinks";
-import CategoryModal from "./CategoryModal";
-import Ordersmodal from "./Ordersmodal";
+import {
+  ActiveLinks,
+  Whishlistmodal,
+  Badge,
+  Ordersmodal,
+  CategoryModal,
+  NavbarDrawer,
+} from "../../Components";
 import { FaShoppingCart } from "react-icons/fa";
 import { BsFillSuitHeartFill } from "react-icons/bs";
-import Badge from "../Shared/Badge";
-import Whishlistmodal from "./Whishlistmodal";
 import { useSelector } from "react-redux";
 import { favouritesList } from "@/redux/slice/wishlistSlice";
 
@@ -32,17 +31,15 @@ const Navbar = () => {
   }, [isDrawerOpen]);
   useEffect(() => {
     const handleClickOutside = (e) => {
-     
       if (
         orderRef?.current?.contains(e.target) ||
         WhishlistRef?.current?.contains(e.target) ||
         buttonRef?.current?.contains(e.target) ||
         WhishlistButtonRef?.current?.contains(e.target)
       ) {
-     
         return;
       }
-  
+
       setOrderShow(false);
       setWhishlist(false);
     };
@@ -55,18 +52,17 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`py-4 relative  ${
+      className={`py-4 relative ${
         pathname === "/"
           ? "bg-dark-black text-white  "
           : "text-black shadow-md z-50"
       }`}
     >
-      <div className="absolute w-[40%] inset-0  gradient-01  z-10" />
       <div
-        className={`flex  container 2xl:w-[1400px] justify-between items-center  gap-3  `}
+        className={`  px-7 flex container 2xl:w-[1400px] justify-between items-center  gap-3  `}
       >
         <div
-          className={`z-50 text-4xl  sm:hidden ${
+          className={` text-4xl  sm:hidden ${
             pathname === "/" ? " text-white" : "text-black"
           }`}
           onClick={() => {
@@ -76,14 +72,14 @@ const Navbar = () => {
           <HiOutlineBars3CenterLeft />
         </div>
 
-        <div className="font-bold text-[34px] z-50 hidden sm:inline-block  ">
+        <div className="font-bold text-[34px]  hidden sm:inline-block  ">
           <ActiveLinks url={"/"} pathname={""}>
             SkillMesh.
           </ActiveLinks>
         </div>
 
         {pathname !== "/" ? (
-          <div className="lg:w-[25%] z-10">
+          <div className="lg:w-[25%] ">
             <input
               type="text"
               placeholder="Search for services..."
@@ -93,7 +89,7 @@ const Navbar = () => {
         ) : null}
 
         <div className="flex items-center font-medium  justify-between  sm:w-[35%] w-[20%]  ">
-          <span className="hidden md:inline-block category-link">
+          <span className="hidden md:inline-block category-link text-[17px]">
             <ActiveLinks url={"/Categories"} pathname={pathname}>
               Category
             </ActiveLinks>{" "}
@@ -149,15 +145,15 @@ const Navbar = () => {
             </div>
           )}
 
-          <span className="hidden lg:inline-block ">
+          <span className="hidden lg:inline-block text-[17px]">
             <ActiveLinks url={"/About"} pathname={pathname}>
               About
             </ActiveLinks>
           </span>
           <button
-            className={` hidden sm:inline-block  py-2 px-2 border border-white rounded-md  ${
-              pathname !== "/" ? "bg-blue-600 text-white" : null
-            }  transition-all   duration-200 `}
+            className={`  hidden sm:inline-block  py-2 px-2  rounded-md  ${
+              pathname !== "/" ? "bg-blue-600 text-white transition-all duration-300 hover:scale-105 hover:bg-white hover:text-black hover:border-black hover:border-[1px]"  : "connect"
+            }  `}
           >
             Connect
           </button>

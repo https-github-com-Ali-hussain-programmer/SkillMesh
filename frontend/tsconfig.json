@@ -35,7 +35,11 @@
     "Components/Navbar/Navbar.jsx",
     "Components/Message/Message.jsx",
     "app/(routes)/Categories/page.jsx",
-    "app/(routes)/Categories/[categoryname]/page.jsx"
-, "app/(routes)/gig/page.jsx", "Components/Gig/GigReviews.jsx", "Components/Navbar/Whishlistmodal.jsx"  ],
+    "app/(routes)/Categories/[categoryname]/page.jsx",
+    "app/(routes)/gig/page.jsx",
+    "Components/Gig/GigReviews.jsx",
+    "Components/Wishlist/Whishlistmodal.jsx",
+    "Components/Home/PlatformFeatures.jsx"
+  ],
   "exclude": ["node_modules"]
 }

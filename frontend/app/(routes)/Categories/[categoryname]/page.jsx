@@ -1,7 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import GigCard from "../../../../Components/Gig/GigCard";
-import Link from "next/link";
+import {GigCard} from "../../../../Components";
 import { gigs, Category } from "../../../../utils/data";
 import { useRouter, useSearchParams } from "next/navigation";
 import { AiOutlineHome } from "react-icons/ai";
