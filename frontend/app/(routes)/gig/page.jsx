@@ -12,7 +12,7 @@ import { FaArrowRightLong } from "react-icons/fa6";
 import { MdOutlineDone } from "react-icons/md";
 import { IoSearchOutline } from "react-icons/io5";
 import { Tag } from "@chakra-ui/react";
-import {OrderDrawer,GigReviews,StarRating} from "../../../Components";
+import { OrderDrawer, GigReviews, StarRating } from "../../../Components";
 import { useDisclosure } from "@chakra-ui/react";
 import Currency from "@/utils/Currency";
 
@@ -77,7 +77,6 @@ const Gig = () => {
             </div>
           </div>
           <div>
-            
             <Slider
               slidesToShow={1}
               autoplaySpeed={2500}
@@ -332,6 +331,12 @@ const Gig = () => {
         isOpen={isOpen}
         onClose={onClose}
         packagesData={packagesData}
+        userinfo={{
+          id: data?.id,
+          SellerName: data?.username,
+          img:data?.img,
+          Features:packagesData?.functionalities
+        }}
       />
     </div>
   );

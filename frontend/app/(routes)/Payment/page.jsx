@@ -12,6 +12,8 @@ import {
   Stepper,
   useSteps,
 } from "@chakra-ui/react";
+import Link from "next/link";
+import { useSelector } from "react-redux";
 import {
   Accordion,
   AccordionItem,
@@ -21,25 +23,29 @@ import {
 } from "@chakra-ui/react";
 import { SiHiveBlockchain } from "react-icons/si";
 import { FaMoneyCheck } from "react-icons/fa6";
+import { packagedata } from "../../../redux/slice/TotalpackageSlice";
 
 function Payment() {
   const steps = [
-    { title: "Order Details", description: "Contact Info" },
-    { title: "Confirm & Pay", description: "Date & Time" },
-    { title: "Submit Requirement", description: "Select Rooms" },
+    { title: "Order Details" },
+    { title: "Confirm & Pay" },
+    { title: "Submit Requirement" },
   ];
-
+  const data = useSelector(packagedata);
   const { activeStep } = useSteps({
     index: 1,
     count: steps.length,
   });
-
+ 
   return (
     <>
       <div className=" min-h-screen bg-white">
         <div className="flex flex-col gap-2 sm:gap-5 justify-center ">
           <div className=" px-12 py-5  flex items-center gap-6 border-solid border-gray-300 border-b-[1px]">
-            <h1 className="text-[#404145]  text-4xl font-bold">SkillMesh.</h1>
+            <h1 className="text-[#404145]  text-4xl font-bold">
+              {" "}
+              <Link href="/">SkillMesh.</Link>
+            </h1>
             <div className=" hidden md:inline-block">
               <Stepper
                 size="md"
@@ -114,16 +120,18 @@ function Payment() {
                 </div>
               </div>
               <div className="rounded shahdow-md bg-[#fafafa]  border  border-gray-300  max-w-[450px] flex flex-col justify-center gap-4  px-3">
-                <div className="flex items-center flex-col sm:flex-row">
+                <h1 className="font-bold text-[#404145] mt-3 text-2xl">
+                  {data?.packageName}
+                </h1>
+                <div className="flex items-center flex-col sm:flex-row gap-3 p-3">
                   <img
-                    src=""
+                    src={data?.userinfo?.img}
                     alt="error"
-                    className="h-[110px] w-[100px] object-fill rounded shrink-0 sm:shrink"
+                    className="h-[110px] w-[100px] object-cover rounded shrink-0 sm:shrink"
                   />
 
-                  <h1 className="text-[#404145] font-bold text-[17px]">
-                    I will develop mobile app android ios using reactnative
-                    cross platform
+                  <h1 className="text-[#404145] font-bold text-lg break-words">
+                    {data?.Title}
                   </h1>
                 </div>
                 <div className="border-gray-300 border-solid border-b-[1px]"></div>
@@ -139,7 +147,7 @@ function Payment() {
                         </h2>
                         <AccordionPanel>
                           <div className=" flex gap-5 flex-col">
-                            {["1", "2", "3"].map((c, index) => {
+                            {data.userinfo?.Features?.map((c, index) => {
                               return <span key={index}>{c}</span>;
                             })}
                           </div>
@@ -155,11 +163,11 @@ function Payment() {
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-sm font-bold">Total Delivery Time</span>
-                  <span>5</span>
+                  <span>{data.TotaldeliveryTime}-days</span>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-sm font-bold">Total </span>
-                  <span className="text-sm">PKR</span>
+                  <span className="text-sm font-bold">Total Price</span>
+                  <span className="text-sm">PKR {data?.Totalprice}</span>
                 </div>
                 <div className="border-gray-300 border-solid border-b-[1px]"></div>
                 <button className="hover:bg-black transition-all duration-300 ease-in hover:scale-105 px-[20px] py-[10px] w-full bg-green-600 text-white text-lg font-bold rounded">
@@ -172,11 +180,10 @@ function Payment() {
               </div>
             </div>
           </div>
-          <p className=" w-full hidden sm:inline-block tracking-wider border-t-[1px] border-b-[1px] border-gray-300 border-solid text-sm  p-5 text-[#62646A] ">
+        </div>
+        <p className=" w-full  p-5 hidden sm:inline-block tracking-wider border-t-[1px] border-b-[1px] border-gray-300 border-solid text-sm  text-[#62646A] ">
           Payments are processed by Blockchain Ethreum Ltd., SkillMesh Limited
         </p>
-        </div>
-       
       </div>
     </>
   );

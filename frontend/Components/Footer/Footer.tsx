@@ -17,8 +17,6 @@ import {
   AccordionIcon,
 } from "@chakra-ui/react";
 import Image from "next/image";
-import { motion as m } from "framer-motion";
-import { footerVariants } from "@/utils/motion";
 import { usePathname } from "next/navigation";
 import ActiveLinks from "../Shared/ActiveLinks";
 

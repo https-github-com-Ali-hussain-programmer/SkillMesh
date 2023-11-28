@@ -15,10 +15,32 @@ import recycle from "../../public/recycle.png";
 import { FaPlus, FaMinus } from "react-icons/fa6";
 import Currency from "../../utils/Currency";
 import { useRouter } from "next/navigation";
+import { useDispatch } from "react-redux";
+import { updateData } from "../../redux/slice/TotalpackageSlice";
 
-function OrderDrawer({ isOpen, onClose, packagesData }) {
+function OrderDrawer({ isOpen, onClose, packagesData, userinfo }) {
   const [isListOpen, setIsListOpen] = useState(false);
   const [GigQuantity, setGigQuanity] = useState(1);
+  const [TotalPackage, setTotalpackage] = useState({
+    gigQuantity: GigQuantity,
+    userinfo: userinfo,
+    packageName: packagesData?.name,
+    Title: packagesData.desc,
+    Totalprice: Currency(packagesData?.price, GigQuantity),
+    TotaldeliveryTime: packagesData?.delivery,
+  });
+  const dispatch = useDispatch();
+  useEffect(() => {
+    setTotalpackage((prev) => {
+      return {
+        ...prev,
+        packageName: packagesData?.name,
+        Title: packagesData.desc,
+        Totalprice: Currency(packagesData?.price, GigQuantity),
+        TotaldeliveryTime: packagesData?.delivery,
+      };
+    });
+  }, [packagesData]);
   const router = useRouter();
   const toggleList = () => {
     setIsListOpen(!isListOpen);
@@ -32,6 +54,12 @@ function OrderDrawer({ isOpen, onClose, packagesData }) {
     }
     const newQuantity = Math.max(1, GigQuantity + increment);
     setGigQuanity(newQuantity);
+    setTotalpackage((prev) => {
+      return {
+        ...prev,
+        Totalprice: Currency(packagesData.price, newQuantity),
+      };
+    });
   };
 
   useEffect(() => {
@@ -39,6 +67,7 @@ function OrderDrawer({ isOpen, onClose, packagesData }) {
       setIsListOpen(false);
     }
   }, [isOpen]);
+
   return (
     <>
       <Drawer onClose={onClose} isOpen={isOpen} size={"md"}>
@@ -140,7 +169,13 @@ function OrderDrawer({ isOpen, onClose, packagesData }) {
               </div>
               <div className="w-full border-gray-300 border-solid border-t-[1px] flex flex-col items-center py-8 gap-2">
                 <button
-                  onClick={() => router.push("/Payment")}
+                  onClick={() => {
+                    dispatch(updateData({TotalPackage}));
+                    setTimeout(()=>{
+                      router.push("/Payment");
+                    },6000)
+                   
+                  }}
                   className="w-full text-center font-bold py-[12px] px-[20px] bg-black text-white outline-none rounded-md text-lg"
                 >
                   Continue (PKR {Currency(packagesData.price, GigQuantity)})
