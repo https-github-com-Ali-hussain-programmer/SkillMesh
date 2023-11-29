@@ -22,6 +22,8 @@ const GigCard = dynamic(() => import("./Gig/GigCard"));
 const OrderDrawer = dynamic(() => import("./Order/OrderDrawer"));
 const FeatureList = dynamic(() => import("./Home/PlatformFeatureList"));
 const Modal = dynamic(() => import("./Home/Modal"));
+const Client = dynamic(() => import("./Client/Client"));
+const StepperForm=dynamic(() => import("./Stepper/StepperForm"))
 export {
   Navbar,
   Footer,
@@ -46,4 +48,5 @@ export {
   Modal,
   TopRatedCard,
   FeatureCard,
+  Client ,StepperForm
 };

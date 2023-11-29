@@ -12,7 +12,7 @@ import { FaArrowRightLong } from "react-icons/fa6";
 import { MdOutlineDone } from "react-icons/md";
 import { IoSearchOutline } from "react-icons/io5";
 import { Tag } from "@chakra-ui/react";
-import {OrderDrawer,GigReviews,StarRating} from "../../../Components";
+import { OrderDrawer, GigReviews, StarRating } from "../../../Components";
 import { useDisclosure } from "@chakra-ui/react";
 import Currency from "@/utils/Currency";
 
@@ -42,7 +42,7 @@ const Gig = () => {
     router.replace(route);
   };
   return (
-    <div className="mb-[300px] mt-[50px] ">
+    <div className="mb-[300px] mt-[50px] min-h-screen ">
       <div className="container  2xl:max-w-[1400px]   px-[30px] py-[0px] flex  flex-col md:flex-row gap-[50px]">
         <div className="flex-[2] flex flex-col gap-6">
           <div className=" text-[#404145] text-sm flex items-center gap-2 cursor-pointer">
@@ -77,7 +77,6 @@ const Gig = () => {
             </div>
           </div>
           <div>
-            {" "}
             <Slider
               slidesToShow={1}
               autoplaySpeed={2500}
@@ -332,6 +331,12 @@ const Gig = () => {
         isOpen={isOpen}
         onClose={onClose}
         packagesData={packagesData}
+        userinfo={{
+          id: data?.id,
+          SellerName: data?.username,
+          img:data?.img,
+          Features:packagesData?.functionalities
+        }}
       />
     </div>
   );
