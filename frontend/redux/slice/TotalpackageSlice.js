@@ -1,9 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-data: localStorage.getItem("TotalPackageData")
-  ? JSON.parse(localStorage.getItem("TotalPackageData"))
-  : {},
+data: {},
 };
 
 export const TotalPackageSlice = createSlice({
@@ -12,10 +10,7 @@ export const TotalPackageSlice = createSlice({
   reducers: {
     updateData: (state, action) => {
       state.data = action.payload.TotalPackage;
-      localStorage.setItem(
-        "TotalPackageData",
-        JSON.stringify(action.payload.TotalPackage)
-      );
+      
     },
   },
 });

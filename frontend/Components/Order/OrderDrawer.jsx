@@ -62,6 +62,13 @@ function OrderDrawer({ isOpen, onClose, packagesData, userinfo }) {
     });
   };
 
+  const handleClick = () => {
+
+     dispatch(updateData({ TotalPackage }));
+     localStorage.setItem("TotalPackage",JSON.stringify(TotalPackage))
+    router.push("/Payment/SubmitRequirement");
+  };
+
   useEffect(() => {
     if (!isOpen) {
       setIsListOpen(false);
@@ -169,13 +176,7 @@ function OrderDrawer({ isOpen, onClose, packagesData, userinfo }) {
               </div>
               <div className="w-full border-gray-300 border-solid border-t-[1px] flex flex-col items-center py-8 gap-2">
                 <button
-                  onClick={() => {
-                    dispatch(updateData({TotalPackage}));
-                    setTimeout(()=>{
-                      router.push("/Payment");
-                    },6000)
-                   
-                  }}
+                  onClick={handleClick}
                   className="w-full text-center font-bold py-[12px] px-[20px] bg-black text-white outline-none rounded-md text-lg"
                 >
                   Continue (PKR {Currency(packagesData.price, GigQuantity)})

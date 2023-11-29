@@ -12,7 +12,7 @@ import p3 from "../public/people-03.png";
 import gig1 from "../public/gig1.jpg";
 import gig2 from "../public/gig2.jpg";
 import gig3 from "../public/gig3.jpg";
-export const ConditionalRendering= ["/Payment"]
+export const ConditionalRendering= ["/Payment","/Payment/ConfirmPay","/Payment/SubmitRequirement"]
 export const SliderData = [
   {
     id: 1,
