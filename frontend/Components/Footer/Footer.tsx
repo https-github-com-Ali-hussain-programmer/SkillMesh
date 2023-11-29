@@ -49,32 +49,32 @@ function Footer() {
             <h2 className="text-md font-bold">About</h2>{" "}
             <span className="text-lightGrey ">
               {" "}
-              <ActiveLinks pathname={pathname} url={"/Press&News"}>
+              <ActiveLinks pathname={pathname} url={"/About"}>
                 Press & News
               </ActiveLinks>
             </span>{" "}
             <span className="text-lightGrey">
-              <ActiveLinks pathname={pathname} url={"/Partnerships"}>
+              <ActiveLinks pathname={pathname} url={"/partnerships"}>
                 Partnerships{" "}
               </ActiveLinks>
             </span>
             <span className="text-lightGrey">
-              <ActiveLinks pathname={pathname} url={"/Privacy&Policy"}>
+              <ActiveLinks pathname={pathname} url={"/helpSupport"}>
                 Privacy Policy{" "}
               </ActiveLinks>
             </span>
             <span className="text-lightGrey">
-              <ActiveLinks pathname={pathname} url={"/TermOfServices"}>
+              <ActiveLinks pathname={pathname} url={"/helpSupport"}>
                 Terms of Service{" "}
               </ActiveLinks>
             </span>
             <span className="text-lightGrey">
-              <ActiveLinks pathname={pathname} url={"/ProperyClaim"}>
+              <ActiveLinks pathname={pathname} url={"/helpSupport"}>
                 Intellectual Property Claims{" "}
               </ActiveLinks>
             </span>
             <span className="text-lightGrey">
-              <ActiveLinks pathname={pathname} url={"/ContactSales"}>
+              <ActiveLinks pathname={pathname} url={"/helpSupport"}>
                 Contact Sales{" "}
               </ActiveLinks>
             </span>
@@ -82,7 +82,7 @@ function Footer() {
           <div className="item flex gap-5 flex-col">
             <h2 className="text-md font-bold">Support</h2>
             <span className="text-lightGrey">
-              <ActiveLinks pathname={pathname} url={"/HelpSupport"}>
+              <ActiveLinks pathname={pathname} url={"/helpSupport"}>
                 Help & Support{" "}
               </ActiveLinks>
             </span>
@@ -106,8 +106,8 @@ function Footer() {
             <h2 className="text-md font-bold">Community</h2>
 
             <span className="text-lightGrey">
-              <ActiveLinks pathname={pathname} url={"/s"}>
-                Community hub{" "}
+              <ActiveLinks pathname={pathname} url={"/parternships"}>
+                Partnership
               </ActiveLinks>
             </span>
 
