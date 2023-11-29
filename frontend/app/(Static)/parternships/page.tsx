@@ -2,7 +2,7 @@ import React from "react";
 
 function Parternships() {
   return (
-    <div className="Partnership bg-cover flex items-center">
+    <div className="Partnership min-h-screen bg-cover flex items-center">
       <div className="main-container  flex flex-col  ml-[45px] md:ml-[200px]">
         <div className="section-1 flex flex-col items-start">
           <h2 className="text-[35px]  text-gray-500 w-max font-[700] ">

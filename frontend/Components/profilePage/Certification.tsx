@@ -15,9 +15,9 @@ const Certification = () => {
 
   return (
     <div className="certification">
-            <div className="flex flex-row justify-between px-[26px]">
-              <h1 className="text-[21px] font-semibold">Certification</h1>
-              <button onClick={showdescription} className="text-[20px] text-blue-700 hover:underline">
+            <div className=" flex flex-row justify-between px-[26px]">
+              <h1 className=" font-semibold text-lg">Certification</h1>
+              <button onClick={showdescription} className=" text-blue-700 hover:underline">
                 Add New
               </button>
             </div>

@@ -26,8 +26,8 @@ const Language = () => {
   return (
     <div className="languages">
             <div className="flex flex-row justify-between px-[26px]">
-              <h1 className="text-[21px] font-semibold">Languages</h1>
-              <button onClick={showdescription} className="text-[20px] text-blue-700 hover:underline">
+              <h1 className="text-lg font-semibold">Languages</h1>
+              <button onClick={showdescription} className=" text-blue-700 hover:underline">
                 Add New
               </button>
             </div>
@@ -59,7 +59,7 @@ const Language = () => {
                 </button>
               </div>
             </div>}
-            <hr className="ml-5 mr-5 border-[1px] my-3" />
+            <div className=" border  border-gray-300  font-normal mx-3 my-3"></div>
           </div>
   )
 }

@@ -15,10 +15,10 @@ const Desc = () => {
 
 
   return (
-    <div className="description">
+    <div className="description ">
             <div className="flex flex-row justify-between px-[26px]">
-              <h1 className="text-[21px] font-semibold">Description</h1>
-              <button  onClick={showdescription} className="text-[20px] text-blue-700 hover:underline">Edit Description</button>
+              <h1 className="text-lg font-semibold">Description</h1>
+              <button  onClick={showdescription} className=" text-blue-700 hover:underline">Edit Description</button>
             </div>
             {showParagraph && <p className="text-[18px] font-[500] text-gray-500  px-[26px] py-5">I am a web developer</p>}
            {showBlock && <div className="mr-3 ml-3 mb-10 bg-gray-200  px-[26px] flex flex-col items-center mt-5 border-[1px] border-current rounded-md">
@@ -28,7 +28,7 @@ const Desc = () => {
                 <button className=" bg-dark-black text-white py-2 px-[65px] text-[18px] font-bold rounded-md hover:bg-black">Update</button>
               </div>
             </div>}
-            <hr className="ml-5 mr-5 border-[1px] my-3"/>
+            <div className=" border  border-gray-300  font-normal mx-3 my-3"></div>
           </div>
   )
 }
