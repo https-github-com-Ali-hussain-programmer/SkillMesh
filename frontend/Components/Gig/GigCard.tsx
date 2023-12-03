@@ -20,6 +20,7 @@ interface GigCardProps {
   userInformation: {
     username: string;
     userid: string;
+    profileImg: any;
   };
   username: string;
   ordersCompleted: number;
@@ -30,7 +31,6 @@ interface GigCardProps {
 function GigCard({
   id,
   img,
-  pp,
   title,
   price,
   star,
@@ -51,7 +51,7 @@ function GigCard({
       if (!isFavourite) {
         const data = {
           id,
-          pp,
+          profileImg: userInformation.profileImg,
           star,
           username: userInformation.username,
           ordersCompleted,
@@ -78,8 +78,8 @@ function GigCard({
         <div className="p-[10px] px-[20px] flex flex-col gap-[20px]">
           <div className="flex items-center gap-[10px]">
             <img
-              className="w-[26px] h-[26px] rounded-full object-cover"
-              src={pp}
+              className="w-[26px] h-[26px] rounded-full object-fill"
+              src={ userInformation.profileImg}
               alt="error"
             />
             <span>{userInformation.username}</span>
@@ -122,7 +122,7 @@ function GigCard({
             <div className="flex items-center gap-[10px]">
               <img
                 className="w-[26px] h-[26px] rounded-full object-cover"
-                src={pp}
+                src={ userInformation.profileImg}
                 alt=""
               />
               <span>{userInformation.username}</span>

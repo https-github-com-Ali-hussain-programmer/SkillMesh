@@ -15,7 +15,7 @@ import { Tag } from "@chakra-ui/react";
 import { OrderDrawer, GigReviews, StarRating } from "../../../Components";
 import { useDisclosure } from "@chakra-ui/react";
 import Currency from "@/utils/Currency";
-import Link from 'next/link'
+import Link from "next/link";
 
 const Gig = () => {
   const search = useSearchParams();
@@ -113,8 +113,8 @@ const Gig = () => {
             <div className="flex items-center gap-[20px]">
               <img
                 className="w-[100px] h-[100px] rounded-full object-cover"
-                src="https://images.pexels.com/photos/720327/pexels-photo-720327.jpeg?auto=compress&cs=tinysrgb&w=1600"
-                alt=""
+                src={data?.userInformation.profileImg}
+                alt="error"
               />
               <div className="info flex flex-col gap-[10px]">
                 <span>{data?.username}</span>

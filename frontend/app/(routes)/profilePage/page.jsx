@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Image from "next/image";
 import seller from "../../../public/seller.jpg";
 import CreateOutlinedIcon from "@mui/icons-material/CreateOutlined";
@@ -18,14 +18,14 @@ import { CurrentUser, Users } from "../../../utils/data";
 const ProfilePage = () => {
   const id = useSearchParams().get("id");
   const LoggedUserId = CurrentUser?.userid;
-  const [profileData, setprofileData] = useState(CurrentUser);
+  var profileData=CurrentUser;
 
-  useEffect(() => {
+
     if (id !== LoggedUserId) {
-      const foundprofile = Users.find((d) => d.userid == id);
-      setprofileData(foundprofile);
+      profileData= Users.find((d) => d.userid == id);
+     
     }
-  }, []);
+
 
   return (
     <div className=" min-h-screen bg-gray-200 pt-[30px] pb-[200px] px-5">
