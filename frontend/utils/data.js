@@ -12,8 +12,14 @@ import p3 from "../public/people-03.png";
 import gig1 from "../public/gig1.jpg";
 import gig2 from "../public/gig2.jpg";
 import gig3 from "../public/gig3.jpg";
-export const ConditionalRendering= ["/Payment","/Payment/ConfirmPay","/Payment/SubmitRequirement","/helpSupport",
-"/parternships"]
+import currentprofileImg from "../public/mubeen.jpg";
+export const ConditionalRendering = [
+  "/Payment",
+  "/Payment/ConfirmPay",
+  "/Payment/SubmitRequirement",
+  "/helpSupport",
+  "/parternships",
+];
 export const SliderData = [
   {
     id: 1,
@@ -112,7 +118,6 @@ export const gigs = [
     desc: "Experienced in transforming client images and prompts into unique and creative AI-generated character art.",
     price: 59,
     star: 5,
-    username: "Anna Bell",
     category: "Graphics & Design",
     subcategory: "Typography & Illustration",
     ordersCompleted: 10,
@@ -235,6 +240,8 @@ export const gigs = [
     ],
 
     userInformation: {
+      username: "Anna Bell",
+       userid: "6d7a8b9c0d1e2f3a4b5c6",
       profileImg:
         "https://images.pexels.com/photos/720327/pexels-photo-720327.jpeg?auto=compress&cs=tinysrgb&w=1600",
       country: "USA",
@@ -242,7 +249,7 @@ export const gigs = [
       averageResponseTime: "4 hours",
       lastDelivery: "1 day",
       languages: ["English"],
-      desc:" My name is Anna, I enjoy creating AI generated art in my spare time. I have a lot of experience using the AI program and that means I know what to prompt the AI with to get a great and incredibly detailed result"
+      desc: " My name is Anna, I enjoy creating AI generated art in my spare time. I have a lot of experience using the AI program and that means I know what to prompt the AI with to get a great and incredibly detailed result",
     },
   },
 
@@ -254,7 +261,7 @@ export const gigs = [
     desc: "Specialized in producing top-notch character art using advanced AI techniques, with a proven track record of client satisfaction.",
     price: 79,
     star: 5,
-    username: "Lannie Coleman",
+
     category: "Graphics & Design",
     subcategory: "Web Design",
     ordersCompleted: 30,
@@ -381,6 +388,8 @@ export const gigs = [
     ],
 
     userInformation: {
+      username: "Lannie Coleman",
+      userid: "7a8b9c0d1e2f3a4b5c6d7e",
       profileImg:
         "https://images.pexels.com/photos/720327/pexels-photo-720327.jpeg?auto=compress&cs=tinysrgb&w=1600",
       country: "USA",
@@ -388,8 +397,8 @@ export const gigs = [
       averageResponseTime: "4 hours",
       lastDelivery: "1 day",
       languages: ["English"],
-      desc:" My name is Anna, I enjoy creating AI generated art in my spare time. I have a lot of experience using the AI program and that means I know what to prompt the AI with to get a great and incredibly detailed result"
-    }
+      desc: " My name is Anna, I enjoy creating AI generated art in my spare time. I have a lot of experience using the AI program and that means I know what to prompt the AI with to get a great and incredibly detailed result",
+    },
   },
   {
     id: "ghi789",
@@ -399,7 +408,7 @@ export const gigs = [
     desc: "Skilled in generating unique and artistic AI-based artworks as a mid-journey AI artist.",
     price: 112,
     star: 5,
-    username: "Carol Steve",
+
     category: "AI Services",
     subcategory: "NLP Services",
     ordersCompleted: 1,
@@ -525,6 +534,8 @@ export const gigs = [
     ],
 
     userInformation: {
+      username: "Carol Steve",
+      userid: "8b9c0d1e2f3a4b5c6d7e8f",
       profileImg:
         "https://images.pexels.com/photos/720327/pexels-photo-720327.jpeg?auto=compress&cs=tinysrgb&w=1600",
       country: "USA",
@@ -532,8 +543,8 @@ export const gigs = [
       averageResponseTime: "4 hours",
       lastDelivery: "1 day",
       languages: ["English"],
-      desc:" My name is Anna, I enjoy creating AI generated art in my spare time. I have a lot of experience using the AI program and that means I know what to prompt the AI with to get a great and incredibly detailed result"
-    }
+      desc: " My name is Anna, I enjoy creating AI generated art in my spare time. I have a lot of experience using the AI program and that means I know what to prompt the AI with to get a great and incredibly detailed result",
+    },
   },
   {
     id: "jkl012",
@@ -543,7 +554,7 @@ export const gigs = [
     desc: "Experienced in crafting custom AI-generated artwork using client photos, with a portfolio of satisfied customers.",
     price: 99,
     star: 4,
-    username: "Don Weber",
+
     category: "AI Services",
     subcategory: "Computer Vision",
     ordersCompleted: 100,
@@ -670,6 +681,8 @@ export const gigs = [
     ],
 
     userInformation: {
+      username: "Don Weber",
+      userid: "9c0d1e2f3a4b5c6d7e8f9a",
       profileImg:
         "https://images.pexels.com/photos/720327/pexels-photo-720327.jpeg?auto=compress&cs=tinysrgb&w=1600",
       country: "USA",
@@ -677,7 +690,7 @@ export const gigs = [
       averageResponseTime: "4 hours",
       lastDelivery: "1 day",
       languages: ["English"],
-    }
+    },
   },
   {
     id: "mno345",
@@ -687,7 +700,6 @@ export const gigs = [
     desc: "Specialized in turning dreams into high-quality visual representations through skilled graphic design and 3D modeling.",
     price: 59,
     star: 5,
-    username: "Audrey Richards",
     category: "Graphics & Design",
     subcategory: "3D Modeling",
     ordersCompleted: 24,
@@ -814,6 +826,8 @@ export const gigs = [
     ],
 
     userInformation: {
+      username: "Polglotdev",
+      userid: "e2f3a4b5c6d7e8f9a0b1c2",
       profileImg:
         "https://images.pexels.com/photos/720327/pexels-photo-720327.jpeg?auto=compress&cs=tinysrgb&w=1600",
       country: "USA",
@@ -821,7 +835,8 @@ export const gigs = [
       averageResponseTime: "4 hours",
       lastDelivery: "1 day",
       languages: ["English"],
-    }},
+    },
+  },
   {
     id: "pqr678",
     img: "https://images.pexels.com/photos/8100784/pexels-photo-8100784.jpeg?auto=compress&cs=tinysrgb&w=1600",
@@ -830,7 +845,7 @@ export const gigs = [
     desc: "Proficient in creating hyper-realistic digital art illustrations through advanced AI techniques.",
     price: 79,
     star: 4,
-    username: "Walton Shepard",
+
     category: "Graphics & Design",
     subcategory: "Thumbnails",
     ordersCompleted: 40,
@@ -957,6 +972,8 @@ export const gigs = [
     ],
 
     userInformation: {
+      username: "Polglotdev",
+      userid: "23454",
       profileImg:
         "https://images.pexels.com/photos/720327/pexels-photo-720327.jpeg?auto=compress&cs=tinysrgb&w=1600",
       country: "USA",
@@ -964,8 +981,7 @@ export const gigs = [
       averageResponseTime: "4 hours",
       lastDelivery: "1 day",
       languages: ["English"],
-    }
-   
+    },
   },
   {
     id: "stu901",
@@ -975,7 +991,6 @@ export const gigs = [
     desc: "Skilled in generating creative images using AI DALL-E based on client prompts, providing unique and personalized visual content.",
     price: 89,
     star: 5,
-    username: "Waverly Schaefer",
     category: "AI Services",
     subcategory: "ChatBots",
     ordersCompleted: 60,
@@ -1100,9 +1115,10 @@ export const gigs = [
       "https://images.pexels.com/photos/1462935/pexels-photo-1462935.jpeg?auto=compress&cs=tinysrgb&w=1600",
       "https://images.pexels.com/photos/1054777/pexels-photo-1054777.jpeg?auto=compress&cs=tinysrgb&w=1600",
     ],
-    
 
     userInformation: {
+      username: "Walton Shepard",
+      userid: "w3441",
       profileImg:
         "https://images.pexels.com/photos/720327/pexels-photo-720327.jpeg?auto=compress&cs=tinysrgb&w=1600",
       country: "USA",
@@ -1110,8 +1126,8 @@ export const gigs = [
       averageResponseTime: "4 hours",
       lastDelivery: "1 day",
       languages: ["English"],
-      desc:" My name is Anna, I enjoy creating AI generated art in my spare time. I have a lot of experience using the AI program and that means I know what to prompt the AI with to get a great and incredibly detailed result"
-    }
+      desc: " My name is Anna, I enjoy creating AI generated art in my spare time. I have a lot of experience using the AI program and that means I know what to prompt the AI with to get a great and incredibly detailed result",
+    },
   },
   {
     id: "vwx234",
@@ -1121,7 +1137,7 @@ export const gigs = [
     desc: "Experienced in crafting custom art using the Midjourney generator, ensuring unique and personalized creations.",
     price: 110,
     star: 4,
-    username: "Wilton Hunt",
+
     category: "Web Development",
     subcategory: "Frontend Development",
     ordersCompleted: 3,
@@ -1248,6 +1264,8 @@ export const gigs = [
     ],
 
     userInformation: {
+      username: "Wilton Hunt",
+      userid: "w2213",
       profileImg:
         "https://images.pexels.com/photos/720327/pexels-photo-720327.jpeg?auto=compress&cs=tinysrgb&w=1600",
       country: "USA",
@@ -1255,8 +1273,8 @@ export const gigs = [
       averageResponseTime: "4 hours",
       lastDelivery: "1 day",
       languages: ["English"],
-      desc:" My name is Anna, I enjoy creating AI generated art in my spare time. I have a lot of experience using the AI program and that means I know what to prompt the AI with to get a great and incredibly detailed result"
-    }
+      desc: " My name is Anna, I enjoy creating AI generated art in my spare time. I have a lot of experience using the AI program and that means I know what to prompt the AI with to get a great and incredibly detailed result",
+    },
   },
   {
     id: "yza567",
@@ -1266,7 +1284,7 @@ export const gigs = [
     desc: "Skilled in creating custom AI-generated artwork using client photos.",
     price: 199,
     star: 4,
-    username: "Johnny",
+
     category: "AI Services",
     subcategory: "Computer Vision",
     ordersCompleted: 10,
@@ -1394,6 +1412,8 @@ export const gigs = [
     ],
 
     userInformation: {
+      username: "Johnny",
+      userid: "rr3",
       profileImg:
         "https://images.pexels.com/photos/720327/pexels-photo-720327.jpeg?auto=compress&cs=tinysrgb&w=1600",
       country: "USA",
@@ -1401,11 +1421,10 @@ export const gigs = [
       averageResponseTime: "4 hours",
       lastDelivery: "1 day",
       languages: ["English"],
-      desc:" My name is Anna, I enjoy creating AI generated art in my spare time. I have a lot of experience using the AI program and that means I know what to prompt the AI with to get a great and incredibly detailed result"
-    }
+      desc: " My name is Anna, I enjoy creating AI generated art in my spare time. I have a lot of experience using the AI program and that means I know what to prompt the AI with to get a great and incredibly detailed result",
+    },
   },
 ];
-
 export const Category = [
   {
     category: "Web Development",
@@ -1568,5 +1587,200 @@ export const Category = [
       "Marketing Automation": 1,
       "Google Ads": 0,
     },
+  },
+];
+
+export const CurrentUser = {
+  username: "Muhammad Mubeen",
+  userid: "5f4b5e6d7a8b9c0d1e2f3a4",
+  profileImg: currentprofileImg.src,
+  country: "Pakistan",
+  memberSince: "Dec 2023",
+  AverageResponseTime: "1 Hour",
+  lastDelivery: "none",
+  languages: ["Urdu", "English"],
+  desc: "Hey there, I'm Mubeen – a cybersecurity aficionado on a perpetual quest to decode the intricacies of the digital universe. With a keyboard as my paintbrush, I meticulously explore the vast canvas of code, seeking out vulnerabilities like hidden treasures. My journey is fueled by an insatiable passion for ethical hacking, a dance with the binary unknown where each line of code is a step toward digital resilience. I'm not just unraveling vulnerabilities; I'm sculpting a secure tomorrow, one keystroke at a time.In this ever-evolving tech symphony, I'm not just a player; I'm the composer, harmonizing the notes of cybersecurity with a fervor that echoes through the digital corridors. Join me in this code-breaking odyssey, where every challenge is an opportunity to fortify the virtual realms we inhabit",
+  skills: ["Linux Os","Metaspolit","Wireshark","Microsoft Word"],
+  education: [{
+    "level": "Matric",
+    "institution": "Crescent College",
+    "location": "Lahore",
+    "duration": "2015-2017"
+  },
+  {
+    "level": "Intermediate",
+    "institution": "Islamia College",
+    "location": "Lahore",
+    "duration": "2017-2019"
+  },
+  {
+    "level": "University",
+    "status": "In Progress",
+    "institution": "Riphah University",
+    "location": "Currently Enrolled",
+    "duration": "2020-2024"
+  }],
+  certifications: [],
+  gigs: [],
+};
+export const Users = [
+  // {  username: "Muhammad Mubeen",
+  // userid: "5f4b5e6d7a8b9c0d1e2f3a4",
+  // profileImg: currentprofileImg,
+  // country: "Pakistan",
+  // memberSince: "Dec 2023",
+  // AverageResponseTime: "1 Hour",
+  // lastDelivery: "none",
+  // languages: ["Urdu", "English"],
+  // desc: "Hey there, I'm Mubeen – a cybersecurity aficionado on a perpetual quest to decode the intricacies of the digital universe. With a keyboard as my paintbrush, I meticulously explore the vast canvas of code, seeking out vulnerabilities like hidden treasures. My journey is fueled by an insatiable passion for ethical hacking, a dance with the binary unknown where each line of code is a step toward digital resilience. I'm not just unraveling vulnerabilities; I'm sculpting a secure tomorrow, one keystroke at a time.In this ever-evolving tech symphony, I'm not just a player; I'm the composer, harmonizing the notes of cybersecurity with a fervor that echoes through the digital corridors. Join me in this code-breaking odyssey, where every challenge is an opportunity to fortify the virtual realms we inhabit",
+  // skills: ["Linux Os","Metaspolit","Wireshark","Microsoft Word"],
+  // education: [{
+  //   "level": "Matric",
+  //   "institution": "Crescent College",
+  //   "location": "Lahore",
+  //   "duration": "2015-2017"
+  // },
+  // {
+  //   "level": "Intermediate",
+  //   "institution": "Islamia College",
+  //   "location": "Lahore",
+  //   "duration": "2017-2019"
+  // },
+  // {
+  //   "level": "University",
+  //   "status": "In Progress",
+  //   "institution": "Riphah University",
+  //   "location": "Currently Enrolled",
+  //   "duration": "2020-2024"
+  // }],
+  // certifications: [],
+  // gigs: [],},
+  {
+    username: "Johnny",
+    userid: "a1b2c3d4e5f6a7b8c9d0e1f2",
+    profileImg:
+      "https://images.pexels.com/photos/720327/pexels-photo-720327.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    country: "USA",
+    memberSince: "Aug 2022",
+    averageResponseTime: "4 hours",
+    lastDelivery: "1 day",
+    languages: ["English"],
+    desc: " My name is Anna, I enjoy creating AI generated art in my spare time. I have a lot of experience using the AI program and that means I know what to prompt the AI with to get a great and incredibly detailed result",
+    skills: ["Linux Os","Metaspolit","Wireshark","Microsoft Word"],
+    education: [{
+      "level": "Matric",
+      "institution": "Crescent College",
+      "location": "Lahore",
+      "duration": "2015-2017"
+    },
+    {
+      "level": "Intermediate",
+      "institution": "Islamia College",
+      "location": "Lahore",
+      "duration": "2017-2019"
+    },
+    {
+      "level": "University",
+      "status": "In Progress",
+      "institution": "Riphah University",
+      "location": "Currently Enrolled",
+      "duration": "2020-2024"
+    }],
+    certifications: [],
+    gigs: [],
+  },
+  {
+    username: "Walton Shepard",
+    userid: "0a1b2c3d4e5f6a7b8c9d0e1",
+    profileImg:
+      "https://images.pexels.com/photos/720327/pexels-photo-720327.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    country: "USA",
+    memberSince: "Aug 2022",
+    averageResponseTime: "4 hours",
+    lastDelivery: "1 day",
+    languages: ["English"],
+    desc: " My name is Anna, I enjoy creating AI generated art in my spare time. I have a lot of experience using the AI program and that means I know what to prompt the AI with to get a great and incredibly detailed result",
+    skills: [],
+    education: [],
+    certifications: [],
+    gigs: [],
+  },
+  {
+    username: "Polglotdev",
+    userid: "e2f3a4b5c6d7e8f9a0b1c2",
+    profileImg:
+      "https://images.pexels.com/photos/720327/pexels-photo-720327.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    country: "USA",
+    memberSince: "Aug 2022",
+    averageResponseTime: "4 hours",
+    lastDelivery: "1 day",
+    languages: ["English"],
+    skills: [],
+    education: [],
+    certifications: [],
+    gigs: [],
+  },
+  {
+    username: "Don Weber",
+    userid: "9c0d1e2f3a4b5c6d7e8f9a",
+    profileImg:
+      "https://images.pexels.com/photos/720327/pexels-photo-720327.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    country: "USA",
+    memberSince: "Aug 2022",
+    averageResponseTime: "4 hours",
+    lastDelivery: "1 day",
+    languages: ["English"],
+    skills: [],
+    education: [],
+    certifications: [],
+    gigs: [{}],
+  },
+  {
+    username: "Carol Steve",
+    userid: "8b9c0d1e2f3a4b5c6d7e8f",
+    profileImg:
+      "https://images.pexels.com/photos/720327/pexels-photo-720327.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    country: "USA",
+    memberSince: "Aug 2022",
+    averageResponseTime: "4 hours",
+    lastDelivery: "1 day",
+    languages: ["English"],
+    desc: " My name is Anna, I enjoy creating AI generated art in my spare time. I have a lot of experience using the AI program and that means I know what to prompt the AI with to get a great and incredibly detailed result",
+    skills: [],
+    education: [],
+    certifications: [],
+    gigs: [],
+  },
+  {
+    username: "Lannie Coleman",
+    userid: "7a8b9c0d1e2f3a4b5c6d7e",
+    profileImg:
+      "https://images.pexels.com/photos/720327/pexels-photo-720327.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    country: "USA",
+    memberSince: "Aug 2022",
+    averageResponseTime: "4 hours",
+    lastDelivery: "1 day",
+    languages: ["English"],
+    desc: " My name is Anna, I enjoy creating AI generated art in my spare time. I have a lot of experience using the AI program and that means I know what to prompt the AI with to get a great and incredibly detailed result",
+    skills: [],
+    education: [],
+    certifications: [],
+    gigs: [],
+  },
+  {
+    username: "Anna Bell",
+    userid: "6d7a8b9c0d1e2f3a4b5c6",
+    profileImg:
+      "https://images.pexels.com/photos/720327/pexels-photo-720327.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    country: "USA",
+    memberSince: "Aug 2022",
+    averageResponseTime: "4 hours",
+    lastDelivery: "1 day",
+    languages: ["English"],
+    desc: " My name is Anna, I enjoy creating AI generated art in my spare time. I have a lot of experience using the AI program and that means I know what to prompt the AI with to get a great and incredibly detailed result",
+    skills: [],
+    education: [],
+    certifications: [],
+    gigs: [],
   },
 ];

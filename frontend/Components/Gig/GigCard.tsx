@@ -1,12 +1,15 @@
-import Link from "next/link";
-import React, { useState } from "react";
+import React from "react";
 import starimg from "../../public/star.png";
 import Image from "next/image";
 import heart from "../../public/heart.png";
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
-import { addWishlist, removeWishlist , favouritesList} from "@/redux/slice/wishlistSlice";
-import {toast } from "react-toastify";
+import {
+  addWishlist,
+  removeWishlist,
+  favouritesList,
+} from "@/redux/slice/wishlistSlice";
+import { toast } from "react-toastify";
 interface GigCardProps {
   id: number;
   img: string;
@@ -14,6 +17,10 @@ interface GigCardProps {
   title: string;
   price: number;
   star: number;
+  userInformation: {
+    username: string;
+    userid: string;
+  };
   username: string;
   ordersCompleted: number;
   category: string;
@@ -27,34 +34,33 @@ function GigCard({
   title,
   price,
   star,
-  username,
+  userInformation,
   ordersCompleted,
   category,
   subcategory,
 }: GigCardProps) {
   const Favourites = useSelector(favouritesList);
   const router = useRouter();
-  const favouritesSet = new Set(Favourites?.map((item:any) => item.id));
+  const favouritesSet = new Set(Favourites?.map((item: any) => item.id));
   const isFavourite = favouritesSet.has(id);
 
   const dispatch = useDispatch();
   const handleHeartClick = (e: any) => {
     if (e.target?.classList?.contains("heart")) {
       e.stopPropagation();
-      if (! isFavourite) {
+      if (!isFavourite) {
         const data = {
           id,
           pp,
           star,
-          username,
+          username: userInformation.username,
           ordersCompleted,
           price,
           category,
-          subcategory
-
+          subcategory,
         };
         dispatch(addWishlist({ data }));
-        toast.success("Successfully Added To Whishlist",{autoClose:3000})
+        toast.success("Successfully Added To Whishlist", { autoClose: 3000 });
       } else {
         dispatch(removeWishlist(id));
       }
@@ -76,7 +82,7 @@ function GigCard({
               src={pp}
               alt="error"
             />
-            <span>{username}</span>
+            <span>{userInformation.username}</span>
           </div>
 
           <p className="text-black dark:text-white">{title}</p>
@@ -119,7 +125,7 @@ function GigCard({
                 src={pp}
                 alt=""
               />
-              <span>{username}</span>
+              <span>{userInformation.username}</span>
             </div>
             <p className=" text-secondary-white">{title}</p>
 

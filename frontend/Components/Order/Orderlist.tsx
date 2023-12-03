@@ -1,15 +1,19 @@
+"use client"
 import React from "react";
 import Link from "next/link";
 import p1 from "../../public/people-01.png";
+
 const user = {
   name: "hamza111233445456",
   category: "AI",
 };
 function Orderlist() {
+
+
   return (
     <>
       <Link
-        href="/"
+        href="/profilePage?id=5f4b5e6d7a8b9c0d1e2f3a4"
         className="h-fit text-[#404145] p-2 border-b-[1px] border-solid  border-gray-300 flex   items-center flex-row "
       >
         <img
@@ -27,6 +31,7 @@ function Orderlist() {
             </span>
           </p>
           <p className="font-semibold text-sm text-[#B5b6ba]">1d</p>
+     
         </div>
       </Link>
     </>

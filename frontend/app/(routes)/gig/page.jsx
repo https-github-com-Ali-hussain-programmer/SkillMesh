@@ -15,6 +15,7 @@ import { Tag } from "@chakra-ui/react";
 import { OrderDrawer, GigReviews, StarRating } from "../../../Components";
 import { useDisclosure } from "@chakra-ui/react";
 import Currency from "@/utils/Currency";
+import Link from 'next/link'
 
 const Gig = () => {
   const search = useSearchParams();
@@ -69,9 +70,11 @@ const Gig = () => {
               src={data?.userInformation.profileImg}
               alt="error"
             />
-            <span className="text-base font-medium hover:border-b-2 border-black cursor-pointer">
-              {data?.username}
-            </span>
+            <Link href={`/profilePage?id=${data?.userInformation?.userid}`}>
+              <span className="text-base font-medium hover:border-b-2 border-black cursor-pointer">
+                {data?.userInformation?.username}
+              </span>
+            </Link>
             <div className="flex items-center gap-[5px]">
               <StarRating rating={data?.star} color={" text-yellow-400"} />
             </div>
@@ -137,12 +140,15 @@ const Gig = () => {
                 </div>
                 <div className="item flex justify-between flex-wrap gap-1">
                   <span className="title font-light">Avg. response time:</span>
-                  <span className="desc font-bold">4 hours</span>
+                  <span className="desc font-bold">
+                    {" "}
+                    {data?.userInformation.averageResponseTime} hours
+                  </span>
                 </div>
                 <div className="item flex justify-between flex-wrap gap-2">
                   <span className="title font-light">Last delivery:</span>
                   <span className="font-bold">
-                    {data?.userInformation.averageResponseTime}
+                    {data?.userInformation.lastDelivery}
                   </span>
                 </div>
                 <div className="item flex justify-between flex-wrap gap-2">
@@ -334,8 +340,8 @@ const Gig = () => {
         userinfo={{
           id: data?.id,
           SellerName: data?.username,
-          img:data?.img,
-          Features:packagesData?.functionalities
+          img: data?.img,
+          Features: packagesData?.functionalities,
         }}
       />
     </div>
