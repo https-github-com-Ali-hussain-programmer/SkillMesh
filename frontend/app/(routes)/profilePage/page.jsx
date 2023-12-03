@@ -65,11 +65,11 @@ const ProfilePage = () => {
             </div>
           </div>
           <div className="w-full bg-white py-5 border-[1px] border-gray-300 text-sm">
-            <Desc desc={profileData.desc} />
-            <Language languages={profileData.languages} />
-            <Skills skills={profileData.skills} />
-            <Education education={profileData.education} />
-            <Certification certifications={profileData.certifications} />
+            <Desc desc={profileData?.desc} />
+            <Language languages={profileData?.languages} />
+            <Skills skills={profileData?.skills} />
+            <Education education={profileData?.education} />
+            <Certification certifications={profileData?.certifications} />
           </div>
         </div>
         {profileData?.gigs?.length !== 0 ? (
