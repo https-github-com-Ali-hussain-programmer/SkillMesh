@@ -39,7 +39,7 @@ const Language = ({ languages }) => {
           onMouseLeave={mouseLeave}
           className="flex flex-col  gap-3  px-[26px] py-3"
         >
-          {languages.map((l, index) => {
+          {languages?.map((l, index) => {
             return (
               <p
                 className="text-[17px] font-[500] text-gray-500  "

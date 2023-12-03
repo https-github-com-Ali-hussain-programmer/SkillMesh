@@ -27,7 +27,7 @@ const Skills = ({ skills }) => {
       </div>
       {showParagraph && (
         <div className="flex flex-col gap-3 py-3  px-[26px] ">
-          {skills.map((s, index) => {
+          {skills?.map((s, index) => {
             return (
               <p
                 key={index}
