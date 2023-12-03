@@ -718,6 +718,7 @@ export const gigs = [
       averageResponseTime: " 2.5hours",
       lastDelivery: "7 day",
       languages: ["English"],
+      desc:"In the domain of computer vision, my experience is marked by a strong foundation in image processing and machine vision techniques. I have applied advanced algorithms to analyze and interpret visual data, enabling systems to comprehend and respond to their surroundings. Proficient in computer vision libraries and frameworks, I've developed solutions for object detection, image segmentation, and facial recognition. My expertise "
     },
   },
   {
