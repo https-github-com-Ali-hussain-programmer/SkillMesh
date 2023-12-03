@@ -26,7 +26,7 @@ const Education = ({ education }) => {
       </div>
       {showParagraph && (
         <div className="flex flex-col gap-3 py-3 px-[26px] ">
-          {education.map((e, index) => {
+          {education?.map((e, index) => {
             return (
               <div
                 className="text-sm font-[500] text-gray-500 flex-col flex gap-3 "
