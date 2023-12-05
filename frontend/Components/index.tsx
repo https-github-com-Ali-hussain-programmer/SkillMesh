@@ -11,19 +11,19 @@ const FeatureCard = dynamic(() => import("./Home/FeatureCard"));
 const ActiveLinks = dynamic(() => import("./Shared/ActiveLinks"));
 const StarRating = dynamic(() => import("./Shared/StarRating"));
 const Badge = dynamic(() => import("./Shared/Badge"));
-const Whishlistmodal = dynamic(() => import("./Wishlist/Whishlistmodal"));
-const Ordersmodal = dynamic(() => import("./Order/Ordersmodal"));
+import Whishlistmodal from "./Wishlist/Whishlistmodal";
+import Ordersmodal from "./Order/Ordersmodal";
 const CategoryModal = dynamic(() => import("./Category/CategoryModal"));
 const NavbarDrawer = dynamic(() => import("./Navbar/NavbarDrawer"));
-const MessageLayout = dynamic(() => import("./Message/MessageLayout"));
-const MessageProfile = dynamic(() => import("./Message/MessageProfile"));
+import MessageLayout from "./Message/MessageLayout";
+import MessageProfile from "./Message/MessageProfile";
 const GigReviews = dynamic(() => import("./Gig/GigReviews"));
 const GigCard = dynamic(() => import("./Gig/GigCard"));
 const OrderDrawer = dynamic(() => import("./Order/OrderDrawer"));
 const FeatureList = dynamic(() => import("./Home/PlatformFeatureList"));
 const Modal = dynamic(() => import("./Home/Modal"));
 const Client = dynamic(() => import("./Client/Client"));
-const StepperForm=dynamic(() => import("./Stepper/StepperForm"))
+const StepperForm = dynamic(() => import("./Stepper/StepperForm"));
 export {
   Navbar,
   Footer,
@@ -48,5 +48,6 @@ export {
   Modal,
   TopRatedCard,
   FeatureCard,
-  Client ,StepperForm
+  Client,
+  StepperForm,
 };

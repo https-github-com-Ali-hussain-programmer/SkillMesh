@@ -8,23 +8,27 @@ import {
   AccordionIcon,
   Spinner,
 } from "@chakra-ui/react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { SiHiveBlockchain } from "react-icons/si";
 import { FaMoneyCheck } from "react-icons/fa6";
 import { packagedata } from "../../../../redux/slice/TotalpackageSlice";
 import { FormContext } from "../../../../context/Form";
 import { useContext } from "react";
 import { useRouter } from "next/navigation";
+import { addOrderlist } from "@/redux/slice/orderlistSlice";
+import swal from "sweetalert";
 function ConfirmPay({}) {
   const [loading, setLoading] = useState(true);
   const total_package = useSelector(packagedata);
   const [data, setData] = useState(total_package);
   const { activeStep, setActiveStep } = useContext(FormContext);
+  const dispatch = useDispatch();
+  const router = useRouter();
   useEffect(() => {
     setLoading(false);
     setData(JSON.parse(localStorage.getItem("TotalPackage")));
   }, []);
-console.log(packagedata)
+
   return (
     <>
       <div className="min-h-screen">
@@ -98,7 +102,15 @@ console.log(packagedata)
               </div>
               <div className="border-gray-300 border-solid border-b-[1px]"></div>
               <button
-                onClick={() => {}}
+                onClick={() => {
+                  swal(
+                    "Congratulation!",
+                    "Successfully placed Order!",
+                    "success"
+                  );
+                  dispatch(addOrderlist({total_package }));
+                 
+                }}
                 className="hover:bg-black transition-all duration-300 ease-in hover:scale-105 px-[20px] py-[10px] w-full bg-green-600 text-white text-lg font-bold rounded"
               >
                 Confirm Pay

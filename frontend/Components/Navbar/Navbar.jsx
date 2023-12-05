@@ -26,6 +26,7 @@ const Navbar = () => {
   const WhishlistRef = useRef(null);
   const WhishlistButtonRef = useRef(null);
   const buttonRef = useRef(null);
+  const order= useSelector((state) => state.orderlist.orderPlaced);
   const toggleDrawer = useCallback(() => {
     setIsDrawerOpen(!isDrawerOpen);
   }, [isDrawerOpen]);
@@ -108,7 +109,7 @@ const Navbar = () => {
           >
             <Badge
               Icon={FaShoppingCart}
-              count={2}
+              count={order?.length}
               color={`${pathname === "/" ? "text-white" : "text-blue-600"}`}
               size={"text-xl"}
             />

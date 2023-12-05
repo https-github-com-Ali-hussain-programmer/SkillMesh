@@ -1,5 +1,5 @@
 "use client";
-import { Features, Hero, TopRated, PlatformFeatures } from "@/Components";
+import { Features, Hero, TopRated, PlatformFeatures } from "../Components";
 export default  function Home() {
 
   return (

@@ -1,16 +1,27 @@
 "use client";
-import React from "react";
-
+import { useRouter } from "next/navigation";
+import React, { useContext, useEffect } from "react";
+import { FormContext } from "@/context/Form";
 function SubmitRequirement() {
-    const handleClick=()=>{
-        
-    }
+  const { activeStep, setActiveStep } = useContext(FormContext);
+  const handleClick = () => {
+    setTimeout(() => {
+      setActiveStep(2);
+    },4000);
+
+    router.push("/Payment/ConfirmPay");
+  };
+  const router = useRouter();
+  useEffect(() => {
+    setActiveStep(1);
+  }, []);
+
   return (
     <>
       <div className="min-h-screen">
         <div className="p-10 flex flex-col gap-6">
           <h1 className="font-bold text-3xl text-black">
-            Submit Project Proposal 
+            Submit Project Proposal
           </h1>
           <p className=" text-sm  font-semibold text-red-500">
             *Note that file should be in .pdf or .docx format and Explain Every
@@ -24,7 +35,10 @@ function SubmitRequirement() {
           </div>
           <div className="flex justify-end">
             {" "}
-            <button  onClick={handleClick} className="px-[12px] py-[10px] w-1/5 bg-black text-white rounded border-none outline-none text-lg ">
+            <button
+              onClick={handleClick}
+              className="px-[12px] py-[10px] w-1/5 bg-black text-white rounded border-none outline-none text-lg "
+            >
               Next
             </button>
           </div>
