@@ -32,11 +32,12 @@ const ProfilePage = () => {
       <div className="  flex flex-col md:flex-row gap-10  ">
         <div className="flex-1  flex flex-col gap-14 items-center ">
           <div className="w-full bg-white border-[1px] border-gray-300 flex flex-col items-center  p-8">
+           
             <img
-              className="object-fill  h-[110px] w-[110px] rounded-full border-4 border-green-500 border-solid "
-              src={profileData?.profileImg}
-              alt="Error"
-            />
+                className="w-[100px] h-[100px] rounded-full object-cover border-4 border-green-500 border-solid"
+                src={profileData?.profileImg}
+                alt="error"
+              />
             <div className="flex flex-row gap-2 items-center">
               <h1 className="text-[20px] font-[600] hover:cursor-pointer hover:underline">
                 {profileData?.username}

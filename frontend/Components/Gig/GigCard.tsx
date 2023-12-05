@@ -13,7 +13,6 @@ import { toast } from "react-toastify";
 interface GigCardProps {
   id: number;
   img: string;
-  pp: string;
   title: string;
   price: number;
   star: number;
@@ -22,7 +21,6 @@ interface GigCardProps {
     userid: string;
     profileImg: any;
   };
-  username: string;
   ordersCompleted: number;
   category: string;
   subcategory: string;
@@ -54,6 +52,7 @@ function GigCard({
           profileImg: userInformation.profileImg,
           star,
           username: userInformation.username,
+          userid:userInformation.userid,
           ordersCompleted,
           price,
           category,

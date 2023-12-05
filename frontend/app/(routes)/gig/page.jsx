@@ -338,10 +338,11 @@ const Gig = () => {
         onClose={onClose}
         packagesData={packagesData}
         userinfo={{
+          userInformation: data?.userInformation,
           id: data?.id,
-          SellerName: data?.username,
           img: data?.img,
-          Features: packagesData?.functionalities,
+          category:data?.category,
+          subcategory:data?.subcategory
         }}
       />
     </div>

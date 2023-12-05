@@ -2,8 +2,11 @@ import React from "react";
 import Orderlist from "./Orderlist";
 import emptybox from "../../public/emptybox.png";
 import shoppingbag from "../../public/shopping-bag.png";
-const orders = [{}];
+import { useSelector } from "react-redux";
+
 function Ordersmodal() {
+  const orders = useSelector((state) => state.orderlist.orderPlaced);
+  console.log(orders)
   return (
     <>
       <div className=" shadow-lg border-solid bg-white md:w-[350px] h-[470px] w-[300px] overflow-auto rounded-md border  border-gray-300">
@@ -18,7 +21,9 @@ function Ordersmodal() {
           </span>
         </h1>
         {orders?.length > 0 ? (
-          <Orderlist />
+          orders?.map((o, index) => {
+            return <Orderlist {...o} key={index} />;
+          })
         ) : (
           <div className=" pt-14 flex items-center flex-col h-[90%] overflow-scroll">
             <img
