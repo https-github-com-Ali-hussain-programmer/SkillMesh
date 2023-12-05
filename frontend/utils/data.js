@@ -1465,7 +1465,7 @@ export const Category = [
     SubCategoryNo: {
       SEO: 1,
       "Content Marketing": 2,
-      "Pay-Per-Click PPC Ads": 1,
+      "Pay-Per-Click Ads": 1,
       "Marketing Automation": 1,
       "Google Ads": 0,
     },
