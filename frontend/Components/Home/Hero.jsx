@@ -32,8 +32,8 @@ const Hero = () => {
   useEffect(() => {
     const removeShowResult = (e) => {
       if (
-        inputRef.current.contains(e.target) ||
-        ShowRef.current.contains(e.target)
+        inputRef?.current?.contains(e.target) ||
+        ShowRef?.current?.contains(e.target)
       ) {
         return;
       }
