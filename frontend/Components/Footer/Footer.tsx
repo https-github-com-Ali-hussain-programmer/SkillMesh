@@ -34,7 +34,7 @@ function Footer() {
             <h2 className="text-md font-bold">Categories</h2>
             {Category.map((c, index) => {
               return (
-                <span className="text-lightGrey">
+                <span className="text-lightGrey" key={index}>
                   <ActiveLinks
                     pathname={pathname}
                     url={`/Categories/${c.category}`}

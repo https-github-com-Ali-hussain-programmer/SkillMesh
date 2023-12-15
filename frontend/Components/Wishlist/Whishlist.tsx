@@ -30,7 +30,7 @@ function Whishlist({
   const dispatch = useDispatch();
   return (
     <>
-      <div className=" cursor-pointer h-fit text-[#404145]  p-2 border-b-[1px] border-solid  border-gray-300 flex   items-center flex-row ">
+      <Link  href={`/profilePage?id=${userid}`} className=" cursor-pointer h-fit text-[#404145]  p-2 border-b-[1px] border-solid  border-gray-300 flex   items-center flex-row ">
         <img
           src={profileImg}
           alt="error"
@@ -63,7 +63,7 @@ function Whishlist({
             </span>
           </div>
         </div>
-      </div>
+      </Link>
     </>
   );
 }
