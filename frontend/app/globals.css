@@ -197,8 +197,8 @@
   background-color: white;
   transition: all 0.4s ease;
   color: black;
-  
-  border:1px solid black;
+
+  border: 1px solid black;
 }
 .connect:hover {
   background-color: transparent;
@@ -208,7 +208,21 @@
   transform: scale(1.1);
 }
 .Partnership {
-  background-image: url('../public/img2.jpg');
+  background-image: url("../public/img2.jpg");
   width: 100%;
   height: 100vh;
+}
+.metaModal {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  transition: opacity 0.2s ease-in-out;
+  background-color: rgba(21, 22, 25, 0.5);
+  position:fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
 }
