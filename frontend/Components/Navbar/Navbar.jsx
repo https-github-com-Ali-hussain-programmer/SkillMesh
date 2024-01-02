@@ -15,10 +15,11 @@ import { FaShoppingCart } from "react-icons/fa";
 import { BsFillSuitHeartFill } from "react-icons/bs";
 import { useSelector } from "react-redux";
 import { favouritesList } from "@/redux/slice/wishlistSlice";
-import MetaModal from '../MetaMaskModal/MetaModal'
+import MetaModal from "../MetaMaskModal/MetaModal";
 
 const Navbar = () => {
   const pathname = usePathname();
+  const [metaModal, setmetaModal] = useState(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [OrderShow, setOrderShow] = useState(false);
   const [Whishlist, setWhishlist] = useState(false);
@@ -27,7 +28,7 @@ const Navbar = () => {
   const WhishlistRef = useRef(null);
   const WhishlistButtonRef = useRef(null);
   const buttonRef = useRef(null);
-  const order= useSelector((state) => state.orderlist.orderPlaced);
+  const order = useSelector((state) => state.orderlist.orderPlaced);
   const toggleDrawer = useCallback(() => {
     setIsDrawerOpen(!isDrawerOpen);
   }, [isDrawerOpen]);
@@ -51,6 +52,10 @@ const Navbar = () => {
       document.removeEventListener("click", handleClickOutside);
     };
   }, []);
+  const memoizedSetModal = useCallback(() => {
+    setmetaModal((prevState) => !prevState);
+  }, []);
+
 
   return (
     <nav
@@ -154,15 +159,20 @@ const Navbar = () => {
           </span>
           <button
             className={`  hidden sm:inline-block  py-2 px-2  rounded-md  ${
-              pathname !== "/" ? "bg-blue-600 text-white transition-all duration-300 hover:scale-105 hover:bg-white hover:text-black hover:border-black hover:border-[1px]"  : "connect"
+              pathname !== "/"
+                ? "bg-blue-600 text-white transition-all duration-300 hover:scale-105 hover:bg-white hover:text-black hover:border-black hover:border-[1px]"
+                : "connect"
             }  `}
+            onClick={() => {
+              setmetaModal(!metaModal);
+            }}
           >
             Connect
           </button>
         </div>
         <NavbarDrawer onClose={toggleDrawer} isOpen={isDrawerOpen} />
       </div>
-      <MetaModal/>
+      {metaModal ? <MetaModal setModal={memoizedSetModal}/> : null}
     </nav>
   );
 };

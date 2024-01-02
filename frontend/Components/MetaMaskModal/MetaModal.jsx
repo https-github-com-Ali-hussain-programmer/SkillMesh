@@ -2,14 +2,19 @@ import React from "react";
 import { RxCross2 } from "react-icons/rx";
 import MetaMask from "../../public/MetaMask.png";
 import { Badge } from "@chakra-ui/react";
-function MetaModal() {
+function MetaModal({ setModal }) {
   return (
     <>
       <div className="metaModal">
         <div className="mt-[12px] bg-white rounded-[24px] flex flex-col p-5 gap-3 w-[30%]">
           <div className="flex items-center justify-between">
             <h1 className="text-[#151619] font-[900]  text-2xl"> Sign in</h1>
-            <span className="text-[#151619] font-[900] text-xl">
+            <span
+              className="text-[#151619] font-[900] text-xl"
+              onClick={() => {
+                setModal();
+              }}
+            >
               <RxCross2 />
             </span>
           </div>
