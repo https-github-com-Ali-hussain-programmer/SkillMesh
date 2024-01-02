@@ -29,6 +29,7 @@
     "@types/react": "latest",
     "@types/react-dom": "latest",
     "autoprefixer": "latest",
+    "ethers": "^6.9.1",
     "postcss": "latest",
     "tailwindcss": "latest",
     "typescript": "latest"

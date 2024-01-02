@@ -15,6 +15,7 @@ import { FaShoppingCart } from "react-icons/fa";
 import { BsFillSuitHeartFill } from "react-icons/bs";
 import { useSelector } from "react-redux";
 import { favouritesList } from "@/redux/slice/wishlistSlice";
+import MetaModal from '../MetaMaskModal/MetaModal'
 
 const Navbar = () => {
   const pathname = usePathname();
@@ -161,6 +162,7 @@ const Navbar = () => {
         </div>
         <NavbarDrawer onClose={toggleDrawer} isOpen={isDrawerOpen} />
       </div>
+      <MetaModal/>
     </nav>
   );
 };
