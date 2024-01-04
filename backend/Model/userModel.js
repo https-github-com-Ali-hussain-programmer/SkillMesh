@@ -13,6 +13,7 @@ const userSchema = new mongoose.Schema({
   },
   address: {
     type: String,
+    unique:true,
     required: [true, "Please Enter Account Address"],
   },
   description: {
@@ -42,5 +43,23 @@ const userSchema = new mongoose.Schema({
     default: Date.now,
   },
 });
+
+userSchema.methods.generateJWT = function () {
+  return jwt.sign({ address: this.address }, process.env.JWT_KEY, {
+    expiresIn: "1h",
+  });
+};
+userSchema.methods.saveCookie = function (res, statuscode) {
+  const token = this.generateJWT();
+  const options = {
+    maxAge: 3600000,
+    httpOnly: true,
+    secure: true,
+  };
+  res
+    .status(statuscode)
+    .cookie("token", token, options)
+    .json({ success: true, user: this, token });
+};
 
 module.exports = mongoose.model("User", userSchema);

@@ -15,7 +15,7 @@ require("./DB/connection");
 app.use(cors(corsOption));
 app.use(cookieParser());
 app.use(express.json());
-app.use("/api/v1", userRoutes);
+app.use("/api/v1/user", userRoutes);
 server.listen(process.env.PORT || 3001, () => {
   console.log(`Server Running on ${process.env.PORT} Port`);
 });
