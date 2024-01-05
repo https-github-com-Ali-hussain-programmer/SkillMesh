@@ -8,7 +8,9 @@
   box-sizing: border-box;
   scroll-behavior: smooth;
 }
-
+.nav {
+  background-color: rgba(250, 250, 251, 0.9);
+}
 ::-webkit-scrollbar {
   width: 6px;
 }
@@ -218,11 +220,15 @@
   overflow: hidden;
   transition: opacity 0.2s ease-in-out;
   background-color: rgba(21, 22, 25, 0.5);
-  position:fixed;
+  position: fixed;
   top: 0;
   left: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 100;
+}
+
+.showStatus{
+ box-shadow:  rgba(76, 79, 110, 0.2) 0px 1.75rem 2rem 0px;
 }

@@ -1,13 +1,19 @@
 "use client";
-// Import statements...
 import { FiSearch } from "react-icons/fi";
 import Image from "next/image";
 import Link from "next/link";
 import logo from "../../public/side.png";
 import Search from "../Shared/Search";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Radio, RadioGroup, Stack } from "@chakra-ui/react";
-
+import { useSelector } from "react-redux";
+import MetaMask from "../../public/MetaMask.png";
+import { FaAddressCard } from "react-icons/fa";
+import Ethereum from "../../public/ethereum.svg";
+import { ethers } from "ethers";
+import { FaCopy } from "react-icons/fa";
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import { toast } from "react-toastify";
 const Hero = () => {
   const [input, setInput] = useState("");
   const [search, setSearch] = useState([]);
@@ -15,7 +21,30 @@ const Hero = () => {
   const [showResult, setShowResult] = useState(false);
   const inputRef = useRef(null);
   const ShowRef = useRef(null);
+  const [value, setValue] = useState("");
+  const [copied, setCopied] = useState(false);
+  const [balance, setBalance] = useState("");
+  const currentUser = useSelector((state) => state.user.userData);
 
+  const showBalance = async () => {
+    try {
+      const provider = new ethers.BrowserProvider(window.ethereum);
+      const balance = await provider.getBalance(currentUser.address);
+      const etherBalance = ethers.formatEther(balance);
+      setBalance(etherBalance);
+    } catch (error) {
+      console.error("Error fetching balance:", error);
+      return "Error fetching balance";
+    }
+  };
+
+  const shortAddress = (fullAddress) => {
+    const shortenedAddress = `${fullAddress.substring(
+      0,
+      10
+    )}...${fullAddress.slice(-10)}`;
+    return shortenedAddress;
+  };
   const handleInput = (e) => {
     const { value } = e.target;
     setInput(value);
@@ -28,7 +57,6 @@ const Hero = () => {
     const h = Search(value, valueradio);
     setSearch(h);
   };
-
   useEffect(() => {
     const removeShowResult = (e) => {
       if (
@@ -39,6 +67,7 @@ const Hero = () => {
       }
       setShowResult(false);
     };
+    showBalance()
     document.addEventListener("click", removeShowResult);
     return () => {
       document.removeEventListener("click", removeShowResult);
@@ -99,9 +128,17 @@ const Hero = () => {
   return (
     <>
       <div className={`h-[600px] justify-center flex`}>
-        <div className="2xl:w-[1400px] container flex items-center justify-between text-secondary-white px-7">
+        <div
+          className={`2xl:w-[1400px] container flex items-center justify-between ${
+            currentUser ? "text-black" : " text-secondary-white"
+          } px-7`}
+        >
           <div className="flex flex-col gap-[30px] max-w-[700px] relative">
-            <h1 className="text-4xl tracking-wide font-bold title-animation">
+            <h1
+              className={`text-4xl tracking-wide font-bold title-animation ${
+                currentUser && "text-[#2BCAB0]"
+              }`}
+            >
               Find the perfect
               <span className="font-light italic ps-2">freelance</span> services
               for your business
@@ -112,15 +149,16 @@ const Hero = () => {
                 ref={inputRef}
                 type="text"
                 placeholder="Block Chain Web 3.0"
-                className="text-gray-600 border-none outline-none w-[90%] py-5 px-5 rounded-sm"
+                className="text-gray-600 outline-none w-[90%] py-5 px-5 rounded-sm  border-[#E2E8F0] border-solid border-2"
                 onChange={handleInput}
                 onFocus={() => {
                   setShowResult(true);
                 }}
               />
-
               <button className="bg-[#A835C4] w-[90%] lg:w-20 py-5 px-5 font-bold lg:flex items-center justify-center rounded-r-md bg-onlineGreen border-none cursor-pointer lg:text-xl text-3xl">
-                <FiSearch />
+                <FiSearch
+                  className={`${currentUser ? "text-white" : "text-black"}`}
+                />
               </button>
             </div>
             {showResult ? (
@@ -191,13 +229,73 @@ const Hero = () => {
               </Link>
             </div>
           </div>
-          <div className="w-[500px] hidden lg:inline-block">
-            <Image
-              src={logo}
-              alt="error"
-              className="h-full w-full object-cover"
-            />
-          </div>
+          {currentUser ? (
+            <div className="rounded-[16px] bg-white  w-[430px] showStatus p-4  flex flex-col gap-3 border-[#E2E8F0] border-solid border-2 ">
+              <h1 className="w-full p-2  bg-[#f5f5f7]  font-bold text-[#6c6f7f] mb-2 text-center">
+                Account 's Information
+              </h1>
+              <div className="flex items-center gap-2 ">
+                <span className="bg-[#FED7D7] h-[35px] w-[35px] rounded-full flex items-center justify-center">
+                  <img
+                    src={MetaMask.src}
+                    alt="MetaMask"
+                    className="h-[25px] "
+                  />
+                </span>
+                <div className="flex items-center gap-2 p-1">
+                  <div className="w-[6px] h-[6px] rounded-full bg-[#46CE7E]"></div>
+                  <span className="text-[#2f3037] text-sm font-[500] ">
+                    Ethereum{" "}
+                  </span>
+                </div>
+              </div>
+              <div className="flex flex-col gap-3">
+                <div className="flex items-center gap-3">
+                  <FaAddressCard className="text-[#2BCAB0] text-2xl" />{" "}
+                  <span>Account Address :</span>{" "}
+                  <h1 className="font-[700] text-sm text-[#6c6f7f] break-words">
+                    {shortAddress(currentUser?.address)}
+                  </h1>
+                  <CopyToClipboard
+                    onCopy={() => {
+                      setCopied(true);
+                    }}
+                    options={{ message: "Whoa!" }}
+                    text={value}
+                  >
+                    <span
+                      onClick={() => {
+                        setValue(currentUser?.address);
+                        toast.success("Successfully Copied Address", {
+                          autoClose: 3000,
+                        });
+                      }}
+                    >
+                      <FaCopy className="text-[#2BCAB0] " />
+                    </span>
+                  </CopyToClipboard>
+                </div>
+                <div className="flex items-center gap-3">
+                  <img src={Ethereum.src} alt="error" className="h-[30px]" />{" "}
+                  <span>Account Balance :</span>
+                  <h1
+                    className="font-[400] font-lg text-[#151619] cursor-pointer"
+                    
+                  >
+                    <span>{balance}ETH</span>
+                  </h1>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div className="w-[500px] hidden lg:inline-block">
+              <Image
+                src={logo}
+                alt="error"
+                className="h-full w-full object-cover"
+              />
+            </div>
+          )}
         </div>
       </div>
     </>

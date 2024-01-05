@@ -1,9 +1,7 @@
 import { ethers } from "ethers";
 const baseUrl = "http://localhost:3001/api/v1/user";
 
-///ALL User Authentication
 export const LoginMetamask = async (account) => {
-    console.log("Account",account)
   const nonce = await generateNonce(baseUrl + "/nonce");
   const message = `This Nonce is Signed using Metamask ${nonce}`;
   const signedmessage = await SignedMessage(message);
@@ -21,12 +19,14 @@ export const LoginMetamask = async (account) => {
   const data = response.json();
   return data;
 };
+
 const SignedMessage = async (message) => {
   const provider = new ethers.BrowserProvider(window.ethereum);
   const signer = provider.getSigner();
   const signedmessage = (await signer).signMessage(message);
   return signedmessage;
 };
+
 const generateNonce = async (url) => {
   const response = await fetch(url, {
     method: "GET",
@@ -41,4 +41,17 @@ const generateNonce = async (url) => {
   }
   const { nonce } = await response.json();
   return nonce;
+};
+
+export const verifyToken = async () => {
+  const response = await fetch(baseUrl + "/secure", {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  });
+  const data = response.json();
+  return data;
 };

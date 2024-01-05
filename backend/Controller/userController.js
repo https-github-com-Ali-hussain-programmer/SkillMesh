@@ -12,13 +12,12 @@ exports.Login = async (req, res) => {
   try {
     const { signedmessage, address, message } = req.body;
     const recoveredAddress = ethers.verifyMessage(message, signedmessage);
-    console.log("RecoveredAddress: " + recoveredAddress, "Address:" + address);
     if (recoveredAddress !== address) {
       return res.status(401).json({ error: "Invalid Signature" });
     }
     const existingUser = await User.findOne({ address: recoveredAddress });
     if (existingUser) {
-      return existingUser.saveCookie(res, 200); 
+      return existingUser.saveCookie(res, 200);
     }
     const newUser = new User({ address: recoveredAddress });
     await newUser.save();
@@ -28,3 +27,13 @@ exports.Login = async (req, res) => {
     return res.status(500).json({ error: "Server Error" });
   }
 };
+
+exports.authToken = async (req, res) => {
+  const { user } = req;
+  return res
+    .status(200)
+    .json({ success: true, message: "You are  Authenticated", user });
+};
+
+
+
