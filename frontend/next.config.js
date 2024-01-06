@@ -1,4 +1,8 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {}
+const nextConfig = {
+  env: {
+    JWT_KEY: "SKILLMESHAFREELNACINGBLOCKCHAINBASEDWEBSITE",
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

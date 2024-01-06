@@ -2,14 +2,15 @@
 import { useEffect, useState } from "react";
 import { ethers, getAddress } from "ethers";
 import { LoginMetamask } from "../Api/userApi";
-
+import { useDispatch } from "react-redux";
+import { setUserData } from "../redux/slice/userSlice";
 const useMetaMask = () => {
   const [account, setAccount] = useState(null);
-
+const dispatch=useDispatch()
   const handleMetaMaskChange = async (newAccounts) => {
     const updatedUserAddress = getAddress(newAccounts[0]);
     const updatedUserData = await LoginMetamask(updatedUserAddress);
-    // // dispatch(setUser(updatedUserData))
+    dispatch(setUserData({info:updatedUserData?.user}));
     console.log(updatedUserData);
     // setAccount(updatedUserAddress);
   };

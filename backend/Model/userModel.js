@@ -13,7 +13,7 @@ const userSchema = new mongoose.Schema({
   },
   address: {
     type: String,
-    unique:true,
+    unique: true,
     required: [true, "Please Enter Account Address"],
   },
   description: {
@@ -55,6 +55,7 @@ userSchema.methods.saveCookie = function (res, statuscode) {
     maxAge: 3600000,
     httpOnly: true,
     secure: true,
+    SameSite: "none",
   };
   res
     .status(statuscode)

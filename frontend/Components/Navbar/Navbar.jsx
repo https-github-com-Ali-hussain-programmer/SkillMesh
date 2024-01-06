@@ -13,22 +13,26 @@ import {
 } from "../../Components";
 import { FaShoppingCart } from "react-icons/fa";
 import { BsFillSuitHeartFill } from "react-icons/bs";
-import { useSelector } from "react-redux";
 import { favouritesList } from "@/redux/slice/wishlistSlice";
 import MetaModal from "../MetaMaskModal/MetaModal";
-
+import avatar from "../../public/profile.jpg";
+import ProfileModal from "../profilePage/ProfileModal";
+import { useSelector } from "react-redux";
 const Navbar = () => {
   const pathname = usePathname();
   const [metaModal, setmetaModal] = useState(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [OrderShow, setOrderShow] = useState(false);
   const [Whishlist, setWhishlist] = useState(false);
+  const [profile, setProfile] = useState(false);
   const Favourites = useSelector(favouritesList);
   const orderRef = useRef(null);
   const WhishlistRef = useRef(null);
   const WhishlistButtonRef = useRef(null);
+  const  profileRef= useRef(null);
   const buttonRef = useRef(null);
   const order = useSelector((state) => state.orderlist.orderPlaced);
+  const currentUser = useSelector((state) => state.user.userData);
   const toggleDrawer = useCallback(() => {
     setIsDrawerOpen(!isDrawerOpen);
   }, [isDrawerOpen]);
@@ -39,12 +43,14 @@ const Navbar = () => {
         WhishlistRef?.current?.contains(e.target) ||
         buttonRef?.current?.contains(e.target) ||
         WhishlistButtonRef?.current?.contains(e.target)
+        
       ) {
         return;
       }
 
       setOrderShow(false);
       setWhishlist(false);
+      
     };
 
     document.addEventListener("click", handleClickOutside);
@@ -56,13 +62,12 @@ const Navbar = () => {
     setmetaModal((prevState) => !prevState);
   }, []);
 
-
   return (
     <nav
       className={`py-4 relative ${
-        pathname === "/"
-          ? "bg-dark-black text-white  "
-          : "text-black shadow-md z-50"
+        pathname === "/" && !currentUser
+          ? "bg-dark-black text-white"
+          : "nav text-black shadow-md z-50"
       }`}
     >
       <div
@@ -70,7 +75,7 @@ const Navbar = () => {
       >
         <div
           className={` text-4xl  sm:hidden ${
-            pathname === "/" ? " text-white" : "text-black"
+            pathname === "/" && !currentUser ? " text-white" : "text-black"
           }`}
           onClick={() => {
             toggleDrawer();
@@ -95,7 +100,7 @@ const Navbar = () => {
           </div>
         ) : null}
 
-        <div className="flex items-center font-medium  justify-between  sm:w-[35%] w-[20%]  ">
+        <div className="flex items-center font-medium  justify-between  sm:w-[35%] w-[20%] gap-7 md:gap-0 ">
           <span className="hidden md:inline-block category-link text-[17px]">
             <ActiveLinks url={"/Categories"} pathname={pathname}>
               Category
@@ -106,7 +111,7 @@ const Navbar = () => {
           </div>
 
           <button
-            className="z-50"
+            className=""
             ref={buttonRef}
             onClick={() => {
               setOrderShow(!OrderShow);
@@ -116,7 +121,11 @@ const Navbar = () => {
             <Badge
               Icon={FaShoppingCart}
               count={order?.length}
-              color={`${pathname === "/" ? "text-white" : "text-blue-600"}`}
+              color={` ${
+                pathname === "/" && !currentUser
+                  ? "text-white"
+                  : "text-blue-600"
+              }`}
               size={"text-xl"}
             />
           </button>
@@ -139,7 +148,11 @@ const Navbar = () => {
             <Badge
               Icon={BsFillSuitHeartFill}
               count={Favourites?.length}
-              color={`${pathname === "/" ? "text-white" : "text-blue-600"}`}
+              color={` ${
+                pathname === "/" && !currentUser
+                  ? "text-white"
+                  : "text-blue-600"
+              }`}
               size={" text-xl"}
             />
           </span>
@@ -151,28 +164,44 @@ const Navbar = () => {
               <Whishlistmodal />
             </div>
           )}
+          {currentUser ? null : (
+            <span className="hidden lg:inline-block text-[17px]">
+              <ActiveLinks url={"/About"} pathname={pathname}>
+                About
+              </ActiveLinks>
+            </span>
+          )}
 
-          <span className="hidden lg:inline-block text-[17px]">
-            <ActiveLinks url={"/About"} pathname={pathname}>
-              About
-            </ActiveLinks>
-          </span>
-          <button
-            className={`  hidden sm:inline-block  py-2 px-2  rounded-md  ${
-              pathname !== "/"
-                ? "bg-blue-600 text-white transition-all duration-300 hover:scale-105 hover:bg-white hover:text-black hover:border-black hover:border-[1px]"
-                : "connect"
-            }  `}
-            onClick={() => {
-              setmetaModal(!metaModal);
-            }}
-          >
-            Connect
-          </button>
+          {currentUser ? (
+            <div onClick={() => setProfile(true)}>
+              <span className="relative">
+                <img
+                  src={avatar.src}
+                  alt="error"
+                  className="h-[65px] w-[65px] "
+                />
+                <div className="w-[9px] h-[9px] absolute bottom-[6px] right-[18px] rounded-full bg-[#46CE7E]"></div>
+              </span>
+            </div>
+          ) : (
+            <button
+              className={`  hidden sm:inline-block  py-2 px-2  rounded-md  ${
+                pathname !== "/"
+                  ? "bg-blue-600 text-white transition-all duration-300 hover:scale-105 hover:bg-white hover:text-black hover:border-black hover:border-[1px]"
+                  : "connect"
+              }  `}
+              onClick={() => {
+                setmetaModal(!metaModal);
+              }}
+            >
+              Connect
+            </button>
+          )}
         </div>
         <NavbarDrawer onClose={toggleDrawer} isOpen={isDrawerOpen} />
       </div>
-      {metaModal ? <MetaModal setModal={memoizedSetModal}/> : null}
+      {metaModal ? <MetaModal setModal={memoizedSetModal} /> : null}
+      {profile ? <ProfileModal />: null}
     </nav>
   );
 };
