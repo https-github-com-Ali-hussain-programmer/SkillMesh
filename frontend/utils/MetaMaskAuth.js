@@ -52,11 +52,11 @@ const dispatch=useDispatch()
     }
   };
 
-  useEffect(() => {
-    return () => {
-      window.ethereum.removeAllListeners("accountsChanged");
-    };
-  }, []);
+  // useEffect(() => {
+  //   return () => {
+  //     window.ethereum.removeAllListeners("accountsChanged");
+  //   };
+  // }, []);
 
   return { connectMetaMask, account };
 };
