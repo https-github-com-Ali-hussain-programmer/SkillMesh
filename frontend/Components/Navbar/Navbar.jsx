@@ -15,7 +15,8 @@ import { FaShoppingCart } from "react-icons/fa";
 import { BsFillSuitHeartFill } from "react-icons/bs";
 import { favouritesList } from "@/redux/slice/wishlistSlice";
 import MetaModal from "../MetaMaskModal/MetaModal";
-import avatar from "../../public/logo.png";
+import avatar from "../../public/profile.jpg";
+import ProfileModal from "../profilePage/ProfileModal";
 import { useSelector } from "react-redux";
 const Navbar = () => {
   const pathname = usePathname();
@@ -23,10 +24,12 @@ const Navbar = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [OrderShow, setOrderShow] = useState(false);
   const [Whishlist, setWhishlist] = useState(false);
+  const [profile, setProfile] = useState(false);
   const Favourites = useSelector(favouritesList);
   const orderRef = useRef(null);
   const WhishlistRef = useRef(null);
   const WhishlistButtonRef = useRef(null);
+  const  profileRef= useRef(null);
   const buttonRef = useRef(null);
   const order = useSelector((state) => state.orderlist.orderPlaced);
   const currentUser = useSelector((state) => state.user.userData);
@@ -40,12 +43,14 @@ const Navbar = () => {
         WhishlistRef?.current?.contains(e.target) ||
         buttonRef?.current?.contains(e.target) ||
         WhishlistButtonRef?.current?.contains(e.target)
+        
       ) {
         return;
       }
 
       setOrderShow(false);
       setWhishlist(false);
+      
     };
 
     document.addEventListener("click", handleClickOutside);
@@ -116,7 +121,11 @@ const Navbar = () => {
             <Badge
               Icon={FaShoppingCart}
               count={order?.length}
-              color={` ${pathname === "/" && !currentUser ? "text-white" : "text-blue-600"}`}
+              color={` ${
+                pathname === "/" && !currentUser
+                  ? "text-white"
+                  : "text-blue-600"
+              }`}
               size={"text-xl"}
             />
           </button>
@@ -139,7 +148,11 @@ const Navbar = () => {
             <Badge
               Icon={BsFillSuitHeartFill}
               count={Favourites?.length}
-              color={` ${pathname === "/" && !currentUser ? "text-white" : "text-blue-600"}`}
+              color={` ${
+                pathname === "/" && !currentUser
+                  ? "text-white"
+                  : "text-blue-600"
+              }`}
               size={" text-xl"}
             />
           </span>
@@ -160,13 +173,14 @@ const Navbar = () => {
           )}
 
           {currentUser ? (
-            <div>
-              <span>
+            <div onClick={() => setProfile(true)}>
+              <span className="relative">
                 <img
                   src={avatar.src}
                   alt="error"
-                  className="h-[32px] w-[32px]"
+                  className="h-[65px] w-[65px] "
                 />
+                <div className="w-[9px] h-[9px] absolute bottom-[6px] right-[18px] rounded-full bg-[#46CE7E]"></div>
               </span>
             </div>
           ) : (
@@ -187,6 +201,7 @@ const Navbar = () => {
         <NavbarDrawer onClose={toggleDrawer} isOpen={isDrawerOpen} />
       </div>
       {metaModal ? <MetaModal setModal={memoizedSetModal} /> : null}
+      {profile ? <ProfileModal />: null}
     </nav>
   );
 };

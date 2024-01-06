@@ -14,7 +14,6 @@ function LoaderHandler({children}) {
       const data = await verifyToken();
       dispatch(setUserData({ info: data?.user }));
     } catch (error) {
-      setLoading(false);
       console.error("Error verifying token:", error);
     } finally {
       setLoading(false);

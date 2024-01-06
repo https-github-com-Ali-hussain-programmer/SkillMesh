@@ -21,10 +21,10 @@ const Hero = () => {
   const [showResult, setShowResult] = useState(false);
   const inputRef = useRef(null);
   const ShowRef = useRef(null);
-  const [value, setValue] = useState("");
-  const [copied, setCopied] = useState(false);
-  const [balance, setBalance] = useState("");
   const currentUser = useSelector((state) => state.user.userData);
+  const [value, setValue] = useState(currentUser.address||"");
+  const [balance, setBalance] = useState("");
+ 
 
   const showBalance = async () => {
     try {
@@ -257,9 +257,7 @@ const Hero = () => {
                     {shortAddress(currentUser?.address)}
                   </h1>
                   <CopyToClipboard
-                    onCopy={() => {
-                      setCopied(true);
-                    }}
+                  
                     options={{ message: "Whoa!" }}
                     text={value}
                   >
