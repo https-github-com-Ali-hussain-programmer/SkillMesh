@@ -22,7 +22,7 @@ const Hero = () => {
   const inputRef = useRef(null);
   const ShowRef = useRef(null);
   const currentUser = useSelector((state) => state.user.userData);
-  const [value, setValue] = useState(currentUser.address||"");
+  const [value, setValue] = useState("");
   const [balance, setBalance] = useState("");
  
 
