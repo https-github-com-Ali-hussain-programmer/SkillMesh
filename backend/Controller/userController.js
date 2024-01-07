@@ -34,6 +34,7 @@ exports.authToken = async (req, res) => {
     .status(200)
     .json({ success: true, message: "You are  Authenticated", user });
 };
-
-
-
+exports.Logout = async (req, res) => {
+  res.clearCookie("token");
+  res.status(200).send("200");
+};

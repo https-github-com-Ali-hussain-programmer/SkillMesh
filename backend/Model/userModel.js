@@ -4,12 +4,19 @@ const jwt = require("jsonwebtoken");
 const userSchema = new mongoose.Schema({
   name: {
     type: String,
+    default: function () {
+      const shortenedAddress = `${this.address.substring(
+        0,
+        7
+      )}...${this.address.slice(-10)}`
+      return "user" + shortenedAddress
+    },
   },
   avatar: {
     type: String,
     required: true,
     default:
-      "https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg",
+      "https://img.freepik.com/free-psd/3d-illustration-human-avatar-profile_23-2150671122.jpg?w=740&t=st=1704575090~exp=1704575690~hmac=0786cc1472f3c71ba1cfa0d6f6762088857c237e8a2d0d2d4c5d340be7e6c192",
   },
   address: {
     type: String,

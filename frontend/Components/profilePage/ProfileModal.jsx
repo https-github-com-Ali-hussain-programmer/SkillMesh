@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import MetaMask from "../../public/MetaMask.png";
-
+import { Logout } from "../../Api/userApi";
 function ProfileModal() {
   const currentUser = useSelector((state) => state.user.userData);
   const shortAddress = (fullAddress) => {
@@ -11,6 +11,11 @@ function ProfileModal() {
     )}...${fullAddress.slice(-10)}`;
     return shortenedAddress;
   };
+  const handleLogout = () => {
+    Logout();
+    window.location.reload();
+  };
+
   return (
     <>
       <div className="rounded-[16px] absolute top-20 right-3  bg-white  w-[300px] shadow-lg p-4 px-6  flex flex-col gap-2 border-[1px] border-solid border-[#e2e8f0] ">
@@ -38,8 +43,11 @@ function ProfileModal() {
         <div className=" hover:text-[#46CE7E] cursor-pointer py-2 text-[#36383F] text-sm border-b-[0.5px] border-solid border-[#e2e8f0]">
           Become a Seller
         </div>
-        <div className=" hover:text-[#46CE7E] cursor-pointer py-2 text-[#36383F] text-sm border-b-[0.5px] border-solid border-[#e2e8f0]">
-          Signout
+        <div
+          onClick={handleLogout}
+          className="flex items-center gap-4 hover:text-[#46CE7E] cursor-pointer py-2  text-sm border-b-[0.5px] border-solid border-[#e2e8f0]"
+        >
+          <span className="text-[#36383F]">Signout </span>{" "}
         </div>
       </div>
     </>

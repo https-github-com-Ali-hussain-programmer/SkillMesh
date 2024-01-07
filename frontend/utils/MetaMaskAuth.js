@@ -4,15 +4,17 @@ import { ethers, getAddress } from "ethers";
 import { LoginMetamask } from "../Api/userApi";
 import { useDispatch } from "react-redux";
 import { setUserData } from "../redux/slice/userSlice";
+
 const useMetaMask = () => {
   const [account, setAccount] = useState(null);
-const dispatch=useDispatch()
+  const dispatch = useDispatch();
+
   const handleMetaMaskChange = async (newAccounts) => {
     const updatedUserAddress = getAddress(newAccounts[0]);
     const updatedUserData = await LoginMetamask(updatedUserAddress);
-    dispatch(setUserData({info:updatedUserData?.user}));
+    dispatch(setUserData({ info: updatedUserData?.user }));
     console.log(updatedUserData);
-    // setAccount(updatedUserAddress);
+    setAccount(updatedUserAddress);
   };
 
   const connectMetaMask = async () => {
@@ -20,15 +22,20 @@ const dispatch=useDispatch()
       try {
         const provider = new ethers.BrowserProvider(window.ethereum);
         const accounts = await provider.send("eth_requestAccounts", []);
+        if (accounts.length <= 0) {
+          return {
+            status: "error",
+            title: "Please Sign in To MetaMask Account!",
+            description:
+              "Make Sure your Account are connected to MetaMask Account, Otherwise, you cannot Access To this Site",
+          };
+        }
 
         setAccount(getAddress(accounts[0]));
-        window.ethereum.on("accountsChanged", (newAccounts) => {
-          setAccount(getAddress(newAccounts[0]));
-        });
+       
 
-        await handleMetaMaskChange([accounts[0]]);
+        await handleMetaMaskChange(accounts);
 
-        
         return {
           status: "success",
           title: "Congratulations!",
@@ -52,13 +59,8 @@ const dispatch=useDispatch()
     }
   };
 
-  // useEffect(() => {
-  //   return () => {
-  //     window.ethereum.removeAllListeners("accountsChanged");
-  //   };
-  // }, []);
 
-  return { connectMetaMask, account };
+  return { connectMetaMask, account,handleMetaMaskChange };
 };
 
 export default useMetaMask;

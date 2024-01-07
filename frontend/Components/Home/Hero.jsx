@@ -24,7 +24,6 @@ const Hero = () => {
   const currentUser = useSelector((state) => state.user.userData);
   const [value, setValue] = useState("");
   const [balance, setBalance] = useState("");
- 
 
   const showBalance = async () => {
     try {
@@ -67,12 +66,17 @@ const Hero = () => {
       }
       setShowResult(false);
     };
-    showBalance()
+
     document.addEventListener("click", removeShowResult);
     return () => {
       document.removeEventListener("click", removeShowResult);
     };
   }, []);
+  useEffect(() => {
+    if (currentUser) {
+      showBalance();
+    }
+  }, [currentUser]);
   const renderSearchResults = () => {
     if (valueradio === "User") {
       return (
@@ -129,15 +133,13 @@ const Hero = () => {
     <>
       <div className={`h-[600px] justify-center flex`}>
         <div
-          className={`2xl:w-[1400px] container flex items-center justify-between ${
-            currentUser ? "text-black" : " text-secondary-white"
-          } px-7`}
+          className={`2xl:w-[1400px] container flex items-center justify-between 
+           px-7`}
         >
           <div className="flex flex-col gap-[30px] max-w-[700px] relative">
             <h1
-              className={`text-4xl tracking-wide font-bold title-animation ${
-                currentUser && "text-[#2BCAB0]"
-              }`}
+              className={`text-4xl tracking-wide font-bold title-animation
+              `}
             >
               Find the perfect
               <span className="font-light italic ps-2">freelance</span> services
@@ -156,9 +158,7 @@ const Hero = () => {
                 }}
               />
               <button className="bg-[#A835C4] w-[90%] lg:w-20 py-5 px-5 font-bold lg:flex items-center justify-center rounded-r-md bg-onlineGreen border-none cursor-pointer lg:text-xl text-3xl">
-                <FiSearch
-                  className={`${currentUser ? "text-white" : "text-black"}`}
-                />
+                <FiSearch />
               </button>
             </div>
             {showResult ? (
@@ -230,7 +230,7 @@ const Hero = () => {
             </div>
           </div>
           {currentUser ? (
-            <div className="rounded-[16px] bg-white  w-[430px] showStatus p-4  flex flex-col gap-3 border-[#E2E8F0] border-solid border-2 ">
+            <div className="rounded-[16px] bg-[#fffe7a]  w-[430px] showStatus p-4  flex flex-col gap-3 border-[#E2E8F0] border-solid border-2 ">
               <h1 className="w-full p-2  bg-[#f5f5f7]  font-bold text-[#6c6f7f] mb-2 text-center">
                 Account 's Information
               </h1>
@@ -252,16 +252,13 @@ const Hero = () => {
               <div className="flex flex-col gap-3">
                 <div className="flex items-center gap-3">
                   <FaAddressCard className="text-[#2BCAB0] text-2xl" />{" "}
-                  <span>Account Address :</span>{" "}
+                  <span className=" text-[#151619]">Account Address :</span>{" "}
                   <h1 className="font-[700] text-sm text-[#6c6f7f] break-words">
                     {shortAddress(currentUser?.address)}
                   </h1>
-                  <CopyToClipboard
-                  
-                    options={{ message: "Whoa!" }}
-                    text={value}
-                  >
-                    <span
+                  <CopyToClipboard options={{ message: "Whoa!" }} text={currentUser?.address} >
+                    <button
+                      className="outline-none border-none hover:scale-110 transition-all"
                       onClick={() => {
                         setValue(currentUser?.address);
                         toast.success("Successfully Copied Address", {
@@ -269,17 +266,14 @@ const Hero = () => {
                         });
                       }}
                     >
-                      <FaCopy className="text-[#2BCAB0] " />
-                    </span>
+                      <FaCopy className="text-[#2BCAB0]  " />
+                    </button>
                   </CopyToClipboard>
                 </div>
                 <div className="flex items-center gap-3">
                   <img src={Ethereum.src} alt="error" className="h-[30px]" />{" "}
-                  <span>Account Balance :</span>
-                  <h1
-                    className="font-[400] font-lg text-[#151619] cursor-pointer"
-                    
-                  >
+                  <span className=" text-[#151619]">Account Balance :</span>
+                  <h1 className="font-[400] font-lg text-[#151619] cursor-pointer">
                     <span>{balance}ETH</span>
                   </h1>
                 </div>

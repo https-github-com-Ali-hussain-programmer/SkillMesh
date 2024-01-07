@@ -8,9 +8,9 @@ function Features() {
   const currentUser = useSelector((state) => state.user.userData);
   return (
     <section
-      className={`  my-40 ${
-        currentUser ? "text-black" : " text-secondary-white"
-      }`}
+      className={`  my-40 
+        " text-secondary-white"
+      `}
     >
       <div className={` px-7 container 2xl:w-[1400px] flex flex-col  gap-4  `}>
         <h1 className="text-5xl font-bold md:text-left  text-center mb-8 italic">

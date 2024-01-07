@@ -16,7 +16,7 @@ function MetaModal({ setModal }) {
     setTimeout(() => {
       setAlertContent(null);
       setModal();
-    }, 2000);
+    }, 2300);
   };
 
   const handleMetaMask = async () => {
@@ -61,7 +61,7 @@ function MetaModal({ setModal }) {
           {loader ? (
             <div className="flex items-center justify-center gap-4">
               <span className="text-[#3182CE] font-bold text-[17px]">
-                Connecting...{" "}
+                Connecting{" "}
               </span>
               <Spinner color="blue.500" />{" "}
             </div>

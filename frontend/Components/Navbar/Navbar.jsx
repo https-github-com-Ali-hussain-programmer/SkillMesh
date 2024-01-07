@@ -29,7 +29,7 @@ const Navbar = () => {
   const orderRef = useRef(null);
   const WhishlistRef = useRef(null);
   const WhishlistButtonRef = useRef(null);
-  const  profileRef= useRef(null);
+  const profileRef = useRef(null);
   const buttonRef = useRef(null);
   const order = useSelector((state) => state.orderlist.orderPlaced);
   const currentUser = useSelector((state) => state.user.userData);
@@ -43,14 +43,12 @@ const Navbar = () => {
         WhishlistRef?.current?.contains(e.target) ||
         buttonRef?.current?.contains(e.target) ||
         WhishlistButtonRef?.current?.contains(e.target)
-        
       ) {
         return;
       }
 
       setOrderShow(false);
       setWhishlist(false);
-      
     };
 
     document.addEventListener("click", handleClickOutside);
@@ -64,8 +62,8 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`py-4 relative ${
-        pathname === "/" && !currentUser
+      className={`py-3 relative ${
+        pathname === "/"
           ? "bg-dark-black text-white"
           : "nav text-black shadow-md z-50"
       }`}
@@ -121,11 +119,7 @@ const Navbar = () => {
             <Badge
               Icon={FaShoppingCart}
               count={order?.length}
-              color={` ${
-                pathname === "/" && !currentUser
-                  ? "text-white"
-                  : "text-blue-600"
-              }`}
+              color={` ${pathname === "/" ? "text-white" : "text-blue-600"}`}
               size={"text-xl"}
             />
           </button>
@@ -148,11 +142,7 @@ const Navbar = () => {
             <Badge
               Icon={BsFillSuitHeartFill}
               count={Favourites?.length}
-              color={` ${
-                pathname === "/" && !currentUser
-                  ? "text-white"
-                  : "text-blue-600"
-              }`}
+              color={` ${pathname === "/" ? "text-white" : "text-blue-600"}`}
               size={" text-xl"}
             />
           </span>
@@ -176,11 +166,11 @@ const Navbar = () => {
             <div onClick={() => setProfile(true)}>
               <span className="relative">
                 <img
-                  src={avatar.src}
+                  src={currentUser?.avatar}
                   alt="error"
-                  className="h-[65px] w-[65px] "
+                  className="h-[45px] w-[45px] rounded-full "
                 />
-                <div className="w-[9px] h-[9px] absolute bottom-[6px] right-[18px] rounded-full bg-[#46CE7E]"></div>
+                <div className="w-[9px] h-[9px] absolute bottom-0 right-1 rounded-full bg-[#46CE7E]"></div>
               </span>
             </div>
           ) : (
@@ -194,14 +184,14 @@ const Navbar = () => {
                 setmetaModal(!metaModal);
               }}
             >
-              Connect
+              Connect 
             </button>
           )}
         </div>
         <NavbarDrawer onClose={toggleDrawer} isOpen={isDrawerOpen} />
       </div>
       {metaModal ? <MetaModal setModal={memoizedSetModal} /> : null}
-      {profile ? <ProfileModal />: null}
+      {profile ? <ProfileModal /> : null}
     </nav>
   );
 };

@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { setUserData } from "../redux/slice/userSlice";
 import { Spinner } from "@chakra-ui/react";
 
-function LoaderHandler({children}) {
+function LoaderHandler({ children }) {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
 
@@ -16,13 +16,16 @@ function LoaderHandler({children}) {
     } catch (error) {
       console.error("Error verifying token:", error);
     } finally {
-      setLoading(false);
+   
+        setLoading(false);
+      
     }
   };
 
   useEffect(() => {
     AuthToken();
   }, []);
+
   return (
     <>
       {loading ? (
@@ -30,7 +33,7 @@ function LoaderHandler({children}) {
           <div className="flex flex-col gap-1 items-center">
             <Spinner size="lg" />
             <h1 className="text-lg font-bold text-black">
-              Loading... Please Wait for a moment
+              Loading... Please wait for a moment
             </h1>
           </div>
         </div>

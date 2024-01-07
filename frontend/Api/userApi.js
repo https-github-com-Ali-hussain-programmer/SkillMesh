@@ -55,3 +55,15 @@ export const verifyToken = async () => {
   const data = response.json();
   return data;
 };
+export const Logout = async () => {
+  const response = await fetch(baseUrl + "/Logout", {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  });
+  const data = response.json();
+  return data;
+};
