@@ -51,7 +51,7 @@ function Categories() {
                   href={`/Categories/${c.category}`}
                   prefetch
                   key={index}
-                  className=" blackhover h-[320px] p-3   shadow-lg hover:border-black hover:rounded-md  border-[1px] flex flex-col   border-solid border-[#ccc] "
+                  className="blackhover h-[320px] p-3   shadow-lg hover:border-black hover:rounded-md  border-[1px] flex flex-col   border-solid border-[#ccc] "
                 >
                   <img
                     src={c.imageUrl}

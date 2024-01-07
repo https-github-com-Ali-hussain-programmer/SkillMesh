@@ -40,6 +40,6 @@
     "Components/Gig/GigReviews.jsx",
     "Components/Wishlist/Whishlistmodal.jsx",
     "Components/Home/PlatformFeatures.jsx"
-  ],
+, "app/(routes)/GigCreation/Overview/page.jsx"  ],
   "exclude": ["node_modules"]
 }
