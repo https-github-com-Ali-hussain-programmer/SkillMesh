@@ -1,4 +1,3 @@
-
 import { Client, Message } from "@/Components";
 import ChakraProviderUI from "../utils/ChakraProviderUI";
 import ReduxProvider from "../redux/reduxProvider/ReduxProvider";
@@ -9,7 +8,10 @@ import "react-toastify/dist/ReactToastify.css";
 import type { Metadata } from "next";
 import LoaderHandler from "../utils/LoaderHandler";
 import FormProvider from "@/context/Form";
-
+export const metadata: Metadata = {
+  title: "SkillMesh | Web3 FreeLancing ",
+  description: "This is Home page for SkillMesh",
+};
 const roboto = Roboto({
   weight: ["400", "700"],
   subsets: ["latin"],
