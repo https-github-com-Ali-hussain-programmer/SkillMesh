@@ -30,6 +30,7 @@ const Navbar = () => {
   const WhishlistRef = useRef(null);
   const WhishlistButtonRef = useRef(null);
   const profileRef = useRef(null);
+
   const buttonRef = useRef(null);
   const order = useSelector((state) => state.orderlist.orderPlaced);
   const currentUser = useSelector((state) => state.user.userData);
@@ -42,13 +43,15 @@ const Navbar = () => {
         orderRef?.current?.contains(e.target) ||
         WhishlistRef?.current?.contains(e.target) ||
         buttonRef?.current?.contains(e.target) ||
-        WhishlistButtonRef?.current?.contains(e.target)
+        WhishlistButtonRef?.current?.contains(e.target) ||
+        profileRef?.current?.contains(e.target)
       ) {
         return;
       }
 
       setOrderShow(false);
       setWhishlist(false);
+      setProfile(false);
     };
 
     document.addEventListener("click", handleClickOutside);
@@ -163,7 +166,7 @@ const Navbar = () => {
           )}
 
           {currentUser ? (
-            <div onClick={() => setProfile(true)}>
+            <div onClick={() => setProfile(true)} ref={profileRef}>
               <span className="relative">
                 <img
                   src={currentUser?.avatar}
@@ -172,6 +175,7 @@ const Navbar = () => {
                 />
                 <div className="w-[9px] h-[9px] absolute bottom-0 right-1 rounded-full bg-[#46CE7E]"></div>
               </span>
+              {profile ? <ProfileModal /> : null}
             </div>
           ) : (
             <button
@@ -184,14 +188,13 @@ const Navbar = () => {
                 setmetaModal(!metaModal);
               }}
             >
-              Connect 
+              Connect
             </button>
           )}
         </div>
         <NavbarDrawer onClose={toggleDrawer} isOpen={isDrawerOpen} />
       </div>
       {metaModal ? <MetaModal setModal={memoizedSetModal} /> : null}
-      {profile ? <ProfileModal /> : null}
     </nav>
   );
 };
