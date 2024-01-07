@@ -26,7 +26,7 @@ function CategoryModal() {
                 </Link>
                 {c.subfields.map((subcategory, index) => {
                   return (
-                    <span className="text-lightGrey">
+                    <span className="text-lightGrey" key={index}>
                       {" "}
                       <ActiveLinks
                         pathname={pathname}

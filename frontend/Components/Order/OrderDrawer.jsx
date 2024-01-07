@@ -96,10 +96,10 @@ function OrderDrawer({ isOpen, onClose, packagesData, userinfo }) {
                   <h1 className="font-semibold text-[18px]">
                     {packagesData.name}
                   </h1>{" "}
-                  <span>PKR {Currency(packagesData.price, GigQuantity)}</span>
+                  <span>PKR {Currency(packagesData?.price, GigQuantity)}</span>
                 </div>
                 <p className="pb-[30px] pt-[3px] text-[ text-[#404145]  border-b-[1px] border-gray-300 border-solid">
-                  {packagesData.desc}
+                  {packagesData?.desc}
                 </p>
                 <div className="flex justify-between items-center text-[#404145]">
                   <span className="py-4">Gig Quantity</span>

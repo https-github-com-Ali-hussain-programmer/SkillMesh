@@ -16,6 +16,7 @@ const config: Config = {
         "secondary-white": "#c7c7c7",
         "dark-black": "#11113A",
         "dark-blue": "#040D21",
+     
       },
       screens: {
         sm: "640px",

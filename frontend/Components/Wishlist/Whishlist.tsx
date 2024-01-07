@@ -7,34 +7,32 @@ import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 interface GigCardProps {
   id: number;
-  img: string;
-  pp: string;
-  title: string;
   price: number;
   star: number;
-  username: string;
   ordersCompleted: number;
   category: string;
   subcategory: string;
+  username: string;
+  userid: string;
+  profileImg: any;
 }
 function Whishlist({
   id,
-  img,
-  pp,
-  title,
-  price,
+  profileImg,
   star,
   username,
+  userid,
   ordersCompleted,
+  price,
   category,
   subcategory,
 }: GigCardProps) {
   const dispatch = useDispatch();
   return (
     <>
-      <div className=" cursor-pointer h-fit text-[#404145]  p-2 border-b-[1px] border-solid  border-gray-300 flex   items-center flex-row ">
+      <Link  href={`/profilePage?id=${userid}`} className=" cursor-pointer h-fit text-[#404145]  p-2 border-b-[1px] border-solid  border-gray-300 flex   items-center flex-row ">
         <img
-          src={pp}
+          src={profileImg}
           alt="error"
           className="h-[40px] w-[40px] object-cover rounded-full"
         />
@@ -65,7 +63,7 @@ function Whishlist({
             </span>
           </div>
         </div>
-      </div>
+      </Link>
     </>
   );
 }
