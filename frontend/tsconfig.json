@@ -39,7 +39,8 @@
     "app/(routes)/gig/page.jsx",
     "Components/Gig/GigReviews.jsx",
     "Components/Wishlist/Whishlistmodal.jsx",
-    "Components/Home/PlatformFeatures.jsx"
-, "app/(routes)/profilePage/page.jsx", "Components/profilePage/Skills.jsx", "Components/profilePage/Language.jsx", "Components/profilePage/Education.jsx", "Components/profilePage/Desc.jsx", "Components/profilePage/Certification.jsx", "Components/Home/Hero.jsx", "Components/index.jsx", "Components/Order/Orderlist.jsx", "Components/Order/Ordersmodal.jsx"  ],
+    "Components/Home/PlatformFeatures.jsx",
+ "app/(routes)/GigCreation/Overview/page.jsx",
+"app/(routes)/profilePage/page.jsx", "Components/profilePage/Skills.jsx", "Components/profilePage/Language.jsx", "Components/profilePage/Education.jsx", "Components/profilePage/Desc.jsx", "Components/profilePage/Certification.jsx", "Components/Home/Hero.jsx", "Components/index.jsx", "Components/Order/Orderlist.jsx", "Components/Order/Ordersmodal.jsx"  ],
   "exclude": ["node_modules"]
 }
