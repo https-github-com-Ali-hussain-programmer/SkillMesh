@@ -9,7 +9,7 @@ import type { Metadata } from "next";
 import LoaderHandler from "../utils/LoaderHandler";
 import FormProvider from "@/context/Form";
 export const metadata: Metadata = {
-  title: "SkillMesh |  Web3 FreeLancing ",
+  title: "SkillMesh |  Web3.0 FreeLancing ",
   description: "This is Home page for SkillMesh",
 };
 const roboto = Roboto({
