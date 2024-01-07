@@ -30,7 +30,7 @@ const Desc = () => {
           className="mx-8 w-[900px] py-4 px-7 border-[1px] text-[18px]"
           placeholder="About Gig"
         ></textarea>
-        <p className="flex justify-end mr-[72px] text-red-600">
+        <p className="flex justify-end mr-[70px] text-red-600">
           {title.length} / 1200 characters
         </p>
       </div>
