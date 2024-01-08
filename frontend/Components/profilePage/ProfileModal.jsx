@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import MetaMask from "../../public/MetaMask.png";
 import { Logout } from "../../Api/userApi";
+import  Link from "next/link";
+
 function ProfileModal() {
   const currentUser = useSelector((state) => state.user.userData);
   const shortAddress = (fullAddress) => {
@@ -38,10 +40,10 @@ function ProfileModal() {
           </h1>
         </div>
         <div className=" hover:text-[#46CE7E] cursor-pointer py-2 text-[#36383F] text-sm border-b-[0.5px] border-solid border-[#e2e8f0]">
-          My Profile
+          <Link href="/profile"> My Profile</Link>
         </div>
         <div className=" hover:text-[#46CE7E] cursor-pointer py-2 text-[#36383F] text-sm border-b-[0.5px] border-solid border-[#e2e8f0]">
-          Become a Seller
+          {currentUser?.isSeller ? "My Gigs" : "Become a Seller"}
         </div>
         <div
           onClick={handleLogout}

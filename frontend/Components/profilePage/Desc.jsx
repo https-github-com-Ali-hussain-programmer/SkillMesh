@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 
-const Desc = ({ desc }) => {
+const Desc = ({ desc, handleUpdate }) => {
   const [showBlock, setShowBlock] = useState(false);
   const [showParagraph, setShowParagraph] = useState(true);
+  const [description, setDescription] = useState("");
   const showdescription = () => {
     setShowBlock(true);
     setShowParagraph(false);
@@ -11,6 +12,10 @@ const Desc = ({ desc }) => {
   const disabledesc = () => {
     setShowBlock(false);
     setShowParagraph(true);
+  };
+  const handleDescription = (e) => {
+    const { value } = e.target;
+    setDescription(value);
   };
 
   return (
@@ -25,7 +30,7 @@ const Desc = ({ desc }) => {
         </button>
       </div>
       {showParagraph && (
-        <p className="text-[17px] font-[500] text-gray-500  px-[26px] py-5 text-justify">
+        <p className="text-sm font-[500] text-gray-500  px-[26px] py-5 text-justify">
           {desc}
         </p>
       )}
@@ -37,6 +42,7 @@ const Desc = ({ desc }) => {
             id=""
             cols={50}
             rows={5}
+            onChange={handleDescription}
             placeholder="Please tell us about any hobbies, additional expertise, or anything else you'd like to add."
           ></textarea>
           <div className="flex flex-row justify-center gap-5 py-4 border-t-[1px] border-dark-black mt-3">
@@ -46,13 +52,20 @@ const Desc = ({ desc }) => {
             >
               Cancel
             </button>
-            <button className=" bg-dark-black text-white py-2 px-[65px] text-[18px] font-bold rounded-md hover:bg-black">
+            <button
+              onClick={() => {
+                handleUpdate({ description });
+                setShowBlock(false);
+                setShowParagraph(true);
+              }}
+              className=" bg-dark-black text-white py-2 px-[65px] text-[18px] font-bold rounded-md hover:bg-black"
+            >
               Update
             </button>
           </div>
         </div>
       )}
-      <div className=" border  border-gray-300  font-normal mx-3 my-3"></div>
+      <div className="border-b-[0.5px] border-solid border-[#e2e8f0] font-normal mx-3 my-3"></div>
     </div>
   );
 };

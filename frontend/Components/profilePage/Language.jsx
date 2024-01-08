@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import CreateOutlinedIcon from "@mui/icons-material/CreateOutlined";
 
-const Language = ({ languages }) => {
+const Language = ({ languages ,handleUpdate}) => {
   const [showBlock, setShowBlock] = useState(false);
   const [showParagraph, setShowParagraph] = useState(true);
   const [showEdit, setShowEdit] = useState(false);
@@ -82,7 +82,7 @@ const Language = ({ languages }) => {
           </div>
         </div>
       )}
-      <div className=" border  border-gray-300  font-normal mx-3 my-3"></div>
+      <div className=" border-b-[0.5px] border-solid border-[#e2e8f0]  font-normal mx-3 my-3"></div>
     </div>
   );
 };

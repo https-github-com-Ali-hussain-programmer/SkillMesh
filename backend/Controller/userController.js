@@ -38,3 +38,41 @@ exports.Logout = async (req, res) => {
   res.clearCookie("token");
   res.status(200).send("200");
 };
+exports.profile = async (req, res) => {
+  try {
+    const { id } = req.body;
+
+    const existingUser = await User.findOne({ _id: id });
+    if (existingUser) {
+      return res
+        .status(200)
+        .cookie("token", token, options)
+        .json({ success: true, user: existingUser, message: "User Found" });
+    } else {
+      res.status(404).json({ success: false, message: "User Not Found" });
+    }
+  } catch (error) {
+    console.error("Error in Login:", error);
+    return res.status(500).json({ error: "Server Error" });
+  }
+};
+exports.updateProfile = async (req, res) => {
+  try {
+    const { id, item } = req.body;  
+    const key = Object.keys(item);
+    const updatedField = await User.findByIdAndUpdate(
+      id,
+      { $set: { ...item } },
+      { new: true }
+    ).select(key[0]);
+  
+    return res.status(200).json({
+      success: true,
+      updatedField,
+      messgae: "Successfully Updated Field",
+    });
+  } catch (error) {
+    console.error("Error in Update:", error);
+    return res.status(500).json({ error: "Server Error" });
+  }
+};

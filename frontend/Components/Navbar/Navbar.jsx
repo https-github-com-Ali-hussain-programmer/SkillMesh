@@ -30,7 +30,6 @@ const Navbar = () => {
   const WhishlistRef = useRef(null);
   const WhishlistButtonRef = useRef(null);
   const profileRef = useRef(null);
-
   const buttonRef = useRef(null);
   const order = useSelector((state) => state.orderlist.orderPlaced);
   const currentUser = useSelector((state) => state.user.userData);

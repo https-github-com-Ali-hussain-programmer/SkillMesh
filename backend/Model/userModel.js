@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const crypto = require("crypto");
 const jwt = require("jsonwebtoken");
 const userSchema = new mongoose.Schema({
   name: {
@@ -25,6 +24,7 @@ const userSchema = new mongoose.Schema({
   },
   description: {
     type: String,
+    default:"show yourself to the world"
   },
   isSeller: {
     type: Boolean,
@@ -38,6 +38,7 @@ const userSchema = new mongoose.Schema({
   },
   country: {
     type: String,
+    default:"United States"
   },
   education: {
     type: [String],

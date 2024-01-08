@@ -10,8 +10,12 @@ const userSlice = createSlice({
     setUserData: (state, action) => {
       state.userData = action.payload.info;
     },
+    updateField: (state, action) => {
+      const keys = Object.keys(action.payload.updatedField);
+      state.userData[keys[1]] = action.payload.updatedField[keys[1]];
+    },
   },
 });
 
-export const { setUserData } = userSlice.actions;
+export const { setUserData, updateField } = userSlice.actions;
 export default userSlice.reducer;

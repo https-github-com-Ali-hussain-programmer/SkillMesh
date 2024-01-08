@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Certification = ({ certifications }) => {
+const Certification = ({ certifications ,handleUpdate}) => {
   const [showBlock, setShowBlock] = useState(false);
   const [showParagraph, setShowParagraph] = useState(true);
   const showdescription = () => {

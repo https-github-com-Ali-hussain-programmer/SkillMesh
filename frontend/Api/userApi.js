@@ -67,3 +67,33 @@ export const Logout = async () => {
   const data = response.json();
   return data;
 };
+
+export const fetchProfileData = async (id, signal) => {
+  const response = await fetch(baseUrl + `/profile`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+    signal: signal,
+    body: JSON.stringify({ id }),
+  });
+  const data = response.json();
+  return data;
+};
+
+export const updateProfileData=async(id,item,signal)=>{
+  const response = await fetch(baseUrl + `/update/profile`, {
+    method: "PATCH",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+    signal: signal,
+    body: JSON.stringify({ id,item }),
+  });
+  const data = response.json();
+  return data;
+};
