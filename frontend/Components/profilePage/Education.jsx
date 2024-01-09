@@ -1,18 +1,28 @@
 import React, { useState } from "react";
 
-const Education = ({ education ,handleUpdate}) => {
+const Education = ({ education, handleUpdate }) => {
   const [showBlock, setShowBlock] = useState(false);
   const [showParagraph, setShowParagraph] = useState(true);
+  const [Education, setEducation] = useState({
+    country: "",
+    college: "",
+    title: "",
+    yearOfEducation: "",
+  });
   const showdescription = () => {
     setShowBlock(true);
     setShowParagraph(false);
   };
-
   const disabledesc = () => {
     setShowBlock(false);
     setShowParagraph(true);
   };
-
+  const handleChange = (e) => {
+    const { value, name } = e.target;
+    setEducation((prev) => {
+      return { ...prev, [name]: value };
+    });
+  };
   return (
     <div className="education">
       <div className="flex flex-row justify-between px-[26px]">
@@ -28,16 +38,35 @@ const Education = ({ education ,handleUpdate}) => {
         <div className="flex flex-col gap-3 py-3 px-[26px] ">
           {education?.map((e, index) => {
             return (
-              <div
-                className="text-sm font-[500] text-gray-500 flex-col flex gap-3 "
-                key={index}
-              >
-                <h1 className="font-bold text-[17px] w-full">{e?.level}</h1>
-                <div className="flex justify-between items-center">
-                  {" "}
-                  <span>{e?.institution}</span>
-                  <span>{e?.location}</span>
-                  <span> {e?.duration}</span>
+              <div className=" text-[17px] flex-col flex gap-3 " key={index}>
+                <div className="flex items-center gap-2">
+                  <span className=" font-[500] text-gray-500">Degree-</span>
+                  <span className="text-[#333333] font-bold">{e?.title}</span>
+                </div>
+                <div className="flex flex-col gap-2">
+                  <div className="flex items-center gap-2">
+                    <span className=" font-[500] text-gray-500">
+                      Institute-
+                    </span>
+                    <span className="text-[#333333] font-bold">
+                      {e?.college}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className=" font-[500] text-gray-500">Country-</span>
+                    <span className="text-[#333333] font-bold">
+                      {e?.country}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className=" font-[500] text-gray-500">
+                      Year Of Education-
+                    </span>
+                    <span className="text-[#333333] font-bold">
+                      {" "}
+                      {e?.yearOfEducation}
+                    </span>
+                  </div>
                 </div>
               </div>
             );
@@ -51,21 +80,29 @@ const Education = ({ education ,handleUpdate}) => {
             type="text"
             placeholder="Country Name"
             className="mt-5 w-[400px] py-2 px-2 text-[18px]"
+            name="country"
+            onChange={handleChange}
           />
           <input
             type="text"
             placeholder="Collage(institute) Name"
             className="mt-5 w-[400px] py-2 px-2 text-[18px]"
+            name="college"
+            onChange={handleChange}
           />
           <input
             type="text"
             placeholder="Title (e.g. BSCS)"
             className="mt-5 w-[400px] py-2 px-2 text-[18px]"
+            name="title"
+            onChange={handleChange}
           />
           <input
             type="text"
             placeholder="Year of Graduation"
             className="mt-5 w-[400px] py-2 px-2 text-[18px]"
+            name="yearOfEducation"
+            onChange={handleChange}
           />
 
           <div className="flex flex-row justify-center gap-5 py-4 border-t-[1px] border-dark-black mt-3">
@@ -75,7 +112,27 @@ const Education = ({ education ,handleUpdate}) => {
             >
               Cancel
             </button>
-            <button className=" bg-dark-black text-white py-2 px-[65px] text-[18px] font-bold rounded-md hover:bg-black">
+            <button
+              onClick={() => {
+                handleUpdate({
+                  education: {
+                    country: Education.country,
+                    college: Education.college,
+                    title: Education.title,
+                    yearOfEducation: Education.yearOfEducation,
+                  },
+                });
+                setShowBlock(false);
+                setShowParagraph(true);
+                setEducation({
+                  country: "",
+                  college: "",
+                  title: "",
+                  yearOfEducation: "",
+                });
+              }}
+              className=" bg-dark-black text-white py-2 px-[65px] text-[18px] font-bold rounded-md hover:bg-black"
+            >
               Update
             </button>
           </div>

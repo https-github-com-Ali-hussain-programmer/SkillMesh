@@ -230,7 +230,7 @@ const Hero = () => {
             </div>
           </div>
           {currentUser ? (
-            <div className="rounded-[16px] bg-[#fffe7a]  w-[430px] showStatus p-4  flex flex-col gap-3 border-[#E2E8F0] border-solid border-2 ">
+            <div className="rounded-[16px] bg-[#fbbf06]  w-[430px] showStatus p-4  flex flex-col gap-3 border-[#E2E8F0] border-solid border-2 ">
               <h1 className="w-full p-2  bg-[#f5f5f7]  font-bold text-[#6c6f7f] mb-2 text-center">
                 Account 's Information
               </h1>
@@ -245,7 +245,7 @@ const Hero = () => {
                 <div className="flex items-center gap-2 p-1">
                   <div className="w-[6px] h-[6px] rounded-full bg-[#46CE7E]"></div>
                   <span className="text-[#2f3037] text-sm font-[500] ">
-                    Ethereum{" "}
+                    Polygon{" "}
                   </span>
                 </div>
               </div>

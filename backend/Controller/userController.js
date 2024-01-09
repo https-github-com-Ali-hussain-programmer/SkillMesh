@@ -2,6 +2,7 @@ const crypto = require("crypto");
 const ethers = require("ethers");
 const jwt = require("jsonwebtoken");
 const User = require("../Model/userModel");
+const mongoose = require("mongoose");
 
 exports.generateNonce = async (req, res) => {
   const nonce = crypto.randomBytes(32).toString("hex");
@@ -55,21 +56,35 @@ exports.profile = async (req, res) => {
     console.error("Error in Login:", error);
     return res.status(500).json({ error: "Server Error" });
   }
-};
+}; 
 exports.updateProfile = async (req, res) => {
+ 
   try {
-    const { id, item } = req.body;  
+    const { id, item } = req.body;
+    console.log("item",item)
     const key = Object.keys(item);
-    const updatedField = await User.findByIdAndUpdate(
-      id,
-      { $set: { ...item } },
-      { new: true }
-    ).select(key[0]);
-  
+    var updatedField=""
+    const isArray =
+      User.schema.path(key[0]) instanceof mongoose.Schema.Types.Array;
+      console.log(isArray)
+    if (isArray) {
+       updatedField = await User.findByIdAndUpdate(
+        id,
+        { $push: { [key[0]]: item[key[0]] } },
+        { new: true }
+      ).select(key[0]);
+    } else {
+       updatedField = await User.findByIdAndUpdate(
+        id,
+        { $set: { ...item } },
+        { new: true }
+      ).select(key[0]);
+    }
+    console.log("updatedField",updatedField)
     return res.status(200).json({
       success: true,
       updatedField,
-      messgae: "Successfully Updated Field",
+      message: "Successfully Updated Field",
     });
   } catch (error) {
     console.error("Error in Update:", error);

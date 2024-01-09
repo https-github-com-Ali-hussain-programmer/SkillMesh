@@ -21,6 +21,8 @@ const ProfilePage = () => {
   const { id } = useSearchParams();
   const currentUser = useSelector((state) => state.user.userData);
   const [profileData, setProfileData] = useState(currentUser);
+  const [showName, setshowName] = useState(false);
+  const [changeName, setChangeName] = useState("");
   const [abortController, setAbortController] = useState(null);
   const dispatch = useDispatch();
 
@@ -35,6 +37,9 @@ const ProfilePage = () => {
     dispatch(updateField({ updatedField: data.updatedField }));
     abortController.abort();
   }, []);
+  const disabledesc = () => {
+    setshowName(false);
+  };
 
   useEffect(() => {
     if (id) {
@@ -85,7 +90,7 @@ const ProfilePage = () => {
     ).format(memberSinceDate);
     return formattedMemberSince;
   };
-
+  const handleChange = () => {};
   return (
     <>
       <div className=" min-h-screen bg-gray-200 pt-[30px] pb-[200px] px-5">
@@ -97,11 +102,50 @@ const ProfilePage = () => {
                 src={avatar || ""}
                 alt="error"
               />
-              <div className="flex flex-row gap-2 items-center">
-                <h1 className="text-[20px] font-[600] hover:cursor-pointer hover:underline">
-                  {name}
-                </h1>
-                <CreateOutlinedIcon className="text-[16px] mt-2 text-gray-400 hover:cursor-pointer" />
+              <div className="flex flex-col gap-4 items-center">
+                <div className="flex flex-row gap-2 items-center">
+                  {" "}
+                  <h1 className="text-[20px] font-[600] hover:cursor-pointer hover:underline">
+                    {name}
+                  </h1>
+                  <CreateOutlinedIcon
+                    className="text-[18px] mt-2 text-gray-400 hover:cursor-pointer"
+                    onClick={() => {
+                      setshowName(true);
+                    }}
+                  />
+                </div>
+
+                {showName && (
+                  <div className="mr-2 ml-2 mb-5 bg-gray-200  px-[15px] mt-2 border-[1px] border-current rounded-md">
+                    <input
+                      type="text"
+                      placeholder="Enter New Name"
+                      onChange={(e) => {
+                        const { value } = e.target;
+                        setChangeName(value);
+                      }}
+                      className="mt-5 w-[400px] py-2 px-2 text-[18px]"
+                    />
+                    <div className="flex flex-row justify-center gap-6 py-3 border-t-[1px] border-dark-black mt-3">
+                      <button
+                        onClick={disabledesc}
+                        className="bg-white py-1 px-[40px] text-sm text-gray-400 font-bold rounded-md border-[1px] border-current hover:bg-dark-black hover:text-white"
+                      >
+                        Cancel
+                      </button>
+                      <button
+                        onClick={() => {
+                          handleUpdate({ name: changeName });
+                          setshowName(false);
+                        }}
+                        className=" bg-dark-black text-white py-1 px-[40px] text-sm font-bold rounded-md hover:bg-black"
+                      >
+                        Update
+                      </button>
+                    </div>
+                  </div>
+                )}
               </div>
               <div className="flex flex-col items-center">
                 <h1 className="text-gray-400 py-1 text-sm ">{address || ""}</h1>

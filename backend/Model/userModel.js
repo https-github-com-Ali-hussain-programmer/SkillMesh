@@ -31,20 +31,20 @@ const userSchema = new mongoose.Schema({
     default: false,
   },
   skills: {
-    type: [String],
+    type: [Object],
   },
   languages: {
-    type: [String],
+    type: [Object],
   },
   country: {
     type: String,
     default:"United States"
   },
   education: {
-    type: [String],
+   type: [Object],
   },
   certifications: {
-    type: [String],
+    type: [Object],
   },
   memberSince: {
     type: Date,

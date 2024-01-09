@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import CreateOutlinedIcon from "@mui/icons-material/CreateOutlined";
 
-const Language = ({ languages ,handleUpdate}) => {
+const Language = ({ languages, handleUpdate }) => {
   const [showBlock, setShowBlock] = useState(false);
   const [showParagraph, setShowParagraph] = useState(true);
   const [showEdit, setShowEdit] = useState(false);
+  const [languageName, setLanguageName] = useState("");
+  const [level, setLevel] = useState("Basic");
   const showdescription = () => {
     setShowBlock(true);
     setShowParagraph(false);
@@ -41,11 +43,8 @@ const Language = ({ languages ,handleUpdate}) => {
         >
           {languages?.map((l, index) => {
             return (
-              <p
-                className="text-[17px] font-[500] text-gray-500  "
-                key={index}
-              >
-                {l} - <span className="text-gray-300">Basic</span>
+              <p className="text-[17px] font-[500] text-gray-500 flex items-center gap-2 " key={index}>
+                {l.languageName} - <span className="text-[#333333] font-bold ">{l.level}</span>
               </p>
             );
           })}
@@ -61,13 +60,23 @@ const Language = ({ languages ,handleUpdate}) => {
           <input
             type="text"
             placeholder="Add Language"
+            onChange={(e) => {
+              const { value } = e.target;
+              setLanguageName(value);
+            }}
             className="mt-5 w-[400px] py-2 px-2 text-[18px]"
           />
-          <input
-            type="text"
-            placeholder="Language Level e.g Basic, Fluent Conversational"
+          <select
             className="mt-5 w-[400px] py-2 px-2 text-[18px]"
-          />
+            onChange={(e) => {
+              const { value } = e.target;
+              setLevel(value);
+            }}
+          >
+            <option value="Basic">Basic</option>
+            <option value="Fluent">Fluent</option>
+            <option value="Conversational">Conversational</option>
+          </select>
 
           <div className="flex flex-row justify-center gap-6 py-4 border-t-[1px] border-dark-black mt-3">
             <button
@@ -76,7 +85,16 @@ const Language = ({ languages ,handleUpdate}) => {
             >
               Cancel
             </button>
-            <button className=" bg-dark-black text-white py-2 px-[65px] text-[18px] font-bold rounded-md hover:bg-black">
+            <button
+              onClick={() => {
+                handleUpdate({ languages: { languageName, level } });
+                setShowBlock(false);
+                setShowParagraph(true);
+                setLevel("Basic")
+                setLanguageName("")
+              }}
+              className=" bg-dark-black text-white py-2 px-[65px] text-[18px] font-bold rounded-md hover:bg-black"
+            >
               Update
             </button>
           </div>

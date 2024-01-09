@@ -1,8 +1,13 @@
 import React, { useState } from "react";
 
-const Certification = ({ certifications ,handleUpdate}) => {
+const Certification = ({ certifications, handleUpdate }) => {
   const [showBlock, setShowBlock] = useState(false);
   const [showParagraph, setShowParagraph] = useState(true);
+  const [CertificationsDetail, setCertficationsDetail] = useState({
+    certificateName: "",
+    platform: "",
+    certficateDate: "",
+  });
   const showdescription = () => {
     setShowBlock(true);
     setShowParagraph(false);
@@ -12,7 +17,12 @@ const Certification = ({ certifications ,handleUpdate}) => {
     setShowBlock(false);
     setShowParagraph(true);
   };
-
+  const handleChange = (e) => {
+    const { value, name } = e.target;
+    setCertficationsDetail((prev) => {
+      return { ...prev, [name]: value };
+    });
+  };
   return (
     <div className="certification">
       <div className=" flex flex-row justify-between px-[26px]">
@@ -25,15 +35,44 @@ const Certification = ({ certifications ,handleUpdate}) => {
         </button>
       </div>
       {showParagraph && (
-        <div className="flex items-center gap-2  px-[26px] ">
-          {certifications?.map((c, index) => {
+        <div className="flex items-center gap-2  px-[26px] mt-3 ">
+          {certifications?.map((e, index) => {
             return (
-              <p
-                className="text-[18px] font-[500] text-gray-500  py-5"
-                key={index}
-              >
-                {c}
-              </p>
+              <>
+                <div className=" text-[17px] flex-col flex gap-3 " key={index}>
+                  <div className="flex items-center gap-2">
+                    <span className=" font-[500] text-gray-500">
+                      {" "}
+                      Certificate-
+                    </span>
+                    <span className="text-[#333333] font-bold">
+                      {e?.certificateName}
+                    </span>
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <div className="flex items-center gap-2">
+                      <span className=" font-[500] text-gray-500">
+                        Platform-
+                      </span>
+                      <span className="text-[#333333] font-bold">
+                        {e?.platform}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className=" font-[500] text-gray-500">
+                        Certificate Date-
+                      </span>
+                      <span className="text-[#333333] font-bold">
+                        {e?.certficateDate}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className=" font-[500] text-gray-500">Proof-</span>
+                      <span className="text-[#333333] font-bold"> </span>
+                    </div>
+                  </div>
+                </div>
+              </>
             );
           })}
         </div>
@@ -45,16 +84,22 @@ const Certification = ({ certifications ,handleUpdate}) => {
             type="text"
             placeholder="Certificate or Award"
             className="mt-5 w-[400px] py-2 px-2 text-[18px]"
+            onChange={handleChange}
+            name="certificateName"
           />
           <input
             type="text"
             placeholder="Certified From (E.G. coursera)"
             className="mt-5 w-[400px] py-2 px-2 text-[18px]"
+            onChange={handleChange}
+            name="platform"
           />
           <input
             type="text"
             placeholder="Year"
             className="mt-5 w-[200px] py-2 px-2 text-[18px]"
+            onChange={handleChange}
+            name="certficateDate"
           />
 
           <div className="flex flex-row justify-center gap-5 py-4 border-t-[1px] border-dark-black mt-3">
@@ -64,7 +109,25 @@ const Certification = ({ certifications ,handleUpdate}) => {
             >
               Cancel
             </button>
-            <button className=" bg-dark-black text-white py-2 px-[65px] text-[18px] font-bold rounded-md hover:bg-black">
+            <button
+              onClick={() => {
+                handleUpdate({
+                  certifications: {
+                    certificateName: CertificationsDetail.certificateName,
+                    platform: CertificationsDetail.platform,
+                    certficateDate: CertificationsDetail.certficateDate,
+                  },
+                });
+                setShowBlock(false);
+                setShowParagraph(true);
+                setCertficationsDetail({
+                  certificateName: "",
+                  platform: "",
+                  certficateDate: "",
+                });
+              }}
+              className=" bg-dark-black text-white py-2 px-[65px] text-[18px] font-bold rounded-md hover:bg-black"
+            >
               Update
             </button>
           </div>

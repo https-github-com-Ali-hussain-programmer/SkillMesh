@@ -4,6 +4,8 @@ import CreateOutlinedIcon from "@mui/icons-material/CreateOutlined";
 const Skills = ({ skills ,handleUpdate}) => {
   const [showBlock, setShowBlock] = useState(false);
   const [showParagraph, setShowParagraph] = useState(true);
+  const [skillName, setSkillName] = useState("");
+  const [level, setLevel] = useState("Beginner");
   const showdescription = () => {
     setShowBlock(true);
     setShowParagraph(false);
@@ -34,7 +36,7 @@ const Skills = ({ skills ,handleUpdate}) => {
                 className="text-[17px] font-[500] text-gray-500  "
               >
                 {" "}
-                {s}{" "}
+                {s.skillName} - <span className="text-[#333333] font-bold">{s.level}</span>
               </p>
             );
           })}
@@ -46,13 +48,24 @@ const Skills = ({ skills ,handleUpdate}) => {
           <input
             type="text"
             placeholder="Add Skill (e.g. Voice Talent)"
+            onChange={(e) => {
+              const { value } = e.target;
+              setSkillName(value);
+            }}
             className="mt-5 w-[400px] py-2 px-2 text-[18px]"
           />
-          <input
-            type="text"
-            placeholder="Experience Level e.g Beginner, intermediate, Expert"
+          <select
             className="mt-5 w-[400px] py-2 px-2 text-[18px]"
-          />
+            onChange={(e) => {
+              const { value } = e.target;
+              setLevel(value);
+  
+            }}
+          >
+            <option value="Beginner">Beginner</option>
+            <option value="Intermediate">Intermediate</option>
+            <option value="Advanced">Advanced</option>
+          </select>
 
           <div className="flex flex-row justify-center gap-5 py-4 border-t-[1px] border-dark-black mt-3">
             <button
@@ -61,7 +74,13 @@ const Skills = ({ skills ,handleUpdate}) => {
             >
               Cancel
             </button>
-            <button className=" bg-dark-black text-white py-2 px-[65px] text-[18px] font-bold rounded-md hover:bg-black">
+            <button className=" bg-dark-black text-white py-2 px-[65px] text-[18px] font-bold rounded-md hover:bg-black" onClick={()=>{
+              handleUpdate({skills:{skillName,level}})
+              setShowBlock(false)
+              setShowParagraph(true);
+              setLevel("Beginner")
+              setSkillName("")
+            }}>
               Update
             </button>
           </div>

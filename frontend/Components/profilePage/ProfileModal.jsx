@@ -28,7 +28,7 @@ function ProfileModal() {
           <div className="flex items-center gap-2 p-1">
             <div className="w-[6px] h-[6px] rounded-full bg-[#46CE7E]"></div>
             <span className="text-[#2f3037] text-sm font-[500] ">
-              Ethereum{" "}
+              Polygon{" "}
             </span>
           </div>
         </div>
