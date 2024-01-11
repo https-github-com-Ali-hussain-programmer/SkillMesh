@@ -3,6 +3,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
 import seller from "../../../public/seller.jpg";
 import CreateOutlinedIcon from "@mui/icons-material/CreateOutlined";
+import { GrUpdate } from "react-icons/gr";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import PersonIcon from "@mui/icons-material/Person";
 import Desc from "@/Components/profilePage/Desc";
@@ -16,6 +17,8 @@ import { useSearchParams } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProfileData, updateProfileData } from "@/Api/userApi";
 import { updateField } from "../../../redux/slice/userSlice";
+import { countries } from "../../../utils/data";
+import ReactFlagsSelect from "react-flags-select";
 
 const ProfilePage = () => {
   const { id } = useSearchParams();
@@ -24,7 +27,10 @@ const ProfilePage = () => {
   const [showName, setshowName] = useState(false);
   const [changeName, setChangeName] = useState("");
   const [abortController, setAbortController] = useState(null);
+  const [showCountry, setshowCountry] = useState(false);
   const dispatch = useDispatch();
+  const [select, setSelect] = useState("SE");
+  const onSelect = (code) => setSelect(code);
 
   const handleUpdate = useCallback(async (updatedField) => {
     const abortController = new AbortController();
@@ -90,7 +96,6 @@ const ProfilePage = () => {
     ).format(memberSinceDate);
     return formattedMemberSince;
   };
-  const handleChange = () => {};
   return (
     <>
       <div className=" min-h-screen bg-gray-200 pt-[30px] pb-[200px] px-5">
@@ -151,14 +156,64 @@ const ProfilePage = () => {
                 <h1 className="text-gray-400 py-1 text-sm ">{address || ""}</h1>
               </div>
 
-              <button className=" w-full sn font-semibold border-[1px] py-1 mt-4 rounded-md border-current mb-8 hover:bg-gray-400 hover:border-gray-400 hover:text-white duration-500">
+              <button className=" w-full  font-semibold border-[1px] py-1 mt-4 rounded-md border-current mb-8 hover:bg-gray-400 hover:border-gray-400 hover:text-white duration-500">
                 Preview SkillMesh Profile
               </button>
-              <div className=" border-t border-gray-300 flex flex-row justify-between  w-full py-4 pt-5">
-                <LocationOnIcon />
-                <h3 className="">From</h3>
-                <h3> {country}</h3>
+              <div className=" border-t border-gray-300 flex flex-col gap-2  w-full py-4 pt-5">
+                <div className=" flex flex-row justify-between items-center w-full py-4 pt-5">
+                  {" "}
+                  <h3 className="">From</h3>
+                  <div className="flex items-center gap-2">
+                    {" "}
+                    <LocationOnIcon className="text-[18px]  hover:cursor-pointer" />
+                    <span>{country}</span>
+                    <span class="flag-icon flag-icon-US"></span>
+                    <span class="flag-icon flag-icon-gr flag-icon-squared"></span>
+                    <GrUpdate
+                      className="text-[15px]  text-gray-400 hover:cursor-pointer"
+                      onClick={() => {
+                        setshowCountry(true);
+                      }}
+                    />
+                  </div>
+                </div>
+
+                {showCountry && (
+                  <div>
+                    <div>
+                      <ReactFlagsSelect
+                        selected={select}
+                        onSelect={onSelect}
+                        countries={Object.keys(countries)}
+                        placeholder={"Select Country"}
+                        searchable={true}
+                        searchPlaceholder={"Search Countries"}
+                      />
+                    </div>
+                    <div className="flex flex-row justify-center gap-6 py-3 border-t-[1px] border-dark-black mt-3">
+                      <button
+                        onClick={() => {
+                          setshowCountry(false);
+                        }}
+                        className="bg-white py-1 px-[40px] text-sm text-gray-400 font-bold rounded-md border-[1px] border-current hover:bg-dark-black hover:text-white"
+                      >
+                        Cancel
+                      </button>
+                      <button
+                        onClick={() => {
+                          handleUpdate({ country: countries[select] });
+                          setshowCountry(false);
+                          setSelect("");
+                        }}
+                        className=" bg-dark-black text-white py-1 px-[40px] text-sm font-bold rounded-md hover:bg-black"
+                      >
+                        Update
+                      </button>
+                    </div>
+                  </div>
+                )}
               </div>
+
               <div className="flex flex-row justify-between  w-full py-4 ">
                 <PersonIcon />
                 <h3>Member since</h3>

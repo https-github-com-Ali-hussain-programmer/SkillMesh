@@ -61,12 +61,10 @@ exports.updateProfile = async (req, res) => {
  
   try {
     const { id, item } = req.body;
-    console.log("item",item)
     const key = Object.keys(item);
     var updatedField=""
     const isArray =
       User.schema.path(key[0]) instanceof mongoose.Schema.Types.Array;
-      console.log(isArray)
     if (isArray) {
        updatedField = await User.findByIdAndUpdate(
         id,
@@ -80,7 +78,6 @@ exports.updateProfile = async (req, res) => {
         { new: true }
       ).select(key[0]);
     }
-    console.log("updatedField",updatedField)
     return res.status(200).json({
       success: true,
       updatedField,

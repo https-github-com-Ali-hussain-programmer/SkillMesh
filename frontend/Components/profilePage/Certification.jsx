@@ -67,7 +67,7 @@ const Certification = ({ certifications, handleUpdate }) => {
                       </span>
                     </div>
                     <div className="flex items-center gap-2">
-                      <span className=" font-[500] text-gray-500">Proof-</span>
+                      <span className=" font-[500] text-gray-500">Proof</span>
                       <span className="text-[#333333] font-bold"> </span>
                     </div>
                   </div>
