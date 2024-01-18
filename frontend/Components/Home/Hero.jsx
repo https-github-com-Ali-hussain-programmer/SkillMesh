@@ -9,7 +9,7 @@ import { Radio, RadioGroup, Stack } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
 import MetaMask from "../../public/MetaMask.png";
 import { FaAddressCard } from "react-icons/fa";
-import Ethereum from "../../public/ethereum.svg";
+import polygon from "../../public/polygon.png";
 import { ethers } from "ethers";
 import { FaCopy } from "react-icons/fa";
 import { CopyToClipboard } from "react-copy-to-clipboard";
@@ -271,10 +271,10 @@ const Hero = () => {
                   </CopyToClipboard>
                 </div>
                 <div className="flex items-center gap-3">
-                  <img src={Ethereum.src} alt="error" className="h-[30px]" />{" "}
+                  <img src={polygon.src} alt="error" className="h-[30px]" />{" "}
                   <span className=" text-[#151619]">Account Balance :</span>
                   <h1 className="font-[400] font-lg text-[#151619] cursor-pointer">
-                    <span>{balance}ETH</span>
+                    <span>{balance} MATIC</span>
                   </h1>
                 </div>
               </div>

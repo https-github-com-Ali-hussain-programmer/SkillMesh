@@ -83,7 +83,7 @@ export const fetchProfileData = async (id, signal) => {
   return data;
 };
 
-export const updateProfileData=async(id,item,signal)=>{
+export const updateProfileData = async (id, item, signal) => {
   const response = await fetch(baseUrl + `/update/profile`, {
     method: "PATCH",
     headers: {
@@ -92,8 +92,41 @@ export const updateProfileData=async(id,item,signal)=>{
     },
     credentials: "include",
     signal: signal,
-    body: JSON.stringify({ id,item }),
+    body: JSON.stringify({ id, item }),
   });
   const data = response.json();
   return data;
+};
+export const updatePics = async (item, signal) => {
+  const response = await fetch(baseUrl + `/update/profile/pic`, {
+    method: "PATCH",
+    credentials: "include",
+    signal: signal,
+    body: item,
+  });
+  const data = response.json();
+  return data;
+};
+
+export const handleCertificationUpdate = async (item) => {
+  const response = await fetch(baseUrl + `/update/profile/certificate`, {
+    method: "PATCH",
+    credentials: "include",
+    body: item,
+  });
+  const data = response.json();
+  return data;
+};
+export const deleteCertification = async (id, index) => {
+  const data={id,index}
+  const response = await fetch(baseUrl + `/update/profile/deleteCertificate`, {
+    method: "PATCH",
+    credentials: "include",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  const d = response.json();
+  return d;
 };

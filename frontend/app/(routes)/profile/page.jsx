@@ -1,5 +1,5 @@
 "use client";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import seller from "../../../public/seller.jpg";
 import CreateOutlinedIcon from "@mui/icons-material/CreateOutlined";
@@ -15,7 +15,12 @@ import AddCircleIcon from "@mui/icons-material/AddCircle";
 import ProfileGig from "../../../Components/profilePage/ProfileGig";
 import { useSearchParams } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProfileData, updateProfileData } from "@/Api/userApi";
+import {
+  fetchProfileData,
+  updateProfileData,
+  updatePics,
+  handleCertificationUpdate,
+} from "@/Api/userApi";
 import { updateField } from "../../../redux/slice/userSlice";
 import { countries } from "../../../utils/data";
 import ReactFlagsSelect from "react-flags-select";
@@ -31,6 +36,10 @@ const ProfilePage = () => {
   const dispatch = useDispatch();
   const [select, setSelect] = useState("SE");
   const onSelect = (code) => setSelect(code);
+  const [tempUrl, setTempUrl] = useState(currentUser?.avatar);
+  const [profileUpdate, setprofileUpdate] = useState(false);
+  const [file, setFile] = useState(null);
+  const profileRef = useRef(null);
 
   const handleUpdate = useCallback(async (updatedField) => {
     const abortController = new AbortController();
@@ -96,6 +105,27 @@ const ProfilePage = () => {
     ).format(memberSinceDate);
     return formattedMemberSince;
   };
+  const handleProfile = async (e) => {
+    const { files } = e.target;
+    setFile(files[0]);
+    setTempUrl(URL.createObjectURL(files[0]));
+    setprofileUpdate(true);
+  };
+  const handlePicUpdate = async (fileParams, fieldName) => {
+    const formData = new FormData();
+    formData.append("images", fileParams);
+    formData.append("id", profileData._id);
+    formData.append("fieldName", fieldName);
+    const abortController = new AbortController();
+    setAbortController(abortController);
+    const data = await updatePics(formData, abortController.signal);
+    dispatch(updateField({ updatedField: data.updatedField }));
+    abortController.abort();
+  };
+  const handleCertitication = async (formData) => {
+    const data = await handleCertificationUpdate(formData);
+    dispatch(updateField({ updatedField: data.updatedField }));
+  };
   return (
     <>
       <div className=" min-h-screen bg-gray-200 pt-[30px] pb-[200px] px-5">
@@ -103,9 +133,43 @@ const ProfilePage = () => {
           <div className="flex-1  flex flex-col gap-14 items-center ">
             <div className="w-full bg-white border-[1px] border-gray-300 flex flex-col gap-4 items-center  p-8">
               <img
-                className="w-[100px] h-[100px] rounded-full object-cover border-4 border-green-500 border-solid"
-                src={avatar || ""}
+                className="w-[100px] h-[100px] rounded-full  border-4 border-green-500 border-solid"
+                src={tempUrl}
                 alt="error"
+                onClick={() => {
+                  profileRef.current.click();
+                }}
+              />
+              {profileUpdate && (
+                <div className="mr-2 ml-2 mb-5 bg-gray-200  px-[15px] mt-2 border-[1px] border-current rounded-md">
+                  <div className="flex flex-row justify-center gap-6 py-3 border-t-[1px] border-dark-black mt-3">
+                    <button
+                      onClick={() => {
+                        setprofileUpdate(false);
+                        setTempUrl(avatar);
+                      }}
+                      className="bg-white py-1 px-[40px] text-sm text-gray-400 font-bold rounded-md border-[1px] border-current hover:bg-dark-black hover:text-white"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      onClick={() => {
+                        handlePicUpdate(file, "avatar");
+                        setprofileUpdate(false);
+                      }}
+                      className="bg-dark-black text-white py-1 px-[40px] text-sm font-bold rounded-md hover:bg-black"
+                    >
+                      Update
+                    </button>
+                  </div>
+                </div>
+              )}
+              <input
+                type="file"
+                className="hidden"
+                ref={profileRef}
+                onChange={handleProfile}
+                accept="image/*"
               />
               <div className="flex flex-col gap-4 items-center">
                 <div className="flex flex-row gap-2 items-center">
@@ -234,7 +298,8 @@ const ProfilePage = () => {
               />
               <Certification
                 certifications={certifications || ""}
-                handleUpdate={handleUpdate}
+                handleUpdate={handleCertitication}
+                id={currentUser._id}
               />
             </div>
           </div>

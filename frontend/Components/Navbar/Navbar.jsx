@@ -170,7 +170,7 @@ const Navbar = () => {
                 <img
                   src={currentUser?.avatar}
                   alt="error"
-                  className="h-[45px] w-[45px] rounded-full "
+                  className="h-[45px] w-[45px] rounded-full shadow-md  "
                 />
                 <div className="w-[9px] h-[9px] absolute bottom-0 right-1 rounded-full bg-[#46CE7E]"></div>
               </span>

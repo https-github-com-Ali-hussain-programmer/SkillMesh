@@ -1,13 +1,20 @@
 import React, { useState } from "react";
-
-const Certification = ({ certifications, handleUpdate }) => {
+import { toast } from "react-toastify";
+import CertificationBox from "./CertificationBox";
+import { deleteCertification } from "../../Api/userApi";
+import { useDispatch } from "react-redux";
+import { deleteCertificationState } from "../../redux/slice/userSlice";
+const Certification = ({ certifications, handleUpdate, id }) => {
   const [showBlock, setShowBlock] = useState(false);
   const [showParagraph, setShowParagraph] = useState(true);
+  const dispatch = useDispatch();
   const [CertificationsDetail, setCertficationsDetail] = useState({
     certificateName: "",
     platform: "",
     certficateDate: "",
+    certificationImage: "",
   });
+
   const showdescription = () => {
     setShowBlock(true);
     setShowParagraph(false);
@@ -18,10 +25,22 @@ const Certification = ({ certifications, handleUpdate }) => {
     setShowParagraph(true);
   };
   const handleChange = (e) => {
-    const { value, name } = e.target;
+    var { value, name } = e.target;
+    if (name === "certificationImage") {
+      const { files } = e.target;
+      value = files[0];
+    }
     setCertficationsDetail((prev) => {
       return { ...prev, [name]: value };
     });
+  };
+  const handledeleteCertification = async (index) => {
+    try {
+      const response = await deleteCertification(id, index);
+      dispatch(deleteCertificationState({ updatedField: response.user }));
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <div className="certification">
@@ -35,44 +54,14 @@ const Certification = ({ certifications, handleUpdate }) => {
         </button>
       </div>
       {showParagraph && (
-        <div className="flex items-center gap-2  px-[26px] mt-3 ">
-          {certifications?.map((e, index) => {
+        <div className="flex flex-col  gap-8  px-[26px] mt-3 ">
+          {certifications && certifications?.map((e, index) => {
             return (
-              <>
-                <div className=" text-[17px] flex-col flex gap-3 " key={index}>
-                  <div className="flex items-center gap-2">
-                    <span className=" font-[500] text-gray-500">
-                      {" "}
-                      Certificate-
-                    </span>
-                    <span className="text-[#333333] font-bold">
-                      {e?.certificateName}
-                    </span>
-                  </div>
-                  <div className="flex flex-col gap-2">
-                    <div className="flex items-center gap-2">
-                      <span className=" font-[500] text-gray-500">
-                        Platform-
-                      </span>
-                      <span className="text-[#333333] font-bold">
-                        {e?.platform}
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <span className=" font-[500] text-gray-500">
-                        Certificate Date-
-                      </span>
-                      <span className="text-[#333333] font-bold">
-                        {e?.certficateDate}
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <span className=" font-[500] text-gray-500">Proof</span>
-                      <span className="text-[#333333] font-bold"> </span>
-                    </div>
-                  </div>
-                </div>
-              </>
+              <CertificationBox
+                key={index}
+                e={e}
+                onclick={() => handledeleteCertification(index)}
+              />
             );
           })}
         </div>
@@ -94,6 +83,7 @@ const Certification = ({ certifications, handleUpdate }) => {
             onChange={handleChange}
             name="platform"
           />
+
           <input
             type="text"
             placeholder="Year"
@@ -101,6 +91,21 @@ const Certification = ({ certifications, handleUpdate }) => {
             onChange={handleChange}
             name="certficateDate"
           />
+          <div className="mt-5  py-2 px-2 text-sm">
+            <label htmlFor="fileInput" className="fileInputLabel">
+              Add Certification Proof (JPEG, JPG, PNG){" "}
+              <span className="text-red-500">*</span>:
+            </label>
+            <input
+              type="file"
+              id="fileInput"
+              placeholder="Add Certification Image"
+              className=""
+              onChange={handleChange}
+              name="certificationImage"
+              accept="image/*"
+            />
+          </div>
 
           <div className="flex flex-row justify-center gap-5 py-4 border-t-[1px] border-dark-black mt-3">
             <button
@@ -110,20 +115,37 @@ const Certification = ({ certifications, handleUpdate }) => {
               Cancel
             </button>
             <button
-              onClick={() => {
-                handleUpdate({
-                  certifications: {
-                    certificateName: CertificationsDetail.certificateName,
-                    platform: CertificationsDetail.platform,
-                    certficateDate: CertificationsDetail.certficateDate,
-                  },
-                });
+              onClick={async () => {
+                if (CertificationsDetail.certificationImage === "") {
+                  return toast.error("Compulsory To Add Proof", {
+                    position: "top-right",
+                    autoClose: 3000,
+                  });
+                }
+
+                const formData = new FormData();
+                formData.append("id", id);
+                formData.append(
+                  "certificateName",
+                  CertificationsDetail.certificateName
+                );
+                formData.append("platform", CertificationsDetail.platform);
+                formData.append(
+                  "certficateDate",
+                  CertificationsDetail.certficateDate
+                );
+                formData.append(
+                  "images",
+                  CertificationsDetail.certificationImage
+                );
+                handleUpdate(formData);
                 setShowBlock(false);
                 setShowParagraph(true);
                 setCertficationsDetail({
                   certificateName: "",
                   platform: "",
                   certficateDate: "",
+                  certificationImage: "",
                 });
               }}
               className=" bg-dark-black text-white py-2 px-[65px] text-[18px] font-bold rounded-md hover:bg-black"
