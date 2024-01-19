@@ -37,49 +37,58 @@ const Certification = ({ certifications, handleUpdate, id }) => {
   const handledeleteCertification = async (index) => {
     try {
       const response = await deleteCertification(id, index);
-      dispatch(deleteCertificationState({ updatedField: response.user }));
+      dispatch(
+        deleteCertificationState({ updatedField: response.updatedField })
+      );
     } catch (error) {
       console.log(error);
     }
   };
   return (
-    <div className="certification">
-      <div className=" flex flex-row justify-between px-[26px]">
-        <h1 className=" font-semibold text-lg">Certification</h1>
+    <div
+      className={`certification  flex flex-col gap-2 py-2 ${
+        certifications?.length > 0
+          ? "border-b-[1px] border-solid border-[#ddd]"
+          : null
+      }`}
+    >
+      <div className=" flex flex-row justify-between ">
+        <h1 className="text-[16px] font-[700] text-[#0E0E0F]">Certification</h1>
         <button
           onClick={showdescription}
-          className=" text-blue-700 hover:underline"
+          className=" text-[#00698C] hover:underline text-sm"
         >
           Add New
         </button>
       </div>
       {showParagraph && (
-        <div className="flex flex-col  gap-8  px-[26px] mt-3 ">
-          {certifications && certifications?.map((e, index) => {
-            return (
-              <CertificationBox
-                key={index}
-                e={e}
-                onclick={() => handledeleteCertification(index)}
-              />
-            );
-          })}
+        <div className="flex flex-col  gap-8   mt-3 ">
+          {certifications &&
+            certifications?.map((e, index) => {
+              return (
+                <CertificationBox
+                  key={index}
+                  e={e}
+                  onclick={() => handledeleteCertification(index)}
+                />
+              );
+            })}
         </div>
       )}
 
       {showBlock && (
-        <div className="mr-3 ml-3 mb-10 bg-gray-200  px-[26px] mt-5 border-[1px] border-current rounded-md">
+        <div className="mb-5 bg-[#f4f4f4] p-4 gap-2 flex flex-col items-center  border-[1px] border-[#e5e5e5] rounded-[3px]">
           <input
             type="text"
             placeholder="Certificate or Award"
-            className="mt-5 w-[400px] py-2 px-2 text-[18px]"
+            className="  w-full focus:outline-none font-[400] text-[16px]  bg-white border-[1px] border-solid border-[#c5c6c9] text-[#404145] rounded-[4px] py-[8px] px-[12px] placeholder:text-[#7a7d85] placeholder:text-[15px] placeholder:font-[400] placeholder:text-justify"
             onChange={handleChange}
             name="certificateName"
           />
           <input
             type="text"
             placeholder="Certified From (E.G. coursera)"
-            className="mt-5 w-[400px] py-2 px-2 text-[18px]"
+            className="  w-full focus:outline-none font-[400] text-[16px]  bg-white border-[1px] border-solid border-[#c5c6c9] text-[#404145] rounded-[4px] py-[8px] px-[12px] placeholder:text-[#7a7d85] placeholder:text-[15px] placeholder:font-[400] placeholder:text-justify"
             onChange={handleChange}
             name="platform"
           />
@@ -87,12 +96,15 @@ const Certification = ({ certifications, handleUpdate, id }) => {
           <input
             type="text"
             placeholder="Year"
-            className="mt-5 w-[200px] py-2 px-2 text-[18px]"
+            className="  w-full focus:outline-none font-[400] text-[16px]  bg-white border-[1px] border-solid border-[#c5c6c9] text-[#404145] rounded-[4px] py-[8px] px-[12px] placeholder:text-[#7a7d85] placeholder:text-[15px] placeholder:font-[400] placeholder:text-justify"
             onChange={handleChange}
             name="certficateDate"
           />
-          <div className="mt-5  py-2 px-2 text-sm">
-            <label htmlFor="fileInput" className="fileInputLabel">
+          <div className="  w-full focus:outline-none font-[400] text-[16px]  bg-white border-[1px] border-solid border-[#c5c6c9] text-[#404145] rounded-[4px] py-[8px] px-[12px] placeholder:text-[#7a7d85] placeholder:text-[15px] placeholder:font-[400] placeholder:text-justify">
+            <label
+              htmlFor="fileInput"
+              className="fileInputLabel text-[#777]  text-sm font-[400]"
+            >
               Add Certification Proof (JPEG, JPG, PNG){" "}
               <span className="text-red-500">*</span>:
             </label>
@@ -107,10 +119,10 @@ const Certification = ({ certifications, handleUpdate, id }) => {
             />
           </div>
 
-          <div className="flex flex-row justify-center gap-5 py-4 border-t-[1px] border-dark-black mt-3">
+          <div className="flex flex-row justify-center gap-5 py-4  mt-2 w-full">
             <button
               onClick={disabledesc}
-              className="bg-white py-2 px-[65px] text-[18px] text-gray-400 font-bold rounded-md border-[1px] border-current hover:bg-dark-black hover:text-white"
+              className="bg-white text-[#777]  w-[calc(100%-15px)] font-[600]  hover:text-[#1dbf73] py-[10px] px-[30px] text-sm  rounded-[3px]  border border-solid border-[#ccc]"
             >
               Cancel
             </button>
@@ -148,14 +160,13 @@ const Certification = ({ certifications, handleUpdate, id }) => {
                   certificationImage: "",
                 });
               }}
-              className=" bg-dark-black text-white py-2 px-[65px] text-[18px] font-bold rounded-md hover:bg-black"
+              className="bg-[#1dbf73] text-white w-[calc(100%-15px)] py-[10px] px-[30px] text-sm font-bold rounded-[3px]  border border-solid border-transparent"
             >
               Update
             </button>
           </div>
         </div>
       )}
-      {/* <hr className="ml-5 mr-5 border-[1px] my-3" /> */}
     </div>
   );
 };

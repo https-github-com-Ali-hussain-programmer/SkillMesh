@@ -37,8 +37,9 @@ exports.authToken = async (req, res) => {
 };
 exports.Logout = async (req, res) => {
   res.clearCookie("token");
-  res.status(200).send("200");
+  res.status(200).json({ message: "Logout successful" });
 };
+
 exports.profile = async (req, res) => {
   try {
     const { id } = req.body;
@@ -141,37 +142,35 @@ exports.updateCertification = async (req, res) => {
 
 exports.deleteCertification = async (req, res) => {
   const { id, index } = req.body;
-try {
-  const user = await User.findById(id);
-  if (!user) {
-    return res.status(404).json({
+  try {
+    const user = await User.findById(id);
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found",
+      });
+    }
+    const certificationToRemove = user.certifications[index];
+    if (!certificationToRemove) {
+      return res.status(404).json({
+        success: false,
+        message: "Certification not found at the specified index",
+      });
+    }
+
+    user.certifications.pull(certificationToRemove);
+    const updatedUser = await user.save();
+
+    res.status(200).json({
+      success: true,
+      message: "Certification deleted successfully",
+      updatedField: updatedUser.certifications,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
       success: false,
-      message: "User not found",
+      message: "Internal Server Error",
     });
   }
-  const certificationToRemove = user.certifications[index];
-  if (!certificationToRemove) {
-    return res.status(404).json({
-      success: false,
-      message: "Certification not found at the specified index",
-    });
-  }
-
-  user.certifications.pull(certificationToRemove);
-  const updatedUser = await user.save();
-
-  res.status(200).json({
-    success: true,
-    message: "Certification deleted successfully",
-    updatedField: updatedUser.certifications,
-  });
-} catch (error) {
-  console.error(error);
-  res.status(500).json({
-    success: false,
-    message: "Internal Server Error",
-  });
-}
-
-  
 };

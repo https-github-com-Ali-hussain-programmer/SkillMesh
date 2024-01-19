@@ -1,21 +1,14 @@
 import React, { useState } from "react";
 
-import {
-  Accordion,
-  AccordionItem,
-  AccordionButton,
-  AccordionPanel,
-  AccordionIcon,
-  Box,
-} from "@chakra-ui/react";
 import { BsThreeDots } from "react-icons/bs";
 function CertificationBox({ e, onclick }) {
   const [deletebutton, setDelete] = useState(false);
+  const [showMore, setShowMore] = useState(false);
   return (
     <>
-      <div className=" text-[17px] flex-col flex gap-5 p-5 rounded-md shadow-md border-[1px] border-solid border-[#eeeeee]">
-        <div className="flex justify-between items-center">
-          <span className="text-[#333333] font-bold">{e?.certificateName}</span>
+      <div className=" text-[15px] font-[400]  flex-col flex gap-2 ">
+        <div className="flex items-center justify-between">
+          <span className="text-[#555555]">{e?.certificateName}</span>
           <div className="relative">
             <span
               onClick={() => {
@@ -38,36 +31,30 @@ function CertificationBox({ e, onclick }) {
           </div>
         </div>
 
-        <span className="text-[#333333] font-bold">{e?.platform}</span>
-
-        <span className="text-[#333333] font-bold">{e?.certficateDate}</span>
+        <div className="flex items-center gap-1">
+          <span className="text-[#b2b2b2]">{e?.platform}</span>
+          <span className="text-[#b2b2b2]">{e?.certficateDate}</span>
+        </div>
 
         <div className="w-full">
-          <Accordion allowToggle={true}>
-            <AccordionItem className="border-none">
-              {({ isDisabled }) => (
-                <>
-                  <h2 className="text-sm font-medium text-sky-500">
-                    <AccordionButton>
-                      <Box as="span" flex="1" textAlign="left">
-                        Show More
-                      </Box>
-                      <AccordionIcon />
-                    </AccordionButton>
-                  </h2>
-                  <AccordionPanel>
-                    <div className="w-full h-[200px] ">
-                      <img
-                        src={e?.certificationImage}
-                        alt="error"
-                        className="h-full w-full  rounded-md shadow-md"
-                      />
-                    </div>
-                  </AccordionPanel>
-                </>
-              )}
-            </AccordionItem>
-          </Accordion>
+          <h1
+            className="text-sky-500 text-sm text-[400] cursor-pointer py-2"
+            onClick={() => {
+              setShowMore(!showMore);
+            }}
+          >
+            Show more
+          </h1>
+
+          <div
+            className={`showMore ${showMore ? " image-show " : " h-0"} `}
+          >
+            <img
+              src={e?.certificationImage}
+              alt="error"
+              className="w-full h-full rounded-sm object-contain"
+            />
+          </div>
         </div>
       </div>
     </>

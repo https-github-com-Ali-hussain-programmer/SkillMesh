@@ -64,10 +64,15 @@ export const Logout = async () => {
     },
     credentials: "include",
   });
-  const data = response.json();
-  return data;
-};
 
+  if (response.ok) {
+    const data = await response.json();
+    return data;
+  } else {
+    console.error("Logout failed");
+    return null;
+  }
+};
 export const fetchProfileData = async (id, signal) => {
   const response = await fetch(baseUrl + `/profile`, {
     method: "GET",

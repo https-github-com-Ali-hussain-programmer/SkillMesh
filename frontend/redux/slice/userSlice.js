@@ -15,11 +15,20 @@ const userSlice = createSlice({
       state.userData[keys[1]] = action.payload.updatedField[keys[1]];
     },
     deleteCertificationState: (state, action) => {
+      console.log( action.payload.updatedField)
       state.userData.certifications = action.payload.updatedField;
+      console.log( state.userData.certifications)
+    },
+    clearUserData: (state, action) => {
+      state.userData = {};
     },
   },
 });
 
-export const { setUserData, updateField, deleteCertificationState } =
-  userSlice.actions;
+export const {
+  setUserData,
+  updateField,
+  deleteCertificationState,
+  clearUserData,
+} = userSlice.actions;
 export default userSlice.reducer;

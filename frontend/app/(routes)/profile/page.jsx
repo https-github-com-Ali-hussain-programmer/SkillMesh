@@ -22,12 +22,12 @@ import {
   handleCertificationUpdate,
 } from "@/Api/userApi";
 import { updateField } from "../../../redux/slice/userSlice";
-import { countries } from "../../../utils/data";
+import { CurrentUser, countries } from "../../../utils/data";
 import ReactFlagsSelect from "react-flags-select";
 
 const ProfilePage = () => {
   const { id } = useSearchParams();
-  const currentUser = useSelector((state) => state.user.userData);
+  const currentUser = useSelector((state) => state.user?.userData);
   const [profileData, setProfileData] = useState(currentUser);
   const [showName, setshowName] = useState(false);
   const [changeName, setChangeName] = useState("");
@@ -45,7 +45,7 @@ const ProfilePage = () => {
     const abortController = new AbortController();
     setAbortController(abortController);
     const data = await updateProfileData(
-      profileData._id,
+      profileData?._id,
       updatedField,
       abortController.signal
     );
@@ -96,7 +96,7 @@ const ProfilePage = () => {
     country,
     description,
   } = profileData || {};
-  const convertDate = (date) => {
+  const convertDate = (date = new Date()) => {
     const options = { year: "numeric", month: "long", day: "numeric" };
     const memberSinceDate = new Date(date);
     const formattedMemberSince = new Intl.DateTimeFormat(
@@ -114,7 +114,7 @@ const ProfilePage = () => {
   const handlePicUpdate = async (fileParams, fieldName) => {
     const formData = new FormData();
     formData.append("images", fileParams);
-    formData.append("id", profileData._id);
+    formData.append("id", profileData?._id);
     formData.append("fieldName", fieldName);
     const abortController = new AbortController();
     setAbortController(abortController);
@@ -128,28 +128,31 @@ const ProfilePage = () => {
   };
   return (
     <>
-      <div className=" min-h-screen bg-gray-200 pt-[30px] pb-[200px] px-5">
+      <div className=" min-h-screen bg-[#f7f7f7] pt-[30px] pb-[200px] px-5">
         <div className="  flex flex-col md:flex-row gap-10  ">
           <div className="flex-1  flex flex-col gap-14 items-center ">
-            <div className="w-full bg-white border-[1px] border-gray-300 flex flex-col gap-4 items-center  p-8">
-              <img
-                className="w-[100px] h-[100px] rounded-full  border-4 border-green-500 border-solid"
-                src={tempUrl}
-                alt="error"
-                onClick={() => {
-                  profileRef.current.click();
-                }}
-              />
+            <div className="w-full bg-white border-[1px] border-gray-300 flex flex-col gap-2   p-8">
+              <div className=" flex items-center justify-center">
+                <img
+                  className="w-[130px] h-[130px]  rounded-full border-4 border-green-500 border-solid"
+                  src={tempUrl}
+                  alt="error"
+                  onClick={() => {
+                    profileRef.current.click();
+                  }}
+                />
+              </div>
+
               {profileUpdate && (
-                <div className="mr-2 ml-2 mb-5 bg-gray-200  px-[15px] mt-2 border-[1px] border-current rounded-md">
-                  <div className="flex flex-row justify-center gap-6 py-3 border-t-[1px] border-dark-black mt-3">
+                  <div className="mb-5 bg-[#f4f4f4] p-4 gap-2 flex flex-col items-center  border-[1px] border-[#e5e5e5] rounded-[3px]">
+                     <div className="flex flex-row justify-center gap-5 py-4  mt-2 w-full">
                     <button
                       onClick={() => {
                         setprofileUpdate(false);
                         setTempUrl(avatar);
                       }}
-                      className="bg-white py-1 px-[40px] text-sm text-gray-400 font-bold rounded-md border-[1px] border-current hover:bg-dark-black hover:text-white"
-                    >
+                      className="bg-white text-[#777]  w-[calc(100%-15px)] font-[600]  hover:text-[#1dbf73] py-[10px] px-[30px] text-sm  rounded-[3px]  border border-solid border-[#ccc]"
+            >
                       Cancel
                     </button>
                     <button
@@ -157,8 +160,8 @@ const ProfilePage = () => {
                         handlePicUpdate(file, "avatar");
                         setprofileUpdate(false);
                       }}
-                      className="bg-dark-black text-white py-1 px-[40px] text-sm font-bold rounded-md hover:bg-black"
-                    >
+                      className="bg-[#1dbf73] text-white w-[calc(100%-15px)] py-[10px] px-[30px] text-sm font-bold rounded-[3px]  border border-solid border-transparent"
+            >
                       Update
                     </button>
                   </div>
@@ -171,10 +174,10 @@ const ProfilePage = () => {
                 onChange={handleProfile}
                 accept="image/*"
               />
-              <div className="flex flex-col gap-4 items-center">
+              <div className="flex flex-col gap-3 items-center">
                 <div className="flex flex-row gap-2 items-center">
                   {" "}
-                  <h1 className="text-[20px] font-[600] hover:cursor-pointer hover:underline">
+                  <h1 className=" text-[20px] text-[#222325] font-[700] hover:cursor-default hover:underline">
                     {name}
                   </h1>
                   <CreateOutlinedIcon
@@ -184,9 +187,8 @@ const ProfilePage = () => {
                     }}
                   />
                 </div>
-
                 {showName && (
-                  <div className="mr-2 ml-2 mb-5 bg-gray-200  px-[15px] mt-2 border-[1px] border-current rounded-md">
+                  <div className=" w-full mb-5 bg-[#f4f4f4] p-4  flex flex-col items-center  border-[1px] border-[#e5e5e5] rounded-[3px]">
                     <input
                       type="text"
                       placeholder="Enter New Name"
@@ -194,12 +196,12 @@ const ProfilePage = () => {
                         const { value } = e.target;
                         setChangeName(value);
                       }}
-                      className="mt-5 w-[400px] py-2 px-2 text-[18px]"
+                      className="  w-full focus:outline-none font-[400] text-[16px]  bg-white border-[1px] border-solid border-[#c5c6c9] text-[#404145] rounded-[4px] py-[8px] px-[12px] placeholder:text-[#7a7d85] placeholder:text-[15px] placeholder:font-[400] placeholder:text-justify"
                     />
-                    <div className="flex flex-row justify-center gap-6 py-3 border-t-[1px] border-dark-black mt-3">
+                    <div className="flex flex-row justify-center gap-5 py-4  mt-3 w-full">
                       <button
                         onClick={disabledesc}
-                        className="bg-white py-1 px-[40px] text-sm text-gray-400 font-bold rounded-md border-[1px] border-current hover:bg-dark-black hover:text-white"
+                        className="bg-white text-[#777]  w-[calc(100%-15px)] font-[600]  hover:text-[#1dbf73] py-[10px] px-[30px] text-sm  rounded-[3px]  border border-solid border-[#ccc]"
                       >
                         Cancel
                       </button>
@@ -208,7 +210,7 @@ const ProfilePage = () => {
                           handleUpdate({ name: changeName });
                           setshowName(false);
                         }}
-                        className=" bg-dark-black text-white py-1 px-[40px] text-sm font-bold rounded-md hover:bg-black"
+                        className="bg-[#1dbf73] text-white w-[calc(100%-15px)] py-[10px] px-[30px] text-sm font-bold rounded-[3px]  border border-solid border-transparent"
                       >
                         Update
                       </button>
@@ -216,25 +218,36 @@ const ProfilePage = () => {
                   </div>
                 )}
               </div>
-              <div className="flex flex-col items-center">
-                <h1 className="text-gray-400 py-1 text-sm ">{address || ""}</h1>
+
+              <h1 className="text-[#7a7d85]  text-[16px] text-center ">
+                {address || ""}
+              </h1>
+              <div className="flex items-center justify-center">
+                <button className=" w-3/4 text-sm  font-semibold border-[1px]  mt-4 rounded-md border-current mb-8 hover:bg-[#1dbf73] hover:bg-transparent  py-[10px] hover:border-gray-400 text-[#62646A] duration-500 hover:text-white">
+                  Preview SkillMesh Profile
+                </button>
               </div>
 
-              <button className=" w-full  font-semibold border-[1px] py-1 mt-4 rounded-md border-current mb-8 hover:bg-gray-400 hover:border-gray-400 hover:text-white duration-500">
-                Preview SkillMesh Profile
-              </button>
-              <div className=" border-t border-gray-300 flex flex-col gap-2  w-full py-4 pt-5">
+              <div className=" border-t border-[#ddd] flex flex-col   w-full  ">
                 <div className=" flex flex-row justify-between items-center w-full py-4 pt-5">
                   {" "}
-                  <h3 className="">From</h3>
                   <div className="flex items-center gap-2">
+                    <span className="text-sm">
+                      {" "}
+                      <LocationOnIcon className=" text-[#62646a] text-[15.5px] cursor-pointer" />{" "}
+                    </span>
+
+                    <h3 className="text-[#62646a] text-sm cursor-pointer">
+                      From
+                    </h3>
+                  </div>
+                  <div className="flex items-center gap-3">
                     {" "}
-                    <LocationOnIcon className="text-[18px]  hover:cursor-pointer" />
-                    <span>{country}</span>
-                    <span class="flag-icon flag-icon-US"></span>
-                    <span class="flag-icon flag-icon-gr flag-icon-squared"></span>
+                    <span className="text-[#62646a] font-bold text-sm">
+                      {country}
+                    </span>
                     <GrUpdate
-                      className="text-[15px]  text-gray-400 hover:cursor-pointer"
+                      className="text-sm  text-[#62646a] hover:cursor-pointer"
                       onClick={() => {
                         setshowCountry(true);
                       }}
@@ -254,12 +267,12 @@ const ProfilePage = () => {
                         searchPlaceholder={"Search Countries"}
                       />
                     </div>
-                    <div className="flex flex-row justify-center gap-6 py-3 border-t-[1px] border-dark-black mt-3">
+                    <div className="flex flex-row justify-center gap-6 py-3 border-t-[1px] border-solid border-[#e5e5e5] mt-3">
                       <button
                         onClick={() => {
                           setshowCountry(false);
                         }}
-                        className="bg-white py-1 px-[40px] text-sm text-gray-400 font-bold rounded-md border-[1px] border-current hover:bg-dark-black hover:text-white"
+                        className=" py-1 px-[40px] text-sm  font-bold rounded-md border border-solid border-[#ccc] bg-white text-[#777]  "
                       >
                         Cancel
                       </button>
@@ -269,7 +282,7 @@ const ProfilePage = () => {
                           setshowCountry(false);
                           setSelect("");
                         }}
-                        className=" bg-dark-black text-white py-1 px-[40px] text-sm font-bold rounded-md hover:bg-black"
+                        className=" bg-[#1dbf73] text-white py-1 px-[40px] text-sm font-bold rounded-md "
                       >
                         Update
                       </button>
@@ -278,15 +291,24 @@ const ProfilePage = () => {
                 )}
               </div>
 
-              <div className="flex flex-row justify-between  w-full py-4 ">
-                <PersonIcon />
-                <h3>Member since</h3>
-                <h2>{convertDate(memberSince) || ""}</h2>
+              <div className="flex flex-row justify-between  w-full  ">
+                <div className="flex items-center gap-2">
+                  {" "}
+                  <span>
+                    <PersonIcon className=" text-[#62646a] text-[15.5px]  cursor-pointer" />
+                  </span>
+                  <h3 className=" text-[#62646a] text-sm  cursor-pointer">
+                    Member since
+                  </h3>
+                </div>
+
+                <h2 className="text-[#62646a] text-sm font-bold">
+                  {CurrentUser ? convertDate(memberSince) || "" : null}
+                </h2>
               </div>
             </div>
-            <div className="w-full bg-white py-5 border-b-[0.5px] border-solid border-[#e2e8f0] text-sm">
+            <div className="w-full bg-white p-[30px] border-[1px] border-solid border-[#ddd]  flex flex-col gap-4">
               <Desc desc={description || ""} handleUpdate={handleUpdate} />
-
               <Language
                 languages={languages || ""}
                 handleUpdate={handleUpdate}
@@ -299,7 +321,7 @@ const ProfilePage = () => {
               <Certification
                 certifications={certifications || ""}
                 handleUpdate={handleCertitication}
-                id={currentUser._id}
+                id={currentUser?._id}
               />
             </div>
           </div>

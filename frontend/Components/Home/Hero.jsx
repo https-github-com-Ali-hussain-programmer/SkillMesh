@@ -38,10 +38,10 @@ const Hero = () => {
   };
 
   const shortAddress = (fullAddress) => {
-    const shortenedAddress = `${fullAddress.substring(
+    const shortenedAddress = `${fullAddress?.substring(
       0,
       10
-    )}...${fullAddress.slice(-10)}`;
+    )}...${fullAddress?.slice(-10)}`;
     return shortenedAddress;
   };
   const handleInput = (e) => {

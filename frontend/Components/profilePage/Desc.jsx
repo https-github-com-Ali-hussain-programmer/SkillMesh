@@ -19,36 +19,40 @@ const Desc = ({ desc, handleUpdate }) => {
   };
 
   return (
-    <div className="description ">
-      <div className="flex flex-row justify-between px-[26px]">
-        <h1 className="text-lg font-semibold">Description</h1>
+    <div
+      className={`description flex flex-col gap-2.5 ${
+        desc ? "border-b-[1px] border-solid border-[#ddd]" : null
+      } py-2`}
+    >
+      <div className="flex flex-row justify-between ">
+        <h1 className="text-[16px] font-[700] text-[#0E0E0F]">Description</h1>
         <button
           onClick={showdescription}
-          className=" text-blue-700 hover:underline"
+          className=" text-[#00698C] hover:underline text-sm"
         >
           Edit Description
         </button>
       </div>
       {showParagraph && (
-        <p className="text-sm font-[500] text-gray-500  px-[26px] py-5 text-justify">
+        <p className="text-sm font-[500] text-[#62646A] text-justify pb-6">
           {desc}
         </p>
       )}
       {showBlock && (
-        <div className="mr-3 ml-3 mb-10 bg-gray-200  px-[26px] flex flex-col items-center mt-5 border-[1px] border-current rounded-md">
+        <div className="mb-5 bg-[#f4f4f4] p-4  flex flex-col items-center  border-[1px] border-[#e5e5e5] rounded-[3px]">
           <textarea
-            className="focus:border-transparent focus:outline-none mt-6 px-2 py-2 text-[15px] border-0 bg-gray-200 whitespace-wrap"
+            className="  w-full focus:outline-none h-[140px] font-[400] text-[16px]  bg-transparent resize-none overflow-scroll border-b-[1.5px] border-solid border-[#e5e5e5] text-[#7a7d85] rounded-[3px] p-[7px] pt-[6px] placeholder:text-[#7a7d85] placeholder:text-[15px] placeholder:font-[400] placeholder:text-justify"
             name=""
             id=""
-            cols={50}
-            rows={5}
+            maxLength="600"
+            minLength="150"
             onChange={handleDescription}
             placeholder="Please tell us about any hobbies, additional expertise, or anything else you'd like to add."
           ></textarea>
-          <div className="flex flex-row justify-center gap-5 py-4 border-t-[1px] border-dark-black mt-3">
+          <div className="flex flex-row justify-center gap-5 py-4  mt-3 w-full">
             <button
               onClick={disabledesc}
-              className="bg-white py-2 px-[65px] text-[18px] text-gray-400 font-bold rounded-md border-[1px] border-current hover:bg-dark-black hover:text-white"
+              className="bg-white text-[#777]  w-[calc(100%-15px)] font-[600]  hover:text-[#1dbf73] py-[10px] px-[30px] text-sm  rounded-[3px]  border border-solid border-[#ccc]"
             >
               Cancel
             </button>
@@ -58,14 +62,13 @@ const Desc = ({ desc, handleUpdate }) => {
                 setShowBlock(false);
                 setShowParagraph(true);
               }}
-              className=" bg-dark-black text-white py-2 px-[65px] text-[18px] font-bold rounded-md hover:bg-black"
+              className="bg-[#1dbf73] text-white w-[calc(100%-15px)] py-[10px] px-[30px] text-sm font-bold rounded-[3px]  border border-solid border-transparent"
             >
               Update
             </button>
           </div>
         </div>
       )}
-      <div className="border-b-[0.5px] border-solid border-[#e2e8f0] font-normal mx-3 my-3"></div>
     </div>
   );
 };

@@ -1,21 +1,25 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import MetaMask from "../../public/MetaMask.png";
 import { Logout } from "../../Api/userApi";
-import  Link from "next/link";
-
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { clearUserData } from "../../redux/slice/userSlice";
 function ProfileModal() {
-  const currentUser = useSelector((state) => state.user.userData);
+  const currentUser = useSelector((state) => state.user?.userData);
+  const dispatch = useDispatch();
+  const router = useRouter();
   const shortAddress = (fullAddress) => {
-    const shortenedAddress = `${fullAddress.substring(
+    const shortenedAddress = `${fullAddress?.substring(
       0,
       10
-    )}...${fullAddress.slice(-10)}`;
+    )}...${fullAddress?.slice(-10)}`;
     return shortenedAddress;
   };
-  const handleLogout = () => {
-    Logout();
-    window.location.reload();
+  const handleLogout = async () => {
+    await Logout();
+    dispatch(clearUserData());
+    window.location.replace("/");
   };
 
   return (
@@ -27,16 +31,14 @@ function ProfileModal() {
           </span>
           <div className="flex items-center gap-2 p-1">
             <div className="w-[6px] h-[6px] rounded-full bg-[#46CE7E]"></div>
-            <span className="text-[#2f3037] text-sm font-[500] ">
-              Polygon{" "}
-            </span>
+            <span className="text-[#2f3037] text-sm font-[500] ">Polygon </span>
           </div>
         </div>
 
         <div className="border-b-[0.5px] border-solid border-[#e2e8f0] flex items-center gap-3 hover:text-[#46CE7E] cursor-pointer py-2 text-[#36383F] text-sm">
           <span>Account :</span>{" "}
           <h1 className="font-[700] text-sm text-[#6c6f7f] break-words">
-            {shortAddress(currentUser?.address)}
+            {currentUser && shortAddress(currentUser?.address)}
           </h1>
         </div>
         <div className=" hover:text-[#46CE7E] cursor-pointer py-2 text-[#36383F] text-sm border-b-[0.5px] border-solid border-[#e2e8f0]">

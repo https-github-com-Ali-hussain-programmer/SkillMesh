@@ -60,7 +60,7 @@ userSchema.methods.generateJWT = function () {
 userSchema.methods.saveCookie = function (res, statuscode) {
   const token = this.generateJWT();
   const options = {
-    maxAge: 600000,
+    maxAge: 1200000,
     httpOnly: true,
     secure: true,
     SameSite: "none",
