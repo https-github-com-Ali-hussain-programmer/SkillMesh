@@ -9,7 +9,7 @@ import { Radio, RadioGroup, Stack } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
 import MetaMask from "../../public/MetaMask.png";
 import { FaAddressCard } from "react-icons/fa";
-import Ethereum from "../../public/ethereum.svg";
+import polygon from "../../public/polygon.png";
 import { ethers } from "ethers";
 import { FaCopy } from "react-icons/fa";
 import { CopyToClipboard } from "react-copy-to-clipboard";
@@ -38,10 +38,10 @@ const Hero = () => {
   };
 
   const shortAddress = (fullAddress) => {
-    const shortenedAddress = `${fullAddress.substring(
+    const shortenedAddress = `${fullAddress?.substring(
       0,
       10
-    )}...${fullAddress.slice(-10)}`;
+    )}...${fullAddress?.slice(-10)}`;
     return shortenedAddress;
   };
   const handleInput = (e) => {
@@ -230,7 +230,7 @@ const Hero = () => {
             </div>
           </div>
           {currentUser ? (
-            <div className="rounded-[16px] bg-[#fbbf06]  w-[430px] showStatus p-4  flex flex-col gap-3 border-[#E2E8F0] border-solid border-2 ">
+            <div className="rounded-[16px] bg-[#F8E473]  w-[430px] showStatus p-4  flex flex-col gap-3 border-[#E2E8F0] border-solid border-2 ">
               <h1 className="w-full p-2  bg-[#f5f5f7]  font-bold text-[#6c6f7f] mb-2 text-center">
                 Account 's Information
               </h1>
@@ -271,10 +271,10 @@ const Hero = () => {
                   </CopyToClipboard>
                 </div>
                 <div className="flex items-center gap-3">
-                  <img src={Ethereum.src} alt="error" className="h-[30px]" />{" "}
+                  <img src={polygon.src} alt="error" className="h-[30px]" />{" "}
                   <span className=" text-[#151619]">Account Balance :</span>
                   <h1 className="font-[400] font-lg text-[#151619] cursor-pointer">
-                    <span>{balance}ETH</span>
+                    <span>{balance} MATIC</span>
                   </h1>
                 </div>
               </div>

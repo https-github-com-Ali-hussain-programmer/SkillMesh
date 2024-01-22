@@ -12,13 +12,14 @@ function LoaderHandler({ children }) {
   const AuthToken = async () => {
     try {
       const data = await verifyToken();
+      if (!data.success) {
+        setLoading(false);
+      }
       dispatch(setUserData({ info: data?.user }));
     } catch (error) {
       console.error("Error verifying token:", error);
     } finally {
-   
-        setLoading(false);
-      
+      setLoading(false);
     }
   };
 

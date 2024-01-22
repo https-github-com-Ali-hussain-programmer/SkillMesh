@@ -7,8 +7,8 @@ const userSchema = new mongoose.Schema({
       const shortenedAddress = `${this.address.substring(
         0,
         7
-      )}...${this.address.slice(-10)}`
-      return "user" + shortenedAddress
+      )}...${this.address.slice(-10)}`;
+      return "user" + shortenedAddress;
     },
   },
   avatar: {
@@ -24,7 +24,7 @@ const userSchema = new mongoose.Schema({
   },
   description: {
     type: String,
-    default:"show yourself to the world"
+    default: "show yourself to the world",
   },
   isSeller: {
     type: Boolean,
@@ -38,10 +38,10 @@ const userSchema = new mongoose.Schema({
   },
   country: {
     type: String,
-    default:"United States"
+    default: "United States",
   },
   education: {
-   type: [Object],
+    type: [Object],
   },
   certifications: {
     type: [Object],
@@ -60,7 +60,7 @@ userSchema.methods.generateJWT = function () {
 userSchema.methods.saveCookie = function (res, statuscode) {
   const token = this.generateJWT();
   const options = {
-    maxAge: 3600000,
+    maxAge: 1200000,
     httpOnly: true,
     secure: true,
     SameSite: "none",

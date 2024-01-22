@@ -37,8 +37,9 @@ exports.authToken = async (req, res) => {
 };
 exports.Logout = async (req, res) => {
   res.clearCookie("token");
-  res.status(200).send("200");
+  res.status(200).json({ message: "Logout successful" });
 };
+
 exports.profile = async (req, res) => {
   try {
     const { id } = req.body;
@@ -56,31 +57,29 @@ exports.profile = async (req, res) => {
     console.error("Error in Login:", error);
     return res.status(500).json({ error: "Server Error" });
   }
-}; 
+};
+
 exports.updateProfile = async (req, res) => {
- 
   try {
     const { id, item } = req.body;
-    console.log("item",item)
     const key = Object.keys(item);
-    var updatedField=""
+    var updatedField = "";
+
     const isArray =
       User.schema.path(key[0]) instanceof mongoose.Schema.Types.Array;
-      console.log(isArray)
     if (isArray) {
-       updatedField = await User.findByIdAndUpdate(
+      updatedField = await User.findByIdAndUpdate(
         id,
         { $push: { [key[0]]: item[key[0]] } },
         { new: true }
       ).select(key[0]);
     } else {
-       updatedField = await User.findByIdAndUpdate(
+      updatedField = await User.findByIdAndUpdate(
         id,
         { $set: { ...item } },
         { new: true }
       ).select(key[0]);
     }
-    console.log("updatedField",updatedField)
     return res.status(200).json({
       success: true,
       updatedField,
@@ -89,5 +88,90 @@ exports.updateProfile = async (req, res) => {
   } catch (error) {
     console.error("Error in Update:", error);
     return res.status(500).json({ error: "Server Error" });
+  
+  }
+};
+
+exports.updatePic = async (req, res) => {
+  try {
+    const { id, fieldName } = req.body;
+    const value = process.env.url + req.file.bucket + "/" + req.file.key;
+    const data = { [fieldName]: value };
+    var updatedField = "";
+    updatedField = await User.findByIdAndUpdate(
+      id,
+      { $set: { ...data } },
+      { new: true }
+    ).select(fieldName);
+    return res.status(200).json({
+      success: true,
+      updatedField,
+      message: "Successfully Updated Field",
+    });
+  } catch (error) {
+    console.error("Error in Update:", error);
+    return res.status(500).json({ error: "Server Error" });
+  }
+};
+exports.updateCertification = async (req, res) => {
+  try {
+    const { certificateName, platform, certficateDate, id } = req.body;
+    const value = process.env.url + req.file.bucket + "/" + req.file.key;
+    const data = {
+      certificateName,
+      platform,
+      certficateDate,
+      certificationImage: value,
+    };
+    var updatedField = "";
+    updatedField = await User.findByIdAndUpdate(
+      id,
+      { $push: { certifications: data } },
+      { new: true }
+    ).select("certifications");
+
+    return res.status(200).json({
+      success: true,
+      updatedField,
+      message: "Successfully Updated Field",
+    });
+  } catch (error) {
+    console.error("Error in Update:", error);
+    return res.status(500).json({ error: "Server Error" });
+  }
+};
+
+exports.deleteCertification = async (req, res) => {
+  const { id, index } = req.body;
+  try {
+    const user = await User.findById(id);
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found",
+      });
+    }
+    const certificationToRemove = user.certifications[index];
+    if (!certificationToRemove) {
+      return res.status(404).json({
+        success: false,
+        message: "Certification not found at the specified index",
+      });
+    }
+
+    user.certifications.pull(certificationToRemove);
+    const updatedUser = await user.save();
+
+    res.status(200).json({
+      success: true,
+      message: "Certification deleted successfully",
+      updatedField: updatedUser.certifications,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      success: false,
+      message: "Internal Server Error",
+    });
   }
 };

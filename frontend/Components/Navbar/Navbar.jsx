@@ -15,7 +15,6 @@ import { FaShoppingCart } from "react-icons/fa";
 import { BsFillSuitHeartFill } from "react-icons/bs";
 import { favouritesList } from "@/redux/slice/wishlistSlice";
 import MetaModal from "../MetaMaskModal/MetaModal";
-import avatar from "../../public/profile.jpg";
 import ProfileModal from "../profilePage/ProfileModal";
 import { useSelector } from "react-redux";
 const Navbar = () => {
@@ -67,7 +66,7 @@ const Navbar = () => {
       className={`py-3 relative ${
         pathname === "/"
           ? "bg-dark-black text-white"
-          : "nav text-black shadow-md z-50"
+          : "nav text-black z-50"
       }`}
     >
       <div
@@ -170,7 +169,7 @@ const Navbar = () => {
                 <img
                   src={currentUser?.avatar}
                   alt="error"
-                  className="h-[45px] w-[45px] rounded-full "
+                  className="h-[45px] w-[45px] rounded-full shadow-md  "
                 />
                 <div className="w-[9px] h-[9px] absolute bottom-0 right-1 rounded-full bg-[#46CE7E]"></div>
               </span>

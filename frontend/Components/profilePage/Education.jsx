@@ -1,13 +1,16 @@
 import React, { useState } from "react";
-
+import { degreeOptions,years } from "../../utils/data";
 const Education = ({ education, handleUpdate }) => {
   const [showBlock, setShowBlock] = useState(false);
   const [showParagraph, setShowParagraph] = useState(true);
+
+ 
   const [Education, setEducation] = useState({
-    country: "",
+    country: "Country of College/University",
     college: "",
     title: "",
-    yearOfEducation: "",
+    yearOfEducation: " Select Year of Education",
+    major: "",
   });
   const showdescription = () => {
     setShowBlock(true);
@@ -23,50 +26,39 @@ const Education = ({ education, handleUpdate }) => {
       return { ...prev, [name]: value };
     });
   };
+
   return (
-    <div className="education">
-      <div className="flex flex-row justify-between px-[26px]">
-        <h1 className="text-lg font-semibold">Education</h1>
+    <div
+      className={`education flex flex-col gap-2 py-2 ${
+        education?.length > 0
+          ? "border-b-[1px] border-solid border-[#ddd]"
+          : null
+      } `}
+    >
+      <div className="flex flex-row justify-between">
+        <h1 className="text-[16px] font-[700] text-[#0E0E0F]">Education</h1>
         <button
           onClick={showdescription}
-          className=" text-blue-700 hover:underline"
+          className=" text-[#00698C] hover:underline text-sm"
         >
           Add New
         </button>
       </div>
       {showParagraph && (
-        <div className="flex flex-col gap-3 py-3 px-[26px] ">
+        <div className="flex flex-col gap-3 py-3 ">
           {education?.map((e, index) => {
             return (
-              <div className=" text-[17px] flex-col flex gap-3 " key={index}>
-                <div className="flex items-center gap-2">
-                  <span className=" font-[500] text-gray-500">Degree-</span>
-                  <span className="text-[#333333] font-bold">{e?.title}</span>
+              <div
+                className=" text-[14px]  font-[400] flex-col flex gap-1 "
+                key={index}
+              >
+                <div className=" text-[15px] flex items-center gap-2 text-[#555555] ">
+                  <span>{e?.title} -</span> <span>{e?.major} </span>
                 </div>
-                <div className="flex flex-col gap-2">
-                  <div className="flex items-center gap-2">
-                    <span className=" font-[500] text-gray-500">
-                      Institute-
-                    </span>
-                    <span className="text-[#333333] font-bold">
-                      {e?.college}
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className=" font-[500] text-gray-500">Country-</span>
-                    <span className="text-[#333333] font-bold">
-                      {e?.country}
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className=" font-[500] text-gray-500">
-                      Year Of Education-
-                    </span>
-                    <span className="text-[#333333] font-bold">
-                      {" "}
-                      {e?.yearOfEducation}
-                    </span>
-                  </div>
+                <div className="flex items-center  text-[#b2b2b2]">
+                  <span>{e?.college}</span>
+                  <span>, {e?.country}</span>
+                  <span>, {e?.yearOfEducation}</span>
                 </div>
               </div>
             );
@@ -75,40 +67,67 @@ const Education = ({ education, handleUpdate }) => {
       )}
 
       {showBlock && (
-        <div className="mr-3 ml-3 mb-10 bg-gray-200  px-[26px] mt-5 border-[1px] border-current rounded-md">
+        <div className="mb-5 bg-[#f4f4f4] p-4 gap-2 flex flex-col items-center  border-[1px] border-[#e5e5e5] rounded-[3px]">
           <input
-            type="text"
-            placeholder="Country Name"
-            className="mt-5 w-[400px] py-2 px-2 text-[18px]"
+            className="w-full focus:outline-none font-[400] text-[16px] bg-white border-[1px] border-solid border-[#c5c6c9] text-[#404145] rounded-[4px] py-[8px] px-[12px] "
             name="country"
-            onChange={handleChange}
-          />
-          <input
+            placeholder="Enter Country Name"
             type="text"
-            placeholder="Collage(institute) Name"
-            className="mt-5 w-[400px] py-2 px-2 text-[18px]"
-            name="college"
-            onChange={handleChange}
-          />
-          <input
-            type="text"
-            placeholder="Title (e.g. BSCS)"
-            className="mt-5 w-[400px] py-2 px-2 text-[18px]"
-            name="title"
-            onChange={handleChange}
-          />
-          <input
-            type="text"
-            placeholder="Year of Graduation"
-            className="mt-5 w-[400px] py-2 px-2 text-[18px]"
-            name="yearOfEducation"
             onChange={handleChange}
           />
 
-          <div className="flex flex-row justify-center gap-5 py-4 border-t-[1px] border-dark-black mt-3">
+          <input
+            type="text"
+            placeholder="Institute Name"
+            className="  w-full focus:outline-none font-[400] text-[16px]  bg-white border-[1px] border-solid border-[#c5c6c9] text-[#404145] rounded-[4px] py-[8px] px-[12px] placeholder:text-[#7a7d85] placeholder:text-[15px] placeholder:font-[400] placeholder:text-justify"
+            name="college"
+            onChange={handleChange}
+          />
+
+          <select
+            name="title"
+            className=" w-full focus:outline-none font-[400] text-[16px]  bg-white border-[1px] border-solid border-[#c5c6c9] text-[#404145] rounded-[4px] py-[8px] px-[12px] placeholder:text-[#7a7d85] placeholder:text-[15px] placeholder:font-[400] placeholder:text-justify"
+            onChange={handleChange}
+          >
+            {degreeOptions?.map((option, index) => (
+              <option
+                key={option.value}
+                value={option.value}
+                className={option.className}
+              >
+                {option.label}
+              </option>
+            ))}
+          </select>
+
+          <input
+            type="text"
+            placeholder="Enter Major (e.g. software Enginering) "
+            className="  w-full focus:outline-none font-[400] text-[16px]  bg-white border-[1px] border-solid border-[#c5c6c9] text-[#404145] rounded-[4px] py-[8px] px-[12px] placeholder:text-[#7a7d85] placeholder:text-[15px] placeholder:font-[400] placeholder:text-justify"
+            name="major"
+            onChange={handleChange}
+          />
+
+          <select
+            name="yearOfEducation"
+            className="w-full focus:outline-none font-[400] text-[16px] bg-white border-[1px] border-solid border-[#c5c6c9] text-[#404145] rounded-[4px] py-[8px] px-[12px] placeholder:text-[#7a7d85] placeholder:text-[15px] placeholder:font-[400] placeholder:text-justify"
+            onChange={handleChange}
+            value={Education.yearOfEducation}
+          >
+             {years?.map((option) => (
+              <option
+                key={option.value}
+                value={option.value}
+                className={option.className}
+              >
+                {option.label}
+              </option>
+            ))}
+          </select>
+          <div className="flex flex-row justify-center gap-5 py-4  mt-2 w-full">
             <button
               onClick={disabledesc}
-              className="bg-white py-2 px-[65px] text-[18px] text-gray-400 font-bold rounded-md border-[1px] border-current hover:bg-dark-black hover:text-white"
+              className="bg-white text-[#777]  w-[calc(100%-15px)] font-[600]  hover:text-[#1dbf73] py-[10px] px-[30px] text-sm  rounded-[3px]  border border-solid border-[#ccc]"
             >
               Cancel
             </button>
@@ -116,10 +135,11 @@ const Education = ({ education, handleUpdate }) => {
               onClick={() => {
                 handleUpdate({
                   education: {
-                    country: Education.country,
-                    college: Education.college,
-                    title: Education.title,
-                    yearOfEducation: Education.yearOfEducation,
+                    country: Education?.country,
+                    college: Education?.college,
+                    title: Education?.title,
+                    yearOfEducation: Education?.yearOfEducation,
+                    major: Education?.major,
                   },
                 });
                 setShowBlock(false);
@@ -131,14 +151,13 @@ const Education = ({ education, handleUpdate }) => {
                   yearOfEducation: "",
                 });
               }}
-              className=" bg-dark-black text-white py-2 px-[65px] text-[18px] font-bold rounded-md hover:bg-black"
+              className="bg-[#1dbf73] text-white w-[calc(100%-15px)] py-[10px] px-[30px] text-sm font-bold rounded-[3px]  border border-solid border-transparent"
             >
               Update
             </button>
           </div>
         </div>
       )}
-      <div className="border-b-[0.5px] border-solid border-[#e2e8f0]  font-normal mx-3 my-3"></div>
     </div>
   );
 };
