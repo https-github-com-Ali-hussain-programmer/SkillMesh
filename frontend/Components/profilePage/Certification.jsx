@@ -99,10 +99,10 @@ const Certification = ({ certifications, handleUpdate, id }) => {
             onChange={handleChange}
             value={CertificationsDetail.certficateDate}
           >
-            {years?.map((option) => (
+            {years?.map((option,index) => (
               <option
                 key={option.value}
-                value={option.value}
+                value={index==0 ? option.value:"Select Certification Year "}
                 className={option.className}
               >
                 {option.label}
