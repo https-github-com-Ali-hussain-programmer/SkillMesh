@@ -1,13 +1,16 @@
 import React, { useState } from "react";
-
+import { degreeOptions,years } from "../../utils/data";
 const Education = ({ education, handleUpdate }) => {
   const [showBlock, setShowBlock] = useState(false);
   const [showParagraph, setShowParagraph] = useState(true);
+
+ 
   const [Education, setEducation] = useState({
     country: "Country of College/University",
     college: "",
     title: "",
-    yearOfEducation: "",
+    yearOfEducation: " Select Year of Education",
+    major: "",
   });
   const showdescription = () => {
     setShowBlock(true);
@@ -23,6 +26,7 @@ const Education = ({ education, handleUpdate }) => {
       return { ...prev, [name]: value };
     });
   };
+
   return (
     <div
       className={`education flex flex-col gap-2 py-2 ${
@@ -44,35 +48,17 @@ const Education = ({ education, handleUpdate }) => {
         <div className="flex flex-col gap-3 py-3 ">
           {education?.map((e, index) => {
             return (
-              <div className=" text-[17px] flex-col flex gap-3 " key={index}>
-                <div className="flex items-center gap-2">
-                  <span className=" font-[500] text-gray-500">Degree-</span>
-                  <span className="text-[#333333] font-bold">{e?.title}</span>
+              <div
+                className=" text-[14px]  font-[400] flex-col flex gap-1 "
+                key={index}
+              >
+                <div className=" text-[15px] flex items-center gap-2 text-[#555555] ">
+                  <span>{e?.title} -</span> <span>{e?.major} </span>
                 </div>
-                <div className="flex flex-col gap-2">
-                  <div className="flex items-center gap-2">
-                    <span className=" font-[500] text-gray-500">
-                      Institute-
-                    </span>
-                    <span className="text-[#333333] font-bold">
-                      {e?.college}
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className=" font-[500] text-gray-500">Country-</span>
-                    <span className="text-[#333333] font-bold">
-                      {e?.country}
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className=" font-[500] text-gray-500">
-                      Year Of Education-
-                    </span>
-                    <span className="text-[#333333] font-bold">
-                      {" "}
-                      {e?.yearOfEducation}
-                    </span>
-                  </div>
+                <div className="flex items-center  text-[#b2b2b2]">
+                  <span>{e?.college}</span>
+                  <span>, {e?.country}</span>
+                  <span>, {e?.yearOfEducation}</span>
                 </div>
               </div>
             );
@@ -82,16 +68,13 @@ const Education = ({ education, handleUpdate }) => {
 
       {showBlock && (
         <div className="mb-5 bg-[#f4f4f4] p-4 gap-2 flex flex-col items-center  border-[1px] border-[#e5e5e5] rounded-[3px]">
-          <select
+          <input
             className="w-full focus:outline-none font-[400] text-[16px] bg-white border-[1px] border-solid border-[#c5c6c9] text-[#404145] rounded-[4px] py-[8px] px-[12px] "
             name="country"
+            placeholder="Enter Country Name"
+            type="text"
             onChange={handleChange}
-            value={Education.country}
-          >
-            <option value="0" className="hidden">Country of College/University</option>
-           
-           
-          </select>
+          />
 
           <input
             type="text"
@@ -100,28 +83,47 @@ const Education = ({ education, handleUpdate }) => {
             name="college"
             onChange={handleChange}
           />
-          <input
-            type="text"
-            placeholder="Title "
-            className="  w-full focus:outline-none font-[400] text-[16px]  bg-white border-[1px] border-solid border-[#c5c6c9] text-[#404145] rounded-[4px] py-[8px] px-[12px] placeholder:text-[#7a7d85] placeholder:text-[15px] placeholder:font-[400] placeholder:text-justify"
+
+          <select
             name="title"
+            className=" w-full focus:outline-none font-[400] text-[16px]  bg-white border-[1px] border-solid border-[#c5c6c9] text-[#404145] rounded-[4px] py-[8px] px-[12px] placeholder:text-[#7a7d85] placeholder:text-[15px] placeholder:font-[400] placeholder:text-justify"
             onChange={handleChange}
-          />
+          >
+            {degreeOptions?.map((option, index) => (
+              <option
+                key={option.value}
+                value={option.value}
+                className={option.className}
+              >
+                {option.label}
+              </option>
+            ))}
+          </select>
+
           <input
             type="text"
-            placeholder="Major "
+            placeholder="Enter Major (e.g. software Enginering) "
             className="  w-full focus:outline-none font-[400] text-[16px]  bg-white border-[1px] border-solid border-[#c5c6c9] text-[#404145] rounded-[4px] py-[8px] px-[12px] placeholder:text-[#7a7d85] placeholder:text-[15px] placeholder:font-[400] placeholder:text-justify"
-            name="title"
-            onChange={handleChange}
-          />
-          <input
-            type="text"
-            placeholder="Year of graduation"
-            className="  w-full focus:outline-none font-[400] text-[16px]  bg-white border-[1px] border-solid border-[#c5c6c9] text-[#404145] rounded-[4px] py-[8px] px-[12px] placeholder:text-[#7a7d85] placeholder:text-[15px] placeholder:font-[400] placeholder:text-justify"
-            name="yearOfEducation"
+            name="major"
             onChange={handleChange}
           />
 
+          <select
+            name="yearOfEducation"
+            className="w-full focus:outline-none font-[400] text-[16px] bg-white border-[1px] border-solid border-[#c5c6c9] text-[#404145] rounded-[4px] py-[8px] px-[12px] placeholder:text-[#7a7d85] placeholder:text-[15px] placeholder:font-[400] placeholder:text-justify"
+            onChange={handleChange}
+            value={Education.yearOfEducation}
+          >
+             {years?.map((option) => (
+              <option
+                key={option.value}
+                value={option.value}
+                className={option.className}
+              >
+                {option.label}
+              </option>
+            ))}
+          </select>
           <div className="flex flex-row justify-center gap-5 py-4  mt-2 w-full">
             <button
               onClick={disabledesc}
@@ -133,10 +135,11 @@ const Education = ({ education, handleUpdate }) => {
               onClick={() => {
                 handleUpdate({
                   education: {
-                    country: Education.country,
-                    college: Education.college,
-                    title: Education.title,
-                    yearOfEducation: Education.yearOfEducation,
+                    country: Education?.country,
+                    college: Education?.college,
+                    title: Education?.title,
+                    yearOfEducation: Education?.yearOfEducation,
+                    major: Education?.major,
                   },
                 });
                 setShowBlock(false);

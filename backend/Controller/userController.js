@@ -88,6 +88,7 @@ exports.updateProfile = async (req, res) => {
   } catch (error) {
     console.error("Error in Update:", error);
     return res.status(500).json({ error: "Server Error" });
+  
   }
 };
 

@@ -18,8 +18,10 @@ function ProfileModal() {
   };
   const handleLogout = async () => {
     await Logout();
-    dispatch(clearUserData());
     window.location.replace("/");
+    dispatch(clearUserData());
+
+   
   };
 
   return (

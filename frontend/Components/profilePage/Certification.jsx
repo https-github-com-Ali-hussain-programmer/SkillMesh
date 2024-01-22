@@ -4,6 +4,7 @@ import CertificationBox from "./CertificationBox";
 import { deleteCertification } from "../../Api/userApi";
 import { useDispatch } from "react-redux";
 import { deleteCertificationState } from "../../redux/slice/userSlice";
+import { years } from "../../utils/data";
 const Certification = ({ certifications, handleUpdate, id }) => {
   const [showBlock, setShowBlock] = useState(false);
   const [showParagraph, setShowParagraph] = useState(true);
@@ -92,14 +93,23 @@ const Certification = ({ certifications, handleUpdate, id }) => {
             onChange={handleChange}
             name="platform"
           />
-
-          <input
-            type="text"
-            placeholder="Year"
-            className="  w-full focus:outline-none font-[400] text-[16px]  bg-white border-[1px] border-solid border-[#c5c6c9] text-[#404145] rounded-[4px] py-[8px] px-[12px] placeholder:text-[#7a7d85] placeholder:text-[15px] placeholder:font-[400] placeholder:text-justify"
-            onChange={handleChange}
+          <select
             name="certficateDate"
-          />
+            className="w-full focus:outline-none font-[400] text-[16px] bg-white border-[1px] border-solid border-[#c5c6c9] text-[#404145] rounded-[4px] py-[8px] px-[12px] placeholder:text-[#7a7d85] placeholder:text-[15px] placeholder:font-[400] placeholder:text-justify"
+            onChange={handleChange}
+            value={CertificationsDetail.certficateDate}
+          >
+            {years?.map((option) => (
+              <option
+                key={option.value}
+                value={option.value}
+                className={option.className}
+              >
+                {option.label}
+              </option>
+            ))}
+          </select>
+
           <div className="  w-full focus:outline-none font-[400] text-[16px]  bg-white border-[1px] border-solid border-[#c5c6c9] text-[#404145] rounded-[4px] py-[8px] px-[12px] placeholder:text-[#7a7d85] placeholder:text-[15px] placeholder:font-[400] placeholder:text-justify">
             <label
               htmlFor="fileInput"
