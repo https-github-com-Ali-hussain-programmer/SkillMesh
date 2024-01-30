@@ -1,8 +1,7 @@
+import React from 'react';
 
-import React, { useState } from 'react';
+function GigTitle({title, setTitle}) {
 
-function GigTitle() {
-  const [title, setTitle] = useState('');
 
   const handleTitleChange = (event) => {
     const inputValue = event.target.value;

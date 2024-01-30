@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 
-const SearchTags = () => {
-  const [tags, setTags] = useState([]);
-  const [tagInput, setTagInput] = useState('');
+const SearchTags = ({tags, setTags, tagInput, setTagInput}) => {
 
   const addTag = () => {
     if (tagInput.trim() !== '' && tags.length < 5) {
