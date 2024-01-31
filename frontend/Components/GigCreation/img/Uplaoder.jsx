@@ -27,11 +27,11 @@ const Uplaoder = () => {
               const img = new Image();
               img.src = URL.createObjectURL(files[0]);
               img.onload = () => {
-                if (img.width <= 400 && img.height <= 400) {
+                if (img.width <= 1000 && img.height <= 1000) {
                   setImage(URL.createObjectURL(files[0]));
                   setError(null);
                 } else {
-                  setError("Image dimensions must be 400x400.");
+                  setError("Image dimensions must be 1000x1000.");
                 }
               };
             }

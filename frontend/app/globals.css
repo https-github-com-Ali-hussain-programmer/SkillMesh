@@ -249,3 +249,12 @@ option {
   padding: 0px 2px 1px;
   white-space: nowrap;
 }
+.main{
+  border-color: rgb(212, 212, 212);
+}
+.basic{
+  background-color: #ebebeb;
+}
+.basic-right{
+  background-color: #f5f5f5;
+}
