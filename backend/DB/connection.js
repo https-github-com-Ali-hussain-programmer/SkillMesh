@@ -1,16 +1,15 @@
 const mongoose = require("mongoose");
 const { DATABASE_KEY } = process.env;
-
+const { seedingCategories, seedingSubFields } = require("../utils/seeding");
 const connectToDatabase = async () => {
   try {
     await mongoose.connect(DATABASE_KEY);
-
-    console.log("Connected to the MongoDB database");
+    await seedingSubFields();
+    await seedingCategories();
   } catch (error) {
     console.error("Error connecting to the MongoDB database:", error);
   }
 };
-
 
 mongoose.connection.on("connected", () => {
   console.log("Mongoose connected to the database");

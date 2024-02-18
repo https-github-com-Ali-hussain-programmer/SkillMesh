@@ -1,23 +1,27 @@
 "use client";
 import React from "react";
-import { Category } from "@/utils/data";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import Link from "next/link";
 function Categories() {
   const [selectedOption, setSelectedOption] = useState("All Available");
-  const [filteredCategory, setFilteredCategory] = useState(Category);
+  const Category = useSelector((state) => state?.category);
+
+  const [filteredCategory, setFilteredCategory] = useState(Category?.data);
   const OptionChange = (e) => {
     const { value } = e.target;
     setSelectedOption(value);
     if (value === "All Available") {
-      setFilteredCategory(Category);
+      setFilteredCategory(Category?.data);
     } else {
-      const filteredData = Category.filter(
-        (c) => c.category.toLowerCase() === value.toLowerCase()
+      const filteredData = Category?.data.filter(
+        (c) => c.categoryName.toLowerCase() === value.toLowerCase()
       );
       setFilteredCategory(filteredData);
     }
   };
+
+
   return (
     <>
       <div className="z-50 mt-[100px] mb-[300px] min-h-screen ">
@@ -34,10 +38,10 @@ function Categories() {
               onChange={OptionChange}
             >
               <option value="All Available">All Available</option>
-              {Category.map((p, index) => {
+              {Category?.data?.map((p, index) => {
                 return (
-                  <option key={index} value={p.category}>
-                    {p.category}
+                  <option key={index} value={p.categoryName}>
+                    {p.categoryName}
                   </option>
                 );
               })}
@@ -48,7 +52,7 @@ function Categories() {
             {filteredCategory?.map((c, index) => {
               return (
                 <Link
-                  href={`/Categories/${c.category}`}
+                  href={`/Categories/${c.categoryName}`}
                   prefetch
                   key={index}
                   className="blackhover h-[320px] p-3   shadow-lg hover:border-black hover:rounded-md  border-[1px] flex flex-col   border-solid border-[#ccc] "
@@ -61,13 +65,13 @@ function Categories() {
 
                   <div className="flex flex-col gap-2">
                     <h1 className="font-bold text-lg text-[#222325] text-center md:text-left hover:text-[#1dbf73]">
-                      {c.category}
+                      {c.categoryName}
                     </h1>
                     <h3 className=" text-left text-[15px]  text-[#74767E] font-medium hover:text-[#1dbf73]">
-                      Gigs ({c.TotalNoofGigsAvailable})
+                      Gigs 0
                     </h3>
                     <h6 className="text-left text-[15px]  text-[#74767E] font-medium hover:text-[#1dbf73] ">
-                      Subfields ({c.subfields.length})
+                      Subfields 0
                     </h6>
                   </div>
                 </Link>

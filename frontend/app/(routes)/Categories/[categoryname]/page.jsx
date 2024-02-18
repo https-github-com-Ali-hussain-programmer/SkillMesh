@@ -1,21 +1,28 @@
 "use client";
-import React, { useState } from "react";
-import {GigCard} from "../../../../Components";
-import { gigs, Category } from "../../../../utils/data";
+import React, { useState, useEffect } from "react";
+import { GigCard } from "../../../../Components";
+import { gigs } from "../../../../utils/data";
 import { useRouter, useSearchParams } from "next/navigation";
 import { AiOutlineHome } from "react-icons/ai";
-
+import { useSelector } from "react-redux";
 const Gigs = ({ params }) => {
   const [budget, setBudget] = useState({ min: 0, max: 5000 });
   const search = useSearchParams().get("subcategory");
   const [subfieldselect, setSubfieldSelect] = useState(search || "All");
   const [sort, setSort] = useState("No Sort");
+  const Category = useSelector((state) => state?.category);
   const router = useRouter();
-  const [subcategory, setSubcategory] = useState(
-    Category?.filter(
-      (c) => c.category === decodeURIComponent(params.categoryname)
-    )
-  );
+  const [subcategory, setSubcategory] = useState(() => {
+    const filteredSubcategories = Category?.data
+      ?.flatMap(
+        (c) =>
+          c.subField?.filter(
+            (sub) => sub.category === decodeURIComponent(params.categoryname)
+          ) ?? []
+      )
+      .filter(Boolean);
+    return filteredSubcategories;
+  });
   const [filteredGigs, setfilteredGigs] = useState(
     gigs?.filter((c) => c.category === decodeURIComponent(params.categoryname))
   );
@@ -77,6 +84,7 @@ const Gigs = ({ params }) => {
   const handleRoute = (route) => {
     router.replace(route);
   };
+
   return (
     <div className="  bg-[#fafafa]  pt-14 pb-[300px] min-h-screen">
       <div className=" container 2xl:w-[1400px]  flex flex-col gap-5">
@@ -100,13 +108,11 @@ const Gigs = ({ params }) => {
               onChange={subfieldSort}
             >
               <option value="All">All</option>
-              {subcategory?.map((f, index) =>
-                f.subfields.map((subfield, subIndex) => (
-                  <option key={`${index}-${subIndex}`} value={subfield}>
-                    {subfield}
-                  </option>
-                ))
-              )}
+              {subcategory?.map((subfield, index) => (
+                <option key={subfield._id} value={subfield?.name}>
+                  {subfield?.name}
+                </option>
+              ))}
             </select>
           </div>
           <div className="font-light uppercase text-xs text-gray-500 pb-3 tracking-wide">
