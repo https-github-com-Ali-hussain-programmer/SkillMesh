@@ -51,6 +51,6 @@
     "Components/index.jsx",
     "Components/Order/Orderlist.jsx",
     "Components/Order/Ordersmodal.jsx"
-, "app/page.jsx"  ],
+, "app/page.jsx", "Components/Category/CategoryModal.jsx", "Components/Footer/Footer.jsx"  ],
   "exclude": ["node_modules"]
 }

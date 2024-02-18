@@ -18,13 +18,14 @@ import {
   AccordionIcon,
 } from "@chakra-ui/react";
 import { usePathname } from "next/navigation";
-import { Category } from "@/utils/data";
+import { useSelector } from "react-redux";
 interface NavbarDrawerProps {
   isOpen: boolean;
   onClose: () => void;
 }
 function NavbarDrawer({ isOpen, onClose }: NavbarDrawerProps) {
   const pathname = usePathname();
+  const Category = useSelector((state) => state?.category);
   return (
     <>
       <Drawer isOpen={isOpen} placement="left" onClose={onClose} >
@@ -49,7 +50,7 @@ function NavbarDrawer({ isOpen, onClose }: NavbarDrawerProps) {
               </h1>
             </div>
             <Accordion allowToggle={true}>
-              {Category.map((categoryItem, index) => (
+              {Category?.data?.map((categoryItem, index) => (
                 <AccordionItem key={index} className="border-none">
                   {({ isDisabled }) => (
                     <>
@@ -61,13 +62,13 @@ function NavbarDrawer({ isOpen, onClose }: NavbarDrawerProps) {
                       </h2>
                       <AccordionPanel>
                         <div className="item flex gap-5 flex-col">
-                          {categoryItem.subfields.map((subfield, subIndex) => (
+                          {categoryItem.subField.map((subfield, subIndex) => (
                             <span className="text-lightGrey" key={subIndex}>
                               <ActiveLinks
                                 pathname={pathname}
-                                url={`/category/${subfield}`}
+                                url={`/category/${subfield.name}`}
                               >
-                                {subfield}
+                                {subfield.name}
                               </ActiveLinks>
                             </span>
                           ))}

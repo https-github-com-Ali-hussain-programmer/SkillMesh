@@ -8,7 +8,7 @@ import language from "../../public/language.png";
 import instagram from "../../public/instagram.png";
 import linkedin from "../../public/linkedin.png";
 import accessibility from "../../public/accessibility.png";
-import { Category } from "@/utils/data";
+import { useSelector } from "react-redux";
 import {
   Accordion,
   AccordionItem,
@@ -22,6 +22,7 @@ import ActiveLinks from "../Shared/ActiveLinks";
 
 function Footer() {
   const pathname = usePathname();
+  const Category = useSelector((state) => state?.category);
   return (
     <footer
       className={`${
@@ -32,14 +33,14 @@ function Footer() {
         <div className=" sm:flex  lg:justify-between lg:gap:0  flex-wrap gap-10 hidden">
           <div className="item flex gap-5 flex-col">
             <h2 className="text-md font-bold">Categories</h2>
-            {Category.map((c, index) => {
+            {Category?.data?.map((c, index) => {
               return (
                 <span className="text-lightGrey" key={index}>
                   <ActiveLinks
                     pathname={pathname}
-                    url={`/Categories/${c.category}`}
+                    url={`/Categories/${c.categoryName}`}
                   >
-                    {c.category}
+                    {c.categoryName}
                   </ActiveLinks>
                 </span>
               );
@@ -210,10 +211,10 @@ function Footer() {
                     </h2>
                     <AccordionPanel>
                       <div className="item flex gap-5 flex-col">
-                        {Category.map((c, index) => {
+                        {Category?.data?.map((c, index) => {
                           return (
                             <span key={index} className="text-lightGrey">
-                              {c.category}
+                              {c.categoryName}
                             </span>
                           );
                         })}

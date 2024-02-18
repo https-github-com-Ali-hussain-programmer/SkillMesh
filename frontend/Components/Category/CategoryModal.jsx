@@ -2,9 +2,10 @@ import React from "react";
 import ActiveLinks from "../Shared/ActiveLinks";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { Category } from "../../utils/data";
+import { useSelector } from "react-redux";
 function CategoryModal() {
   const pathname = usePathname();
+  const Category = useSelector((state) => state?.category);
   return (
     <>
       <div
@@ -15,24 +16,24 @@ function CategoryModal() {
         }  p-6 py-8 rounded-md shadow-xl`}
       >
         <div className=" sm:flex   lg:gap:0  flex-wrap lg:gap-14 md:gap-5 hidden">
-          {Category.map((c, index) => {
+          {Category?.data?.map((c, index) => {
             return (
               <div key={index} className="item flex gap-5 flex-col">
                 <Link
-                  href={`/Categories/${c.category}`}
+                  href={`/Categories/${c.categoryName}`}
                   className="text-md font-bold"
                 >
-                  {c.category}
+                  {c.categoryName}
                 </Link>
-                {c.subfields.map((subcategory, index) => {
+                {c.subField.map((subcategory, index) => {
                   return (
                     <span className="text-lightGrey" key={index}>
                       {" "}
                       <ActiveLinks
                         pathname={pathname}
-                        url={`/Categories/${c.category}?subcategory=${subcategory}`}
+                        url={`/Categories/${c?.categoryName}?subcategory=${subcategory?.name}`}
                       >
-                        {subcategory}
+                        {subcategory?.name}
                       </ActiveLinks>
                     </span>
                   );

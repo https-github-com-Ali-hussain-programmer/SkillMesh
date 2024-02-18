@@ -2,7 +2,7 @@ import dynamic from "next/dynamic";
 const Navbar = dynamic(() => import("./Navbar/Navbar"));
 const Message = dynamic(() => import("./Message/Message"));
 const Footer = dynamic(() => import("./Footer/Footer"));
-const Hero = dynamic(() => import("./Home/Hero"));
+import Hero from "./Home/Hero";
 const PlatformFeatures = dynamic(() => import("./Home/PlatformFeatures"));
 const TopRated = dynamic(() => import("./Home/TopRated"));
 const TopRatedCard = dynamic(() => import("./Home/TopRatedCard"));
