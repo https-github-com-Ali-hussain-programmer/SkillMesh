@@ -1,7 +1,7 @@
-import { Category, Users } from "../../utils/data";
-
+import { Users } from "../../utils/data";
+import { useSelector } from "react-redux";
 export default function search(value, type) {
-  
+  const Category = useSelector((state) => state?.category);
 
   const lowercasedValue = value.toLowerCase();
   if (type === "User") {
@@ -9,22 +9,21 @@ export default function search(value, type) {
       Users?.filter((u) =>
         u.username.toLowerCase().includes(lowercasedValue)
       ) || [];
-      return userResults;
+    return userResults;
   } else if (type === "Category") {
     const categoryResults =
-      Category?.filter((c) => c?.category.toLowerCase() === lowercasedValue) ||
-      [];
-      return categoryResults;
+      Category?.filter(
+        (c) => c?.categoryName.toLowerCase() === lowercasedValue
+      ) || [];
+    return categoryResults;
   } else {
     const subCategoryResults =
       Category?.flatMap(
         (c) =>
-          c.subfields?.filter((s) =>
-            s.toLowerCase().includes(lowercasedValue)
+          c.subField?.filter((s) =>
+            s.name.toLowerCase().includes(lowercasedValue)
           ) || []
       ) || [];
-      return subCategoryResults
+    return subCategoryResults;
   }
-
- 
 }
