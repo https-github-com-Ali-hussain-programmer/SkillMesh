@@ -20,6 +20,7 @@ export const ConditionalRendering = [
   "/helpSupport",
   "/parternships",
 ];
+
 export const SliderData = [
   {
     id: 1,

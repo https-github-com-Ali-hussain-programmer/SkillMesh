@@ -18,6 +18,7 @@ import {
   REGISTER,
 } from "redux-persist";
 
+import gigReducer from "../slice/gigcreationslice";
 export const store = configureStore({
   reducer: {
     wishlist: wishlistReducer,
@@ -25,6 +26,7 @@ export const store = configureStore({
     TotalPackage: TotalPackageReducer,
     user: userReducer,
     category: persistedReducer,
+    gig: gigReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

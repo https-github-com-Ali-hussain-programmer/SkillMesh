@@ -9,9 +9,12 @@ const Img = () => {
           <h1 className="mb-[30px]">Images</h1>
         </div>
       </div>
-      <div className='flex justify-center items-center max-w-[1000px] bg-slate-50 h-[500px] border-[1px] rounded mx-[230px] mt-[10px]'>
+      <div className='flex justify-center items-center max-w-[1000px] basic-right h-[500px] border-[1px] rounded mx-[230px] mt-[10px]'>
             <Uplaoder/>
       </div>
+      <button  className="bg-dark-blue mb-16 text-white py-4 px-8 ml-[1050px] mt-6 rounded-xl hover:bg-blue-950">
+        Save & Continue
+      </button>
     </div>
   )
 }
