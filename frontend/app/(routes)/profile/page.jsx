@@ -22,7 +22,7 @@ import {
   handleCertificationUpdate,
 } from "@/Api/userApi";
 import { updateField } from "../../../redux/slice/userSlice";
-import { CurrentUser, countries } from "../../../utils/data";
+import {  countries } from "../../../utils/data";
 import ReactFlagsSelect from "react-flags-select";
 
 const ProfilePage = () => {
@@ -303,7 +303,7 @@ const ProfilePage = () => {
                 </div>
 
                 <h2 className="text-[#62646a] text-sm font-bold">
-                  {CurrentUser ? convertDate(memberSince) || "" : null}
+                  {currentUser ? convertDate(memberSince) || "" : null}
                 </h2>
               </div>
             </div>
