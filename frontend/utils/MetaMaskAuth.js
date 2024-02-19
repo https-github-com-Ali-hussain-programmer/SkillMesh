@@ -13,7 +13,9 @@ const useMetaMask = () => {
     const updatedUserAddress = getAddress(newAccounts[0]);
     const updatedUserData = await LoginMetamask(updatedUserAddress);
     dispatch(setUserData({ info: updatedUserData?.user }));
-    console.log(updatedUserData);
+    
+    localStorage.setItem("userData", JSON.stringify(updatedUserData?.user));
+
     setAccount(updatedUserAddress);
   };
 
@@ -32,7 +34,6 @@ const useMetaMask = () => {
         }
 
         setAccount(getAddress(accounts[0]));
-       
 
         await handleMetaMaskChange(accounts);
 
@@ -59,8 +60,7 @@ const useMetaMask = () => {
     }
   };
 
-
-  return { connectMetaMask, account,handleMetaMaskChange };
+  return { connectMetaMask, account, handleMetaMaskChange };
 };
 
 export default useMetaMask;

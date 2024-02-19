@@ -1,5 +1,5 @@
-import { Users } from "../../utils/data";
 import { useSelector } from "react-redux";
+const Users = [];
 export default function search(value, type) {
   const Category = useSelector((state) => state?.category);
 

@@ -64,9 +64,7 @@ const Navbar = () => {
   return (
     <nav
       className={`py-3 relative ${
-        pathname === "/"
-          ? "bg-dark-black text-white"
-          : "nav text-black z-50"
+        pathname === "/" ? "bg-dark-black text-white" : "nav text-black z-50"
       }`}
     >
       <div
@@ -162,26 +160,25 @@ const Navbar = () => {
               </ActiveLinks>
             </span>
           )}
-
-          {currentUser ? (
+          {currentUser && currentUser.avatar ? (
             <div onClick={() => setProfile(true)} ref={profileRef}>
               <span className="relative">
                 <img
-                  src={currentUser?.avatar}
+                  src={currentUser.avatar}
                   alt="error"
-                  className="h-[45px] w-[45px] rounded-full shadow-md  "
+                  className="h-[45px] w-[45px] rounded-full shadow-md"
                 />
                 <div className="w-[9px] h-[9px] absolute bottom-0 right-1 rounded-full bg-[#46CE7E]"></div>
               </span>
-              {profile ? <ProfileModal /> : null}
+              {profile && <ProfileModal />}
             </div>
           ) : (
             <button
-              className={`  hidden sm:inline-block  py-2 px-2  rounded-md  ${
+              className={`hidden sm:inline-block py-2 px-2 rounded-md ${
                 pathname !== "/"
                   ? "bg-blue-600 text-white transition-all duration-300 hover:scale-105 hover:bg-white hover:text-black hover:border-black hover:border-[1px]"
                   : "connect"
-              }  `}
+              }`}
               onClick={() => {
                 setmetaModal(!metaModal);
               }}

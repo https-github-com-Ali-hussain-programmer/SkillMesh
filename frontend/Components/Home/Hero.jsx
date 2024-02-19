@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import logo from "../../public/side.png";
 import Search from "../Shared/Search";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Radio, RadioGroup, Stack } from "@chakra-ui/react";
 import { useSelector } from "react-redux";
 import MetaMask from "../../public/MetaMask.png";
@@ -229,7 +229,7 @@ const Hero = () => {
               </Link>
             </div>
           </div>
-          {currentUser ? (
+          {currentUser && currentUser.address ? (
             <div className="rounded-[16px] bg-[#F8E473]  w-[430px] showStatus p-4  flex flex-col gap-3 border-[#E2E8F0] border-solid border-2 ">
               <h1 className="w-full p-2  bg-[#f5f5f7]  font-bold text-[#6c6f7f] mb-2 text-center">
                 Account 's Information
@@ -256,7 +256,10 @@ const Hero = () => {
                   <h1 className="font-[700] text-sm text-[#6c6f7f] break-words">
                     {shortAddress(currentUser?.address)}
                   </h1>
-                  <CopyToClipboard options={{ message: "Whoa!" }} text={currentUser?.address} >
+                  <CopyToClipboard
+                    options={{ message: "Whoa!" }}
+                    text={currentUser?.address}
+                  >
                     <button
                       className="outline-none border-none hover:scale-110 transition-all"
                       onClick={() => {
