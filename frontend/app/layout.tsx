@@ -18,7 +18,6 @@ const roboto = Roboto({
 });
 
 export default function RootLayout({
-  
   children,
 }: {
   children: React.ReactNode;
@@ -27,18 +26,17 @@ export default function RootLayout({
     <html lang="en">
       <body className={`min-h-screen ${roboto.className} `}>
         <ReduxProvider>
-          <AuthProvider>
-            <ChakraProviderUI>
+          <ChakraProviderUI>
+            <AuthProvider>
               <FormProvider>
                 <ToastContainer position="bottom-left" />
-
                 <Client>{children}</Client>
                 <div className="fixed bottom-0  right-0 mx-auto z-50">
                   <Message />
                 </div>
               </FormProvider>
-            </ChakraProviderUI>
-          </AuthProvider>
+            </AuthProvider>
+          </ChakraProviderUI>
         </ReduxProvider>
       </body>
     </html>
