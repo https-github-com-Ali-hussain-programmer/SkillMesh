@@ -6,7 +6,7 @@ import { Roboto } from "next/font/google";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import type { Metadata } from "next";
-import AuthProvider from "../utils/AuthProvider";
+import AuthProvider from "../utils/LoaderHandler";
 import FormProvider from "@/context/Form";
 export const metadata: Metadata = {
   title: "SkillMesh |  Web3.0 FreeLancing ",
