@@ -47,7 +47,7 @@ function ProfileModal() {
           <Link href="/profile"> My Profile</Link>
         </div>
         <div className=" hover:text-[#46CE7E] cursor-pointer py-2 text-[#36383F] text-sm border-b-[0.5px] border-solid border-[#e2e8f0]">
-          {currentUser?.isSeller ? "My Gigs" : "Become a Seller"}
+          <Link href="./GigCreation/Overview">{currentUser?.isSeller ? "My Gigs" : "Become a Seller"}</Link>
         </div>
         <div
           onClick={handleLogout}
