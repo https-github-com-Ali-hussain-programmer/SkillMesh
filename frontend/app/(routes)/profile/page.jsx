@@ -15,6 +15,8 @@ import AddCircleIcon from "@mui/icons-material/AddCircle";
 import ProfileGig from "../../../Components/profilePage/ProfileGig";
 import { useSearchParams } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 import {
   fetchProfileData,
   updateProfileData,
@@ -40,6 +42,7 @@ const ProfilePage = () => {
   const [profileUpdate, setprofileUpdate] = useState(false);
   const [file, setFile] = useState(null);
   const profileRef = useRef(null);
+  const router = useRouter();
 
   const handleUpdate = useCallback(async (updatedField) => {
     const abortController = new AbortController();
@@ -144,15 +147,15 @@ const ProfilePage = () => {
               </div>
 
               {profileUpdate && (
-                  <div className="mb-5 bg-[#f4f4f4] p-4 gap-2 flex flex-col items-center  border-[1px] border-[#e5e5e5] rounded-[3px]">
-                     <div className="flex flex-row justify-center gap-5 py-4  mt-2 w-full">
+                <div className="mb-5 bg-[#f4f4f4] p-4 gap-2 flex flex-col items-center  border-[1px] border-[#e5e5e5] rounded-[3px]">
+                  <div className="flex flex-row justify-center gap-5 py-4  mt-2 w-full">
                     <button
                       onClick={() => {
                         setprofileUpdate(false);
                         setTempUrl(avatar);
                       }}
                       className="bg-white text-[#777]  w-[calc(100%-15px)] font-[600]  hover:text-[#1dbf73] py-[10px] px-[30px] text-sm  rounded-[3px]  border border-solid border-[#ccc]"
-            >
+                    >
                       Cancel
                     </button>
                     <button
@@ -161,7 +164,7 @@ const ProfilePage = () => {
                         setprofileUpdate(false);
                       }}
                       className="bg-[#1dbf73] text-white w-[calc(100%-15px)] py-[10px] px-[30px] text-sm font-bold rounded-[3px]  border border-solid border-transparent"
-            >
+                    >
                       Update
                     </button>
                   </div>
@@ -356,9 +359,11 @@ const ProfilePage = () => {
                 <h1 className="text-[26px] font-semibold">
                   Ready to earn on your own terms?
                 </h1>
-                <button className="bg-dark-blue text-white py-3 px-7 mt-5 rounded-md font-semibold hover:shadow-2xl">
-                  Become a Seller
-                </button>
+                <Link href="./GigCreation/Overview">
+                  <button className="bg-dark-blue text-white py-3 px-7 mt-5 rounded-md font-semibold hover:shadow-2xl">
+                    Become a Seller
+                  </button>
+                </Link>
               </div>
             </div>
           )}
