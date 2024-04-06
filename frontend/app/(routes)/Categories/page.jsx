@@ -6,7 +6,6 @@ import Link from "next/link";
 function Categories() {
   const [selectedOption, setSelectedOption] = useState("All Available");
   const Category = useSelector((state) => state?.category);
-
   const [filteredCategory, setFilteredCategory] = useState(Category?.data);
   const OptionChange = (e) => {
     const { value } = e.target;

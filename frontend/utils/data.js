@@ -163,7 +163,7 @@ export const gigs = [
         },
         rating: 5,
         review:
-          "Absolutely delighted with the results! The artist exceeded my expectations. The communication was smooth, and the delivery was on time. I highly recommend this gig.",
+          "Absolutely delighted with the results! T`he artist exceeded my expectations. The communication was smooth, and the delivery was on time. I highly recommend this gig.",
         helpful: {
           yes: 12,
           no: 0,

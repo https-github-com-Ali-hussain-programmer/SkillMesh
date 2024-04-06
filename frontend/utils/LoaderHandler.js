@@ -12,6 +12,7 @@ function LoaderHandler({ children }) {
   const AuthToken = async () => {
     try {
       const data = await verifyToken();
+      console.log(data)
       if (data.success) {
         dispatch(setUserData({ info: data?.user }));
         setLoading(false);
@@ -27,6 +28,8 @@ function LoaderHandler({ children }) {
   useEffect(() => {
     AuthToken();
   }, []);
+
+
 
   return (
     <>
