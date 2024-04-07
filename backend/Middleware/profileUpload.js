@@ -2,7 +2,7 @@ const multer = require("multer");
 const s3Multer = require("multer-s3");
 const { S3Client } = require("@aws-sdk/client-s3");
 const dotenv = require("dotenv");
-const path=require("path")
+const path = require("path");
 dotenv.config();
 
 const s3 = new S3Client({
@@ -25,7 +25,10 @@ const createStorage = (folderName) => {
       });
     },
     key: function (req, file, cb) {
-      cb(null, `images/${folderName}/` + Date.now() + path.extname(file.originalname));
+      cb(
+        null,
+        `images/${folderName}/` + Date.now() + path.extname(file.originalname)
+      );
     },
     contentType: function (req, file, cb) {
       cb(null, "image/jpeg");

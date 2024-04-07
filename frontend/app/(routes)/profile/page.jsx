@@ -24,7 +24,7 @@ import {
   handleCertificationUpdate,
 } from "@/Api/userApi";
 import { updateField } from "../../../redux/slice/userSlice";
-import {  countries } from "../../../utils/data";
+import { countries } from "../../../utils/data";
 import ReactFlagsSelect from "react-flags-select";
 
 const ProfilePage = () => {
@@ -129,6 +129,7 @@ const ProfilePage = () => {
     const data = await handleCertificationUpdate(formData);
     dispatch(updateField({ updatedField: data.updatedField }));
   };
+
   return (
     <>
       <div className=" min-h-screen bg-[#f7f7f7] pt-[30px] pb-[200px] px-5">

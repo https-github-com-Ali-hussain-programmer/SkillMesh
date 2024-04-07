@@ -16,9 +16,9 @@ const corsOption = {
 };
 require("./DB/connection");
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json({ limit: "30mb" }));
 app.use(cors(corsOption));
 app.use(cookieParser());
-app.use(express.json());
 app.use("/api/v1/user", userRoutes);
 app.use("/api/v1/category", categoryRoutes);
 app.use("/api/v1/gig", gigRoutes);

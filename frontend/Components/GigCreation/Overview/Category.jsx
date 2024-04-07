@@ -5,9 +5,13 @@ const Categories = ({ categories, SelectedCategory, SelectedSubfield }) => {
   const [selectedSubfield, setSelectedSubfield] = useState("");
 
   const handleCategoryChange = (e) => {
-    const category = e.target.value;
-    setSelectedCategory(category);
-    SelectedCategory(category);
+    const categoryId = e.target.value;
+
+    const selectedCategoryObj = categories.find(
+      (category) => category._id === categoryId
+    );
+    SelectedCategory(categoryId);
+    setSelectedCategory(selectedCategoryObj.categoryName);
     setSelectedSubfield("");
   };
 
@@ -34,7 +38,7 @@ const Categories = ({ categories, SelectedCategory, SelectedSubfield }) => {
           >
             <option value="">Select Category</option>
             {categories?.map((category, index) => (
-              <option key={index} value={category.categoryName}>
+              <option key={index} value={category._id}>
                 {category.categoryName}
               </option>
             ))}
@@ -49,7 +53,7 @@ const Categories = ({ categories, SelectedCategory, SelectedSubfield }) => {
               categories
                 .find((cat) => cat.categoryName === selectedCategory)
                 ?.subField.map((subfield, index) => (
-                  <option key={index} value={subfield.name}>
+                  <option key={index} value={subfield._id}>
                     {subfield.name}
                   </option>
                 ))}

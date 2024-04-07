@@ -2,13 +2,19 @@
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import Uplaoder from "../../../../Components/GigCreation/img/Uplaoder";
-import {createGig} from '../../../../Api/gigApi'  
+import { createGig } from "../../../../Api/gigApi";
+import { useDispatch } from "react-redux";
+import { setUserData } from "../../../../redux/slice/userSlice";
 const Img = () => {
   const router = useRouter();
-  
-  const handleSave = async() => {
-    await createGig()
-    router.push("./profile");
+  const dispatch = useDispatch();
+  const handleSave = async (file) => {
+    const response = await createGig(file);
+    const info = response.user;
+    console.log(info)
+    dispatch(setUserData({ info }));
+
+    // router.push("./profile");
   };
   return (
     <div className="w-full min-h-screen">
@@ -18,7 +24,7 @@ const Img = () => {
         </div>
       </div>
       <div className="flex justify-center items-center max-w-[1200px] basic-right h-[500px] border-[1px] rounded mx-[230px] mt-[10px]">
-        <Uplaoder onClick= {handleSave}/>
+        <Uplaoder handleSave={handleSave} />
       </div>
       <div className="w-[70%] flex justify-end ">
         <button

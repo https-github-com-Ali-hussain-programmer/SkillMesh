@@ -39,3 +39,4 @@ const shutdown = async () => {
 });
 
 connectToDatabase();
+

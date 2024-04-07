@@ -12,7 +12,7 @@ const Desc = () => {
     }
   };
   const handleButtonCLick = () => {
-    localStorage.setItem("title", title);
+    localStorage.setItem("description", title);
     router.push("./img");
   };
   return (
