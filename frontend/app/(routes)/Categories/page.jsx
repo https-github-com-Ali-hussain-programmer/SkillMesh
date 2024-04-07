@@ -20,7 +20,6 @@ function Categories() {
     }
   };
 
-
   return (
     <>
       <div className="z-50 mt-[100px] mb-[300px] min-h-screen ">
@@ -67,10 +66,10 @@ function Categories() {
                       {c.categoryName}
                     </h1>
                     <h3 className=" text-left text-[15px]  text-[#74767E] font-medium hover:text-[#1dbf73]">
-                      Gigs 0
+                      Gigs {c.gig?.length}
                     </h3>
                     <h6 className="text-left text-[15px]  text-[#74767E] font-medium hover:text-[#1dbf73] ">
-                      Subfields 0
+                      Subfields {c.subField?.length}
                     </h6>
                   </div>
                 </Link>

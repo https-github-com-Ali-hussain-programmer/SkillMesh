@@ -5,14 +5,16 @@ import Uplaoder from "../../../../Components/GigCreation/img/Uplaoder";
 import { createGig } from "../../../../Api/gigApi";
 import { useDispatch } from "react-redux";
 import { setUserData } from "../../../../redux/slice/userSlice";
+import { updateCategory } from "../../../../redux/slice/categorySlice";
 const Img = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const handleSave = async (file) => {
     const response = await createGig(file);
     const info = response.user;
-    console.log(info)
+    console.log(info);
     dispatch(setUserData({ info }));
+    dispatch(updateCategory(response.category));
 
     // router.push("./profile");
   };
