@@ -12,8 +12,8 @@ const categorySchema = new mongoose.Schema({
   categoryName: String,
   imageUrl: String,
   subField: [{ type: mongoose.Schema.Types.ObjectId, ref: "SubField" }],
+  gig: [{ type: mongoose.Schema.Types.ObjectId, ref: "Gig" }],
 });
-
 
 const Category = mongoose.model("Category", categorySchema);
 module.exports = {

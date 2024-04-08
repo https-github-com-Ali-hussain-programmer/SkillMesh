@@ -1,12 +1,43 @@
-"use client";
 import React, { useState } from "react";
 import { MdCloudUpload, MdDelete } from "react-icons/md";
 import { AiFillFileImage } from "react-icons/ai";
 
-const Uplaoder = () => {
+const Uploader = ({ handleSave }) => {
   const [image, setImage] = useState(null);
-  const [fileName, setFileName] = useState("No file choose");
+  const [fileName, setFileName] = useState("No file chosen");
+  const [file, setFile] = useState(null);
   const [error, setError] = useState(null);
+
+  const handleFileChange = (event) => {
+    const selectedFile = event.target.files[0];
+
+    if (selectedFile) {
+      setFile(selectedFile);
+      setFileName(selectedFile.name);
+
+      const img = new Image();
+      img.src = URL.createObjectURL(selectedFile);
+      img.onload = () => {
+        setImage(URL.createObjectURL(selectedFile));
+        setError(null);
+      };
+    }
+  };
+
+  const handleDelete = () => {
+    setFileName("No file chosen");
+    setImage(null);
+    setError(null);
+  };
+
+  const handleUpload = () => {
+    if (file && !error) {
+      handleSave(file); // Call handleSave with the selected file
+      setFileName("No file chosen");
+      setImage(null);
+      setError(null);
+    }
+  };
 
   return (
     <main>
@@ -19,23 +50,7 @@ const Uplaoder = () => {
           type="file"
           accept="image/*"
           className="input-filed hidden"
-          onChange={({ target: { files } }) => {
-            if (files && files[0]) {
-              setFileName(files[0].name);
-
-              // Check image dimensions
-              const img = new Image();
-              img.src = URL.createObjectURL(files[0]);
-              img.onload = () => {
-                if (img.width <= 1000 && img.height <= 1000) {
-                  setImage(URL.createObjectURL(files[0]));
-                  setError(null);
-                } else {
-                  setError("Image dimensions must be 1000x1000.");
-                }
-              };
-            }
-          }}
+          onChange={handleFileChange}
         />
         {image ? (
           <img src={image} alt={fileName} width={290} height={250} />
@@ -51,18 +66,21 @@ const Uplaoder = () => {
         <AiFillFileImage />
         <span className="flex items-center gap-[140px]">
           {fileName}
-          <MdDelete
-            className="cursor-pointer"
-            onClick={() => {
-              setFileName("No selected File");
-              setImage(null);
-              setError(null);
-            }}
-          />
+          {fileName !== "No file chosen" && (
+            <MdDelete className="cursor-pointer" onClick={handleDelete} />
+          )}
         </span>
+        {image && (
+          <button
+            className="bg-blue-500 text-white px-4 py-2 rounded-md"
+            onClick={handleUpload}
+          >
+            Upload
+          </button>
+        )}
       </section>
     </main>
   );
 };
 
-export default Uplaoder;
+export default Uploader;

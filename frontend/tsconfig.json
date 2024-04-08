@@ -36,7 +36,7 @@
     "Components/Message/Message.jsx",
     "app/(routes)/Categories/page.jsx",
     "app/(routes)/Categories/[categoryname]/page.jsx",
-    "app/(routes)/gig/page.jsx",
+    "app/gig/page.jsx",
     "Components/Gig/GigReviews.jsx",
     "Components/Wishlist/Whishlistmodal.jsx",
     "Components/Home/PlatformFeatures.jsx",
@@ -50,7 +50,10 @@
     "Components/Home/Hero.jsx",
     "Components/index.jsx",
     "Components/Order/Orderlist.jsx",
-    "Components/Order/Ordersmodal.jsx"
-, "app/page.jsx", "Components/Category/CategoryModal.jsx", "Components/Footer/Footer.jsx"  ],
+    "Components/Order/Ordersmodal.jsx",
+    "app/page.jsx",
+    "Components/Category/CategoryModal.jsx",
+    "Components/Footer/Footer.jsx"
+, "Components/GigCreation/Package/index.jsx"  ],
   "exclude": ["node_modules"]
 }

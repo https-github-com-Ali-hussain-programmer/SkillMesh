@@ -8,6 +8,6 @@ exports.getCategories = async (req, res) => {
     });
     return res.status(200).json(category);
   } catch (error) {
-    consoel.log(error);
+    console.log(error);
   }
 };

@@ -3,11 +3,10 @@ import { NextResponse } from "next/server";
 export function middleware(request) {
   const cookies = request.cookies;
   const token = cookies.get("token");
-  if(!token){
+  if (!token) {
     return NextResponse.redirect(new URL("/", request.url));
   }
-  return NextResponse.next()
-
+  return NextResponse.next();
 }
 
 export const config = {

@@ -6,7 +6,6 @@ import Link from "next/link";
 function Categories() {
   const [selectedOption, setSelectedOption] = useState("All Available");
   const Category = useSelector((state) => state?.category);
-
   const [filteredCategory, setFilteredCategory] = useState(Category?.data);
   const OptionChange = (e) => {
     const { value } = e.target;
@@ -20,7 +19,6 @@ function Categories() {
       setFilteredCategory(filteredData);
     }
   };
-
 
   return (
     <>
@@ -68,10 +66,10 @@ function Categories() {
                       {c.categoryName}
                     </h1>
                     <h3 className=" text-left text-[15px]  text-[#74767E] font-medium hover:text-[#1dbf73]">
-                      Gigs 0
+                      Gigs {c.gig?.length}
                     </h3>
                     <h6 className="text-left text-[15px]  text-[#74767E] font-medium hover:text-[#1dbf73] ">
-                      Subfields 0
+                      Subfields {c.subField?.length}
                     </h6>
                   </div>
                 </Link>
