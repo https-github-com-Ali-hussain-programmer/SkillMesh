@@ -3,6 +3,8 @@ import React, { useCallback, useEffect, useRef, useState } from "react";
 import { FiSearch } from "react-icons/fi";
 import {MessageProfile,MessageLayout} from "../../Components";
 import { usePathname } from "next/navigation";
+import chaticon from "../../public/chat-icon.png"
+import Image from "next/image";
 
 function Message() {
   const [show, setShow] = useState(false);
@@ -63,7 +65,7 @@ function Message() {
         }  w-[340px] p-3 rounded-md  `}
       >
         <h2 className="text-center text-lg">Message</h2>
-
+        
         {individualProfile ? (
           <div ref={messageLayoutRef} className="w-full h-full ">
             <MessageLayout

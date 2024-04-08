@@ -80,7 +80,7 @@ const Categories = ({selectedCategory, setSelectedCategory, subfields, setSubfie
             value={selectedCategory}
           >
             <option value="">Select Category</option>
-            {Category.map((p, index) => (
+            {Category?.map((p, index) => (
               <option key={index} value={p.category}>
                 {p.category}
               </option>
