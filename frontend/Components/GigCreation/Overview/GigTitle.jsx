@@ -28,7 +28,7 @@ function GigTitle({title, setTitle}) {
           rows={2}
           value={title}
           onChange={handleTitleChange}
-          className="w-full border-[1.5px] border-black rounded-lg py-3 px-3 text-[18px]"
+          className="resize-none w-full border-[1.5px] border-black rounded-lg py-3 px-3 text-[18px]"
           placeholder="I will do something I am really good"
         ></textarea>
         <p className="text-red-500 text-[15px]">
@@ -37,6 +37,7 @@ function GigTitle({title, setTitle}) {
         {title.length < 50 && (
           <p className="text-red-500 text-[15px]">50 character miximum</p>
         )}
+        
       </div>
     </div>
   );

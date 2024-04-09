@@ -1,10 +1,17 @@
 "use client";
 import React, { useState } from "react";
+import * as Yup from "yup";
 import Categories from "../../../../Components/GigCreation/Overview/Category";
 import GigTitle from "../../../../Components/GigCreation/Overview/GigTitle";
 import SearchTag from "../../../../Components/GigCreation/Overview/SearchTags";
 import { useRouter } from "next/navigation";
+import Package from "../../../../Components/GigCreation/Package";
 import { useSelector } from "react-redux";
+import Uplaoder from "../../../../Components/GigCreation/img/Uplaoder";
+import { createGig } from "../../../../Api/gigApi";
+import { useDispatch } from "react-redux";
+import { setUserData } from "../../../../redux/slice/userSlice";
+import { updateCategory } from "../../../../redux/slice/categorySlice";
 
 const Overview = () => {
   const [title, setTitle] = useState("");
@@ -13,16 +20,80 @@ const Overview = () => {
   const [selectedSubfield, setSelectedSubfield] = useState("");
   const [tags, setTags] = useState([]);
   const [tagInput, setTagInput] = useState("");
-  const router = useRouter();
-  const putOverview = () => {
-    localStorage.setItem("title", title);
-    localStorage.setItem("selectedCategory", selectedCategory);
-    localStorage.setItem("selectedSubField", selectedSubfield);
-    localStorage.setItem("tags", JSON.stringify(tags));
-    router.push("./Pricing");
+  const [desc, setDesc] = useState("");
+  const [offeringTags, setOfferingTags] = useState([]);
+  const [offerInput, setOfferInput] = useState("");
+  const dispatch = useDispatch();
+  const handleSave = async (file) => {
+    // const response = await createGig(file);
+    // const info = response.user;
+    // console.log(info);
+    // dispatch(setUserData({ info }));
+    // dispatch(updateCategory(response.category));
+
+    // router.push("./profile");
   };
+  const [packageState, setPackage] = useState({
+    basic: {
+      name: "basic",
+      packageDesc: "",
+      offeringDetails: [],
+      noOfPages: "",
+      deliveryTime: "",
+      price: "",
+    },
+    standard: {
+      name: "standard",
+      packageDesc: "",
+      offeringDetails: [],
+      noOfPages: "",
+      deliveryTime: "",
+      price: "",
+    },
+    premium: {
+      name: "premium",
+      packageDesc: "",
+      offeringDetails: [],
+      noOfPages: "",
+      deliveryTime: "",
+      price: "",
+    },
+  });
+
+  const handleChange = (e, pkgType) => {
+    const { name, value } = e.target;
+    setPackage((prevPackage) => ({
+      ...prevPackage,
+      [pkgType]: {
+        ...prevPackage[pkgType],
+        [name]: value,
+      },
+    }));
+  };
+  const handleTitleChange = (event) => {
+    const inputValue = event.target.value;
+    if (inputValue.length <= 1200) {
+      setDesc(inputValue);
+    }
+  };
+  const putOverview = () => {
+    console.log(packageState);
+    console.log(desc);
+    console.log(title);
+    console.log(tags);
+    console.log(typeof packageState.basic.deliveryTime);
+    console.log(typeof packageState.basic.noOfPages);
+    console.log(typeof packageState.basic.price);
+    console.log(typeof packageState.premium.deliveryTime);
+    console.log(typeof packageState.premium.noOfPages);
+    console.log(typeof packageState.premium.price);
+
+  };
+
   return (
-    <div className="w-full h-[1000px]">
+    <div className="w-full">
+      {/* GigCreation Overview */}
+
       <div className="max-w-[1100px] border-[1px] rounded mx-[230px] mt-[100px] pb-28">
         <GigTitle title={title} setTitle={setTitle} />
         <Categories
@@ -37,9 +108,76 @@ const Overview = () => {
           setTagInput={setTagInput}
         />
       </div>
+
+      {/* GigCreation Pricing Scope */}
+      <div className="max-w-[1100px] rounded mx-[230px] mt-[100px]">
+        <h1 className="text-[25px] font-bold pb-5">Scope & Pricing</h1>
+        <h2 className="px-5 text-[20px] font-semibold">Basic Package</h2>
+        <Package
+          packageDetails={packageState.basic}
+          handleChange={(e) => handleChange(e, "basic")}
+          offeringTags={offeringTags}
+          setOfferingTags={setOfferingTags}
+          offerInput={offerInput}
+          setOfferInput={setOfferInput}
+        />
+        <h2 className="px-5 text-[20px] font-semibold">Standard Package</h2>
+        <Package
+          packageDetails={packageState.standard}
+          handleChange={(e) => handleChange(e, "standard")}
+          offeringTags={offeringTags}
+          setOfferingTags={setOfferingTags}
+          offerInput={offerInput}
+          setOfferInput={setOfferInput}
+        />
+        <h2 className="px-5 text-[20px] font-semibold">Premium Package</h2>
+        <Package
+          packageDetails={packageState.premium}
+          handleChange={(e) => handleChange(e, "premium")}
+          offeringTags={offeringTags}
+          setOfferingTags={setOfferingTags}
+          offerInput={offerInput}
+          setOfferInput={setOfferInput}
+        />
+      </div>
+      {/* GigCreation Deccription */}
+
+      <div className="ml-[230px] mr-[293px] pt-[100px] text-[35px] mb-11 border-b-2 ">
+        <div>
+          <h1 className="mb-[30px]">Description</h1>
+        </div>
+      </div>
+      <div className="max-w-[1070px] basic-right h-[300px] border-[1px] rounded mx-[230px] mt-[10px]">
+        <h3 className="text-[20px]  py-6 px-8">Briefly Describe Your Gig</h3>
+        <textarea
+          value={desc}
+          onChange={handleTitleChange}
+          name=""
+          id=""
+          cols="20"
+          rows="5"
+          className="mx-8 w-[90%] py-4 px-7 border-[1px] text-[18px] resize-none"
+          placeholder="About Gig"
+        ></textarea>
+        <p className="flex justify-end mr-[70px] text-red-600">
+          {title.length} / 1200 characters
+        </p>
+      </div>
+
+      {/* GigCreation img  */}
+      <div className="ml-[230px] mr-[293px] pt-[100px] text-[35px] mb-11 border-b-2 ">
+        <div>
+          <h1 className="mb-[30px] font-bold">Images(up to 3)</h1>
+        </div>
+      </div>
+      <div className="flex justify-center items-center max-w-[1200px] basic-right h-[500px] border-[1px] rounded ml-[230px]  mr-[293px] mt-[10px]">
+        <Uplaoder handleSave={handleSave} />
+      </div>
+
+
       <button
         onClick={putOverview}
-        className="bg-dark-blue text-white py-4 px-8 ml-[1150px] mt-6 rounded-xl hover:bg-blue-950"
+        className="bg-dark-blue text-white py-4 px-8 ml-[1120px] mb-10 mt-8 rounded-xl hover:bg-blue-950"
       >
         Save & Continue
       </button>

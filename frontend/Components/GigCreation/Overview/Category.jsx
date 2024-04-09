@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Categories = ({ categories, SelectedCategory, SelectedSubfield }) => {
+const Categories = ({ categories, SelectedCategory, SelectedSubfield}) => {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedSubfield, setSelectedSubfield] = useState("");
 
