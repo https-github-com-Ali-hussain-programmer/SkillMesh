@@ -1,29 +1,65 @@
-import React from "react";
+import React, { useState , useEffect} from "react";
 
-const Package = ({ packageDetails, handleChange }) => {
+const Package = ({ packageDetails, handleChange}) => {
   const { packageDesc, offeringDetails, noOfPages, deliveryTime, price } =
     packageDetails;
 
   const noOfPagesOptions = [
-    "1",
-    "2",
-    "4",
-    "6",
-    "8",
-    "10",
-    "12",
-    "15",
-    "17",
-    "19",
-    "21",
-    "23",
-    "25",
+    1,
+    2,
+    4,
+    6,
+    8,
+    10,
+    12,
+    15,
+    17,
+    19,
+    21,
+    23,
+    25,
   ];
 
-  const deliveryTimeOptions = ["1", "2", "4", "6", "8", "11", "13", "15"];
+  const [tagInput, setTagInput] = useState("");
+  const [tags, setTags] = useState(offeringDetails || []);
+
+  
+
+  const handleTagInput = (e) => {
+    setTagInput(e.target.value);
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter" && tagInput.trim() !== "") {
+      setTags([...tags, tagInput.trim()]);
+      setTagInput("");
+    }
+  };
+
+  const removeTag = (tagToRemove) => {
+    const updatedTags = tags.filter((tag) => tag !== tagToRemove);
+    setTags(updatedTags);
+  };
+
+  const deliveryTimeOptions = [1, 2, 4, 6, 8, 11, 13, 15];
+
+  useEffect(() => {
+    handleChange({ target: { name: "offeringDetails", value: tags } });
+  }, [tags]);
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    // Check if the input name is one of the fields that need to be converted to integers
+    if (name === "noOfPages" || name === "deliveryTime" || name === "price") {
+      // Convert the value to an integer
+      handleChange({ target: { name, value: parseInt(value, 10) } });
+    } else {
+      handleChange(e);
+    }
+  };
 
   return (
-    <div className="flex justify-start gap-7 flex-wrap py-8 px-5">
+    <div className="flex justify-start gap-7 flex-wrap py-6 px-5">
       <textarea
         className="w-full focus:outline-none h-[100px] font-[400] text-[16px] bg-transparent resize-none overflow-scroll rounded-lg border-[2px] border-solid border-[#e5e5e5] text-[#7a7d85] px-5 py-5 placeholder:text-[#7a7d85] placeholder:text-[15px] placeholder:font-[400] placeholder:text-justify"
         name="packageDesc"
@@ -33,19 +69,19 @@ const Package = ({ packageDetails, handleChange }) => {
         maxLength="600"
         minLength="150"
       ></textarea>
-
       <textarea
-        name="offeringDetails"
-        value={offeringDetails}
-        onChange={handleChange}
+        name="price"
+        value={price}
+        onChange={handleInputChange}
         rows={1}
-        className="resize-none overflow-hidden border-[1px] rounded-xl border-black w-[250px] py-2 px-3 text-[black]"
-        placeholder="Details of your offering"
+        className="resize-none border-[2px] border-solid border-[#e5e5e5] py-3 px-3 rounded-xl outline-none w-[250px] text-gray-400"
+        placeholder="Price"
       ></textarea>
+
       <select
         name="noOfPages"
         value={noOfPages}
-        onChange={handleChange}
+        onChange={handleInputChange}
         className="border-[2px] border-solid border-[#e5e5e5] py-3 px-3 rounded-xl outline-none w-[250px] text-gray-400"
       >
         <option value="">No of pages or screens</option>
@@ -59,7 +95,7 @@ const Package = ({ packageDetails, handleChange }) => {
       <select
         name="deliveryTime"
         value={deliveryTime}
-        onChange={handleChange}
+        onChange={handleInputChange}
         className="border-[2px] border-solid border-[#e5e5e5] py-3 px-3 rounded-xl outline-none w-[250px] text-gray-400"
       >
         <option value="">Delivery Time</option>
@@ -70,14 +106,36 @@ const Package = ({ packageDetails, handleChange }) => {
           </option>
         ))}
       </select>
-      <textarea
-        name="price"
-        value={price}
-        onChange={handleChange}
-        rows={1}
-        className="border-[2px] border-solid border-[#e5e5e5] py-3 px-3 rounded-xl outline-none w-[250px] text-gray-400"
-        placeholder="Price"
-      ></textarea>
+
+      <div>
+        <div className="flex gap-2 mb-3">
+          {tags.map((tag, index) => (
+            <div
+              key={index}
+              className="flex items-center bg-gray-200 rounded-lg px-2 py-1"
+            >
+              <span>{tag}</span>
+              <button
+                type="button"
+                onClick={() => removeTag(tag)}
+                className="ml-1 text-gray-500"
+              >
+                X
+              </button>
+            </div>
+          ))}
+        </div>
+
+        <input
+          name="offeringDetails"
+          value={tagInput}
+          onChange={handleTagInput}
+          rows={1}
+          className="resize-none overflow-hidden border-[1px] rounded-xl border-black w-[250px] py-3 px-3 text-[black]"
+          placeholder="Details of your offering"
+          onKeyDown={handleKeyPress}
+        />
+      </div>
     </div>
   );
 };

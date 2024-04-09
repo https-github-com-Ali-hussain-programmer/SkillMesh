@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const SearchTags = ({ tags, setTags, tagInput, setTagInput }) => {
+const SearchTags = ({ tags, setTags, tagInput, setTagInput}) => {
   const addTag = () => {
     if (tagInput.trim() !== "" && tags.length < 5) {
       setTags([...tags, tagInput.trim()]);
@@ -54,7 +54,9 @@ const SearchTags = ({ tags, setTags, tagInput, setTagInput }) => {
               }
             }}
           />
+
         </div>
+
         <p className="text-[16px] pt-2 text-gray-400">
           5 tags maximum. Use letters and numbers only.
         </p>
