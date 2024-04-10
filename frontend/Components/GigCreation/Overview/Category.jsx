@@ -1,24 +1,23 @@
 import React, { useState } from "react";
 
-const Categories = ({ categories, SelectedCategory, SelectedSubfield}) => {
+const Categories = ({ categories, SelectedCategory, SelectedSubfield }) => {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedSubfield, setSelectedSubfield] = useState("");
 
   const handleCategoryChange = (e) => {
     const categoryId = e.target.value;
-
     const selectedCategoryObj = categories.find(
       (category) => category._id === categoryId
     );
+    setSelectedCategory(categoryId);
     SelectedCategory(categoryId);
-    setSelectedCategory(selectedCategoryObj.categoryName);
     setSelectedSubfield("");
   };
 
   const handleSubFieldChange = (e) => {
-    const subField = e.target.value;
-    setSelectedSubfield(subField);
-    SelectedSubfield(subField);
+    const subFieldId = e.target.value;
+    setSelectedSubfield(subFieldId);
+    SelectedSubfield(subFieldId);
   };
 
   return (
@@ -37,8 +36,8 @@ const Categories = ({ categories, SelectedCategory, SelectedSubfield}) => {
             value={selectedCategory}
           >
             <option value="">Select Category</option>
-            {categories?.map((category, index) => (
-              <option key={index} value={category._id}>
+            {categories?.map((category) => (
+              <option key={category._id} value={category._id}>
                 {category.categoryName}
               </option>
             ))}
@@ -47,16 +46,16 @@ const Categories = ({ categories, SelectedCategory, SelectedSubfield}) => {
             className="border-[1.5px] border-solid border-[#ccc] p-3 outline-none w-[50%] md:w-[45%] my-5"
             onChange={handleSubFieldChange}
             value={selectedSubfield}
+            disabled={!selectedCategory} // Disable until a category is selected
           >
             <option value="">Select Subfield</option>
-            {selectedCategory &&
-              categories
-                .find((cat) => cat.categoryName === selectedCategory)
-                ?.subField.map((subfield, index) => (
-                  <option key={index} value={subfield._id}>
-                    {subfield.name}
-                  </option>
-                ))}
+            {categories
+              .find((cat) => cat._id === selectedCategory)
+              ?.subField.map((subfield) => (
+                <option key={subfield._id} value={subfield._id}>
+                  {subfield.name}
+                </option>
+              ))}
           </select>
         </div>
       </div>

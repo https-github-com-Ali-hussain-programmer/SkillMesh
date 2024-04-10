@@ -1,29 +1,21 @@
-import React, { useState , useEffect} from "react";
+import React, { useState } from "react";
 
-const Package = ({ packageDetails, handleChange}) => {
-  const { packageDesc, offeringDetails, noOfPages, deliveryTime, price } =
-    packageDetails;
+const Package = ({ packageDetails, handleChange, handleOffering }) => {
+  const {
+    packageDesc,
+    offeringDetails,
+    noOfPages,
+    deliveryTime,
+    price,
+    revisions,
+    name,
+  } = packageDetails;
 
-  const noOfPagesOptions = [
-    1,
-    2,
-    4,
-    6,
-    8,
-    10,
-    12,
-    15,
-    17,
-    19,
-    21,
-    23,
-    25,
-  ];
+  const noOfPagesOptions = [1, 2, 4, 6, 8, 10, 12, 15, 17, 19, 21, 23, 25];
+  const revisionsdata = [1, 2, 4, 6];
 
   const [tagInput, setTagInput] = useState("");
   const [tags, setTags] = useState(offeringDetails || []);
-
-  
 
   const handleTagInput = (e) => {
     setTagInput(e.target.value);
@@ -32,6 +24,7 @@ const Package = ({ packageDetails, handleChange}) => {
   const handleKeyPress = (e) => {
     if (e.key === "Enter" && tagInput.trim() !== "") {
       setTags([...tags, tagInput.trim()]);
+      handleOffering(tags, name);
       setTagInput("");
     }
   };
@@ -42,21 +35,6 @@ const Package = ({ packageDetails, handleChange}) => {
   };
 
   const deliveryTimeOptions = [1, 2, 4, 6, 8, 11, 13, 15];
-
-  useEffect(() => {
-    handleChange({ target: { name: "offeringDetails", value: tags } });
-  }, [tags]);
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    // Check if the input name is one of the fields that need to be converted to integers
-    if (name === "noOfPages" || name === "deliveryTime" || name === "price") {
-      // Convert the value to an integer
-      handleChange({ target: { name, value: parseInt(value, 10) } });
-    } else {
-      handleChange(e);
-    }
-  };
 
   return (
     <div className="flex justify-start gap-7 flex-wrap py-6 px-5">
@@ -72,7 +50,7 @@ const Package = ({ packageDetails, handleChange}) => {
       <textarea
         name="price"
         value={price}
-        onChange={handleInputChange}
+        onChange={handleChange}
         rows={1}
         className="resize-none border-[2px] border-solid border-[#e5e5e5] py-3 px-3 rounded-xl outline-none w-[250px] text-gray-400"
         placeholder="Price"
@@ -81,7 +59,7 @@ const Package = ({ packageDetails, handleChange}) => {
       <select
         name="noOfPages"
         value={noOfPages}
-        onChange={handleInputChange}
+        onChange={handleChange}
         className="border-[2px] border-solid border-[#e5e5e5] py-3 px-3 rounded-xl outline-none w-[250px] text-gray-400"
       >
         <option value="">No of pages or screens</option>
@@ -95,7 +73,7 @@ const Package = ({ packageDetails, handleChange}) => {
       <select
         name="deliveryTime"
         value={deliveryTime}
-        onChange={handleInputChange}
+        onChange={handleChange}
         className="border-[2px] border-solid border-[#e5e5e5] py-3 px-3 rounded-xl outline-none w-[250px] text-gray-400"
       >
         <option value="">Delivery Time</option>
@@ -106,7 +84,20 @@ const Package = ({ packageDetails, handleChange}) => {
           </option>
         ))}
       </select>
+      <select
+        name="revisions"
+        value={revisions}
+        onChange={handleChange}
+        className="border-[2px] border-solid border-[#e5e5e5] py-3 px-3 rounded-xl outline-none w-[250px] text-gray-400"
+      >
+        <option value="">Revisions</option>
 
+        {revisionsdata?.map((item, index) => (
+          <option value={item} key={index}>
+            {item} revisions
+          </option>
+        ))}
+      </select>
       <div>
         <div className="flex gap-2 mb-3">
           {tags.map((tag, index) => (

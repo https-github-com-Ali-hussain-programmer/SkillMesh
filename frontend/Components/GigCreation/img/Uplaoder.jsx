@@ -2,10 +2,9 @@ import React, { useState } from "react";
 import { MdCloudUpload, MdDelete } from "react-icons/md";
 import { AiFillFileImage } from "react-icons/ai";
 
-const Uploader = ({ handleSave }) => {
+const Uploader = ({ setFile }) => {
   const [image, setImage] = useState(null);
-  const [fileName, setFileName] = useState("No file chosen");
-  const [file, setFile] = useState(null);
+  const [fileName, setFileName] = useState("No file chosen");;
   const [error, setError] = useState(null);
 
   const handleFileChange = (event) => {

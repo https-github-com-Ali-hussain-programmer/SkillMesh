@@ -36,15 +36,16 @@ const gigSchema = new mongoose.Schema({
   Package: [
     {
       name: String,
-      price: String,
+      price: Number,
       desc: String,
-      delivery: String,
+      delivery: Number,
       revision: Number,
-      pages: String,
+      pages: Number,
       functionalities: [String],
     },
   ],
   tags: [String],
+  rating: { type: Number, default: 0 },
 });
 const gigModel = mongoose.model("Gig", gigSchema);
 

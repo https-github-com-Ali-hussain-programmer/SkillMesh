@@ -14,6 +14,7 @@ import { setUserData } from "../../../../redux/slice/userSlice";
 import { updateCategory } from "../../../../redux/slice/categorySlice";
 
 const Overview = () => {
+  const router = useRouter();
   const [title, setTitle] = useState("");
   const categories = useSelector((state) => state?.category);
   const [selectedCategory, setSelectedCatgory] = useState("");
@@ -21,17 +22,23 @@ const Overview = () => {
   const [tags, setTags] = useState([]);
   const [tagInput, setTagInput] = useState("");
   const [desc, setDesc] = useState("");
-  const [offeringTags, setOfferingTags] = useState([]);
-  const [offerInput, setOfferInput] = useState("");
+  const [file, setFile] = useState("");
   const dispatch = useDispatch();
-  const handleSave = async (file) => {
-    // const response = await createGig(file);
-    // const info = response.user;
-    // console.log(info);
-    // dispatch(setUserData({ info }));
+  const handleSave = async () => {
+    const response = await createGig(
+      file,
+      desc,
+      title,
+      tags,
+      selectedSubfield,
+      selectedCategory,
+      packageState.basic,
+      packageState.standard,
+      packageState.premium
+    );
+    const info = response.user;
+    dispatch(setUserData({ info }));
     // dispatch(updateCategory(response.category));
-
-    // router.push("./profile");
   };
   const [packageState, setPackage] = useState({
     basic: {
@@ -41,6 +48,7 @@ const Overview = () => {
       noOfPages: "",
       deliveryTime: "",
       price: "",
+      revisions: "",
     },
     standard: {
       name: "standard",
@@ -49,6 +57,7 @@ const Overview = () => {
       noOfPages: "",
       deliveryTime: "",
       price: "",
+      revisions: "",
     },
     premium: {
       name: "premium",
@@ -57,6 +66,7 @@ const Overview = () => {
       noOfPages: "",
       deliveryTime: "",
       price: "",
+      revisions: "",
     },
   });
 
@@ -70,30 +80,24 @@ const Overview = () => {
       },
     }));
   };
+  const handleOffering = (functionalities, pkgType) => {
+    setPackage((prevPackage) => ({
+      ...prevPackage,
+      [pkgType]: {
+        ...prevPackage[pkgType],
+        offeringDetails: functionalities,
+      },
+    }));
+  };
   const handleTitleChange = (event) => {
     const inputValue = event.target.value;
     if (inputValue.length <= 1200) {
       setDesc(inputValue);
     }
   };
-  const putOverview = () => {
-    console.log(packageState);
-    console.log(desc);
-    console.log(title);
-    console.log(tags);
-    console.log(typeof packageState.basic.deliveryTime);
-    console.log(typeof packageState.basic.noOfPages);
-    console.log(typeof packageState.basic.price);
-    console.log(typeof packageState.premium.deliveryTime);
-    console.log(typeof packageState.premium.noOfPages);
-    console.log(typeof packageState.premium.price);
-
-  };
 
   return (
     <div className="w-full">
-      {/* GigCreation Overview */}
-
       <div className="max-w-[1100px] border-[1px] rounded mx-[230px] mt-[100px] pb-28">
         <GigTitle title={title} setTitle={setTitle} />
         <Categories
@@ -116,28 +120,19 @@ const Overview = () => {
         <Package
           packageDetails={packageState.basic}
           handleChange={(e) => handleChange(e, "basic")}
-          offeringTags={offeringTags}
-          setOfferingTags={setOfferingTags}
-          offerInput={offerInput}
-          setOfferInput={setOfferInput}
+          handleOffering={handleOffering}
         />
         <h2 className="px-5 text-[20px] font-semibold">Standard Package</h2>
         <Package
           packageDetails={packageState.standard}
           handleChange={(e) => handleChange(e, "standard")}
-          offeringTags={offeringTags}
-          setOfferingTags={setOfferingTags}
-          offerInput={offerInput}
-          setOfferInput={setOfferInput}
+          handleOffering={handleOffering}
         />
         <h2 className="px-5 text-[20px] font-semibold">Premium Package</h2>
         <Package
           packageDetails={packageState.premium}
           handleChange={(e) => handleChange(e, "premium")}
-          offeringTags={offeringTags}
-          setOfferingTags={setOfferingTags}
-          offerInput={offerInput}
-          setOfferInput={setOfferInput}
+          handleOffering={handleOffering}
         />
       </div>
       {/* GigCreation Deccription */}
@@ -171,12 +166,11 @@ const Overview = () => {
         </div>
       </div>
       <div className="flex justify-center items-center max-w-[1200px] basic-right h-[500px] border-[1px] rounded ml-[230px]  mr-[293px] mt-[10px]">
-        <Uplaoder handleSave={handleSave} />
+        <Uplaoder setFile={setFile} />
       </div>
 
-
       <button
-        onClick={putOverview}
+        onClick={handleSave}
         className="bg-dark-blue text-white py-4 px-8 ml-[1120px] mb-10 mt-8 rounded-xl hover:bg-blue-950"
       >
         Save & Continue

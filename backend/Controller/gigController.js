@@ -14,16 +14,16 @@ exports.createGig = async (req, res) => {
       selectedCategory,
       selectedSubField,
     } = req.body;
-
-    const category = await Category.findById("66130132e570cd52bf829fc1"); // Find category by ID
+    const basic = JSON.parse(basicPkg);
+    console.log(basic);
+    const standard = JSON.parse(standardPkg);
+    const premium = JSON.parse(premiumPkg);
+    const category = await Category.findById(selectedCategory);
     var user;
     if (!category) {
       return res.status(404).json({ error: "Category not found" });
     }
 
-    const parsedBasicPkg = JSON.parse(basicPkg);
-    const parsedStandardPkg = JSON.parse(standardPkg);
-    const parsedPremiumPkg = JSON.parse(premiumPkg);
     const userId = req.user._id;
     const gigimages = process.env.url + req.file.bucket + "/" + req.file.key;
 
@@ -45,31 +45,31 @@ exports.createGig = async (req, res) => {
       subField: selectedSubField,
       Package: [
         {
-          name: parsedBasicPkg.name,
-          price: parsedBasicPkg.price,
-          desc: parsedBasicPkg.packageDesc,
-          delivery: parsedBasicPkg.deliveryTime,
-          revision: 2,
-          pages: parsedBasicPkg.noOfPages,
-          functionalities: [parsedBasicPkg.offeringDetails],
+          name: basic.name,
+          price: basic.price,
+          desc: basic.packageDesc,
+          delivery: basic.deliveryTime,
+          revision: basic.revisions,
+          pages: basic.noOfPages,
+          functionalities: basic.offeringDetails,
         },
         {
-          name: parsedStandardPkg.name,
-          price: parsedStandardPkg.price,
-          desc: parsedStandardPkg.packageDesc,
-          delivery: parsedStandardPkg.deliveryTime,
-          revision: 2,
-          pages: parsedStandardPkg.noOfPages,
-          functionalities: [parsedStandardPkg.offeringDetails],
+          name: standard.name,
+          price: standard.price,
+          desc: standard.packageDesc,
+          delivery: standard.deliveryTime,
+          revision: standard.revisions,
+          pages: standard.noOfPages,
+          functionalities: standard.offeringDetails,
         },
         {
-          name: parsedPremiumPkg.name,
-          price: parsedPremiumPkg.price,
-          desc: parsedPremiumPkg.packageDesc,
-          delivery: parsedPremiumPkg.deliveryTime,
-          revision: 2,
-          pages: parsedPremiumPkg.noOfPages,
-          functionalities: [parsedPremiumPkg.offeringDetails],
+          name: premium.name,
+          price: premium.price,
+          desc: premium.packageDesc,
+          delivery: premium.deliveryTime,
+          revision: premium.revisions,
+          pages: premium.noOfPages,
+          functionalities: premium.offeringDetails,
         },
       ],
     });
@@ -81,9 +81,12 @@ exports.createGig = async (req, res) => {
     category.gig.push(newGig._id);
     await category.save();
 
-    res
-      .status(201)
-      .json({ message: "Gig created successfully", user, category });
+    res.status(201).json({
+      succrss: true,
+      message: "Gig created successfully",
+      user,
+      category,
+    });
   } catch (error) {
     console.error("Error creating gig:", error);
     res.status(500).json({ error: "Failed to create gig" });

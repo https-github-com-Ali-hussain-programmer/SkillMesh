@@ -1,28 +1,31 @@
 const baseUrl = "http://localhost:3001/api/v1/gig";
 
-export const createGig = async (file) => {
+export const createGig = async (
+  file,
+  desc,
+  title,
+  tags,
+  selectedSubfield,
+  selectedCategory,
+  basic,
+  standard,
+  premium
+) => {
   const formData = new FormData();
-  const tags = localStorage.getItem("tags");
-  const basicPkg = localStorage.getItem("basicPkg");
-  const standardPkg = localStorage.getItem("standardPkg");
-  const premiumPkg = localStorage.getItem("premiumPkg");
-  const title = localStorage.getItem("title");
-  const description = localStorage.getItem("description");
-  const selectedSubField = localStorage.getItem("selectedSubField");
-  const selectedCategory = localStorage.getItem("selectedCategory");
+  console.log(basic);
+  
   formData.append("images", file);
   formData.append("title", title);
-  formData.append("basicPkg", basicPkg);
-  formData.append("premiumPkg", premiumPkg);
-  formData.append("standardPkg", standardPkg);
-  formData.append("selectedSubField", selectedSubField);
+  formData.append("basicPkg", JSON.stringify(basic));
+  formData.append("premiumPkg", JSON.stringify(premium));
+  formData.append("standardPkg", JSON.stringify(standard));
+  formData.append("selectedSubField", selectedSubfield);
   formData.append("selectedCategory", selectedCategory);
-  formData.append("description", description);
+  formData.append("description", desc);
   formData.append("tags", tags);
 
   const response = await fetch(baseUrl + `/createGig`, {
     method: "POST",
-
     credentials: "include",
     body: formData,
   });
@@ -65,4 +68,3 @@ export const removewishlistGig = async () => {
   const data = response.json();
   return data;
 };
-

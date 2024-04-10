@@ -11,6 +11,7 @@ const connectToDatabase = async () => {
   }
 };
 
+
 mongoose.connection.on("connected", () => {
   console.log("Mongoose connected to the database");
 });
