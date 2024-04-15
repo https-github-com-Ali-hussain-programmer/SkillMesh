@@ -87,10 +87,15 @@ exports.createGig = async (req, res) => {
     await category.save();
     await user.save();
 
+
+
+
+
+
     
     res.status(201).json({
       success: true,
-      message: "Gig created successfully",
+        message: "Gig created successfully",
       user,
       category,
     });
