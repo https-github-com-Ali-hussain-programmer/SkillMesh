@@ -13,7 +13,7 @@ const useMetaMask = () => {
     const updatedUserAddress = getAddress(newAccounts[0]);
     const updatedUserData = await LoginMetamask(updatedUserAddress);
     dispatch(setUserData({ info: updatedUserData?.user }));
-    
+
     localStorage.setItem("userData", JSON.stringify(updatedUserData?.user));
 
     setAccount(updatedUserAddress);

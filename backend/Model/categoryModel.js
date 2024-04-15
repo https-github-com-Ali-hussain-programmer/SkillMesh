@@ -15,6 +15,8 @@ const categorySchema = new mongoose.Schema({
   gig: [{ type: mongoose.Schema.Types.ObjectId, ref: "Gig" }],
 });
 
+
+
 const Category = mongoose.model("Category", categorySchema);
 module.exports = {
   Category,

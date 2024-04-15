@@ -16,7 +16,16 @@ exports.Login = async (req, res) => {
     if (recoveredAddress !== address) {
       return res.status(401).json({ error: "Invalid Signature" });
     }
-    const existingUser = await User.findOne({ address: recoveredAddress });
+    const existingUser = await User.findOne({
+      address: recoveredAddress,
+    }).populate({
+      path: "gig",
+      populate: {
+        path: "reviews",
+        model: "Review",
+      },
+    });
+
     if (existingUser) {
       return existingUser.saveCookie(res, 200);
     }
@@ -44,7 +53,13 @@ exports.profile = async (req, res) => {
   try {
     const { id } = req.body;
 
-    const existingUser = await User.findOne({ _id: id });
+    const existingUser = await User.findOne({ _id: id }).populate({
+      path: "gig",
+      populate: {
+        path: "reviews",
+        model: "Review",
+      },
+    });
     if (existingUser) {
       return res
         .status(200)
@@ -88,7 +103,6 @@ exports.updateProfile = async (req, res) => {
   } catch (error) {
     console.error("Error in Update:", error);
     return res.status(500).json({ error: "Server Error" });
-  
   }
 };
 

@@ -17,6 +17,7 @@ export const LoginMetamask = async (account) => {
     body: JSON.stringify(dataSigned),
   });
   const data = response.json();
+
   return data;
 };
 

@@ -13,7 +13,7 @@ export const createGig = async (
 ) => {
   const formData = new FormData();
   console.log(basic);
-  
+
   formData.append("images", file);
   formData.append("title", title);
   formData.append("basicPkg", JSON.stringify(basic));

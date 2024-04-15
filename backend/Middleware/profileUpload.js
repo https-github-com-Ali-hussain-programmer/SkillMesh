@@ -47,4 +47,5 @@ const uploadPics = (folderName) => {
   };
 };
 
+
 module.exports = uploadPics;

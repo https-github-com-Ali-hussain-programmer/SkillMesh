@@ -36,9 +36,11 @@ const Overview = () => {
       packageState.standard,
       packageState.premium
     );
+
     const info = response.user;
     dispatch(setUserData({ info }));
-    // dispatch(updateCategory(response.category));
+    dispatch(updateCategory(response.category));
+    window.location.replace("/profile");
   };
   const [packageState, setPackage] = useState({
     basic: {

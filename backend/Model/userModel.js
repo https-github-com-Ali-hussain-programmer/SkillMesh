@@ -50,6 +50,7 @@ const userSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  gig: [{ type: mongoose.Schema.Types.ObjectId, ref: "Gig" }],
 });
 
 userSchema.methods.generateJWT = function () {

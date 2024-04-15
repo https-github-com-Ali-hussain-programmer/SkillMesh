@@ -26,7 +26,8 @@ import {
 import { updateField } from "../../../redux/slice/userSlice";
 import { countries } from "../../../utils/data";
 import ReactFlagsSelect from "react-flags-select";
-
+import { setGigs } from "../../../redux/slice/gigcreationslice";
+import { getGig } from "../../../Api/gigApi";
 const ProfilePage = () => {
   const { id } = useSearchParams();
   const currentUser = useSelector((state) => state.user?.userData);
@@ -98,6 +99,7 @@ const ProfilePage = () => {
     memberSince,
     country,
     description,
+    gig
   } = profileData || {};
   const convertDate = (date = new Date()) => {
     const options = { year: "numeric", month: "long", day: "numeric" };
@@ -108,6 +110,7 @@ const ProfilePage = () => {
     ).format(memberSinceDate);
     return formattedMemberSince;
   };
+  console.log(gig)
   const handleProfile = async (e) => {
     const { files } = e.target;
     setFile(files[0]);
@@ -337,9 +340,9 @@ const ProfilePage = () => {
                 </button>
               </div>
               <div className="flex-wrap mt-4 items-center flex  gap-5">
-                {profileData?.gigs?.map((g, index) => {
+                {gig?.map((g, index) => {
                   return <ProfileGig key={index} {...g} />;
-                })}
+                })} 
 
                 <div className=" w-[300px] h-[384px] bg-white  hover:cursor-pointer hover:shadow-xl flex flex-col justify-center items-center">
                   <AddCircleIcon className="text-[70px]" />

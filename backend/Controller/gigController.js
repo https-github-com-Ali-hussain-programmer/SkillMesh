@@ -3,6 +3,7 @@ const User = require("../Model/userModel");
 const { Category } = require("../Model/categoryModel");
 
 exports.createGig = async (req, res) => {
+
   try {
     const {
       title,
@@ -18,7 +19,10 @@ exports.createGig = async (req, res) => {
     console.log(basic);
     const standard = JSON.parse(standardPkg);
     const premium = JSON.parse(premiumPkg);
-    const category = await Category.findById(selectedCategory);
+    const category = await Category.findById(selectedCategory).populate(
+      "subField"
+    );
+
     var user;
     if (!category) {
       return res.status(404).json({ error: "Category not found" });
@@ -78,11 +82,14 @@ exports.createGig = async (req, res) => {
       category.gig = [];
     }
 
+    user.gig.push(newGig._id);
     category.gig.push(newGig._id);
     await category.save();
+    await user.save();
 
+    
     res.status(201).json({
-      succrss: true,
+      success: true,
       message: "Gig created successfully",
       user,
       category,
@@ -107,13 +114,19 @@ exports.wishlistGig = async (req, res) => {
 };
 exports.getGig = async (req, res) => {
   try {
-    const {} = req.body;
+    const user = req.user;
+    const gigs = await Gig.find({ user: user._id })
+      .populate("category")
+      .populate("subField")
+      .populate("reviews");
+    console.log(gigs);
+    if (!gigs) {
+      return res.status(404).json({ message: "Gigs not found for this user" });
+    }
 
-    res
-      .status(201)
-      .json({ message: "Gig created successfully", user, category });
+    res.status(200).json({ message: "Gigs retrieved successfully", gigs });
   } catch (error) {
-    console.error("Error creating gig:", error);
-    res.status(500).json({ error: "Failed to create gig" });
+    console.error("Error retrieving gigs:", error);
+    res.status(500).json({ error: "Failed to retrieve gigs" });
   }
 };
