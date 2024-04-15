@@ -26,6 +26,7 @@ exports.Login = async (req, res) => {
       },
     });
 
+    console.log(existingUser);
     if (existingUser) {
       return existingUser.saveCookie(res, 200);
     }

@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import StarRating from "../../Components/Shared/StarRating";
 import { HiOutlineDotsHorizontal } from "react-icons/hi";
 function ProfileGig({ gigimages, title, Package, rating }) {
   const price = Package[0]?.price;
@@ -19,7 +20,11 @@ function ProfileGig({ gigimages, title, Package, rating }) {
           </span>
         </h3>
         <div className="font-bold text-lg px-2">
-          {rating < 1 ? "No Rating yet" : rating}
+          {rating < 1 ? (
+            "No Rating yet"
+          ) : (
+            <StarRating rating={rating} color={" text-yellow-400"} />
+          )}
         </div>
       </div>
     </>

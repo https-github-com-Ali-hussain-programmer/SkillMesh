@@ -3,7 +3,6 @@ const User = require("../Model/userModel");
 const { Category } = require("../Model/categoryModel");
 
 exports.createGig = async (req, res) => {
-
   try {
     const {
       title,
@@ -83,19 +82,20 @@ exports.createGig = async (req, res) => {
     }
 
     user.gig.push(newGig._id);
+    await user.save();
     category.gig.push(newGig._id);
     await category.save();
-    await user.save();
+    user = await User.findById(user._id).populate({
+      path: "gig",
+      populate: {
+        path: "reviews",
+        model: "Review",
+      },
+    });
 
-
-
-
-
-
-    
     res.status(201).json({
       success: true,
-        message: "Gig created successfully",
+      message: "Gig created successfully",
       user,
       category,
     });
