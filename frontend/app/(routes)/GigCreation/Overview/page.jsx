@@ -38,7 +38,7 @@ const Overview = () => {
     );
 
     const info = response.user;
-    dispatch(setUserData({ info }));
+    // dispatch(setUserData({ info }));
     dispatch(updateCategory(response.category));
     window.location.replace("/profile");
   };

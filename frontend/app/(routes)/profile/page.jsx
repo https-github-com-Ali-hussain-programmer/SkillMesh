@@ -31,11 +31,13 @@ import { getGig } from "../../../Api/gigApi";
 const ProfilePage = () => {
   const { id } = useSearchParams();
   const currentUser = useSelector((state) => state.user?.userData);
+  console.log(currentUser);
   const [profileData, setProfileData] = useState(currentUser);
   const [showName, setshowName] = useState(false);
   const [changeName, setChangeName] = useState("");
   const [abortController, setAbortController] = useState(null);
   const [showCountry, setshowCountry] = useState(false);
+  
   const dispatch = useDispatch();
   const [select, setSelect] = useState("SE");
   const onSelect = (code) => setSelect(code);
@@ -99,7 +101,7 @@ const ProfilePage = () => {
     memberSince,
     country,
     description,
-    gig
+    gig,
   } = profileData || {};
   const convertDate = (date = new Date()) => {
     const options = { year: "numeric", month: "long", day: "numeric" };
@@ -110,7 +112,6 @@ const ProfilePage = () => {
     ).format(memberSinceDate);
     return formattedMemberSince;
   };
-  console.log(gig)
   const handleProfile = async (e) => {
     const { files } = e.target;
     setFile(files[0]);
@@ -339,12 +340,19 @@ const ProfilePage = () => {
                   ACTIVE GIGS
                 </button>
               </div>
-              <div className="flex-wrap mt-4 items-center flex  gap-5">
-                {gig?.map((g, index) => {
-                  return <ProfileGig key={index} {...g} />;
-                })} 
 
-                <div className=" w-[300px] h-[384px] bg-white  hover:cursor-pointer hover:shadow-xl flex flex-col justify-center items-center">
+              <div className="flex-wrap mt-4 items-center flex  gap-5">
+                {gig?.length > 0
+                  ? gig?.map((g, index) => {
+                      return <ProfileGig key={index} {...g} />;
+                    })
+                  : null}
+                <div
+                  onClick={() => {
+                    router.push("/GigCreation/Overview");
+                  }}
+                  className=" w-[300px] h-[384px] bg-white  hover:cursor-pointer hover:shadow-xl flex flex-col justify-center items-center"
+                >
                   <AddCircleIcon className="text-[70px]" />
                   <h3 className="text-[18px] font-semibold py-4">
                     create a new Gig
