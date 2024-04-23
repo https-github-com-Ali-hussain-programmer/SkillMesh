@@ -1,4 +1,5 @@
-import React from "react";
+"use client"
+import React, { useState } from "react";
 import starimg from "../../public/star.png";
 import Image from "next/image";
 import heart from "../../public/heart.png";
@@ -30,15 +31,16 @@ function GigCard(props) {
   const Favourites = useSelector(favouritesList);
   const router = useRouter();
   const favouritesSet = new Set(Favourites?.map((item: any) => item.id));
-  const isFavourite = favouritesSet.has(props?.id);
- 
+const [isFavourite,setIsFavourite]=useState(favouritesSet.has(props?.id))
   const dispatch = useDispatch();
   const handleHeartClick = (e: any) => {
+ 
     if (e.target?.classList?.contains("heart")) {
+      setIsFavourite(!isFavourite)
       e.stopPropagation();
       if (!isFavourite) {
         const data = {
-          id: props.id,
+          id: props._id,
           profileImg: props.user.avatar,
           star: props.rating,
           username: props.username,
@@ -48,6 +50,7 @@ function GigCard(props) {
           category: props.category.categoryName,
           subcategory: props.subField.name,
         };
+       
         dispatch(addWishlist({ data }));
         toast.success("Successfully Added To Whishlist", { autoClose: 3000 });
       } else {
@@ -59,7 +62,7 @@ function GigCard(props) {
   return (
     <div
       onClick={() => {
-        router.push(`/gig?id=${props._id} `);
+        
       }}
     >
       <div className="w-[290px]  h-[400px] border border-gray-300 mb-[40px] shadow-lg relative gigs cursor-pointer ">
@@ -98,9 +101,10 @@ function GigCard(props) {
             <div className="center-div heart" onClick={handleHeartClick}></div>
           ) : (
             <Image
-              className="w-[16px] h-[16px] =object-cover heart"
+              className="w-[16px] h-[16px] object-cover heart"
               src={heart}
               alt="Heart"
+              onClick={handleHeartClick}
             />
           )}
           <span className="text-gray-500 text-xs">STARTING AT</span>
@@ -145,6 +149,7 @@ function GigCard(props) {
                 className="w-[16px] h-[16px] object-cover heart"
                 src={heart}
                 alt="Heart"
+                onClick={handleHeartClick}
               />
             )}
 

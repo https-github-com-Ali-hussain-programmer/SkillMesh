@@ -143,13 +143,12 @@ exports.fetchGigbyCategory = async (req, res) => {
     const category = await Category.findOne({ categoryName }).populate({
       path: "gig",
       populate: [
-        { path: "category" },
+        { path: 'category', populate: { path: 'subField' } },
         { path: "subField" },
         { path: "reviews" },
         { path: "user" },
       ],
     });
-    console.log(category);
     const gigs = category.gig;
 
     console.log(gigs);

@@ -12,6 +12,7 @@ const Gigs = ({ params }) => {
   const [budget, setBudget] = useState({ min: 0, max: 5000 });
   const search = useSearchParams().get("subcategory");
   const [subfieldselect, setSubfieldSelect] = useState(search || "All");
+  const[gigs,setgigs]=useState("")
   const [sort, setSort] = useState("No Sort");
   const Category = useSelector((state) => state?.category);
   const router = useRouter();
@@ -32,6 +33,7 @@ const Gigs = ({ params }) => {
       try {
         const categoryname = decodeURIComponent(params.categoryname);
         const data = await fetchGigbyCategory(categoryname);
+        setgigs(data.gigs)
         setfilteredGigs(data.gigs);
         dispatch(setGigs(data.gigs));
         console.log(data);
@@ -60,16 +62,15 @@ const Gigs = ({ params }) => {
 
   const handlePrice = (e) => {
     const { name, value } = e.target;
+    
     setBudget((prev) => {
       return { ...prev, [name]: value };
     });
   };
   const applyBudget = () => {
-    let sortedArray = gigs?.filter(
-      (c) => c.category === decodeURIComponent(params.categoryname)
-    );
-    sortedArray = sortedArray?.filter((s) => {
-      if (s.price >= budget.min && s.price <= budget.max) {
+
+   let  sortedArray = gigs?.filter((s) => {
+      if (s.Package[0].price >= budget.min && s.Package[0].price <= budget.max) {
         return true;
       }
       return false;
@@ -79,21 +80,17 @@ const Gigs = ({ params }) => {
 
   const subfieldSort = (e) => {
     const { value } = e.target;
-    let sortedArray = gigs?.filter(
-      (c) => c.category === decodeURIComponent(params.categoryname)
-    );
+   
     if (value === "All") {
-      setfilteredGigs(sortedArray);
+      setfilteredGigs(gigs);
       setSubfieldSelect(value);
     } else {
-      sortedArray = sortedArray?.filter((s) => {
-        if (value === s.subcategory) {
-          return true;
-        }
-        return false;
-      });
+      const filteredArray = gigs?.filter((gig) => {
 
-      setfilteredGigs(sortedArray);
+        const hasMatchingSubField = gig && gig.subField && gig.subField.name === value;
+        return hasMatchingSubField;
+    });
+      setfilteredGigs(filteredArray);
       setSubfieldSelect(value);
     }
   };
