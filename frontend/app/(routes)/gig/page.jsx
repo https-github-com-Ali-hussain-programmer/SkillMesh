@@ -1,12 +1,11 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Slider from "infinite-react-carousel";
 import StarRating from "../../../Components/Shared/StarRating";
 import clock from "../../../public/clock.png";
 import recycle from "../../../public/recycle.png";
 import { IoMdInformationCircleOutline } from "react-icons/io";
 import { useRouter, useSearchParams } from "next/navigation";
-import { gigs } from "@/utils/data";
 import { AiOutlineHome } from "react-icons/ai";
 import { SlArrowDown } from "react-icons/sl";
 import { FaArrowRightLong } from "react-icons/fa6";
@@ -17,15 +16,17 @@ import { Tag } from "@chakra-ui/react";
 import OrderDrawer from "../../../Components/Order/OrderDrawer";
 import { useDisclosure } from "@chakra-ui/react";
 import Currency from "@/utils/Currency";
-
+import { useSelector } from "react-redux";
+import { fetchGigbyid } from "../../../Api/gigApi";
 const Gig = () => {
   const search = useSearchParams();
   const [showFunctionalities, setShowFunctionalities] = useState(false);
   const id = search.get("id");
-  const data = gigs.find((gig) => gig.id === id) || {};
-  const [packagesData, setpackagesData] = useState(data?.packages?.Basic);
+  const [data, setData] = useState("");
+
+  const [packagesData, setpackagesData] = useState([]);
   const [ReviewSearch, setReviewSearch] = useState("");
-  const [filteredReviews, setfilteredReviews] = useState(data?.reviews);
+  const [filteredReviews, setfilteredReviews] = useState([]);
   const router = useRouter();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const handleShow = () => {
@@ -33,16 +34,31 @@ const Gig = () => {
   };
   const handlePackages = (packageName) => {
     if (packageName.toLowerCase() === "basic") {
-      setpackagesData(data?.packages?.Basic);
+      setpackagesData(data?.Package[0]);
     } else if (packageName.toLowerCase() === "standard") {
-      setpackagesData(data?.packages?.Standard);
+      setpackagesData(data?.Package[1]);
     } else if (packageName.toLowerCase() === "premium") {
-      setpackagesData(data?.packages?.Premium);
+      setpackagesData(data?.Package[2]);
     }
   };
   const handleRoute = (route) => {
     router.replace(route);
   };
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetchGigbyid(id);
+        setData(response.gig);
+        setpackagesData(response?.gig?.Package[0]);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    if (id) {
+      fetchData();
+    }
+  }, [id]);
   return (
     <div className="mb-[300px] mt-[50px] ">
       <div className="container  2xl:max-w-[1400px]   px-[30px] py-[0px] flex  flex-col md:flex-row gap-[50px]">
@@ -54,9 +70,9 @@ const Gig = () => {
             <span>/</span>{" "}
             <span onClick={() => handleRoute("/Categories")}>Categories</span>{" "}
             <span>/</span>
-            <span onClick={() => handleRoute(`/Categories/${data?.category}`)}>
-              {data?.category}
-            </span>
+            <span
+              onClick={() => handleRoute(`/Categories/${data?.category}`)}
+            ></span>
             <span>/</span>
             Gig
           </div>
@@ -68,44 +84,50 @@ const Gig = () => {
           <div className="flex items-center gap-[10px]">
             <img
               className="w-[32px] h-[32px] rounded-full object-cover"
-              src={data?.userInformation.profileImg}
+              src={data?.user?.avatar}
               alt="error"
             />
             <span className="text-base font-medium hover:border-b-2 border-black cursor-pointer">
-              {data?.username}
+              {data?.name}
             </span>
             <div className="flex items-center gap-[5px]">
               <StarRating rating={data?.star} color={" text-yellow-400"} />
             </div>
           </div>
-          <div>
-            {" "}
-            <Slider
-              slidesToShow={1}
-              autoplaySpeed={2500}
-              autoplay={true}
-              autoplayScroll={1}
-              arrows={false}
-              arrowsScroll={1}
-            >
-              {data?.gigimages?.map((g, index) => {
-                return (
-                  <img
-                    key={index}
-                    className="max-h-[420px] object-cover"
-                    src={g}
-                    alt="Pic"
-                  />
-                );
-              })}
-            </Slider>
-          </div>
+          {data ? (
+            <div>
+              {data && (
+                <Slider
+                  slidesToShow={1}
+                  autoplaySpeed={2500}
+                  autoplay={true}
+                  autoplayScroll={1}
+                  arrows={false}
+                  arrowsScroll={1}
+                >
+                  {data &&
+                    data?.gigimages?.map((g, index) => {
+                      return (
+                        <img
+                          key={index}
+                          className="max-h-[420px] object-cover"
+                          src={g}
+                          alt="Pic"
+                        />
+                      );
+                    })}
+                </Slider>
+              )}
+            </div>
+          ) : (
+            []
+          )}
 
           <h2 className="font-semibold text-2xl text-gray-700">
             About This Gig
           </h2>
           <p className="font-light leading-[25px] text-gray-500 text-justify">
-            {data?.about}
+            {data?.description}
           </p>
 
           <div className="mt-[50px] flex flex-col gap-[20px]">
@@ -113,7 +135,7 @@ const Gig = () => {
             <div className="flex items-center gap-[20px]">
               <img
                 className="w-[100px] h-[100px] rounded-full object-cover"
-                src="https://images.pexels.com/photos/720327/pexels-photo-720327.jpeg?auto=compress&cs=tinysrgb&w=1600"
+                src={data?.user?.avatar}
                 alt=""
               />
               <div className="info flex flex-col gap-[10px]">
@@ -130,13 +152,11 @@ const Gig = () => {
               <div className=" flex justify-between flex-wrap">
                 <div className=" w-[260px] flex flex-col gap-[11px] mb-[20px]">
                   <span className="title font-light">From</span>
-                  <span className="desc">{data?.userInformation.country}</span>
+                  <span className="desc">{data?.user?.country}</span>
                 </div>
                 <div className="item flex justify-between  gap-2 flex-wrap">
                   <span className="title font-light">Member since:</span>
-                  <span className="font-bold">
-                    {data?.userInformation.memberSince}
-                  </span>
+                  <span className="font-bold">{data?.user?.memberSince}</span>
                 </div>
                 <div className="item flex justify-between flex-wrap gap-1">
                   <span className="title font-light">Avg. response time:</span>
@@ -145,12 +165,12 @@ const Gig = () => {
                 <div className="item flex justify-between flex-wrap gap-2">
                   <span className="title font-light">Last delivery:</span>
                   <span className="font-bold">
-                    {data?.userInformation.averageResponseTime}
+                    {data?.user?.averageResponseTime}
                   </span>
                 </div>
                 <div className="item flex justify-between flex-wrap gap-2">
                   <span className="title  font-light">Languages: </span>
-                  {data?.userInformation.languages.map((l, index) => {
+                  {data?.user?.languages?.map((l, index) => {
                     return (
                       <Tag
                         size={"md"}
@@ -166,7 +186,7 @@ const Gig = () => {
               </div>
 
               <p className="py-5 border-t-[1px] border-gray-400 mt-4">
-                {data?.userInformation.desc}
+                {data?.user?.description}
               </p>
             </div>
           </div>
@@ -212,9 +232,10 @@ const Gig = () => {
               </button>
             </div>
             <div className="flex flex-col gap-12">
-              {filteredReviews?.map((review, index) => {
-                return <GigReviews key={index} {...review} />;
-              })}
+              {filteredReviews &&
+                filteredReviews?.map((review, index) => {
+                  return <GigReviews key={index} {...review} />;
+                })}
             </div>
           </div>
         </div>
@@ -224,7 +245,7 @@ const Gig = () => {
             <div
               onClick={() => handlePackages("Basic")}
               className={`${
-                packagesData.name === "Basic" ? "black_border" : null
+                packagesData?.name === "Basic" ? "black_border" : null
               } cursor-pointer bg-[#fafafa] p-[16px] text-lg flex-1 font-bold border-r-[1px] text-center border-b-[1px] border-solid border-[#dadbdd] text-[#74767e]`}
             >
               Basic
@@ -232,7 +253,7 @@ const Gig = () => {
             <div
               onClick={() => handlePackages("Standard")}
               className={`${
-                packagesData.name === "Standard" ? "black_border" : null
+                packagesData?.name === "Standard" ? "black_border" : null
               } cursor-pointer bg-[#fafafa] p-[16px] text-lg flex-1 font-bold border-b-[1px] text-center border-r-[1px] border-solid border-[#dadbdd] text-[#74767e]`}
             >
               Standard
@@ -240,7 +261,7 @@ const Gig = () => {
             <div
               onClick={() => handlePackages("Premium")}
               className={`${
-                packagesData.name === "Premium" ? "black_border" : null
+                packagesData?.name === "Premium" ? "black_border" : null
               }  cursor-pointer bg-[#fafafa] p-[16px] text-lg font-bold flex-1 border-b-[1px] text-center text-[#74767e] border-solid border-[#dadbdd]`}
             >
               Premium
@@ -250,7 +271,7 @@ const Gig = () => {
             <div className="flex flex-col">
               {" "}
               <h1 className="text-2xl whitespace-nowrap font-bold  flex items-center gap-2">
-                <span>PKR {Currency(packagesData.price)}</span>
+                <span>PKR {Currency(packagesData?.price)}</span>
                 <span className="text-[#74767e] text-[16px] font-medium tooltip">
                   <IoMdInformationCircleOutline />
                 </span>
@@ -263,9 +284,9 @@ const Gig = () => {
 
             <p className="text-[#74767e] text-lg font-medium">
               <span className="text-[#222325] font-bold text-[18px]">
-                {packagesData.name}
+                {packagesData?.name}
               </span>
-              - {packagesData.desc}
+              - {packagesData?.desc}
             </p>
             <div className="flex flex-col">
               <div className=" gap-6 flex items-center">
@@ -273,13 +294,13 @@ const Gig = () => {
                   <img src={clock.src} alt="no error" className="h-4 w-4" />{" "}
                   <span className="font-bold text-sm">
                     {" "}
-                    {packagesData.delivery} Days Delivery
+                    {packagesData?.delivery} Days Delivery
                   </span>
                 </div>
                 <div className="flex items-center gap-2">
                   <img src={recycle.src} alt="no error" className="h-4 w-4" />
                   <span className="font-bold text-sm">
-                    {packagesData.Revision} Revisions
+                    {packagesData?.revision} Revisions
                   </span>
                 </div>
               </div>
@@ -302,7 +323,7 @@ const Gig = () => {
                   showFunctionalities && "activelist"
                 } `}
               >
-                {packagesData.functionalities.map((p, index) => {
+                {packagesData?.functionalities?.map((p, index) => {
                   return (
                     <div key={index} className="flex gap-2 py-1">
                       <span className="text-xl font-bold">
@@ -330,11 +351,11 @@ const Gig = () => {
           </div>
         </div>
       </div>
-      <OrderDrawer
+      {/* <OrderDrawer
         isOpen={isOpen}
         onClose={onClose}
         packagesData={packagesData}
-      />
+      /> */}
     </div>
   );
 };

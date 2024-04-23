@@ -58,7 +58,7 @@ userSchema.methods.generateJWT = function () {
     expiresIn: "1h",
   });
 };
-userSchema.methods.saveCookie = function (res, statuscode) {
+userSchema.methods.saveCookie = function (res,_user ,statuscode) {
   const token = this.generateJWT();
   const options = {
     maxAge: 1200000,
@@ -69,7 +69,7 @@ userSchema.methods.saveCookie = function (res, statuscode) {
   res
     .status(statuscode)
     .cookie("token", token, options)
-    .json({ success: true, user: this, token });
+    .json({ success: true, user: _user, token });
 };
 
 module.exports = mongoose.model("User", userSchema);

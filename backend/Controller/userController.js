@@ -20,19 +20,29 @@ exports.Login = async (req, res) => {
       address: recoveredAddress,
     }).populate({
       path: "gig",
+      populate: [
+        { path: "category" },
+        { path: "subField" },
+        { path: "reviews" },
+        { path: "user" },
+      ],
+    });
+
+    if (existingUser) {
+      return existingUser.saveCookie(res, existingUser, 200);
+    }
+    const newUser = new User({ address: recoveredAddress });
+
+    await newUser.populate({
+      path: "gig",
       populate: {
         path: "reviews",
         model: "Review",
       },
     });
 
-    console.log(existingUser);
-    if (existingUser) {
-      return existingUser.saveCookie(res, 200);
-    }
-    const newUser = new User({ address: recoveredAddress });
     await newUser.save();
-    newUser.saveCookie(res, 200);
+    return newUser.saveCookie(res, newUser, 200);
   } catch (error) {
     console.error("Error in Login:", error);
     return res.status(500).json({ error: "Server Error" });

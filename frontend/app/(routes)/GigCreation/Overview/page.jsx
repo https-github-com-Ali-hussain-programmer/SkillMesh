@@ -37,10 +37,11 @@ const Overview = () => {
       packageState.premium
     );
 
+    console.log(response);
     const info = response.user;
-    // dispatch(setUserData({ info }));
+    dispatch(setUserData({ info }));
     dispatch(updateCategory(response.category));
-    window.location.replace("/profile");
+    router.replace("/profile");
   };
   const [packageState, setPackage] = useState({
     basic: {

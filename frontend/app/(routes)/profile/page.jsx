@@ -31,13 +31,11 @@ import { getGig } from "../../../Api/gigApi";
 const ProfilePage = () => {
   const { id } = useSearchParams();
   const currentUser = useSelector((state) => state.user?.userData);
-  console.log(currentUser);
   const [profileData, setProfileData] = useState(currentUser);
   const [showName, setshowName] = useState(false);
   const [changeName, setChangeName] = useState("");
   const [abortController, setAbortController] = useState(null);
   const [showCountry, setshowCountry] = useState(false);
-  
   const dispatch = useDispatch();
   const [select, setSelect] = useState("SE");
   const onSelect = (code) => setSelect(code);
@@ -61,31 +59,31 @@ const ProfilePage = () => {
   const disabledesc = () => {
     setshowName(false);
   };
+  
+  // useEffect(() => {
+  //   if (id) {
+  //     const abortController = new AbortController();
+  //     setAbortController(abortController);
 
-  useEffect(() => {
-    if (id) {
-      const abortController = new AbortController();
-      setAbortController(abortController);
+  //     const fetchData = async () => {
+  //       try {
+  //         const data = await fetchProfileData(id, abortController.signal);
+  //         setProfileData(data?.user);
+  //       } catch (error) {
+  //         if (error.name === "AbortError") {
+  //           return;
+  //         }
+  //       }
+  //     };
 
-      const fetchData = async () => {
-        try {
-          const data = await fetchProfileData(id, abortController.signal);
-          setProfileData(data?.user);
-        } catch (error) {
-          if (error.name === "AbortError") {
-            return;
-          }
-        }
-      };
-
-      fetchData();
-    }
-    return () => {
-      if (abortController) {
-        abortController.abort();
-      }
-    };
-  }, [id]);
+  //     fetchData();
+  //   }
+  //   return () => {
+  //     if (abortController) {
+  //       abortController.abort();
+  //     }
+  //   };
+  // }, [id]);
   useEffect(() => {
     setProfileData(currentUser);
   }, [currentUser]);
@@ -103,6 +101,7 @@ const ProfilePage = () => {
     description,
     gig,
   } = profileData || {};
+
   const convertDate = (date = new Date()) => {
     const options = { year: "numeric", month: "long", day: "numeric" };
     const memberSinceDate = new Date(date);
