@@ -4,8 +4,11 @@ import { GigCard } from "../../../../Components";
 import { gigs } from "../../../../utils/data";
 import { useRouter, useSearchParams } from "next/navigation";
 import { AiOutlineHome } from "react-icons/ai";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
+import { fetchGigbyCategory } from "Api/gigApi";
+import { setGigs } from "../../../../redux/slice/gigcreationslice";
 const Gigs = ({ params }) => {
+  const dispatch=useDispatch()
   const [budget, setBudget] = useState({ min: 0, max: 5000 });
   const search = useSearchParams().get("subcategory");
   const [subfieldselect, setSubfieldSelect] = useState(search || "All");
@@ -23,9 +26,22 @@ const Gigs = ({ params }) => {
       .filter(Boolean);
     return filteredSubcategories;
   });
-  const [filteredGigs, setfilteredGigs] = useState(
-    gigs?.filter((c) => c.category === decodeURIComponent(params.categoryname))
-  );
+  const [filteredGigs, setfilteredGigs] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const categoryname = decodeURIComponent(params.categoryname);
+        const data = await fetchGigbyCategory(categoryname);
+        setfilteredGigs(data.gigs);
+        dispatch(setGigs(data.gigs));
+        console.log(data);
+      } catch (error) {
+        console.error("Error fetching gig data:", error);
+      }
+    };
+
+    fetchData();
+  }, [params.categoryname]);
   const handleSort = (e) => {
     const { value } = e.target;
     let sortedArray = [...filteredGigs];
@@ -168,9 +184,10 @@ const Gigs = ({ params }) => {
         <div
           className={`flex items-center  flex-wrap justify-center sm:gap-12 lg:gap-4 md:justify-normal`}
         >
-          {filteredGigs?.map((obj) => {
-            return <GigCard key={obj.id} {...obj} />;
-          })}
+          {filteredGigs &&
+            filteredGigs?.map((obj) => {
+              return <GigCard key={obj.id} {...obj} />;
+            })}
         </div>
       </div>
     </div>

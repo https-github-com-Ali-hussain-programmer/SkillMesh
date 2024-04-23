@@ -85,7 +85,7 @@ exports.createGig = async (req, res) => {
     await user.save();
     category.gig.push(newGig._id);
     await category.save();
-    user = await User.findById(user._id).populate({
+    const User2 = await User.findById(user._id).populate({
       path: "gig",
       populate: {
         path: "reviews",
@@ -96,7 +96,7 @@ exports.createGig = async (req, res) => {
     res.status(201).json({
       success: true,
       message: "Gig created successfully",
-      user,
+      user: User2,
       category,
     });
   } catch (error) {
@@ -130,6 +130,53 @@ exports.getGig = async (req, res) => {
     }
 
     res.status(200).json({ message: "Gigs retrieved successfully", gigs });
+  } catch (error) {
+    console.error("Error retrieving gigs:", error);
+    res.status(500).json({ error: "Failed to retrieve gigs" });
+  }
+};
+exports.fetchGigbyCategory = async (req, res) => {
+  try {
+    const user = req.user;
+    const { categoryName } = req.body;
+    console.log(categoryName);
+    const category = await Category.findOne({ categoryName }).populate({
+      path: "gig",
+      populate: [
+        { path: "category" },
+        { path: "subField" },
+        { path: "reviews" },
+        { path: "user" },
+      ],
+    });
+    console.log(category);
+    const gigs = category.gig;
+
+    console.log(gigs);
+    if (!gigs) {
+      return res.status(404).json({ message: "Gigs not found for this user" });
+    }
+
+    res.status(200).json({ gigs });
+  } catch (error) {
+    console.error("Error retrieving gigs:", error);
+    res.status(500).json({ error: "Failed to retrieve gigs" });
+  }
+};
+exports.fetchGigbyid = async (req, res) => {
+  try {
+    const { id } = req.body;
+    const gig = await Gig.findOne({ _id: id })
+      .populate("category")
+      .populate("subField")
+      .populate("user");
+
+    console.log(gig);
+    if (!gig) {
+      return res.status(404).json({ message: "Gigs not found for this user" });
+    }
+
+    res.status(200).json({ gig });
   } catch (error) {
     console.error("Error retrieving gigs:", error);
     res.status(500).json({ error: "Failed to retrieve gigs" });

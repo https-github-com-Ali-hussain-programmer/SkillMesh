@@ -68,3 +68,30 @@ export const removewishlistGig = async () => {
   const data = response.json();
   return data;
 };
+
+export const fetchGigbyCategory = async (categoryName) => {
+  const response = await fetch(baseUrl + `/fetchGigbyCategory`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+    body: JSON.stringify({ categoryName }),
+  });
+  const data =await  response.json();
+  return data;
+};
+export const fetchGigbyid = async (id) => {
+  const response = await fetch(baseUrl + `/fetchGigbyid`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+    body: JSON.stringify({ id }),
+  });
+  const data =await  response.json();
+  return data;
+};
