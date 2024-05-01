@@ -26,3 +26,12 @@ app.use("/api/v1/gig", gigRoutes);
 server.listen(process.env.PORT || 3001, () => {
   console.log(`Server Running on ${process.env.PORT} Port`);
 });
+
+
+
+
+
+
+
+
+

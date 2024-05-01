@@ -10,11 +10,11 @@ function Client({ children }) {
   const { handleMetaMaskChange } = useMetaMask();
   const shouldRenderNavbarFooter = !ConditionalRendering.includes(currentPath);
 
-  useEffect(() => {
-    if (window.ethereum) {
-      window.ethereum.on("accountsChanged", handleMetaMaskChange);
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (window.ethereum) {
+  //     window?.ethereum?.on("accountsChanged", handleMetaMaskChange);
+  //   }
+  // }, []);
   return (
     <>
       <>

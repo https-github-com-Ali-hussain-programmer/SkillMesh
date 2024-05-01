@@ -3,14 +3,13 @@ import { Features, Hero, TopRated, PlatformFeatures } from "../Components";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCategories } from "../redux/slice/categorySlice";
-
 export default function Home() {
   const currentUser = useSelector((state) => state.user?.userData);
-  console.log(currentUser, "opo");
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchCategories());
   }, []);
+
 
   return (
     <main

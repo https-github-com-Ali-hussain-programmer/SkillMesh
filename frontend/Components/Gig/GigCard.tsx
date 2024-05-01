@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState } from "react";
 import starimg from "../../public/star.png";
 import Image from "next/image";
@@ -31,12 +31,11 @@ function GigCard(props) {
   const Favourites = useSelector(favouritesList);
   const router = useRouter();
   const favouritesSet = new Set(Favourites?.map((item: any) => item.id));
-const [isFavourite,setIsFavourite]=useState(favouritesSet.has(props?.id))
+  const [isFavourite, setIsFavourite] = useState(favouritesSet.has(props?.id));
   const dispatch = useDispatch();
   const handleHeartClick = (e: any) => {
- 
     if (e.target?.classList?.contains("heart")) {
-      setIsFavourite(!isFavourite)
+      setIsFavourite(!isFavourite);
       e.stopPropagation();
       if (!isFavourite) {
         const data = {
@@ -50,7 +49,7 @@ const [isFavourite,setIsFavourite]=useState(favouritesSet.has(props?.id))
           category: props.category.categoryName,
           subcategory: props.subField.name,
         };
-       
+
         dispatch(addWishlist({ data }));
         toast.success("Successfully Added To Whishlist", { autoClose: 3000 });
       } else {
@@ -61,10 +60,10 @@ const [isFavourite,setIsFavourite]=useState(favouritesSet.has(props?.id))
 
   return (
     <div
-      onClick={() => {
-        
-      }}
-    >
+    onClick={() => {
+      router.push(`/gig?id=${props.id} `);
+    }}
+  >
       <div className="w-[290px]  h-[400px] border border-gray-300 mb-[40px] shadow-lg relative gigs cursor-pointer ">
         <img
           className="w-full h-1/2 object-cover"
