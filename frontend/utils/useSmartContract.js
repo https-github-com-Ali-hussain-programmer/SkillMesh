@@ -3,41 +3,26 @@ import configuration from "../../smartContract/build/contracts/DecentralizedPlat
 
 const useSmartContract = () => {
   const web3 = new Web3(Web3.givenProvider || "http://localhost:7545");
-  if (!configuration || !configuration.abi || !configuration.networks) {
-    throw new Error("Smart contract configuration not found or incomplete");
-  }
-  const networkId = Object.keys(configuration.networks)[0]; 
-  const contractAddress = configuration.networks[networkId].address;
-  const contract = new web3.eth.Contract(configuration.abi, contractAddress);
-  
-  const handleContractError = (error) => {
-    console.error("Smart contract interaction error:", error);
+  const contract = new web3.eth.Contract(
+    configuration.abi,
+    configuration.networks["5777"].address
+  );
+
+  const setSkillMeshAddress = async (newAddress) => {
+    const accounts = await web3.eth.getAccounts();
+
+    const owner = accounts[0]; // Assuming the first account is the owner
+    console.log(owner, contract, web3);
+    await contract.methods.setSkillMeshAddress(newAddress).send({
+      from: owner,
+    });
   };
 
-
-  const interactWithContract = async (methodName, ...args) => {
-    try {
-      const result = await contract.methods[methodName](...args).send({ from: web3.eth.defaultAccount });
-      return result;
-    } catch (error) {
-      handleContractError(error);
-      throw new Error("Failed to interact with smart contract");
-    }
-  };
-
-
-  const getContractData = async (methodName, ...args) => {
-    try {
- 
-      const result = await contract.methods[methodName](...args).call();
-      return result;
-    } catch (error) {
-      handleContractError(error);
-      throw new Error("Failed to fetch data from smart contract");
-    }
-  };
-
-  return { web3, contract, interactWithContract, getContractData };
+  return { contract, setSkillMeshAddress };
 };
 
 export default useSmartContract;
+// const contract = new web3.eth.Contract(
+//   configuration.abi,
+//   configuration.networks["5777"].address
+// );

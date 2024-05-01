@@ -58,12 +58,13 @@ function GigCard(props) {
     }
   };
 
+  console.log(props._id);
   return (
     <div
-    onClick={() => {
-      router.push(`/gig?id=${props.id} `);
-    }}
-  >
+      onClick={() => {
+        router.push(`/gig?id=${props._id} `);
+      }}
+    >
       <div className="w-[290px]  h-[400px] border border-gray-300 mb-[40px] shadow-lg relative gigs cursor-pointer ">
         <img
           className="w-full h-1/2 object-cover"

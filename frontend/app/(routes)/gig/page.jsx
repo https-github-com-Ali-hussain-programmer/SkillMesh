@@ -14,16 +14,18 @@ import { IoSearchOutline } from "react-icons/io5";
 import GigReviews from "@/Components/Gig/GigReviews";
 import { Tag } from "@chakra-ui/react";
 import OrderDrawer from "../../../Components/Order/OrderDrawer";
+import moment from "moment";
 import { useDisclosure } from "@chakra-ui/react";
 import Currency from "@/utils/Currency";
 import { useSelector } from "react-redux";
 import { fetchGigbyid } from "../../../Api/gigApi";
+import useSmartContract from "../../../utils/useSmartContract";
 const Gig = () => {
   const search = useSearchParams();
+  const { contract, setSkillMeshAddress } = useSmartContract();
   const [showFunctionalities, setShowFunctionalities] = useState(false);
   const id = search.get("id");
   const [data, setData] = useState("");
-
   const [packagesData, setpackagesData] = useState([]);
   const [ReviewSearch, setReviewSearch] = useState("");
   const [filteredReviews, setfilteredReviews] = useState([]);
@@ -48,6 +50,7 @@ const Gig = () => {
     const fetchData = async () => {
       try {
         const response = await fetchGigbyid(id);
+
         setData(response.gig);
         setpackagesData(response?.gig?.Package[0]);
       } catch (error) {
@@ -59,6 +62,22 @@ const Gig = () => {
       fetchData();
     }
   }, [id]);
+
+  useEffect(() => {
+    const triggerSetSkillMeshAddress = async () => {
+      try {
+        const newSkillMeshAddress =
+          "0x005A42513E591433C2424680c1681aaAcc1e35D5";
+        await setSkillMeshAddress(newSkillMeshAddress);
+        console.log("Skillmesh address updated successfully.");
+      } catch (error) {
+        console.error("Error updating skillmesh address:", error);
+      }
+    };
+
+    triggerSetSkillMeshAddress();
+  }, [setSkillMeshAddress]);
+
   return (
     <div className="mb-[300px] mt-[50px] ">
       <div className="container  2xl:max-w-[1400px]   px-[30px] py-[0px] flex  flex-col md:flex-row gap-[50px]">
@@ -70,11 +89,10 @@ const Gig = () => {
             <span>/</span>{" "}
             <span onClick={() => handleRoute("/Categories")}>Categories</span>{" "}
             <span>/</span>
-            <span
-              onClick={() => handleRoute(`/Categories/${data?.category}`)}
-            ></span>
-            <span>/</span>
-            Gig
+            <span onClick={() => handleRoute(`/Categories/${data?.category}`)}>
+             
+              Gig
+            </span>
           </div>
 
           <h1 className="text-3xl font-bold   text-[#404145] break-words  tracking-wide">
@@ -156,7 +174,11 @@ const Gig = () => {
                 </div>
                 <div className="item flex justify-between  gap-2 flex-wrap">
                   <span className="title font-light">Member since:</span>
-                  <span className="font-bold">{data?.user?.memberSince}</span>
+                  <span className="font-bold">
+                    {moment(data?.user?.memberSince).format(
+                      "MMMM Do YYYY, h:mm:ss a"
+                    )}
+                  </span>
                 </div>
                 <div className="item flex justify-between flex-wrap gap-1">
                   <span className="title font-light">Avg. response time:</span>
@@ -178,7 +200,7 @@ const Gig = () => {
                         variant="solid"
                         colorScheme="teal"
                       >
-                        {l}
+                        {l.languageName}
                       </Tag>
                     );
                   })}
@@ -351,11 +373,11 @@ const Gig = () => {
           </div>
         </div>
       </div>
-      {/* <OrderDrawer
+      <OrderDrawer
         isOpen={isOpen}
         onClose={onClose}
         packagesData={packagesData}
-      /> */}
+      />
     </div>
   );
 };
