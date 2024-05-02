@@ -28,6 +28,7 @@ import { toast } from "react-toastify";
 // }
 
 function GigCard(props) {
+  const rate = useSelector((state) => state.exchange.ETH_TO_USD);
   const Favourites = useSelector(favouritesList);
   const router = useRouter();
   const favouritesSet = new Set(Favourites?.map((item: any) => item.id));
@@ -58,7 +59,6 @@ function GigCard(props) {
     }
   };
 
-  console.log(props._id);
   return (
     <div
       onClick={() => {
@@ -110,7 +110,8 @@ function GigCard(props) {
           <span className="text-gray-500 text-xs">STARTING AT</span>
 
           <h2 className="text-gray-500 text-18 font-bold text-right">
-            {props.Package[0].price}$
+            {props.Package[0].price}$ (
+            {(props.Package[0].price / rate).toFixed(3)}) ETH
           </h2>
         </div>
         <div className="pink-hover">
@@ -155,7 +156,8 @@ function GigCard(props) {
 
             <span className=" text-secondary-white text-xs">STARTING AT</span>
             <h2 className="text-gray-500 text-18 font-bold text-right">
-              {props.Package[0].price}$
+              {props.Package[0].price}$ (
+              {(props.Package[0].price / rate).toFixed(5)}) ETH
             </h2>
           </div>
         </div>

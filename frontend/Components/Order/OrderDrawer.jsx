@@ -15,11 +15,11 @@ import recycle from "../../public/recycle.png";
 import { FaPlus, FaMinus } from "react-icons/fa6";
 import Currency from "../../utils/Currency";
 import { useRouter } from "next/navigation";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { updateData } from "../../redux/slice/TotalpackageSlice";
-
 function OrderDrawer({ isOpen, onClose, packagesData, userinfo }) {
   const [isListOpen, setIsListOpen] = useState(false);
+  const rate = useSelector((state) => state.exchange.ETH_TO_USD);
   const [GigQuantity, setGigQuanity] = useState(1);
   const [TotalPackage, setTotalpackage] = useState({
     gigQuantity: GigQuantity,
@@ -63,9 +63,8 @@ function OrderDrawer({ isOpen, onClose, packagesData, userinfo }) {
   };
 
   const handleClick = () => {
-
-     dispatch(updateData({ TotalPackage }));
-     localStorage.setItem("TotalPackage",JSON.stringify(TotalPackage))
+    dispatch(updateData({ TotalPackage }));
+    localStorage.setItem("TotalPackage", JSON.stringify(TotalPackage));
     router.push("/Payment/SubmitRequirement");
   };
 
@@ -96,7 +95,11 @@ function OrderDrawer({ isOpen, onClose, packagesData, userinfo }) {
                   <h1 className="font-semibold text-[18px]">
                     {packagesData.name}
                   </h1>{" "}
-                  <span>PKR {Currency(packagesData?.price, GigQuantity)}</span>
+                  <span>
+                    USD {Currency(packagesData?.price, GigQuantity)} ({" "}
+                    {((packagesData?.price * GigQuantity) / rate).toFixed(5)})
+                    ETH
+                  </span>
                 </div>
                 <p className="pb-[30px] pt-[3px] text-[ text-[#404145]  border-b-[1px] border-gray-300 border-solid">
                   {packagesData?.desc}
@@ -123,7 +126,9 @@ function OrderDrawer({ isOpen, onClose, packagesData, userinfo }) {
               <div className="text-[#404145] text-sm  bg-[#f5f5f5] rounded-[8px] w-full flex flex-col gap-4 px-[16px] py-[20px] ">
                 <div>
                   <h1 className="text-[#404145] text-2xl font-bold">
-                    PKR {Currency(packagesData.price, GigQuantity)}
+                    USD {Currency(packagesData.price, GigQuantity)} ({" "}
+                    {((packagesData?.price * GigQuantity) / rate).toFixed(5)})
+                    ETH
                   </h1>
                   <p className="pb-3  border-b-[1px] border-gray-300 border-solid text-gray-500">
                     Single Order
@@ -179,7 +184,8 @@ function OrderDrawer({ isOpen, onClose, packagesData, userinfo }) {
                   onClick={handleClick}
                   className="w-full text-center font-bold py-[12px] px-[20px] bg-black text-white outline-none rounded-md text-lg"
                 >
-                  Continue (PKR {Currency(packagesData.price, GigQuantity)})
+                  Continue ({" "}
+                  {((packagesData?.price * GigQuantity) / rate).toFixed(5)}) ETH
                 </button>
                 <p>You won't be charged yet</p>
               </div>

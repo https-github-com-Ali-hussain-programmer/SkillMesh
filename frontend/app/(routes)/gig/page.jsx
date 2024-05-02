@@ -23,6 +23,7 @@ import useSmartContract from "../../../utils/useSmartContract";
 const Gig = () => {
   const search = useSearchParams();
   const { contract, setSkillMeshAddress } = useSmartContract();
+  const rate = useSelector((state) => state.exchange.ETH_TO_USD);
   const [showFunctionalities, setShowFunctionalities] = useState(false);
   const id = search.get("id");
   const [data, setData] = useState("");
@@ -90,7 +91,6 @@ const Gig = () => {
             <span onClick={() => handleRoute("/Categories")}>Categories</span>{" "}
             <span>/</span>
             <span onClick={() => handleRoute(`/Categories/${data?.category}`)}>
-             
               Gig
             </span>
           </div>
@@ -293,7 +293,11 @@ const Gig = () => {
             <div className="flex flex-col">
               {" "}
               <h1 className="text-2xl whitespace-nowrap font-bold  flex items-center gap-2">
-                <span>PKR {Currency(packagesData?.price)}</span>
+                <span>
+                  {" "}
+                  {packagesData?.price} USD (
+                  {(packagesData?.price / rate).toFixed(5)}) ETH{" "}
+                </span>
                 <span className="text-[#74767e] text-[16px] font-medium tooltip">
                   <IoMdInformationCircleOutline />
                 </span>
