@@ -1,6 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
+import storage from 'redux-persist/es/storage';
+import { persistReducer } from 'redux-persist';
 const exchangeSlice = createSlice({
-  name: "exchangeSlice",
+  name: "exchange",
   initialState: {
     ETH_TO_USD: "",
   },
@@ -10,6 +12,15 @@ const exchangeSlice = createSlice({
     },
   },
 });
+const persistConfig = {
+  key: "exchange",
+  storage,
+  whitelist: ["ETH_TO_USD"],
+};
+
+const exchangepersistedReducer = persistReducer(persistConfig, exchangeSlice.reducer);
+
 export const { setETH } = exchangeSlice.actions;
 
-export default exchangeSlice.reducer;
+
+export { exchangepersistedReducer};

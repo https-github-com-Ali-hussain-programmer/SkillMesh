@@ -15,7 +15,7 @@ exports.createGig = async (req, res) => {
       selectedSubField,
     } = req.body;
     const basic = JSON.parse(basicPkg);
-    console.log(basic);
+    console.log(selectedCategory);
     const standard = JSON.parse(standardPkg);
     const premium = JSON.parse(premiumPkg);
     const category = await Category.findById(selectedCategory).populate(
@@ -143,7 +143,7 @@ exports.fetchGigbyCategory = async (req, res) => {
     const category = await Category.findOne({ categoryName }).populate({
       path: "gig",
       populate: [
-        { path: 'category', populate: { path: 'subField' } },
+        { path: "category", populate: { path: "subField" } },
         { path: "subField" },
         { path: "reviews" },
         { path: "user" },

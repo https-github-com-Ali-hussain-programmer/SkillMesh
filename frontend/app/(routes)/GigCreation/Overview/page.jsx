@@ -37,7 +37,7 @@ const Overview = () => {
       packageState.premium
     );
 
-    console.log(response);
+
     const info = response.user;
     dispatch(setUserData({ info }));
     dispatch(updateCategory(response.category));

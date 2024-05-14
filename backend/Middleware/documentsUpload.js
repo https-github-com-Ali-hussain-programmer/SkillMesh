@@ -37,6 +37,7 @@ const createStorage = (folderName) => {
 };
 
 const documentUpload = (folderName) => {
+
   const upload = multer({ storage: createStorage(folderName) });
 
   return (req, res, next) => {

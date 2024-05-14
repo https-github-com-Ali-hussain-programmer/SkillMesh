@@ -12,13 +12,24 @@ const useSmartContract = () => {
     const accounts = await web3.eth.getAccounts();
 
     const owner = accounts[0]; // Assuming the first account is the owner
-    console.log(owner, contract, web3);
+
     await contract.methods.setSkillMeshAddress(newAddress).send({
       from: owner,
     });
   };
 
-  return { contract, setSkillMeshAddress };
+  const orderPlaced = async (seller, price, gigid) => {
+    const accounts = await web3.eth.getAccounts();
+    const owner = accounts[0]; // Assuming the first account is the owner
+    const priceInWei = web3.utils.toWei(price.toString(), "ether");
+    alert(seller, "op");
+    const gigId = 3;
+    await contract.methods.placeOrder(seller, priceInWei, gigId).send({
+      from: owner,
+      value: priceInWei,
+    });
+  };
+  return { contract, setSkillMeshAddress, orderPlaced };
 };
 
 export default useSmartContract;

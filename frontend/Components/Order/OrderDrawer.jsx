@@ -17,18 +17,32 @@ import Currency from "../../utils/Currency";
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { updateData } from "../../redux/slice/TotalpackageSlice";
-function OrderDrawer({ isOpen, onClose, packagesData, userinfo }) {
+function OrderDrawer({
+  isOpen,
+  onClose,
+  packagesData,
+  userinfo,
+  gigimage,
+  id,
+  address,
+}) {
   const [isListOpen, setIsListOpen] = useState(false);
   const rate = useSelector((state) => state.exchange.ETH_TO_USD);
   const [GigQuantity, setGigQuanity] = useState(1);
+
   const [TotalPackage, setTotalpackage] = useState({
+    gigId: id,
     gigQuantity: GigQuantity,
     userinfo: userinfo,
     packageName: packagesData?.name,
     Title: packagesData.desc,
     Totalprice: Currency(packagesData?.price, GigQuantity),
     TotaldeliveryTime: packagesData?.delivery,
+    features: packagesData?.functionalities,
+    img: gigimage,
+    address: address,
   });
+
   const dispatch = useDispatch();
   useEffect(() => {
     setTotalpackage((prev) => {
@@ -38,6 +52,9 @@ function OrderDrawer({ isOpen, onClose, packagesData, userinfo }) {
         Title: packagesData.desc,
         Totalprice: Currency(packagesData?.price, GigQuantity),
         TotaldeliveryTime: packagesData?.delivery,
+        img: gigimage,
+        gigId: id,
+        address: address,
       };
     });
   }, [packagesData]);

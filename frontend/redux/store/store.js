@@ -3,7 +3,7 @@ import wishlistReducer from "../slice/wishlistSlice";
 import TotalPackageReducer from "../slice/TotalpackageSlice";
 import orderlistReducer from "../slice/orderlistSlice";
 import userReducer from "../slice/userSlice";
-import exchangeReducer from "../slice/exchangeSlice";
+import { exchangepersistedReducer } from "../slice/exchangeSlice";
 import {
   categorySlice,
   persistedReducer,
@@ -28,7 +28,7 @@ export const store = configureStore({
     user: userReducer,
     category: persistedReducer,
     gig: gigReducer,
-    exchange: exchangeReducer,
+    exchange: exchangepersistedReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

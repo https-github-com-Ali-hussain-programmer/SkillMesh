@@ -8,14 +8,19 @@ contract DecentralizedPlatform {
     uint public constant RELEASE_DELAY = 2;
     uint public constant SKILLMESH_FEE_PERCENT = 5;
 
-    enum OrderStatus { Created, AmountPending, Completed, Disputed, FundsReleased }
+    enum OrderStatus {
+        Created,
+        AmountPending,
+        Completed,
+        Disputed,
+        FundsReleased
+    }
 
     struct Order {
         uint id;
         address payable buyer;
         address payable seller;
-        string documentHash;
-        string completedFilesHash;
+        uint gigId;
         uint price;
         uint createdAt;
         uint completedAt;
@@ -25,9 +30,25 @@ contract DecentralizedPlatform {
     mapping(uint => Order) public orders;
     mapping(address => uint[]) public userOrders;
 
-    event OrderPlaced(uint orderId, address buyer, address seller, uint price);
-    event OrderCompleted(uint orderId, address buyer, address seller, uint price);
-    event AmountPending(uint orderId, address buyer, address seller, uint price);
+    event OrderPlaced(
+        uint orderId,
+        address buyer,
+        address seller,
+        uint price,
+        uint _gigId
+    );
+    event OrderCompleted(
+        uint orderId,
+        address buyer,
+        address seller,
+        uint price
+    );
+    event AmountPending(
+        uint orderId,
+        address buyer,
+        address seller,
+        uint price
+    );
     event OrderDisputed(uint orderId, address buyer, address seller);
     event OrderCanceled(uint orderId, address buyer, address seller);
     event FundsReleased(uint orderId, address recipient, uint amount);
@@ -42,11 +63,15 @@ contract DecentralizedPlatform {
         _;
     }
 
-function setSkillMeshAddress(address skillmesh) external onlyOwner {
-  skillmeshTeam = skillmesh;
-}
+    function setSkillMeshAddress(address skillmesh) external onlyOwner {
+        skillmeshTeam = skillmesh;
+    }
 
-    function placeOrder(address payable _seller, string memory _documentHash, uint _price) external payable {
+    function placeOrder(
+        address payable _seller,
+        uint _price,
+        uint _gigId
+    ) external payable {
         require(msg.sender != _seller, "Buyer cannot be the same as seller");
         require(msg.value >= _price, "Insufficient payment amount");
 
@@ -54,10 +79,19 @@ function setSkillMeshAddress(address skillmesh) external onlyOwner {
         uint orderId = orderCount;
         uint currentTime = block.timestamp;
 
-        orders[orderId] = Order(orderId, payable(msg.sender), _seller, _documentHash, "", _price, currentTime, 0, OrderStatus.Created);
+        orders[orderId] = Order(
+            orderId,
+            payable(msg.sender),
+            _seller,
+            _gigId,
+            _price,
+            currentTime,
+            0,
+            OrderStatus.Created
+        );
         userOrders[msg.sender].push(orderId);
 
-        emit OrderPlaced(orderId, msg.sender, _seller, _price);
+        emit OrderPlaced(orderId, msg.sender, _seller, _price, _gigId);
     }
 
     function readyFromSeller(uint _orderId) external {
@@ -76,8 +110,15 @@ function setSkillMeshAddress(address skillmesh) external onlyOwner {
 
     function releaseFunds(uint _orderId) external {
         Order storage order = orders[_orderId];
-        require(msg.sender != order.seller, "Only seller can complete the order");
-        require(order.status == OrderStatus.AmountPending || order.status == OrderStatus.Disputed, "Order is not in a valid state for completion");
+        require(
+            msg.sender != order.seller,
+            "Only seller can complete the order"
+        );
+        require(
+            order.status == OrderStatus.AmountPending ||
+                order.status == OrderStatus.Disputed,
+            "Order is not in a valid state for completion"
+        );
 
         order.status = OrderStatus.FundsReleased;
         order.completedAt = block.timestamp;
@@ -98,7 +139,10 @@ function setSkillMeshAddress(address skillmesh) external onlyOwner {
 
     function refundToBuyer(uint _orderId) external {
         Order storage order = orders[_orderId];
-        require(order.status == OrderStatus.Disputed, "Order is not in a valid state for release");
+        require(
+            order.status == OrderStatus.Disputed,
+            "Order is not in a valid state for release"
+        );
 
         order.status = OrderStatus.FundsReleased;
 
@@ -110,18 +154,25 @@ function setSkillMeshAddress(address skillmesh) external onlyOwner {
 
     function releaseToSeller(uint _orderId) external {
         Order storage order = orders[_orderId];
-        require(order.status == OrderStatus.Disputed, "Order is not in a valid state for release");
+        require(
+            order.status == OrderStatus.Disputed,
+            "Order is not in a valid state for release"
+        );
 
         order.status = OrderStatus.FundsReleased;
 
         this.releaseFunds(_orderId);
     }
 
-    function getOrderDetails(uint _orderId) external view returns (Order memory) {
+    function getOrderDetails(
+        uint _orderId
+    ) external view returns (Order memory) {
         return orders[_orderId];
     }
 
-    function getUserOrders(address _user) external view returns (uint[] memory) {
+    function getUserOrders(
+        address _user
+    ) external view returns (uint[] memory) {
         return userOrders[_user];
     }
 

@@ -51,7 +51,7 @@ const Gig = () => {
     const fetchData = async () => {
       try {
         const response = await fetchGigbyid(id);
-
+    
         setData(response.gig);
         setpackagesData(response?.gig?.Package[0]);
       } catch (error) {
@@ -381,6 +381,9 @@ const Gig = () => {
         isOpen={isOpen}
         onClose={onClose}
         packagesData={packagesData}
+        gigimage={data && data?.gigimages[0]}
+        id={id}
+        address={data?.user?.address}
       />
     </div>
   );

@@ -16,18 +16,30 @@ import { FormContext } from "../../../../context/Form";
 import { useContext } from "react";
 import { useRouter } from "next/navigation";
 import { addOrderlist } from "@/redux/slice/orderlistSlice";
+import  useSmartContract  from "../../../../utils/useSmartContract";
 import swal from "sweetalert";
 function ConfirmPay({}) {
   const [loading, setLoading] = useState(true);
   const total_package = useSelector(packagedata);
+  const rate = useSelector((state) => state.exchange.ETH_TO_USD);
   const [data, setData] = useState(total_package);
   const { activeStep, setActiveStep } = useContext(FormContext);
   const dispatch = useDispatch();
   const router = useRouter();
+  const { orderPlaced } = useSmartContract();
   useEffect(() => {
     setLoading(false);
     setData(JSON.parse(localStorage.getItem("TotalPackage")));
   }, []);
+
+  const handleConfirm = async () => {
+    const price = data?.Totalprice * rate;
+    const gigId = data?.gigId;
+    const address=data?.address
+    await orderPlaced(address,price,gigId);
+    swal("Congratulation!", "Successfully placed Order!", "success");
+    dispatch(addOrderlist({ total_package }));
+  };
 
   return (
     <>
@@ -49,13 +61,13 @@ function ConfirmPay({}) {
             </div>
           </div>
           {!loading ? (
-            <div className="rounded shahdow-md bg-[#fafafa]  border  border-gray-300  max-w-[450px] flex flex-col justify-center gap-4  px-3">
+            <div className="rounded shahdow-md bg-[#fafafa]  border  border-gray-300  w-[500px] flex flex-col justify-center gap-4  px-3">
               <h1 className="font-bold text-[#404145] mt-3 text-2xl">
                 {data?.packageName}
               </h1>
               <div className="flex items-center flex-col sm:flex-row gap-3 p-3">
                 <img
-                  src={data?.userinfo?.img}
+                  src={data?.img}
                   alt="error"
                   className="h-[110px] w-[100px] object-cover rounded shrink-0 sm:shrink"
                 />
@@ -98,18 +110,12 @@ function ConfirmPay({}) {
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-sm font-bold">Total Price</span>
-                <span className="text-sm">PKR {data?.Totalprice}</span>
+                <span className="text-sm">{data?.Totalprice * rate} ETH</span>
               </div>
               <div className="border-gray-300 border-solid border-b-[1px]"></div>
               <button
                 onClick={() => {
-                  swal(
-                    "Congratulation!",
-                    "Successfully placed Order!",
-                    "success"
-                  );
-                  dispatch(addOrderlist({total_package }));
-                 
+                  handleConfirm();
                 }}
                 className="hover:bg-black transition-all duration-300 ease-in hover:scale-105 px-[20px] py-[10px] w-full bg-green-600 text-white text-lg font-bold rounded"
               >

@@ -18,6 +18,7 @@ const corsOption = {
   credentials: true,
   exposedHeaders: ["set-cookie"],
 };
+
 require("./DB/connection");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json({ limit: "30mb" }));

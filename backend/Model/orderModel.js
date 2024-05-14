@@ -1,20 +1,25 @@
 const mongoose = require("mongoose");
 
 const orderSchema = new mongoose.Schema({
+  status: {
+    type: String,
+    enum: ["Pending", "Completed", "Disputed", "Refunded"],
+    default: "Pending",
+  },
   orderName: {
     type: String,
-    required: true,
+  
   },
   orderDescription: {
     type: String,
   },
   orderPrice: {
     type: Number,
-    required: true,
+   
   },
   orderCompletionDate: {
     type: Date,
-    required: true,
+   
   },
   orderCompleted: {
     type: Boolean,
@@ -32,23 +37,24 @@ const orderSchema = new mongoose.Schema({
   gig: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Gig",
-    required: true,
   },
   buyer: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
-    required: true,
   },
   seller: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
-    required: true,
   },
   buyerDocumentUrl: {
     type: String,
   },
   sellerDocumentUrl: {
     type: String,
+  },
+  isActive: {
+    type: Boolean,
+    default: false,
   },
 });
 
