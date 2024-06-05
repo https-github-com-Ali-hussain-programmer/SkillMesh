@@ -2,11 +2,13 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+import useSmartContract from "../../../utils/useSmartContract";
 import Link from "next/link";
 function Categories() {
   const [selectedOption, setSelectedOption] = useState("All Available");
   const Category = useSelector((state) => state?.category);
   const [filteredCategory, setFilteredCategory] = useState(Category?.data);
+   useSmartContract();
   const OptionChange = (e) => {
     const { value } = e.target;
     setSelectedOption(value);
@@ -19,7 +21,7 @@ function Categories() {
       setFilteredCategory(filteredData);
     }
   };
-
+ 
   return (
     <>
       <div className="z-50 mt-[100px] mb-[300px] min-h-screen ">

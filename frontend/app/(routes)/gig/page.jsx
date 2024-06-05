@@ -22,7 +22,7 @@ import { fetchGigbyid } from "../../../Api/gigApi";
 import useSmartContract from "../../../utils/useSmartContract";
 const Gig = () => {
   const search = useSearchParams();
-  const { contract, setSkillMeshAddress } = useSmartContract();
+  
   const rate = useSelector((state) => state.exchange.ETH_TO_USD);
   const [showFunctionalities, setShowFunctionalities] = useState(false);
   const id = search.get("id");
@@ -64,20 +64,7 @@ const Gig = () => {
     }
   }, [id]);
 
-  useEffect(() => {
-    const triggerSetSkillMeshAddress = async () => {
-      try {
-        const newSkillMeshAddress =
-          "0x005A42513E591433C2424680c1681aaAcc1e35D5";
-        await setSkillMeshAddress(newSkillMeshAddress);
-        console.log("Skillmesh address updated successfully.");
-      } catch (error) {
-        console.error("Error updating skillmesh address:", error);
-      }
-    };
-
-    triggerSetSkillMeshAddress();
-  }, [setSkillMeshAddress]);
+ 
 
   return (
     <div className="mb-[300px] mt-[50px] ">

@@ -8,12 +8,10 @@ import Web3 from "web3";
 
 const useMetaMask = () => {
   const [account, setAccount] = useState(null);
-  const [web3, setWeb3] = useState(null);
   const dispatch = useDispatch();
 
   const handleMetaMaskChange = async (newAccounts) => {
     const updatedUserAddress = getAddress(newAccounts[0]);
-    console.log(updatedUserAddress, "opopopopopop", newAccounts);
     const updatedUserData = await LoginMetamask(updatedUserAddress);
     dispatch(setUserData({ info: updatedUserData?.user }));
     localStorage.setItem("userData", JSON.stringify(updatedUserData?.user));
@@ -23,15 +21,17 @@ const useMetaMask = () => {
   const connectMetaMask = async () => {
     if (window.ethereum) {
       try {
-        const provider = new ethers.BrowserProvider(window.ethereum);
-        const web3Instance = new Web3(window.ethereum);
-        setWeb3(web3Instance);
-
-        const accounts = await provider.send("eth_requestAccounts", []);
+        
+     
+        const accounts = await window.ethereum.request({
+          method: "eth_requestAccounts",
+        });
+     
         if (accounts.length <= 0) {
           throw new Error("MetaMask account not connected");
         }
 
+        // Handle account change
         setAccount(getAddress(accounts[0]));
         await handleMetaMaskChange(accounts);
 
@@ -47,10 +47,16 @@ const useMetaMask = () => {
           description: error.message,
         };
       }
+    } else {
+      return {
+        status: "error",
+        title: "MetaMask Not Found",
+        description: "Please install MetaMask to use this feature.",
+      };
     }
   };
 
-  return { connectMetaMask, account, handleMetaMaskChange };
+  return { connectMetaMask, account, handleMetaMaskChange, };
 };
 
 export default useMetaMask;

@@ -16,7 +16,7 @@ import { FormContext } from "../../../../context/Form";
 import { useContext } from "react";
 import { useRouter } from "next/navigation";
 import { addOrderlist } from "@/redux/slice/orderlistSlice";
-import  useSmartContract  from "../../../../utils/useSmartContract";
+import useSmartContract from "../../../../utils/useSmartContract";
 import swal from "sweetalert";
 function ConfirmPay({}) {
   const [loading, setLoading] = useState(true);
@@ -33,12 +33,13 @@ function ConfirmPay({}) {
   }, []);
 
   const handleConfirm = async () => {
-    const price = data?.Totalprice * rate;
+    const price = data?.Totalprice / rate;
     const gigId = data?.gigId;
-    const address=data?.address
-    await orderPlaced(address,price,gigId);
-    swal("Congratulation!", "Successfully placed Order!", "success");
-    dispatch(addOrderlist({ total_package }));
+    const address = data?.address;
+    console.log(address, price, gigId)
+  const result = await orderPlaced(address, price, gigId);
+     swal("Congratulation!", "Successfully placed Order!", "success");
+     dispatch(addOrderlist({ total_package }));
   };
 
   return (
@@ -110,7 +111,7 @@ function ConfirmPay({}) {
               </div>
               <div className="flex items-center justify-between">
                 <span className="text-sm font-bold">Total Price</span>
-                <span className="text-sm">{data?.Totalprice * rate} ETH</span>
+                <span className="text-sm">{data?.Totalprice / rate} ETH</span>
               </div>
               <div className="border-gray-300 border-solid border-b-[1px]"></div>
               <button
