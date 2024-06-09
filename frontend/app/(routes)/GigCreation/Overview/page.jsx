@@ -12,6 +12,9 @@ import { createGig } from "../../../../Api/gigApi";
 import { useDispatch } from "react-redux";
 import { setUserData } from "../../../../redux/slice/userSlice";
 import { updateCategory } from "../../../../redux/slice/categorySlice";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { Spinner } from "@chakra-ui/react";
 
 const Overview = () => {
   const router = useRouter();
@@ -24,7 +27,10 @@ const Overview = () => {
   const [desc, setDesc] = useState("");
   const [file, setFile] = useState("");
   const dispatch = useDispatch();
+  const [laoder, setLaoder] = useState(false);
+
   const handleSave = async () => {
+    setLaoder(true);
     const response = await createGig(
       file,
       desc,
@@ -36,7 +42,6 @@ const Overview = () => {
       packageState.standard,
       packageState.premium
     );
-
 
     const info = response.user;
     dispatch(setUserData({ info }));
@@ -73,6 +78,29 @@ const Overview = () => {
     },
   });
 
+  const allFieldsFilled =
+    title.trim() !== "" &&
+    selectedCategory.trim() !== "" &&
+    selectedSubfield.trim() !== "" &&
+    desc.trim() !== "" &&
+    packageState.basic.packageDesc.trim() !== "" &&
+    packageState.basic.noOfPages.trim() !== "" &&
+    packageState.basic.price.trim() !== "" &&
+    packageState.basic.revisions.trim() !== "" &&
+    packageState.basic.deliveryTime.trim() !== "" &&
+    packageState.standard.packageDesc.trim() !== "" &&
+    packageState.standard.noOfPages.trim() !== "" &&
+    packageState.standard.price.trim() !== "" &&
+    packageState.standard.revisions.trim() !== "" &&
+    packageState.standard.deliveryTime.trim() !== "" &&
+    packageState.premium.packageDesc.trim() !== "" &&
+    packageState.premium.noOfPages.trim() !== "" &&
+    packageState.premium.price.trim() !== "" &&
+    packageState.premium.revisions.trim() !== "" &&
+    packageState.premium.deliveryTime.trim() !== "";
+  // const tagsFields = tags.every((item) => item.trim() !== "");
+  const isButtonEnable = allFieldsFilled;
+
   const handleChange = (e, pkgType) => {
     const { name, value } = e.target;
     setPackage((prevPackage) => ({
@@ -97,6 +125,21 @@ const Overview = () => {
     if (inputValue.length <= 1200) {
       setDesc(inputValue);
     }
+  };
+
+  const handleEmpty = () => {
+    // toast("All Feilds are Required");
+    toast.error("All Feilds are Required", {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      // transition: Bounce,
+    });
   };
 
   return (
@@ -142,7 +185,7 @@ const Overview = () => {
 
       <div className="ml-[230px] mr-[293px] pt-[100px] text-[35px] mb-11 border-b-2 ">
         <div>
-          <h1 className="mb-[30px]">Description</h1>
+          <h1 className="mb-[30px] font-bold">Description</h1>
         </div>
       </div>
       <div className="max-w-[1070px] basic-right h-[300px] border-[1px] rounded mx-[230px] mt-[10px]">
@@ -158,7 +201,7 @@ const Overview = () => {
           placeholder="About Gig"
         ></textarea>
         <p className="flex justify-end mr-[70px] text-red-600">
-          {title.length} / 1200 characters
+          {desc.length} / 1200 characters
         </p>
       </div>
 
@@ -172,12 +215,32 @@ const Overview = () => {
         <Uplaoder setFile={setFile} />
       </div>
 
-      <button
-        onClick={handleSave}
-        className="bg-dark-blue text-white py-4 px-8 ml-[1120px] mb-10 mt-8 rounded-xl hover:bg-blue-950"
-      >
-        Save & Continue
-      </button>
+      {isButtonEnable && file ? (
+        <button
+          onClick={handleSave}
+          // disabled={!isButtonEnable}
+          className="bg-dark-blue text-white py-4 px-8 ml-[1120px] mb-10 mt-8 rounded-xl hover:bg-blue-950"
+        >
+          Save & Continue
+        </button>
+      ) : (
+        <button
+          onClick={handleEmpty}
+          // disabled={!isButtonEnable}
+          className="bg-dark-blue text-white py-4 px-8 ml-[1120px] mb-10 mt-8 rounded-xl hover:bg-blue-950"
+        >
+          Save & Continue
+        </button>
+      )}
+
+      {laoder ? (
+        <div className="flex items-center justify-center gap-4 mb-6">
+          <span className="text-dark-blue font-bold text-[20px]">
+            Wait Gig in Progress{" "}
+          </span>
+          <Spinner color="blue.500" />{" "}
+        </div>
+      ) : null}
     </div>
   );
 };
