@@ -2,12 +2,11 @@ import { createSlice } from "@reduxjs/toolkit";
 const orderlistSlice = createSlice({
   name: "orderlist",
   initialState: {
-    orderPlaced: [],
+    orderPlaced: null,
   },
   reducers: {
     addOrderlist: (state, action) => {
-      const data = action.payload.total_package;
-      return { ...state, orderPlaced: [...state.orderPlaced, data] };
+      state.orderPlaced = action.payload;
     },
     removeOrderlist: (state, action) => {
       const id = action.payload;

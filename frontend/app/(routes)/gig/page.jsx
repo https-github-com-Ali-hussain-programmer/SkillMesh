@@ -93,7 +93,7 @@ const Gig = () => {
               alt="error"
             />
             <span className="text-base font-medium hover:border-b-2 border-black cursor-pointer">
-              {data?.name}
+              {data?.user?.name}
             </span>
             <div className="flex items-center gap-[5px]">
               <StarRating rating={data?.star} color={" text-yellow-400"} />

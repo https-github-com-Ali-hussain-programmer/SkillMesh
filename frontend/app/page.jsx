@@ -6,8 +6,8 @@ import { fetchCategories } from "../redux/slice/categorySlice";
 import { useCurrencyRate } from "../Api/useCurrencyRate";
 import useSmartContract from "../utils/useSmartContract";
 export default function Home() {
-
   const currentUser = useSelector((state) => state.user?.userData);
+  useSmartContract();
   useCurrencyRate();
   const dispatch = useDispatch();
   useEffect(() => {

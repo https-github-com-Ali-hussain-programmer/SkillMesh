@@ -20,8 +20,6 @@ function ProfileModal() {
     await Logout();
     window.location.replace("/");
     dispatch(clearUserData());
-
-   
   };
 
   return (
@@ -47,8 +45,22 @@ function ProfileModal() {
           <Link href="/profile"> My Profile</Link>
         </div>
         <div className=" hover:text-[#46CE7E] cursor-pointer py-2 text-[#36383F] text-sm border-b-[0.5px] border-solid border-[#e2e8f0]">
-          <Link href="./GigCreation/Overview">{currentUser?.isSeller ? "My Gigs" : "Become a Seller"}</Link>
+          <Link href="./GigCreation/Overview">
+            {currentUser?.isSeller ? "My Gigs" : "Become a Seller"}
+          </Link>
         </div>
+        {currentUser?.isSeller ? (
+          <div className=" hover:text-[#46CE7E] cursor-pointer py-2 text-[#36383F] text-sm border-b-[0.5px] border-solid border-[#e2e8f0]">
+            <Link href="/OrderPlaced">Orders</Link>
+          </div>
+        ) : null}
+         <div className=" hover:text-[#46CE7E] cursor-pointer py-2 text-[#36383F] text-sm border-b-[0.5px] border-solid border-[#e2e8f0]">
+          <Link href="/projectCompleted">
+          Project Completed
+          </Link>
+        </div>
+   
+
         <div
           onClick={handleLogout}
           className="flex items-center gap-4 hover:text-[#46CE7E] cursor-pointer py-2  text-sm border-b-[0.5px] border-solid border-[#e2e8f0]"

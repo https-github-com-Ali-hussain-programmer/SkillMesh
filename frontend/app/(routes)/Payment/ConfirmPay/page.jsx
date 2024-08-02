@@ -18,6 +18,7 @@ import { useRouter } from "next/navigation";
 import { addOrderlist } from "@/redux/slice/orderlistSlice";
 import useSmartContract from "../../../../utils/useSmartContract";
 import swal from "sweetalert";
+import { orderPlacedAPI } from "../../../../Api/orderAPi";
 function ConfirmPay({}) {
   const [loading, setLoading] = useState(true);
   const total_package = useSelector(packagedata);
@@ -31,15 +32,26 @@ function ConfirmPay({}) {
     setLoading(false);
     setData(JSON.parse(localStorage.getItem("TotalPackage")));
   }, []);
-
   const handleConfirm = async () => {
-    const price = data?.Totalprice / rate;
+    // Remove non-numeric characters from data.Totalprice
+    const totalPrice = Number(data?.Totalprice.replace(/[^0-9.]/g, ""));
+    const rateNumber = Number(rate);
+
+    if (isNaN(totalPrice) || isNaN(rateNumber) || rateNumber === 0) {
+      console.error("Invalid data for price calculation.");
+      return;
+    }
+
+    const price = totalPrice / rateNumber;
     const gigId = data?.gigId;
     const address = data?.address;
-    console.log(address, price, gigId)
-  const result = await orderPlaced(address, price, gigId);
-     swal("Congratulation!", "Successfully placed Order!", "success");
-     dispatch(addOrderlist({ total_package }));
+
+    const result = await orderPlacedAPI({ gigId, price });
+    if (result.testingorder) {
+      await orderPlaced(address, price, gigId, result.testingorder.orderId);
+      swal("Congratulation!", "Successfully placed Order!", "success");
+      router.replace("/");
+    }
   };
 
   return (

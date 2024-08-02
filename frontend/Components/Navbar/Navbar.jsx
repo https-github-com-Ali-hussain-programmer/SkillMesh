@@ -11,14 +11,17 @@ import {
   CategoryModal,
   NavbarDrawer,
 } from "../../Components";
+import { addOrderlist } from "../../redux/slice/orderlistSlice";
 import { FaShoppingCart } from "react-icons/fa";
 import { BsFillSuitHeartFill } from "react-icons/bs";
 import { favouritesList } from "@/redux/slice/wishlistSlice";
 import MetaModal from "../MetaMaskModal/MetaModal";
 import ProfileModal from "../profilePage/ProfileModal";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
+import { Allorders } from "../../Api/orderAPi";
 const Navbar = () => {
   const pathname = usePathname();
+  const dispatch = useDispatch();
   const [metaModal, setmetaModal] = useState(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [OrderShow, setOrderShow] = useState(false);
@@ -59,6 +62,15 @@ const Navbar = () => {
   }, []);
   const memoizedSetModal = useCallback(() => {
     setmetaModal((prevState) => !prevState);
+  }, []);
+
+  const getAllOrder = async () => {
+    const response = await Allorders(currentUser._id);
+    dispatch(addOrderlist(response.orders));
+  };
+  useEffect(() => {
+    getAllOrder();
+ 
   }, []);
 
   return (

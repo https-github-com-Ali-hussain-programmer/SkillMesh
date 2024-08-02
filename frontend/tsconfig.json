@@ -54,6 +54,6 @@
     "app/page.jsx",
     "Components/Category/CategoryModal.jsx",
     "Components/Footer/Footer.jsx"
-, "Components/GigCreation/Package/index.jsx"  ],
+, "Components/GigCreation/Package/index.jsx", "app/projectCompleted/page.jsx"  ],
   "exclude": ["node_modules"]
 }

@@ -21,7 +21,7 @@ const categorySlice = createSlice({
     updateCategory: (state, action) => {
       const updatedCategory = action.payload;
       const updatedData = state.data.map(category => {
-        if (category._id === updatedCategory._id) {
+        if (category._id === updatedCategory?._id) {
           return updatedCategory; // Update the specific category
         }
         return category; // Keep other categories unchanged

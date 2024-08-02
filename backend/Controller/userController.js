@@ -138,6 +138,7 @@ exports.updatePic = async (req, res) => {
     return res.status(500).json({ error: "Server Error" });
   }
 };
+
 exports.updateCertification = async (req, res) => {
   try {
     const { certificateName, platform, certficateDate, id } = req.body;

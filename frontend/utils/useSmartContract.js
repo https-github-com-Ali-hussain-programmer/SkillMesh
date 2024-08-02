@@ -21,7 +21,6 @@ const useSmartContract = () => {
           );
           setAddress(contractInstance);
           setContract(contractInstance);
-        
         } else {
           console.error("Smart contract not deployed on the current network");
         }
@@ -45,13 +44,13 @@ const useSmartContract = () => {
 
     try {
       if (
-        currentUser.address !== "0xfFd595a5Ee59102288D5Ee8175345f7d05c31cAb"
+        currentUser.address !== "0x753c493641fcb604D0322E90E532dCA5657EA2A1"
       ) {
         console.error("Only the owner can set the SkillMesh address");
         return;
       }
       await contractInstance.methods
-        .setSkillMeshAddress("0x55811290C262926B32B5A1172612F44C55f90f13")
+        .setSkillMeshAddress("0xeacA11D501648ECDF45D3FD78f4F0d6cd7587ac8")
         .send({
           from: currentUser.address,
         });
@@ -60,7 +59,31 @@ const useSmartContract = () => {
     }
   };
 
-  const orderPlaced = async (seller, price, gigId) => {
+  const completeOrderTx = async (id) => {
+    if (!contract) {
+      console.error("Smart contract not initialized");
+      return false;
+    }
+
+    try {
+      const web3 = new Web3(window.ethereum);
+
+      // Define the gas limit for the transaction (adjust as needed)
+      const gasLimit = 3000000;
+
+      // Send the transaction to complete the order with the specified gas limit
+      await contract.methods.completeOrder(id).send({
+        from: currentUser.address,
+        gas: gasLimit,
+      });
+      return true;
+    } catch (error) {
+      console.error("Error completing order:", error);
+      return false;
+    }
+  };
+
+  const orderPlaced = async (seller, price, gigId, orderid) => {
     if (!contract) {
       console.error("Smart contract not initialized");
       return;
@@ -69,17 +92,13 @@ const useSmartContract = () => {
     try {
       const web3 = new Web3(window.ethereum);
       const priceInWei = web3.utils.toWei(price.toString(), "ether");
-      console.log(priceInWei, gigId, seller);
-      await contract.methods.placeOrder(seller, gigId, priceInWei).send({
-        from: currentUser.address,
-        value: priceInWei,
-      });
-      const result = await contractInstance.methods
-      .getOrderDetails(1)
-      .call({
-        from: currentUser.address,
-      });
-      console.log(result)
+      await contract.methods
+        .placeOrder(seller, gigId, priceInWei, orderid)
+        .send({
+          from: currentUser.address,
+          value: priceInWei,
+        });
+      return true;
     } catch (error) {
       console.error("Error placing order:", error);
     }
@@ -105,7 +124,7 @@ const useSmartContract = () => {
     }
   };
 
-  return { orderPlaced, orderDetails };
+  return { orderPlaced, orderDetails, completeOrderTx };
 };
 
 export default useSmartContract;

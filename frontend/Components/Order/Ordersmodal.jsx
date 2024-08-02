@@ -1,12 +1,14 @@
+"use client"
 import React from "react";
 import Orderlist from "./Orderlist";
 import emptybox from "../../public/emptybox.png";
 import shoppingbag from "../../public/shopping-bag.png";
 import { useSelector } from "react-redux";
-
+import {useEffect} from 'react'
 function Ordersmodal() {
   const orders = useSelector((state) => state.orderlist.orderPlaced);
-  console.log(orders)
+
+ 
   return (
     <>
       <div className=" shadow-lg border-solid bg-white md:w-[350px] h-[470px] w-[300px] overflow-auto rounded-md border  border-gray-300">
